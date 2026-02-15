@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Карта</title>
+<title>Контроль территории</title>
 
 <link rel="stylesheet"
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -12,7 +12,8 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 html, body {
     height: 100%;
     margin: 0;
-    font-family: Ubuntu, system-ui, sans-serif;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: #f4f4f4;
 }
 
 #map {
@@ -31,67 +32,69 @@ html, body {
 <script>
 
 // Инициализация
-var map = L.map('map', {
-    preferCanvas: true
+const map = L.map('map', {
+    preferCanvas: true,
+    zoomControl: false
 }).setView([48.7, 38.2], 6);
 
-// База
+// Минималистичная светлая база
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-// Цвет по названию (работает всегда, даже если добавишь новые районы)
+// Спокойная палитра
 function getColor(name) {
-
-    if (!name) return "#0057b7";
+    if (!name) return "#2e5fa7";
 
     const n = name.toLowerCase();
 
     if (n.includes("russian"))
-        return "#d90429";
+        return "#b63a3a";   // глубокий мягкий красный
 
     if (n.includes("ukrainian"))
-        return "#0057b7";
+        return "#2e5fa7";   // спокойный синий
 
-    return "#0057b7";
+    return "#2e5fa7";
 }
 
-// GeoJSON слой
-var geoLayer = L.geoJSON(null, {
+// Основной слой без внутренних границ
+const geoLayer = L.geoJSON(null, {
 
-    filter: function(feature) {
-        return feature.geometry.type === "Polygon" ||
-               feature.geometry.type === "MultiPolygon";
-    },
+    filter: f =>
+        f.geometry.type === "Polygon" ||
+        f.geometry.type === "MultiPolygon",
 
-    style: function(feature) {
-
-        const name = feature.properties?.name || "";
-        const color = getColor(name);
-
-        return {
-            stroke: false,      // полностью убрать границы
-            fillColor: color,
-            fillOpacity: 0.55
-        };
-    }
+    style: f => ({
+        stroke: false,           // убираем внутренние линии
+        fillColor: getColor(f.properties?.name),
+        fillOpacity: 0.42        // чистая прозрачность без швов
+    })
 
 }).addTo(map);
 
-// Загрузка файла
+// Загрузка
 fetch('zones.geojson')
-    .then(r => r.json())
-    .then(data => {
+.then(r => r.json())
+.then(data => {
 
-        geoLayer.addData(data);
+    geoLayer.addData(data);
 
-        if (geoLayer.getBounds().isValid()) {
-            map.fitBounds(geoLayer.getBounds());
+    // Внешний контур (один аккуратный)
+    L.geoJSON(data, {
+        style: {
+            color: "#5a1515",    // тёмный бордовый
+            weight: 1.8,
+            opacity: 0.9,
+            fill: false
         }
+    }).addTo(map);
 
-    })
-    .catch(err => console.error(err));
+    if (geoLayer.getBounds().isValid()) {
+        map.fitBounds(geoLayer.getBounds(), { padding: [20, 20] });
+    }
+
+});
 
 </script>
 
