@@ -3,29 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Карта</title>
+<title>Оперативная карта</title>
 
 <link rel="stylesheet"
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <style>
-html, body {
-    height: 100%;
+body {
     margin: 0;
-    font-family: Ubuntu, system-ui, sans-serif;
-    background: #f4f4f4;
+    background: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.header {
+    padding: 24px 28px 10px 28px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.header p {
+    margin: 6px 0 0 0;
+    font-size: 14px;
+    color: #6b7280;
 }
 
 #map {
+    height: 620px;
     width: 100%;
-    height: 100vh;
+}
+
+.footer-note {
+    padding: 18px 28px;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+    background: #fafafa;
+    border-top: 1px solid #e5e7eb;
 }
 </style>
 </head>
 
 <body>
 
-<div id="map"></div>
+<div class="wrapper">
+
+    <div class="header">
+        <h1>Оперативная карта</h1>
+        <p>Актуальное отображение зон контроля и административных границ</p>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="footer-note">
+        Карта использует открытые картографические данные OpenStreetMap.
+        Административные границы отображаются согласно международно признанной системе OSM.
+        Чёрным контуром выделены регионы, указанные в Конституции Российской Федерации.
+        Информация представлена в аналитических целях.
+    </div>
+
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -61,12 +111,9 @@ var zonesLayer = L.geoJSON(null, {
                feature.geometry.type === "MultiPolygon";
     },
     style: function(feature) {
-        const name = feature.properties?.name || "";
-        const color = getColor(name);
-
         return {
             stroke: false,
-            fillColor: color,
+            fillColor: getColor(feature.properties?.name),
             fillOpacity: 0.45
         };
     }
@@ -84,12 +131,12 @@ fetch('zones.geojson')
     });
 
 
-// ===== КОНТУР ОБЛАСТЕЙ (ПРОФЕССИОНАЛЬНЫЙ) =====
+// ===== КОНТУР ОБЛАСТЕЙ =====
 var regionsBorderLayer = L.geoJSON(null, {
     style: function() {
         return {
-            color: "#4a0d0d",   // глубокий тёмный красный
-            weight: 2.5,        // профессиональная толщина
+            color: "#4a0d0d",
+            weight: 2.8,
             opacity: 0.95,
             fillOpacity: 0
         };
