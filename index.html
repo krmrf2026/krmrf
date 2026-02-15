@@ -34,12 +34,18 @@ body {
 h1 {
   font-size: 26px;
   margin: 0 0 6px;
-  color: var(--title);
   font-weight: 700;
+  color: var(--title);
 }
 
 .subtitle {
   font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.note {
+  font-size: 13px;
   color: var(--muted);
   margin-bottom: 36px;
 }
@@ -50,7 +56,7 @@ h1 {
   font-weight: 700;
   color: var(--link);
   text-decoration: none;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .map-link:hover {
@@ -58,24 +64,18 @@ h1 {
   text-decoration: underline;
 }
 
-/* Методика */
-
 .map-method {
-  margin-bottom: 42px;
   font-size: 13px;
   color: var(--muted);
   line-height: 1.55;
+  margin-bottom: 44px;
 }
 
 .method-title {
   font-weight: 600;
-  font-size: 13px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #374151;
-  letter-spacing: 0.3px;
 }
-
-/* Последнее важное */
 
 .update {
   background: var(--surface);
@@ -102,8 +102,6 @@ h1 {
   font-size: 15px;
 }
 
-/* Footer */
-
 .footer {
   border-top: 1px solid var(--rule);
   padding-top: 22px;
@@ -126,21 +124,25 @@ h1 {
 <div class="wrap">
 
 <h1>Тихая газетка</h1>
+
 <div class="subtitle">
 Аналитика СВО & Новости ЛНР & Кременная
 </div>
 
+<div class="note">
+Личная карта и краткие заметки по открытым источникам.
+</div>
+
 <a class="map-link" href="https://krmrf.pages.dev/map">
-Карта СВО
+Карта СВО →
 </a>
 
 <div class="map-method">
   <div class="method-title">Методика и ограничения</div>
-  Карта формируется на основе анализа открытых источников различного характера.
-  Обновление производится вручную и может содержать временную задержку.
-  Отображаемая линия является оценочной и отражает обобщённую аналитическую позицию проекта.
-  Карта не является онлайн-мониторингом и не претендует на точное отображение текущей ситуации.
-  Материал предназначен исключительно для ознакомительных и визуально-аналитических целей.
+  Карта составляется на основе открытых источников и обновляется вручную.
+  Возможна временная задержка.
+  Отображаемая линия носит ориентировочный характер и отражает мою оценку ситуации.
+  Это не онлайн-мониторинг, а визуальная фиксация изменений для общего понимания.
 </div>
 
 <div class="update">
