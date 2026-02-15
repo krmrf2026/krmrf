@@ -41,55 +41,40 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-// Цвет по названию (работает всегда, даже если добавишь новые районы)
+// Цвет по названию
 function getColor(name) {
-
     if (!name) return "#0057b7";
-
     const n = name.toLowerCase();
-
-    if (n.includes("russian"))
-        return "#d90429";
-
-    if (n.includes("ukrainian"))
-        return "#0057b7";
-
+    if (n.includes("russian")) return "#c44545";
+    if (n.includes("ukrainian")) return "#0057b7";
     return "#0057b7";
 }
 
 // GeoJSON слой
 var geoLayer = L.geoJSON(null, {
-
     filter: function(feature) {
         return feature.geometry.type === "Polygon" ||
                feature.geometry.type === "MultiPolygon";
     },
-
     style: function(feature) {
-
         const name = feature.properties?.name || "";
         const color = getColor(name);
-
         return {
-            stroke: false,      // полностью убрать границы
+            stroke: false,
             fillColor: color,
-            fillOpacity: 0.55
+            fillOpacity: 0.45
         };
     }
-
 }).addTo(map);
 
 // Загрузка файла
 fetch('zones.geojson')
     .then(r => r.json())
     .then(data => {
-
         geoLayer.addData(data);
-
         if (geoLayer.getBounds().isValid()) {
             map.fitBounds(geoLayer.getBounds());
         }
-
     })
     .catch(err => console.error(err));
 
