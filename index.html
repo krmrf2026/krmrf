@@ -8,7 +8,6 @@
   <style>
     :root {
       --bg: #f6f5f4;
-      --surface: #ffffff;
       --text: #1f2328;
       --muted: #5f6772;
       --rule: #e6e4e1;
@@ -17,16 +16,12 @@
       --title: #1b1f24;
     }
 
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: Ubuntu, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-family: Ubuntu, system-ui, sans-serif;
       line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
 
     .wrap {
@@ -34,8 +29,6 @@
       padding: 18px 14px 64px;
       margin: 0 auto;
     }
-
-    header { margin-bottom: 22px; }
 
     header h1 {
       font-size: 22px;
@@ -51,14 +44,16 @@
     }
 
     nav {
-      margin: 16px 0 6px;
-      font-size: 14px;
+      margin: 20px 0;
+      font-size: 16px;
     }
 
     nav a {
-      margin-right: 14px;
+      display: inline-block;
+      margin-right: 20px;
       text-decoration: none;
       color: var(--link);
+      font-weight: 600;
     }
 
     nav a:hover {
@@ -66,54 +61,22 @@
       text-decoration: underline;
     }
 
-    hr {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 18px 0;
-    }
-
-    .list article { margin-bottom: 18px; }
-
-    .list h2 {
-      font-size: 18px;
-      margin: 0 0 6px;
-      color: var(--title);
-      line-height: 1.35;
-    }
-
-    .list p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .meta {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .post h2 {
-      font-size: 24px;
-      line-height: 1.25;
-      margin: 6px 0 10px;
-      color: var(--title);
-    }
-
-    .post p {
-      margin: 0 0 14px;
-      font-size: 17px;
-    }
-
-    a { color: var(--link); }
-    a:hover { color: var(--linkHover); }
-
     footer {
-      margin-top: 34px;
-      padding-top: 12px;
+      margin-top: 40px;
+      padding-top: 20px;
       border-top: 1px solid var(--rule);
       font-size: 14px;
       color: var(--muted);
+    }
+
+    footer a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -123,56 +86,20 @@
 
     <header>
       <h1>Тихая газетка</h1>
-      <p>🔹 Аналитика СВО & Новости ЛНР & Кременная</p>
+      <p>Аналитика СВО & Новости ЛНР & Кременная</p>
 
       <nav>
         <a href="https://krmrf.pages.dev/map">Карта</a>
-        <a href="#kremennaya">Новости Кременной</a>
+        <a href="#">Новости Кременной</a>
       </nav>
     </header>
 
-    <section class="list">
-
-      <article>
-        <h2>
-          <a href="https://krmrf.pages.dev/map">
-            Карта СВО: актуальная линия контроля
-          </a>
-        </h2>
-        <p>Обновляемая карта на основе открытых данных и изменений в KML.</p>
-      </article>
-
-      <article>
-        <h2>
-          <a href="#kremennaya">
-            Кременная: оперативная обстановка
-          </a>
-        </h2>
-        <p>Свет, инфраструктура, обстрелы. Только подтверждённые факты.</p>
-      </article>
-
-    </section>
-
-    <hr />
-
-    <section class="post" id="kremennaya">
-      <div class="meta">Актуально • Кременная</div>
-
-      <h2>Кременная: текущая ситуация</h2>
-
-      <p>В городе сохраняется нестабильность электроснабжения. Перебои фиксируются в отдельных районах.</p>
-
-      <p>По линии фронта существенных изменений не зафиксировано. Артиллерийская активность носит периодический характер.</p>
-
-      <p>Информация обновляется по мере поступления подтверждённых данных из открытых источников.</p>
-
-      <p><strong>➖ Анализ СВО по открытым источникам<br>
-      ➖ Новости ЛНР</strong></p>
-
-    </section>
-
     <footer>
-      <p>Telegram: <a href="https://t.me/xykrm" target="_blank">https://t.me/xykrm</a></p>
+      <p>
+        <a href="https://t.me/xykrm" target="_blank">
+          Ссылка на мой Telegram
+        </a>
+      </p>
     </footer>
 
   </div>
