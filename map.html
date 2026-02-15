@@ -44,7 +44,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-// ===== ФУНКЦИЯ ЦВЕТА ЗОН =====
+// ===== ЦВЕТ ЗАЛИВКИ =====
 function getColor(name) {
     if (!name) return "#0057b7";
     const n = name.toLowerCase();
@@ -81,16 +81,15 @@ fetch('zones.geojson')
         if (zonesLayer.getBounds().isValid()) {
             map.fitBounds(zonesLayer.getBounds());
         }
-    })
-    .catch(error => console.error("Ошибка загрузки zones:", error));
+    });
 
 
-// ===== КОНТУР ОБЛАСТЕЙ =====
+// ===== КОНТУР ОБЛАСТЕЙ (ПРОФЕССИОНАЛЬНЫЙ) =====
 var regionsBorderLayer = L.geoJSON(null, {
     style: function() {
         return {
-            color: "#c44545",   // мягкий красный
-            weight: 3,          // толщина линии
+            color: "#4a0d0d",   // глубокий тёмный красный
+            weight: 2.5,        // профессиональная толщина
             opacity: 0.95,
             fillOpacity: 0
         };
@@ -104,8 +103,7 @@ fetch('rf_regions.json')
     .then(data => {
         regionsBorderLayer.addData(data);
         regionsBorderLayer.bringToFront();
-    })
-    .catch(error => console.error("Ошибка загрузки контуров:", error));
+    });
 
 </script>
 
