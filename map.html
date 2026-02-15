@@ -10,77 +10,73 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <style>
 
-body {
+html, body {
+    height: 100%;
     margin: 0;
-    background: #f3f4f6;
+    padding: 0;
+    overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* ===== КОНТЕЙНЕР ===== */
-.wrapper {
-    max-width: 1200px;
-    margin: 40px auto;
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: 0.3s ease;
+/* КАРТА НА ВЕСЬ ЭКРАН */
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-/* ===== ЗАГОЛОВОК ===== */
-.header {
-    padding: 24px 28px;
-    border-bottom: 1px solid #e5e7eb;
+/* ВЕРХНЯЯ ПАНЕЛЬ ПОВЕРХ КАРТЫ */
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    padding: 18px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.header-text h1 {
+.top-bar h1 {
     margin: 0;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    color: #1f2937;
+    color: #111827;
 }
 
-.header-text p {
-    margin: 6px 0 0 0;
-    font-size: 14px;
-    color: #6b7280;
-}
-
-/* ===== КНОПКА FULLSCREEN ===== */
-.fullscreen-btn {
-    background: #111827;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: 0.2s;
-}
-
-.fullscreen-btn:hover {
-    background: #1f2937;
-}
-
-#map {
-    height: 620px;
-    width: 100%;
-}
-
-/* ===== ПОДПИСЬ ===== */
-.footer-note {
-    padding: 18px 28px;
+.top-bar p {
+    margin: 4px 0 0 0;
     font-size: 13px;
     color: #6b7280;
-    line-height: 1.6;
-    background: #fafafa;
-    border-top: 1px solid #e5e7eb;
 }
 
-/* ===== УБИРАЕМ LEAFLET LOGO ===== */
+.bar-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ПОДПИСЬ ВНИЗУ ПОВЕРХ КАРТЫ */
+.bottom-note {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    padding: 12px 20px;
+    font-size: 12px;
+    color: #6b7280;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* УБИРАЕМ LEAFLET LOGO */
 .leaflet-control-attribution a[href*="leaflet"] {
     display: none;
 }
@@ -90,46 +86,38 @@ body {
 
 <body>
 
-<div class="wrapper" id="mapWrapper">
+<div id="map"></div>
 
-    <div class="header">
-        <div class="header-text">
-            <h1>Оперативная карта</h1>
-            <p>Актуальное отображение зон контроля и административных границ</p>
-        </div>
-
-        <button class="fullscreen-btn" onclick="toggleFullScreen()">
-            Развернуть
-        </button>
+<div class="top-bar">
+    <div class="bar-text">
+        <h1>Оперативная карта</h1>
+        <p>Актуальное отображение зон контроля и административных границ</p>
     </div>
+</div>
 
-    <div id="map"></div>
-
-    <div class="footer-note">
-        Карта использует открытые картографические данные © OpenStreetMap.
-        Административные границы отображаются согласно международно признанной системе OSM.
-        Чёрным контуром выделены регионы, указанные в Конституции Российской Федерации.
-        Информация представлена в аналитических целях.
-    </div>
-
+<div class="bottom-note">
+    Карта использует открытые картографические данные © OpenStreetMap.
+    Административные границы отображаются согласно международно признанной системе OSM.
+    Чёрным контуром выделены регионы, указанные в Конституции Российской Федерации.
+    Информация представлена в аналитических целях.
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 
-// ===== ИНИЦИАЛИЗАЦИЯ =====
+// ИНИЦИАЛИЗАЦИЯ
 var map = L.map('map', {
     preferCanvas: true
 }).setView([48.7, 38.2], 6);
 
-// ===== БАЗОВАЯ КАРТА (ТОЛЬКО OSM, БЕЗ LEAFLET LOGO) =====
+// БАЗА (ЗАКОННО — ОСТАЁТСЯ © OSM)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-// ===== ЦВЕТ ЗОН =====
+// ЦВЕТ ЗОН
 function getColor(name) {
     if (!name) return "#0057b7";
     const n = name.toLowerCase();
@@ -138,12 +126,8 @@ function getColor(name) {
     return "#0057b7";
 }
 
-// ===== СЛОЙ ЗОН =====
+// СЛОЙ ЗОН
 var zonesLayer = L.geoJSON(null, {
-    filter: function(feature) {
-        return feature.geometry.type === "Polygon" ||
-               feature.geometry.type === "MultiPolygon";
-    },
     style: function(feature) {
         return {
             stroke: false,
@@ -153,9 +137,9 @@ var zonesLayer = L.geoJSON(null, {
     }
 }).addTo(map);
 
-// ===== ЗАГРУЗКА ЗОН =====
+// ЗАГРУЗКА ЗОН
 fetch('zones.geojson')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
         zonesLayer.addData(data);
         if (zonesLayer.getBounds().isValid()) {
@@ -163,7 +147,7 @@ fetch('zones.geojson')
         }
     });
 
-// ===== КОНТУР ОБЛАСТЕЙ =====
+// КОНТУР ОБЛАСТЕЙ
 var regionsBorderLayer = L.geoJSON(null, {
     style: function() {
         return {
@@ -175,26 +159,16 @@ var regionsBorderLayer = L.geoJSON(null, {
     }
 }).addTo(map);
 
-// ===== ЗАГРУЗКА КОНТУРА =====
+// ЗАГРУЗКА КОНТУРА
 fetch('rf_regions.json')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
         regionsBorderLayer.addData(data);
         regionsBorderLayer.bringToFront();
     });
 
-// ===== FULLSCREEN =====
-function toggleFullScreen() {
-    const wrapper = document.getElementById('mapWrapper');
-
-    if (!document.fullscreenElement) {
-        wrapper.requestFullscreen();
-    } else {
-        document.exitFullscreen();
-    }
-}
-
 </script>
 
 </body>
 </html>
+
