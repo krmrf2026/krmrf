@@ -83,7 +83,7 @@ var geoLayer = L.geoJSON(null, {
 }).addTo(map);
 
 // Загружаем JSON
-fetch('zones.json')
+fetch('zones.geojson')
     .then(response => response.json())
     .then(data => {
 
