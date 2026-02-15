@@ -9,7 +9,7 @@
 :root {
   --bg: #f6f5f4;
   --text: #1f2328;
-  --muted: #5f6772;
+  --muted: #6b7280;
   --rule: #e6e4e1;
   --link: #1a5fb4;
   --linkHover: #0f4c9a;
@@ -21,52 +21,66 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Ubuntu, system-ui, sans-serif;
-  line-height: 1.7;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.65;
 }
 
 .wrap {
   max-width: 720px;
-  padding: 28px 16px 80px;
+  padding: 32px 16px 80px;
   margin: 0 auto;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 26px;
   margin: 0 0 6px;
   color: var(--title);
+  font-weight: 700;
 }
 
 .subtitle {
   font-size: 14px;
   color: var(--muted);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
-.main-link {
+.map-link {
   display: inline-block;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--link);
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
-.main-link:hover {
+.map-link:hover {
   color: var(--linkHover);
   text-decoration: underline;
 }
 
-.map-disclaimer {
+/* Методика */
+
+.map-method {
+  margin-bottom: 42px;
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 36px;
+  line-height: 1.55;
 }
+
+.method-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #374151;
+  letter-spacing: 0.3px;
+}
+
+/* Последнее важное */
 
 .update {
   background: var(--surface);
-  padding: 18px 20px;
-  border-radius: 12px;
+  padding: 20px 22px;
+  border-radius: 14px;
   border-left: 3px solid var(--rule);
   margin-bottom: 50px;
 }
@@ -74,13 +88,13 @@ h1 {
 .update h2 {
   font-size: 16px;
   margin: 0 0 6px;
-  color: var(--title);
+  font-weight: 600;
 }
 
 .updated-time {
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .update p {
@@ -88,11 +102,12 @@ h1 {
   font-size: 15px;
 }
 
+/* Footer */
+
 .footer {
   border-top: 1px solid var(--rule);
-  padding-top: 20px;
+  padding-top: 22px;
   font-size: 14px;
-  color: var(--muted);
 }
 
 .footer a {
@@ -115,20 +130,24 @@ h1 {
 Аналитика СВО & Новости ЛНР & Кременная
 </div>
 
-<a class="main-link" href="https://krmrf.pages.dev/map">
+<a class="map-link" href="https://krmrf.pages.dev/map">
 Карта СВО
 </a>
 
-<div class="map-disclaimer">
-Карта обновляется вручную на основе открытых источников. 
-Линия отображается ориентировочно.
+<div class="map-method">
+  <div class="method-title">Методика и ограничения</div>
+  Карта формируется на основе анализа открытых источников различного характера.
+  Обновление производится вручную и может содержать временную задержку.
+  Отображаемая линия является оценочной и отражает обобщённую аналитическую позицию проекта.
+  Карта не является онлайн-мониторингом и не претендует на точное отображение текущей ситуации.
+  Материал предназначен исключительно для ознакомительных и визуально-аналитических целей.
 </div>
 
 <div class="update">
   <h2>Последнее важное</h2>
   <div class="updated-time" id="updated"></div>
   <p>
-  Здесь размещается краткая информация о наиболее значимых событиях.
+  Здесь публикуется краткая информация о наиболее значимых событиях.
   </p>
 </div>
 
@@ -148,7 +167,6 @@ function formatDate(date) {
   const minutes = String(date.getMinutes()).padStart(2, '0');
   return `Обновлено: ${day}.${month} ${hours}:${minutes}`;
 }
-
 document.getElementById("updated").textContent = formatDate(new Date());
 </script>
 
