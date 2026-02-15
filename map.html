@@ -1,13 +1,21 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Карта</title>
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+e2tu1kG6WvYp4C9Wv7kF3qz7gP1p2p7x1o6vM+3M="
+    crossorigin=""
+  />
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin="">
+  </script>
 
   <style>
     html, body {
@@ -15,43 +23,26 @@
       margin: 0;
     }
     #map {
+      width: 100%;
       height: 100vh;
     }
   </style>
 </head>
+
 <body>
 
 <div id="map"></div>
 
 <script>
-window.addEventListener('load', async () => {
+document.addEventListener("DOMContentLoaded", function() {
 
-  // Центр карты (Донбасс), масштаб 7
-  const map = L.map('map').setView([48.7, 38.2], 7);
+  var map = L.map('map').setView([48.7, 38.2], 7);
 
-  // Русская подложка OpenStreetMap
-  L.tileLayer('https://{s}.tile.openstreetmap.ru/osm/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© OpenStreetMap'
+  // Стабильная подложка
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
-
-  // Загружаем линию фронта (GeoJSON)
-  try {
-    const res = await fetch('/data/frontline.geojson', { cache: 'no-store' });
-    if (!res.ok) throw new Error('frontline.geojson not found');
-
-    const geo = await res.json();
-
-    L.geoJSON(geo, {
-      style: {
-        color: '#cc0000',
-        weight: 3
-      }
-    }).addTo(map);
-
-  } catch (e) {
-    console.log(e);
-  }
 
 });
 </script>
