@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Тихая газетка</title>
+
   <style>
-    /* Reading-first palette: "paper" background + soft dark text (Ubuntu-like feel, not brand colors) */
     :root {
-      --bg: #f6f5f4;        /* warm paper */
-      --surface: #ffffff;   /* cards/surface if needed */
-      --text: #1f2328;      /* soft near-black */
-      --muted: #5f6772;     /* secondary text */
-      --rule: #e6e4e1;      /* subtle separators */
-      --link: #1a5fb4;      /* calm blue (Ubuntu-ish) */
+      --bg: #f6f5f4;
+      --surface: #ffffff;
+      --text: #1f2328;
+      --muted: #5f6772;
+      --rule: #e6e4e1;
+      --link: #1a5fb4;
       --linkHover: #0f4c9a;
       --title: #1b1f24;
     }
@@ -26,7 +26,6 @@
       font-family: Ubuntu, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
@@ -43,7 +42,6 @@
       margin: 0 0 6px 0;
       font-weight: 700;
       color: var(--title);
-      letter-spacing: 0.2px;
     }
 
     header p {
@@ -58,12 +56,15 @@
     }
 
     nav a {
-      margin-right: 12px;
+      margin-right: 14px;
       text-decoration: none;
       color: var(--link);
     }
 
-    nav a:hover { color: var(--linkHover); text-decoration: underline; }
+    nav a:hover {
+      color: var(--linkHover);
+      text-decoration: underline;
+    }
 
     hr {
       border: none;
@@ -71,7 +72,7 @@
       margin: 18px 0;
     }
 
-    .list article { margin-bottom: 16px; }
+    .list article { margin-bottom: 18px; }
 
     .list h2 {
       font-size: 18px;
@@ -114,58 +115,66 @@
       font-size: 14px;
       color: var(--muted);
     }
-
-    footer a { text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* Optional: slightly tighter layout on very small screens */
-    @media (max-width: 360px) {
-      .wrap { padding: 14px 12px 56px; }
-      .post p { font-size: 16px; }
-    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
+
     <header>
       <h1>Тихая газетка</h1>
-      <p>Заметки о войне, экономике и жизни. Спокойно, по делу, без истерики.</p>
+      <p>🔹 Аналитика СВО & Новости ЛНР & Кременная</p>
+
       <nav>
-        <a href="#">Фронт</a>
-        <a href="#">Экономика</a>
-        <a href="#">ЛНР</a>
-        <a href="#">Контекст</a>
+        <a href="https://krmrf.pages.dev/map">Карта</a>
+        <a href="#kremennaya">Новости Кременной</a>
       </nav>
     </header>
 
     <section class="list">
+
       <article>
-        <h2>Почему экономика каждый год "вот-вот рухнет", но стоит</h2>
-        <p>Цифры, ожидания и реальность - коротко, без паники и лозунгов.</p>
+        <h2>
+          <a href="https://krmrf.pages.dev/map">
+            Карта СВО: актуальная линия контроля
+          </a>
+        </h2>
+        <p>Обновляемая карта на основе открытых данных и изменений в KML.</p>
       </article>
+
       <article>
-        <h2>Славянское направление: почему высоты важнее города</h2>
-        <p>География, логистика и то, что обычно теряется в сводках.</p>
+        <h2>
+          <a href="#kremennaya">
+            Кременная: оперативная обстановка
+          </a>
+        </h2>
+        <p>Свет, инфраструктура, обстрелы. Только подтверждённые факты.</p>
       </article>
-      <article>
-        <h2>ЛНР: свет, морозы и почему перебои стали нормой</h2>
-        <p>Что происходит на самом деле и чего ждать дальше.</p>
-      </article>
+
     </section>
 
     <hr />
 
-    <section class="post">
-      <div class="meta">20 января 2026 • Экономика</div>
-      <h2>Почему экономике России каждый год пророчат кирдык</h2>
-      <p>Уже пятый год подряд звучит одно и то же: нефть падает, доходы сокращаются, дефицит растет. Звучит страшно, но реальность обычно скучнее - и поэтому устойчивее.</p>
-      <p>Доля нефти и газа в бюджете давно не запредельная. Реальный сектор продолжает работать. Проблемы есть, но их решают, а не превращают в истерику.</p>
-      <p>Именно это и объясняет, почему прогнозы краха переносятся из года в год.</p>
+    <section class="post" id="kremennaya">
+      <div class="meta">Актуально • Кременная</div>
+
+      <h2>Кременная: текущая ситуация</h2>
+
+      <p>В городе сохраняется нестабильность электроснабжения. Перебои фиксируются в отдельных районах.</p>
+
+      <p>По линии фронта существенных изменений не зафиксировано. Артиллерийская активность носит периодический характер.</p>
+
+      <p>Информация обновляется по мере поступления подтверждённых данных из открытых источников.</p>
+
+      <p><strong>➖ Анализ СВО по открытым источникам<br>
+      ➖ Новости ЛНР</strong></p>
+
     </section>
 
     <footer>
-      <p>Если вам близка такая подача - <a href="#">мой Telegram здесь</a>.</p>
+      <p>Telegram: <a href="https://t.me/xykrm" target="_blank">https://t.me/xykrm</a></p>
     </footer>
+
   </div>
 </body>
 </html>
