@@ -26,7 +26,7 @@ body {
 }
 
 .wrap {
-  max-width: 720px;
+  max-width: 760px;
   padding: 32px 16px 80px;
   margin: 0 auto;
 }
@@ -40,12 +40,6 @@ h1 {
 
 .subtitle {
   font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.note {
-  font-size: 13px;
   color: var(--muted);
   margin-bottom: 36px;
 }
@@ -79,7 +73,7 @@ h1 {
 
 .update {
   background: var(--surface);
-  padding: 20px 22px;
+  padding: 22px 24px;
   border-radius: 14px;
   border-left: 3px solid var(--rule);
   margin-bottom: 50px;
@@ -94,11 +88,27 @@ h1 {
 .updated-time {
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
-.update p {
-  margin: 0;
+.update-content {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.update-image img {
+  width: 200px;
+  border-radius: 14px;
+  display: block;
+}
+
+.update-text {
+  flex: 1;
+}
+
+.update-text p {
+  margin: 0 0 14px;
   font-size: 15px;
 }
 
@@ -117,6 +127,18 @@ h1 {
 .footer a:hover {
   text-decoration: underline;
 }
+
+/* Адаптация под мобильные */
+@media (max-width: 700px) {
+  .update-content {
+    flex-direction: column;
+  }
+
+  .update-image img {
+    width: 100%;
+    max-width: 360px;
+  }
+}
 </style>
 </head>
 
@@ -129,10 +151,6 @@ h1 {
 Аналитика СВО & Новости ЛНР & Кременная
 </div>
 
-<div class="note">
-Личная карта и краткие заметки по открытым источникам.
-</div>
-
 <a class="map-link" href="https://krmrf.pages.dev/map">
 Карта СВО →
 </a>
@@ -141,16 +159,44 @@ h1 {
   <div class="method-title">Методика и ограничения</div>
   Карта составляется на основе открытых источников и обновляется вручную.
   Возможна временная задержка.
-  Отображаемая линия носит ориентировочный характер и отражает мою оценку ситуации.
-  Это не онлайн-мониторинг, а визуальная фиксация изменений для общего понимания.
+  Отображаемая линия носит ориентировочный характер и отражает мою личную оценку ситуации.
+  Это не онлайн-мониторинг и не инструмент точной навигации.
+  Карта предназначена исключительно для ознакомления.
 </div>
 
 <div class="update">
   <h2>Последнее важное</h2>
   <div class="updated-time" id="updated"></div>
-  <p>
-  Здесь публикуется краткая информация о наиболее значимых событиях.
-  </p>
+
+  <div class="update-content">
+
+    <div class="update-image">
+      <img src="images/important.jpg" alt="Автор">
+    </div>
+
+    <div class="update-text">
+      <p>
+      Друзья, я автор канала КРМРФ. Обычный человек, который фиксирует происходящее и делится своими наблюдениями.
+      Исторически начал писать о линии фронта в районе Кременной, затем стал освещать события шире.
+      </p>
+
+      <p>
+      Этот сайт — попытка собрать всё в одном месте. Карта создаётся вручную и может отставать во времени.
+      Минимальная задержка может составлять около недели.
+      Использовать её для практических целей нельзя.
+      </p>
+
+      <p>
+      Сайт размещён на зарубежном хостинге, поэтому доступ возможен через VPN.
+      Карта, как и некоторые картографические сервисы, корректно работает только при подключении через VPN.
+      </p>
+
+      <p>
+      Если вам интересны новости и спокойные наблюдения — оставайтесь.
+      </p>
+    </div>
+
+  </div>
 </div>
 
 <div class="footer">
@@ -174,4 +220,3 @@ document.getElementById("updated").textContent = formatDate(new Date());
 
 </body>
 </html>
-
