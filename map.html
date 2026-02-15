@@ -33,7 +33,7 @@ html, body {
 // Инициализация карты
 var map = L.map('map', {
     preferCanvas: true
-}).setView([48.7, 38.2], 7);
+}).setView([48.7, 38.2], 6);
 
 // Базовый слой
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -41,18 +41,20 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-// Функция цвета
+// Функция определения цвета
 function getColor(name) {
 
-    if (!name) return "#666666";
+    if (!name) return "#0057b7"; // если вдруг нет имени — делаем синим
 
-    if (name.includes("Russian-controlled"))
+    name = name.toLowerCase();
+
+    if (name.includes("russian"))
         return "#d90429";   // красный
 
-    if (name.includes("Ukrainian-controlled"))
+    if (name.includes("ukrainian"))
         return "#0057b7";   // синий
 
-    return "#666666";
+    return "#0057b7"; // всё остальное тоже синим, чтобы не было серых
 }
 
 // Создаем слой GeoJSON
@@ -79,7 +81,6 @@ var geoLayer = L.geoJSON(null, {
     onEachFeature: function(feature, layer) {
 
         const name = feature.properties?.name || "Объект";
-
         layer.bindPopup("<b>" + name + "</b>");
     }
 
