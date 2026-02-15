@@ -6,15 +6,15 @@
 <title>Карта</title>
 
 <link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <style>
 html, body {
     height: 100%;
     margin: 0;
+    font-family: Ubuntu, system-ui, sans-serif;
 }
+
 #map {
     width: 100%;
     height: 100vh;
@@ -26,19 +26,79 @@ html, body {
 
 <div id="map"></div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
 
-    var map = L.map('map', {
-        preferCanvas: true
-    }).setView([48.7, 38.2], 7);
+// Инициализация карты
+var map = L.map('map', {
+    preferCanvas: true
+}).setView([48.7, 38.2], 7);
 
-    // Стандартная быстрая подложка
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-    }).addTo(map);
+// Базовый слой
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+}).addTo(map);
 
-});
+// Создаем слой GeoJSON
+var geoLayer = L.geoJSON(null, {
+
+    style: function(feature) {
+        return {
+            color: "#d90429",
+            weight: 2,
+            fillColor: "#d90429",
+            fillOpacity: 0.25
+        };
+    },
+
+    pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, {
+            radius: 6,
+            fillColor: "#d90429",
+            color: "#ffffff",
+            weight: 1,
+            fillOpacity: 0.9
+        });
+    },
+
+    onEachFeature: function(feature, layer) {
+
+        var popupContent = "<b>" + 
+            (feature.properties?.name || "Объект") + 
+            "</b>";
+
+        if (feature.properties) {
+            for (var key in feature.properties) {
+                if (key !== "name") {
+                    popupContent += "<br>" + key + ": " + feature.properties[key];
+                }
+            }
+        }
+
+        layer.bindPopup(popupContent);
+    }
+
+}).addTo(map);
+
+// Загружаем JSON
+fetch('zones.json')
+    .then(response => response.json())
+    .then(data => {
+
+        geoLayer.addData(data);
+
+        // Автоцентрирование по объектам
+        if (geoLayer.getBounds().isValid()) {
+            map.fitBounds(geoLayer.getBounds());
+        }
+
+    })
+    .catch(error => {
+        console.error("Ошибка загрузки GeoJSON:", error);
+    });
+
 </script>
 
 </body>
