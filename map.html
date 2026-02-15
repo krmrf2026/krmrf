@@ -41,55 +41,57 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
+// Функция цвета
+function getColor(name) {
+
+    if (!name) return "#666666";
+
+    if (name.includes("Russian-controlled"))
+        return "#d90429";   // красный
+
+    if (name.includes("Ukrainian-controlled"))
+        return "#0057b7";   // синий
+
+    return "#666666";
+}
+
 // Создаем слой GeoJSON
 var geoLayer = L.geoJSON(null, {
 
-    style: function(feature) {
-        return {
-            color: "#d90429",
-            weight: 2,
-            fillColor: "#d90429",
-            fillOpacity: 0.25
-        };
+    // Оставляем только полигоны
+    filter: function(feature) {
+        return feature.geometry.type === "Polygon" ||
+               feature.geometry.type === "MultiPolygon";
     },
 
-    pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, {
-            radius: 6,
-            fillColor: "#d90429",
-            color: "#ffffff",
-            weight: 1,
-            fillOpacity: 0.9
-        });
+    style: function(feature) {
+
+        const name = feature.properties?.name || "";
+
+        return {
+            color: getColor(name),
+            fillColor: getColor(name),
+            weight: 2,
+            fillOpacity: 0.35
+        };
     },
 
     onEachFeature: function(feature, layer) {
 
-        var popupContent = "<b>" + 
-            (feature.properties?.name || "Объект") + 
-            "</b>";
+        const name = feature.properties?.name || "Объект";
 
-        if (feature.properties) {
-            for (var key in feature.properties) {
-                if (key !== "name") {
-                    popupContent += "<br>" + key + ": " + feature.properties[key];
-                }
-            }
-        }
-
-        layer.bindPopup(popupContent);
+        layer.bindPopup("<b>" + name + "</b>");
     }
 
 }).addTo(map);
 
-// Загружаем JSON
+// Загружаем GeoJSON
 fetch('zones.geojson')
     .then(response => response.json())
     .then(data => {
 
         geoLayer.addData(data);
 
-        // Автоцентрирование по объектам
         if (geoLayer.getBounds().isValid()) {
             map.fitBounds(geoLayer.getBounds());
         }
