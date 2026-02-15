@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Тихая газетка</title>
+  <style>
+    /* Reading-first palette: "paper" background + soft dark text (Ubuntu-like feel, not brand colors) */
+    :root {
+      --bg: #f6f5f4;        /* warm paper */
+      --surface: #ffffff;   /* cards/surface if needed */
+      --text: #1f2328;      /* soft near-black */
+      --muted: #5f6772;     /* secondary text */
+      --rule: #e6e4e1;      /* subtle separators */
+      --link: #1a5fb4;      /* calm blue (Ubuntu-ish) */
+      --linkHover: #0f4c9a;
+      --title: #1b1f24;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Ubuntu, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      max-width: 720px;
+      padding: 18px 14px 64px;
+      margin: 0 auto;
+    }
+
+    header { margin-bottom: 22px; }
+
+    header h1 {
+      font-size: 22px;
+      margin: 0 0 6px 0;
+      font-weight: 700;
+      color: var(--title);
+      letter-spacing: 0.2px;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav {
+      margin: 16px 0 6px;
+      font-size: 14px;
+    }
+
+    nav a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: var(--link);
+    }
+
+    nav a:hover { color: var(--linkHover); text-decoration: underline; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 18px 0;
+    }
+
+    .list article { margin-bottom: 16px; }
+
+    .list h2 {
+      font-size: 18px;
+      margin: 0 0 6px;
+      color: var(--title);
+      line-height: 1.35;
+    }
+
+    .list p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .post h2 {
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 6px 0 10px;
+      color: var(--title);
+    }
+
+    .post p {
+      margin: 0 0 14px;
+      font-size: 17px;
+    }
+
+    a { color: var(--link); }
+    a:hover { color: var(--linkHover); }
+
+    footer {
+      margin-top: 34px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    footer a { text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Optional: slightly tighter layout on very small screens */
+    @media (max-width: 360px) {
+      .wrap { padding: 14px 12px 56px; }
+      .post p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Тихая газетка</h1>
+      <p>Заметки о войне, экономике и жизни. Спокойно, по делу, без истерики.</p>
+      <nav>
+        <a href="#">Фронт</a>
+        <a href="#">Экономика</a>
+        <a href="#">ЛНР</a>
+        <a href="#">Контекст</a>
+      </nav>
+    </header>
+
+    <section class="list">
+      <article>
+        <h2>Почему экономика каждый год "вот-вот рухнет", но стоит</h2>
+        <p>Цифры, ожидания и реальность - коротко, без паники и лозунгов.</p>
+      </article>
+      <article>
+        <h2>Славянское направление: почему высоты важнее города</h2>
+        <p>География, логистика и то, что обычно теряется в сводках.</p>
+      </article>
+      <article>
+        <h2>ЛНР: свет, морозы и почему перебои стали нормой</h2>
+        <p>Что происходит на самом деле и чего ждать дальше.</p>
+      </article>
+    </section>
+
+    <hr />
+
+    <section class="post">
+      <div class="meta">20 января 2026 • Экономика</div>
+      <h2>Почему экономике России каждый год пророчат кирдык</h2>
+      <p>Уже пятый год подряд звучит одно и то же: нефть падает, доходы сокращаются, дефицит растет. Звучит страшно, но реальность обычно скучнее - и поэтому устойчивее.</p>
+      <p>Доля нефти и газа в бюджете давно не запредельная. Реальный сектор продолжает работать. Проблемы есть, но их решают, а не превращают в истерику.</p>
+      <p>Именно это и объясняет, почему прогнозы краха переносятся из года в год.</p>
+    </section>
+
+    <footer>
+      <p>Если вам близка такая подача - <a href="#">мой Telegram здесь</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>
