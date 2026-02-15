@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Карта</title>
 
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
 html, body {
@@ -24,25 +27,16 @@ html, body {
 <div id="map"></div>
 
 <script>
-ymaps.ready(function () {
+document.addEventListener("DOMContentLoaded", function() {
 
-    var map = new ymaps.Map("map", {
-        center: [48.7, 38.2],
-        zoom: 7,
-        controls: ['zoomControl']
-    });
+    var map = L.map('map', {
+        preferCanvas: true
+    }).setView([48.7, 38.2], 7);
 
-    // Пример линии
-    var frontline = new ymaps.Polyline([
-        [48.6, 38.0],
-        [48.7, 38.3],
-        [48.8, 38.6]
-    ], {}, {
-        strokeColor: "#cc0000",
-        strokeWidth: 3
-    });
-
-    map.geoObjects.add(frontline);
+    // Стандартная быстрая подложка
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+    }).addTo(map);
 
 });
 </script>
