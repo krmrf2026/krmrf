@@ -1,107 +1,146 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Тихая газетка</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Тихая газетка</title>
 
-  <style>
-    :root {
-      --bg: #f6f5f4;
-      --text: #1f2328;
-      --muted: #5f6772;
-      --rule: #e6e4e1;
-      --link: #1a5fb4;
-      --linkHover: #0f4c9a;
-      --title: #1b1f24;
-    }
+<style>
+:root {
+  --bg: #f6f5f4;
+  --text: #1f2328;
+  --muted: #5f6772;
+  --rule: #e6e4e1;
+  --link: #1a5fb4;
+  --linkHover: #0f4c9a;
+  --title: #1b1f24;
+  --surface: #ffffff;
+}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Ubuntu, system-ui, sans-serif;
-      line-height: 1.7;
-    }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Ubuntu, system-ui, sans-serif;
+  line-height: 1.7;
+}
 
-    .wrap {
-      max-width: 720px;
-      padding: 18px 14px 64px;
-      margin: 0 auto;
-    }
+.wrap {
+  max-width: 720px;
+  padding: 28px 16px 80px;
+  margin: 0 auto;
+}
 
-    header h1 {
-      font-size: 22px;
-      margin: 0 0 6px 0;
-      font-weight: 700;
-      color: var(--title);
-    }
+h1 {
+  font-size: 24px;
+  margin: 0 0 6px;
+  color: var(--title);
+}
 
-    header p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
 
-    nav {
-      margin: 20px 0;
-      font-size: 16px;
-    }
+.main-link {
+  display: inline-block;
+  margin-bottom: 36px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--link);
+  text-decoration: none;
+}
 
-    nav a {
-      display: inline-block;
-      margin-right: 20px;
-      text-decoration: none;
-      color: var(--link);
-      font-weight: 600;
-    }
+.main-link:hover {
+  color: var(--linkHover);
+  text-decoration: underline;
+}
 
-    nav a:hover {
-      color: var(--linkHover);
-      text-decoration: underline;
-    }
+.update {
+  background: var(--surface);
+  padding: 18px 20px;
+  border-radius: 12px;
+  border-left: 3px solid var(--rule);
+  margin-bottom: 50px;
+}
 
-    footer {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--rule);
-      font-size: 14px;
-      color: var(--muted);
-    }
+.update h2 {
+  font-size: 16px;
+  margin: 0 0 6px;
+  color: var(--title);
+}
 
-    footer a {
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 600;
-    }
+.updated-time {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
 
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+.update p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <header>
-      <h1>Тихая газетка</h1>
-      <p>Аналитика СВО & Новости ЛНР & Кременная</p>
+<h1>Тихая газетка</h1>
+<div class="subtitle">
+Аналитика СВО & Новости ЛНР & Кременная
+</div>
 
-      <nav>
-        <a href="https://krmrf.pages.dev/map">Карта</a>
-        <a href="#">Новости Кременной</a>
-      </nav>
-    </header>
+<a class="main-link" href="https://krmrf.pages.dev/map">
+Открыть карту
+</a>
 
-    <footer>
-      <p>
-        <a href="https://t.me/xykrm" target="_blank">
-          Ссылка на мой Telegram
-        </a>
-      </p>
-    </footer>
+<div class="update">
+  <h2>Последнее важное</h2>
+  <div class="updated-time" id="updated"></div>
+  <p>
+  Здесь размещается самая важная информация. 
+  Только факты и подтверждённые данные.
+  </p>
+</div>
 
-  </div>
+<div class="footer">
+  <a href="https://t.me/xykrm" target="_blank" rel="noopener">
+  Ссылка на мой Telegram
+  </a>
+</div>
+
+</div>
+
+<script>
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `Обновлено: ${day}.${month} ${hours}:${minutes}`;
+}
+
+document.getElementById("updated").textContent = formatDate(new Date());
+</script>
+
 </body>
 </html>
