@@ -42,9 +42,8 @@ html, body {
 <script>
 
 // ===== ИНИЦИАЛИЗАЦИЯ =====
-var map = L.map('map', {
-    preferCanvas: true
-}).setView([48.7, 38.2], 6);
+var map = L.map('map', { preferCanvas: true })
+    .setView([48.7, 38.2], 6);
 
 // ===== БАЗОВАЯ КАРТА =====
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -56,7 +55,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function getColor(name) {
     if (!name) return "#0057b7";
     const n = name.toLowerCase();
-    if (n.includes("russian")) return "#c44545";
+    if (n.includes("russian-controlled")) return "#c44545";
     if (n.includes("ukrainian")) return "#0057b7";
     return "#0057b7";
 }
@@ -64,10 +63,9 @@ function getColor(name) {
 // ===== СЛОЙ ЗОН =====
 var zonesLayer = L.geoJSON(null, {
     style: function(feature) {
-        const name = feature.properties?.name || "";
         return {
             stroke: false,
-            fillColor: getColor(name),
+            fillColor: getColor(feature.properties?.name || ""),
             fillOpacity: 0.45
         };
     }
@@ -86,8 +84,26 @@ fetch('zones.geojson')
     });
 
 
-// ===== ПЕРЕИМЕНОВАНИЕ ОБЛАСТЕЙ =====
+// ===== УБИРАЕМ ТРЕТЬЮ КООРДИНАТУ (Z) =====
+function cleanFeature(feature) {
+
+    function stripZ(coords) {
+        if (typeof coords[0] === "number") {
+            return [coords[0], coords[1]];
+        }
+        return coords.map(stripZ);
+    }
+
+    return turf.feature({
+        type: feature.geometry.type,
+        coordinates: stripZ(feature.geometry.coordinates)
+    });
+}
+
+
+// ===== ПЕРЕИМЕНОВАНИЕ =====
 function getCustomName(name) {
+    if (!name) return "";
     if (name.includes("Луган")) return "ЛНР";
     if (name.includes("Донец")) return "ДНР";
     if (name.includes("Запорож")) return "Запорожская область";
@@ -96,26 +112,34 @@ function getCustomName(name) {
 }
 
 
-// ===== ПОДСЧЁТ ПРОЦЕНТА КОНТРОЛЯ РФ =====
+// ===== ПОДСЧЁТ ПРОЦЕНТА =====
 function calculateControlledPercent(regionFeature) {
 
     if (!zonesData) return "...";
 
-    let regionArea = turf.area(regionFeature);
+    let region = cleanFeature(regionFeature);
+    let regionArea = turf.area(region);
+
     let controlledArea = 0;
 
     zonesData.features.forEach(zone => {
 
-        if (zone.properties?.name?.toLowerCase().includes("russian")) {
+        if (zone.properties?.name?.includes("Russian-controlled")) {
 
-            let intersection = turf.intersect(regionFeature, zone);
+            try {
+                let cleanedZone = cleanFeature(zone);
+                let intersection = turf.intersect(region, cleanedZone);
 
-            if (intersection) {
-                controlledArea += turf.area(intersection);
-            }
+                if (intersection) {
+                    controlledArea += turf.area(intersection);
+                }
+
+            } catch (e) {}
         }
 
     });
+
+    if (regionArea === 0) return "0";
 
     let percent = (controlledArea / regionArea) * 100;
     return percent.toFixed(1);
@@ -170,7 +194,6 @@ var regionsBorderLayer = L.geoJSON(null, {
     onEachFeature: onEachRegion
 }).addTo(map);
 
-
 fetch('rf_regions.json')
     .then(r => r.json())
     .then(data => {
@@ -182,3 +205,4 @@ fetch('rf_regions.json')
 
 </body>
 </html>
+
