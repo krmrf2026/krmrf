@@ -30,37 +30,36 @@ html, body {
 
 <script>
 
-// Инициализация карты
+// Инициализация
 var map = L.map('map', {
     preferCanvas: true
 }).setView([48.7, 38.2], 6);
 
-// Базовый слой
+// База
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-// Функция определения цвета
+// Цвет по названию (работает всегда, даже если добавишь новые районы)
 function getColor(name) {
 
-    if (!name) return "#0057b7"; // если вдруг нет имени — делаем синим
+    if (!name) return "#0057b7";
 
-    name = name.toLowerCase();
+    const n = name.toLowerCase();
 
-    if (name.includes("russian"))
-        return "#d90429";   // красный
+    if (n.includes("russian"))
+        return "#d90429";
 
-    if (name.includes("ukrainian"))
-        return "#0057b7";   // синий
+    if (n.includes("ukrainian"))
+        return "#0057b7";
 
-    return "#0057b7"; // всё остальное тоже синим, чтобы не было серых
+    return "#0057b7";
 }
 
-// Создаем слой GeoJSON
+// GeoJSON слой
 var geoLayer = L.geoJSON(null, {
 
-    // Оставляем только полигоны
     filter: function(feature) {
         return feature.geometry.type === "Polygon" ||
                feature.geometry.type === "MultiPolygon";
@@ -69,26 +68,20 @@ var geoLayer = L.geoJSON(null, {
     style: function(feature) {
 
         const name = feature.properties?.name || "";
+        const color = getColor(name);
 
         return {
-            color: getColor(name),
-            fillColor: getColor(name),
-            weight: 2,
-            fillOpacity: 0.35
+            stroke: false,      // полностью убрать границы
+            fillColor: color,
+            fillOpacity: 0.55
         };
-    },
-
-    onEachFeature: function(feature, layer) {
-
-        const name = feature.properties?.name || "Объект";
-        layer.bindPopup("<b>" + name + "</b>");
     }
 
 }).addTo(map);
 
-// Загружаем GeoJSON
+// Загрузка файла
 fetch('zones.geojson')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
 
         geoLayer.addData(data);
@@ -98,9 +91,7 @@ fetch('zones.geojson')
         }
 
     })
-    .catch(error => {
-        console.error("Ошибка загрузки GeoJSON:", error);
-    });
+    .catch(err => console.error(err));
 
 </script>
 
