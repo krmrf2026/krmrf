@@ -45,16 +45,22 @@ h1 {
 
 .main-link {
   display: inline-block;
-  margin-bottom: 36px;
   font-size: 18px;
   font-weight: 700;
   color: var(--link);
   text-decoration: none;
+  margin-bottom: 10px;
 }
 
 .main-link:hover {
   color: var(--linkHover);
   text-decoration: underline;
+}
+
+.map-disclaimer {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 36px;
 }
 
 .update {
@@ -78,13 +84,8 @@ h1 {
 }
 
 .update p {
-  margin: 0 0 10px;
+  margin: 0;
   font-size: 15px;
-}
-
-.disclaimer {
-  font-size: 13px;
-  color: var(--muted);
 }
 
 .footer {
@@ -118,20 +119,17 @@ h1 {
 Карта СВО
 </a>
 
+<div class="map-disclaimer">
+Карта обновляется вручную на основе открытых источников. 
+Линия отображается ориентировочно.
+</div>
+
 <div class="update">
   <h2>Последнее важное</h2>
   <div class="updated-time" id="updated"></div>
-
   <p>
   Здесь размещается краткая информация о наиболее значимых событиях.
   </p>
-
-  <div class="disclaimer">
-  Карта не является онлайн-отображением боевых действий. 
-  Обновляется вручную владельцем по мере обработки открытых источников. 
-  Отображение линии носит ориентировочный характер и предназначено исключительно 
-  для общего ознакомления.
-  </div>
 </div>
 
 <div class="footer">
@@ -156,3 +154,4 @@ document.getElementById("updated").textContent = formatDate(new Date());
 
 </body>
 </html>
+
