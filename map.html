@@ -9,36 +9,60 @@
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <style>
+
 body {
     margin: 0;
     background: #f3f4f6;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* ===== КОНТЕЙНЕР ===== */
 .wrapper {
     max-width: 1200px;
     margin: 40px auto;
     background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border-radius: 14px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
     overflow: hidden;
+    transition: 0.3s ease;
 }
 
+/* ===== ЗАГОЛОВОК ===== */
 .header {
-    padding: 24px 28px 10px 28px;
+    padding: 24px 28px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header h1 {
+.header-text h1 {
     margin: 0;
     font-size: 22px;
     font-weight: 600;
     color: #1f2937;
 }
 
-.header p {
+.header-text p {
     margin: 6px 0 0 0;
     font-size: 14px;
     color: #6b7280;
+}
+
+/* ===== КНОПКА FULLSCREEN ===== */
+.fullscreen-btn {
+    background: #111827;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.fullscreen-btn:hover {
+    background: #1f2937;
 }
 
 #map {
@@ -46,6 +70,7 @@ body {
     width: 100%;
 }
 
+/* ===== ПОДПИСЬ ===== */
 .footer-note {
     padding: 18px 28px;
     font-size: 13px;
@@ -54,22 +79,34 @@ body {
     background: #fafafa;
     border-top: 1px solid #e5e7eb;
 }
+
+/* ===== УБИРАЕМ LEAFLET LOGO ===== */
+.leaflet-control-attribution a[href*="leaflet"] {
+    display: none;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="wrapper" id="mapWrapper">
 
     <div class="header">
-        <h1>Оперативная карта</h1>
-        <p>Актуальное отображение зон контроля и административных границ</p>
+        <div class="header-text">
+            <h1>Оперативная карта</h1>
+            <p>Актуальное отображение зон контроля и административных границ</p>
+        </div>
+
+        <button class="fullscreen-btn" onclick="toggleFullScreen()">
+            Развернуть
+        </button>
     </div>
 
     <div id="map"></div>
 
     <div class="footer-note">
-        Карта использует открытые картографические данные OpenStreetMap.
+        Карта использует открытые картографические данные © OpenStreetMap.
         Административные границы отображаются согласно международно признанной системе OSM.
         Чёрным контуром выделены регионы, указанные в Конституции Российской Федерации.
         Информация представлена в аналитических целях.
@@ -86,15 +123,13 @@ var map = L.map('map', {
     preferCanvas: true
 }).setView([48.7, 38.2], 6);
 
-
-// ===== БАЗОВАЯ КАРТА =====
+// ===== БАЗОВАЯ КАРТА (ТОЛЬКО OSM, БЕЗ LEAFLET LOGO) =====
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
+    attribution: '© OpenStreetMap'
 }).addTo(map);
 
-
-// ===== ЦВЕТ ЗАЛИВКИ =====
+// ===== ЦВЕТ ЗОН =====
 function getColor(name) {
     if (!name) return "#0057b7";
     const n = name.toLowerCase();
@@ -102,7 +137,6 @@ function getColor(name) {
     if (n.includes("ukrainian")) return "#0057b7";
     return "#0057b7";
 }
-
 
 // ===== СЛОЙ ЗОН =====
 var zonesLayer = L.geoJSON(null, {
@@ -119,7 +153,6 @@ var zonesLayer = L.geoJSON(null, {
     }
 }).addTo(map);
 
-
 // ===== ЗАГРУЗКА ЗОН =====
 fetch('zones.geojson')
     .then(response => response.json())
@@ -129,7 +162,6 @@ fetch('zones.geojson')
             map.fitBounds(zonesLayer.getBounds());
         }
     });
-
 
 // ===== КОНТУР ОБЛАСТЕЙ =====
 var regionsBorderLayer = L.geoJSON(null, {
@@ -143,7 +175,6 @@ var regionsBorderLayer = L.geoJSON(null, {
     }
 }).addTo(map);
 
-
 // ===== ЗАГРУЗКА КОНТУРА =====
 fetch('rf_regions.json')
     .then(response => response.json())
@@ -151,6 +182,17 @@ fetch('rf_regions.json')
         regionsBorderLayer.addData(data);
         regionsBorderLayer.bringToFront();
     });
+
+// ===== FULLSCREEN =====
+function toggleFullScreen() {
+    const wrapper = document.getElementById('mapWrapper');
+
+    if (!document.fullscreenElement) {
+        wrapper.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
 
 </script>
 
