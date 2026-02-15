@@ -24,91 +24,57 @@ html, body {
 </head>
 
 <body>
-
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
 
 <script>
 
-// Инициализация карты
+// --- Инициализация ---
 const map = L.map('map', {
-    preferCanvas: true,
-    zoomControl: true
+    preferCanvas: true
 }).setView([48.7, 38.2], 6);
 
-// Светлая минималистичная база
+// --- Базовая карта ---
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-// Мягкая профессиональная палитра
-const COLORS = {
-    russian: {
-        fill: "#b63a3a",
-        outline: "#5a1515"
-    },
-    ukrainian: {
-        fill: "#2e5fa7",
-        outline: "#1c3d6e"
-    }
-};
-
-// Загрузка и автоматическое объединение
+// --- Загрузка данных ---
 fetch('zones.geojson')
 .then(r => r.json())
 .then(data => {
 
-    // --- РОССИЙСКИЙ КОНТРОЛЬ ---
-    const russianFeatures = data.features.filter(f =>
-        f.geometry &&
-        f.properties?.name?.toLowerCase().includes("russian")
-    );
+    // 1. Основная заливка (без внутренних границ)
+    const fillLayer = L.geoJSON(data, {
 
-    if (russianFeatures.length > 0) {
+        filter: f =>
+            f.geometry &&
+            (f.geometry.type === "Polygon" ||
+             f.geometry.type === "MultiPolygon"),
 
-        let mergedRussian = russianFeatures[0];
-
-        for (let i = 1; i < russianFeatures.length; i++) {
-            mergedRussian = turf.union(mergedRussian, russianFeatures[i]);
+        style: {
+            stroke: false,              // Убираем ВСЕ внутренние линии
+            fillColor: "#b63a3a",       // мягкий современный красный
+            fillOpacity: 0.42           // аккуратная прозрачность
         }
 
-        L.geoJSON(mergedRussian, {
-            style: {
-                fillColor: COLORS.russian.fill,
-                fillOpacity: 0.42,
-                color: COLORS.russian.outline,
-                weight: 2
-            }
-        }).addTo(map);
+    }).addTo(map);
 
-        map.fitBounds(L.geoJSON(mergedRussian).getBounds(), { padding: [20,20] });
-    }
-
-    // --- УКРАИНСКИЙ КОНТРОЛЬ (если нужен) ---
-    const ukrainianFeatures = data.features.filter(f =>
-        f.geometry &&
-        f.properties?.name?.toLowerCase().includes("ukrainian")
-    );
-
-    if (ukrainianFeatures.length > 0) {
-
-        let mergedUkrainian = ukrainianFeatures[0];
-
-        for (let i = 1; i < ukrainianFeatures.length; i++) {
-            mergedUkrainian = turf.union(mergedUkrainian, ukrainianFeatures[i]);
+    // 2. Внешний контур (аккуратный, темнее)
+    const outlineLayer = L.geoJSON(data, {
+        style: {
+            color: "#5a1515",
+            weight: 2,
+            opacity: 0.9,
+            fill: false
         }
+    }).addTo(map);
 
-        L.geoJSON(mergedUkrainian, {
-            style: {
-                fillColor: COLORS.ukrainian.fill,
-                fillOpacity: 0.42,
-                color: COLORS.ukrainian.outline,
-                weight: 2
-            }
-        }).addTo(map);
+    // 3. Автоцентрирование
+    if (fillLayer.getBounds().isValid()) {
+        map.fitBounds(fillLayer.getBounds(), { padding: [20, 20] });
     }
 
 })
