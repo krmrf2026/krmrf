@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Тихая газетка</title>
 
 <style>
@@ -17,18 +17,22 @@
   --surface: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 .wrap {
   max-width: 820px;
-  padding: 40px 20px 90px;
+  padding: 48px 20px 80px;
   margin: 0 auto;
 }
 
@@ -37,14 +41,15 @@ h1 {
   margin: 0 0 6px;
   font-weight: 700;
   color: var(--title);
-  letter-spacing: -0.3px;
 }
 
 .subtitle {
   font-size: 14px;
   color: var(--muted);
-  margin-bottom: 40px;
+  margin-bottom: 42px;
 }
+
+/* Главная ссылка */
 
 .map-link {
   display: inline-block;
@@ -52,8 +57,7 @@ h1 {
   font-weight: 700;
   color: var(--link);
   text-decoration: none;
-  margin-bottom: 14px;
-  letter-spacing: -0.2px;
+  margin-bottom: 16px;
 }
 
 .map-link:hover {
@@ -61,39 +65,48 @@ h1 {
   text-decoration: underline;
 }
 
-.map-method {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 50px;
-  max-width: 720px;
+/* Методика в отдельном блоке */
+
+.method-box {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 40px;
 }
 
 .method-title {
   font-weight: 600;
+  font-size: 14px;
   margin-bottom: 8px;
   color: #374151;
 }
+
+.method-text {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Авторский блок */
 
 .update {
   background: var(--surface);
   padding: 28px 30px;
   border-radius: 18px;
   border-left: 4px solid var(--rule);
-  margin-bottom: 60px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.04);
 }
 
 .update h2 {
   font-size: 17px;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-weight: 600;
 }
 
 .updated-time {
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .update-content {
@@ -108,12 +121,10 @@ h1 {
   object-fit: cover;
   border-radius: 20px;
   display: block;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 .update-text {
   flex: 1;
-  max-width: 480px;
 }
 
 .update-text p {
@@ -121,21 +132,7 @@ h1 {
   font-size: 15px;
 }
 
-.footer {
-  border-top: 1px solid var(--rule);
-  padding-top: 26px;
-  font-size: 14px;
-}
-
-.footer a {
-  color: var(--link);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.footer a:hover {
-  text-decoration: underline;
-}
+/* Адаптив */
 
 @media (max-width: 760px) {
 
@@ -149,15 +146,12 @@ h1 {
     max-width: 420px;
   }
 
-  .update-text {
-    max-width: 100%;
-  }
-
 }
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
 
 <h1>Тихая газетка</h1>
@@ -166,17 +160,19 @@ h1 {
 Аналитика СВО & Новости ЛНР & Кременная
 </div>
 
-<a class="map-link" href="map.html">
+<a class="map-link" href="map/">
 Карта СВО →
 </a>
 
-<div class="map-method">
+<div class="method-box">
   <div class="method-title">Методика и ограничения</div>
-  Карта составляется на основе открытых источников и обновляется вручную.
-  Возможна временная задержка.
-  Отображаемая линия носит ориентировочный характер и отражает мою личную оценку ситуации.
-  Это не онлайн-мониторинг и не инструмент точной навигации.
-  Карта предназначена исключительно для ознакомления.
+  <div class="method-text">
+    Карта составляется на основе открытых источников и обновляется вручную.
+    Возможна временная задержка.
+    Отображаемая линия носит ориентировочный характер и отражает личную оценку ситуации.
+    Это не онлайн-мониторинг и не инструмент точной навигации.
+    Карта предназначена исключительно для ознакомления.
+  </div>
 </div>
 
 <div class="update">
@@ -186,17 +182,18 @@ h1 {
   <div class="update-content">
 
     <div class="update-image">
-      <img src="images/important.jpg" alt="Автор">
+      <img src="assets/img/important.jpg" alt="Автор">
     </div>
 
     <div class="update-text">
       <p>
-      Друзья, я автор канала КРМРФ. Обычный человек, который фиксирует происходящее и делится своими наблюдениями.
-      Исторически начал писать о линии фронта в районе Кременной, затем стал освещать события шире.
+      Друзья, я автор канала КРМРФ. Обычный человек, который фиксирует происходящее
+      и делится своими наблюдениями. Исторически начал писать о линии фронта
+      в районе Кременной, затем стал освещать события шире.
       </p>
 
       <p>
-      Этот сайт — попытка собрать всё в одном месте.
+      Этот сайт - попытка собрать всё в одном месте.
       Карта создаётся вручную и может отставать во времени.
       Минимальная задержка может составлять около недели.
       Использовать её для практических целей нельзя.
@@ -204,14 +201,13 @@ h1 {
 
       <p>
       Сайт размещён на зарубежном хостинге, поэтому доступ возможен через VPN.
-      Карта, как и некоторые картографические сервисы, корректно работает только при подключении через VPN.
+      Карта корректно работает при подключении через VPN.
       </p>
 
       <p>
-      Если вам интересны новости и спокойные наблюдения — оставайтесь.
-      Спасибо за внимание и поддержку.
+      Если вам интересны новости и спокойные наблюдения - оставайтесь.
+      Спасибо за внимание.
       </p>
-
     </div>
 
   </div>
