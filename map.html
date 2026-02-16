@@ -1,245 +1,400 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Оперативная карта</title>
-
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Тихая газетка</title>
 
 <style>
-
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f3f4f6;
+:root {
+  --bg: #f6f5f4;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --rule: #e6e4e1;
+  --link: #1a5fb4;
+  --linkHover: #0f4c9a;
+  --title: #1b1f24;
+  --surface: #ffffff;
 }
 
-/* ОБЁРТКА */
-.wrapper {
-    max-width: 1200px;
-    margin: 40px auto;
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
-    overflow: hidden;
-    position: relative;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* FULLSCREEN РЕЖИМ */
-.wrapper.fullscreen {
-    position: fixed;
-    inset: 0;
+.wrap {
+  max-width: 820px;
+  padding: 40px 20px 90px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 6px;
+  font-weight: 700;
+  color: var(--title);
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.map-link {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--link);
+  text-decoration: none;
+  margin-bottom: 14px;
+  letter-spacing: -0.2px;
+}
+
+.map-link:hover {
+  color: var(--linkHover);
+  text-decoration: underline;
+}
+
+.map-method {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 22px;
+  max-width: 720px;
+}
+
+.method-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+/* Блок разделов */
+
+.sections {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  margin: 0 0 50px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.035);
+}
+
+.sections-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sections-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--title);
+}
+
+.sections-note {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  background: #fff;
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.card:hover {
+  border-color: rgba(26,95,180,0.35);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+  transform: translateY(-1px);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--link);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.card-arrow {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.card-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* "метки" внутри карточек */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.badge {
+  font-size: 12px;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #eaecf0;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+/* Последнее важное */
+
+.update {
+  background: var(--surface);
+  padding: 28px 30px;
+  border-radius: 18px;
+  border-left: 4px solid var(--rule);
+  margin-bottom: 60px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+}
+
+.update h2 {
+  font-size: 17px;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.updated-time {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.update-content {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.update-image img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.update-text {
+  flex: 1;
+  max-width: 480px;
+}
+
+.update-text p {
+  margin: 0 0 16px;
+  font-size: 15px;
+}
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 26px;
+  font-size: 14px;
+}
+
+.footer a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Мобильная версия */
+@media (max-width: 760px) {
+  .wrap {
+    padding: 28px 16px 80px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .update-content {
+    flex-direction: column;
+  }
+
+  .update-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-width: 420px;
+  }
+
+  .update-text {
     max-width: 100%;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
-    z-index: 9999;
-    background: white;
-}
+  }
 
-/* ШАПКА */
-.header {
-    padding: 20px 24px;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .sections-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
-
-.header h1 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-/* КНОПКИ */
-.btn {
-    background: #111827;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-/* КАРТА */
-#map {
-    height: 620px;
-}
-
-.wrapper.fullscreen #map {
-    height: 100%;
-}
-
-/* ПОДПИСЬ */
-.footer-note {
-    padding: 14px 20px;
-    font-size: 12px;
-    color: #6b7280;
-    border-top: 1px solid #e5e7eb;
-    line-height: 1.5;
-}
-
-/* СКРЫВАЕМ UI В FULLSCREEN */
-.wrapper.fullscreen .header,
-.wrapper.fullscreen .footer-note {
-    display: none;
-}
-
-/* КНОПКА СВЕРНУТЬ */
-#exitFullscreenBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
-    background: rgba(0,0,0,0.75);
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: none;
-    font-size: 14px;
-}
-
-.wrapper.fullscreen #exitFullscreenBtn {
-    display: block;
-}
-
-/* УБИРАЕМ LEAFLET ЛОГО */
-.leaflet-control-attribution a[href*="leaflet"] {
-    display: none;
-}
-
 </style>
 </head>
 
 <body>
+<div class="wrap">
 
-<div class="wrapper" id="mapWrapper">
+  <h1>Тихая газетка</h1>
+  <div class="subtitle">Аналитика СВО & Новости ЛНР & Кременная</div>
 
-    <div class="header">
-        <h1>Оперативная карта</h1>
-        <button class="btn" onclick="toggleFullScreen()">Развернуть</button>
+  <a class="map-link" href="https://krmrf.pages.dev/map">Карта СВО →</a>
+
+  <div class="map-method">
+    <div class="method-title">Методика и ограничения</div>
+    Карта составляется на основе открытых источников и обновляется вручную.
+    Возможна временная задержка.
+    Отображаемая линия носит ориентировочный характер и отражает мою личную оценку ситуации.
+    Это не онлайн-мониторинг и не инструмент точной навигации.
+    Карта предназначена исключительно для ознакомления.
+  </div>
+
+  <!-- Разделы сайта -->
+  <section class="sections" aria-label="Разделы">
+    <div class="sections-head">
+      <h2 class="sections-title">Разделы</h2>
+      <p class="sections-note">Коротко, по фактам, без перегруза.</p>
     </div>
 
-    <div id="map"></div>
+    <div class="cards">
+      <a class="card" href="news.html">
+        <div class="card-top">
+          <h3 class="card-title">Новости</h3>
+          <div class="card-arrow">→</div>
+        </div>
+        <p class="card-desc">Краткие обновления по ключевым событиям. Дата, место, суть.</p>
+        <div class="badges">
+          <span class="badge">коротко</span>
+          <span class="badge">ежедневно</span>
+        </div>
+      </a>
 
-    <button id="exitFullscreenBtn" onclick="toggleFullScreen()">Свернуть</button>
+      <a class="card" href="lnr.html">
+        <div class="card-top">
+          <h3 class="card-title">ЛНР</h3>
+          <div class="card-arrow">→</div>
+        </div>
+        <p class="card-desc">Обстановка по городам и районам: инфраструктура, связь, бытовая реальность.</p>
+        <div class="badges">
+          <span class="badge">обстановка</span>
+          <span class="badge">по районам</span>
+        </div>
+      </a>
 
-    <div class="footer-note">
-        Карта использует открытые картографические данные © OpenStreetMap.
-        Чёрным контуром выделены субъекты Российской Федерации,
-        принятые в её состав в 2022 году: Донецкая Народная Республика,
-        Луганская Народная Республика, Херсонская и Запорожская области.
-        Отображение представлено в информационно-аналитических целях.
+      <a class="card" href="analysis.html">
+        <div class="card-top">
+          <h3 class="card-title">Аналитика</h3>
+          <div class="card-arrow">→</div>
+        </div>
+        <p class="card-desc">Короткие разборы без эмоций: что важно, что меняется, что наблюдать.</p>
+        <div class="badges">
+          <span class="badge">1 раз в неделю</span>
+          <span class="badge">выводы</span>
+        </div>
+      </a>
+
+      <a class="card" href="help.html">
+        <div class="card-top">
+          <h3 class="card-title">Справка</h3>
+          <div class="card-arrow">→</div>
+        </div>
+        <p class="card-desc">Практичные заметки и ссылки: куда обращаться, что делать, где искать.</p>
+        <div class="badges">
+          <span class="badge">инструкция</span>
+          <span class="badge">контакты</span>
+        </div>
+      </a>
     </div>
+  </section>
+
+  <!-- Последнее важное -->
+  <div class="update">
+    <h2>Последнее важное</h2>
+    <div class="updated-time" id="updated"></div>
+
+    <div class="update-content">
+      <div class="update-image">
+        <img src="images/important.jpg" alt="Автор">
+      </div>
+
+      <div class="update-text">
+        <p>
+          Друзья, я автор канала КРМРФ. Обычный человек, который фиксирует происходящее и делится своими наблюдениями.
+          Исторически начал писать о линии фронта в районе Кременной, затем стал освещать события шире.
+        </p>
+
+        <p>
+          Этот сайт - попытка собрать всё в одном месте. Карта создаётся вручную и может отставать во времени.
+          Минимальная задержка может составлять около недели. Использовать её для практических целей нельзя.
+        </p>
+
+        <p>
+          Сайт размещён на зарубежном хостинге, поэтому доступ возможен через VPN.
+          Карта, как и некоторые картографические сервисы, корректно работает только при подключении через VPN.
+        </p>
+
+        <p>
+          Если вам интересны новости и спокойные наблюдения - оставайтесь.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://t.me/xykrm" target="_blank" rel="noopener">Ссылка на мой Telegram</a>
+  </div>
 
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
-
-// ИНИЦИАЛИЗАЦИЯ
-var map = L.map('map', {
-    preferCanvas: true
-}).setView([48.7, 38.2], 6);
-
-// БАЗОВЫЙ СЛОЙ
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-}).addTo(map);
-
-// ЦВЕТ ЗОН
-function getColor(name) {
-    if (!name) return "#0057b7";
-    const n = name.toLowerCase();
-    if (n.includes("russian")) return "#c44545";
-    if (n.includes("ukrainian")) return "#0057b7";
-    return "#0057b7";
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `Обновлено: ${day}.${month} ${hours}:${minutes}`;
 }
-
-// ЗОНЫ
-var zonesLayer = L.geoJSON(null, {
-    style: function(feature) {
-        return {
-            stroke: false,
-            fillColor: getColor(feature.properties?.name),
-            fillOpacity: 0.45
-        };
-    }
-}).addTo(map);
-
-fetch('zones.geojson')
-    .then(r => r.json())
-    .then(data => {
-        zonesLayer.addData(data);
-        if (zonesLayer.getBounds().isValid()) {
-            map.fitBounds(zonesLayer.getBounds());
-        }
-    });
-
-// КОНТУРЫ
-var regionsBorderLayer = L.geoJSON(null, {
-    style: {
-        color: "#4a0d0d",
-        weight: 2.8,
-        opacity: 0.95,
-        fillOpacity: 0
-    }
-}).addTo(map);
-
-fetch('rf_regions.json')
-    .then(r => r.json())
-    .then(data => {
-        regionsBorderLayer.addData(data);
-        regionsBorderLayer.bringToFront();
-    });
-
-// FULLSCREEN ЛОГИКА
-const wrapper = document.getElementById('mapWrapper');
-let isFullscreen = false;
-
-function toggleFullScreen() {
-
-    if (!isFullscreen) {
-
-        if (wrapper.requestFullscreen) {
-            wrapper.requestFullscreen().catch(() => {});
-        }
-
-        wrapper.classList.add("fullscreen");
-        isFullscreen = true;
-
-    } else {
-
-        if (document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
-        }
-
-        wrapper.classList.remove("fullscreen");
-        isFullscreen = false;
-    }
-
-    setTimeout(() => map.invalidateSize(), 200);
-}
-
-document.addEventListener("fullscreenchange", () => {
-    if (!document.fullscreenElement) {
-        wrapper.classList.remove("fullscreen");
-        isFullscreen = false;
-        setTimeout(() => map.invalidateSize(), 200);
-    }
-});
-
+document.getElementById("updated").textContent = formatDate(new Date());
 </script>
 
 </body>
