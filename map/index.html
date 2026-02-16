@@ -1,1 +1,247 @@
 
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оперативная карта</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f3f4f6;
+}
+
+/* ОБЁРТКА */
+.wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
+}
+
+/* FULLSCREEN РЕЖИМ */
+.wrapper.fullscreen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 9999;
+    background: white;
+}
+
+/* ШАПКА */
+.header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* КНОПКИ */
+.btn {
+    background: #111827;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* КАРТА */
+#map {
+    height: 620px;
+}
+
+.wrapper.fullscreen #map {
+    height: 100%;
+}
+
+/* ПОДПИСЬ */
+.footer-note {
+    padding: 14px 20px;
+    font-size: 12px;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
+    line-height: 1.5;
+}
+
+/* СКРЫВАЕМ UI В FULLSCREEN */
+.wrapper.fullscreen .header,
+.wrapper.fullscreen .footer-note {
+    display: none;
+}
+
+/* КНОПКА СВЕРНУТЬ */
+#exitFullscreenBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+    font-size: 14px;
+}
+
+.wrapper.fullscreen #exitFullscreenBtn {
+    display: block;
+}
+
+/* УБИРАЕМ LEAFLET ЛОГО */
+.leaflet-control-attribution a[href*="leaflet"] {
+    display: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper" id="mapWrapper">
+
+    <div class="header">
+        <h1>Оперативная карта</h1>
+        <button class="btn" onclick="toggleFullScreen()">Развернуть</button>
+    </div>
+
+    <div id="map"></div>
+
+    <button id="exitFullscreenBtn" onclick="toggleFullScreen()">Свернуть</button>
+
+    <div class="footer-note">
+        Карта использует открытые картографические данные © OpenStreetMap.
+        Чёрным контуром выделены субъекты Российской Федерации,
+        принятые в её состав в 2022 году: Донецкая Народная Республика,
+        Луганская Народная Республика, Херсонская и Запорожская области.
+        Отображение представлено в информационно-аналитических целях.
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+// ИНИЦИАЛИЗАЦИЯ
+var map = L.map('map', {
+    preferCanvas: true
+}).setView([48.7, 38.2], 6);
+
+// БАЗОВЫЙ СЛОЙ
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// ЦВЕТ ЗОН
+function getColor(name) {
+    if (!name) return "#0057b7";
+    const n = name.toLowerCase();
+    if (n.includes("russian")) return "#c44545";
+    if (n.includes("ukrainian")) return "#0057b7";
+    return "#0057b7";
+}
+
+// ЗОНЫ
+var zonesLayer = L.geoJSON(null, {
+    style: function(feature) {
+        return {
+            stroke: false,
+            fillColor: getColor(feature.properties?.name),
+            fillOpacity: 0.45
+        };
+    }
+}).addTo(map);
+
+fetch('zones.geojson')
+    .then(r => r.json())
+    .then(data => {
+        zonesLayer.addData(data);
+        if (zonesLayer.getBounds().isValid()) {
+            map.fitBounds(zonesLayer.getBounds());
+        }
+    });
+
+// КОНТУРЫ
+var regionsBorderLayer = L.geoJSON(null, {
+    style: {
+        color: "#4a0d0d",
+        weight: 2.8,
+        opacity: 0.95,
+        fillOpacity: 0
+    }
+}).addTo(map);
+
+fetch('rf_regions.json')
+    .then(r => r.json())
+    .then(data => {
+        regionsBorderLayer.addData(data);
+        regionsBorderLayer.bringToFront();
+    });
+
+// FULLSCREEN ЛОГИКА
+const wrapper = document.getElementById('mapWrapper');
+let isFullscreen = false;
+
+function toggleFullScreen() {
+
+    if (!isFullscreen) {
+
+        if (wrapper.requestFullscreen) {
+            wrapper.requestFullscreen().catch(() => {});
+        }
+
+        wrapper.classList.add("fullscreen");
+        isFullscreen = true;
+
+    } else {
+
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+        }
+
+        wrapper.classList.remove("fullscreen");
+        isFullscreen = false;
+    }
+
+    setTimeout(() => map.invalidateSize(), 200);
+}
+
+document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+        wrapper.classList.remove("fullscreen");
+        isFullscreen = false;
+        setTimeout(() => map.invalidateSize(), 200);
+    }
+});
+
+</script>
+
+</body>
+</html>
