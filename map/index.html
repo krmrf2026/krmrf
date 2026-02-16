@@ -104,6 +104,12 @@ html, body {
     display: block;
 }
 
+/* Убираем ссылку Leaflet */
+.leaflet-control-attribution a[href*="leaflet"] {
+    display: none !important;
+}
+
+/* Делаем attribution аккуратным */
 .leaflet-control-attribution {
     font-size: 11px;
     color: #6b7280;
