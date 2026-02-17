@@ -19,7 +19,8 @@ fetch("../data/news.json", { cache: "no-store" })
 
       const summary = document.createElement("summary");
       summary.className = "news-summary";
-      summary.textContent = (item.updated || "") + " - " + (item.title || "Без названия");
+      summary.textContent =
+        (item.updated || "") + " - " + (item.title || "Без названия");
 
       const body = document.createElement("div");
       body.className = "news-body";
@@ -44,6 +45,16 @@ fetch("../data/news.json", { cache: "no-store" })
         p.textContent = t;
         body.appendChild(p);
       });
+
+      // 🔴 ВОТ ЭТО ДОБАВЛЯЕМ
+      if (item.url) {
+        const link = document.createElement("a");
+        link.href = "../" + item.url;
+        link.textContent = "Открыть отдельную страницу →";
+        link.className = "news-link";
+        body.appendChild(link);
+      }
+      // 🔴 КОНЕЦ ДОБАВЛЕНИЯ
 
       details.appendChild(summary);
       details.appendChild(body);
