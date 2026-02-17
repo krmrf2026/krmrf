@@ -1,6 +1,7 @@
-/* ===============================
-   БАЗОВЫЕ ПЕРЕМЕННЫЕ
-================================ */
+/* =====================================================
+   KRM РФ — STYLE 2.0
+   Строгий аналитический минимализм
+===================================================== */
 
 :root {
   --bg: #f6f5f4;
@@ -15,13 +16,11 @@
   --link: #1a5fb4;
   --link-hover: #0f4c9a;
 
-  --radius: 16px;
-  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.04);
+  --radius: 18px;
+  --shadow-soft: 0 12px 28px rgba(0, 0, 0, 0.05);
 }
 
-/* ===============================
-   RESET
-================================ */
+/* ================= RESET ================= */
 
 *,
 *::before,
@@ -38,32 +37,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===============================
-   LAYOUT
-================================ */
+/* ================= LAYOUT ================= */
 
 .wrap {
   max-width: 820px;
   margin: 0 auto;
-  padding: 56px 20px 100px;
+  padding: 60px 20px 100px;
 }
 
-/* ===============================
-   HEADER
-================================ */
+/* ================= HEADER ================= */
 
 h1 {
   font-size: 30px;
   font-weight: 700;
   margin: 0 0 6px;
   color: var(--title);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
 }
 
 .subtitle {
   font-size: 14px;
   color: var(--muted);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .header-rule {
@@ -72,47 +67,72 @@ h1 {
   margin-bottom: 28px;
 }
 
-/* ===============================
-   НАВИГАЦИЯ
-================================ */
+/* ================= НАВИГАЦИЯ ================= */
 
 .main-nav {
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 6px 0 18px;
 }
 
 .main-nav a {
   text-decoration: none;
-  color: var(--muted);
-  transition: color 0.2s ease;
+  color: var(--link);
+  position: relative;
+  transition: opacity 0.2s ease;
 }
 
 .main-nav a:hover {
-  color: var(--link);
+  opacity: 0.7;
 }
+
+/* Активный раздел */
+
+.main-nav a.active {
+  color: var(--title);
+}
+
+.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--title);
+  border-radius: 2px;
+}
+
+/* Разделитель */
 
 .divider {
-  margin: 0 10px;
-  color: var(--rule);
+  margin: 0 14px;
+  color: var(--muted);
+  font-weight: 400;
 }
 
-/* ===============================
-   МЕТОДОЛОГИЯ
-================================ */
+/* Линия под навигацией */
+
+.nav-rule {
+  height: 1px;
+  background: var(--rule);
+  margin-bottom: 40px;
+}
+
+/* ================= МЕТОДОЛОГИЯ ================= */
 
 .method-box {
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
-  padding: 20px 22px;
+  padding: 22px 24px;
   margin-bottom: 50px;
 }
 
 .method-title {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--title);
 }
 
@@ -121,38 +141,34 @@ h1 {
   color: var(--muted);
 }
 
-/* ===============================
-   ОСНОВНОЙ БЛОК ОБНОВЛЕНИЯ
-================================ */
+/* ================= ОСНОВНАЯ НОВОСТЬ ================= */
 
 .update {
   background: var(--surface);
   border-radius: 20px;
-  padding: 32px;
-  box-shadow: var(--shadow-soft);
+  padding: 34px;
   border: 1px solid var(--rule);
+  box-shadow: var(--shadow-soft);
 }
 
 .update h2 {
   font-size: 18px;
   font-weight: 600;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   color: var(--title);
 }
 
 .updated-time {
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
-/* ===============================
-   СТРУКТУРА КОНТЕНТА
-================================ */
+/* Контент */
 
 .update-content {
   display: flex;
-  gap: 30px;
+  gap: 32px;
   align-items: flex-start;
 }
 
@@ -173,9 +189,7 @@ h1 {
   font-size: 15px;
 }
 
-/* ===============================
-   ССЫЛКИ В ТЕКСТЕ
-================================ */
+/* ================= ССЫЛКИ ================= */
 
 a {
   color: var(--link);
@@ -187,9 +201,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ===============================
-   АДАПТИВ
-================================ */
+/* ================= АДАПТИВ ================= */
 
 @media (max-width: 760px) {
 
@@ -201,6 +213,14 @@ a:hover {
     font-size: 26px;
   }
 
+  .main-nav {
+    font-size: 18px;
+  }
+
+  .update {
+    padding: 24px;
+  }
+
   .update-content {
     flex-direction: column;
   }
@@ -209,10 +229,6 @@ a:hover {
     width: 100%;
     height: auto;
     max-width: 420px;
-  }
-
-  .update {
-    padding: 24px;
   }
 
 }
