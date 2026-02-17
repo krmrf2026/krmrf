@@ -56,7 +56,15 @@ fetch("../data/rf_regions.json")
 const wrapper = document.getElementById("mapWrapper");
 let isFullscreen = false;
 
-window.toggleFullScreen = function toggleFullScreen() {
+// === Fullscreen ===
+
+const wrapper = document.getElementById("mapWrapper");
+const openBtn = document.getElementById("openFullscreenBtn");
+const exitBtn = document.getElementById("exitFullscreenBtn");
+
+let isFullscreen = false;
+
+function toggleFullScreen() {
   if (!isFullscreen) {
     if (wrapper.requestFullscreen) {
       wrapper.requestFullscreen().catch(() => {});
@@ -72,7 +80,10 @@ window.toggleFullScreen = function toggleFullScreen() {
   }
 
   setTimeout(() => map.invalidateSize(), 200);
-};
+}
+
+openBtn.addEventListener("click", toggleFullScreen);
+exitBtn.addEventListener("click", toggleFullScreen);
 
 document.addEventListener("fullscreenchange", () => {
   if (!document.fullscreenElement) {
