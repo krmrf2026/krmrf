@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Оперативная карта</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KRM РФ - Оперативная карта</title>
 
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/page-map.css">
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/page-map.css">
 </head>
 
 <body>
+
+<!-- ================= HEADER ================= -->
 
 <div class="wrap">
 
@@ -22,7 +24,7 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <nav class="main-nav">
     <a href="../">Главная</a>
     <span class="divider">|</span>
-    <a href="index.html" class="active">Карта</a>
+    <a href="./" class="active">Карта</a>
     <span class="divider">|</span>
     <a href="../news/">Архив</a>
   </nav>
@@ -31,28 +33,38 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 </div>
 
-<div class="wrapper" id="mapWrapper">
+<!-- ================= MAP SECTION ================= -->
 
-  <div class="map-header">
-    <h2>Оперативная карта</h2>
-    <button class="btn" id="openFullscreenBtn">Развернуть</button>
+<div class="wrapper">
+  <div class="map-container" id="mapWrapper">
+
+    <div class="map-header">
+      <h2>Оперативная карта</h2>
+      <button class="btn" id="openFullscreenBtn">Развернуть</button>
+    </div>
+
+    <div class="map-note">
+      Карта составляется на основе открытых источников и обновляется вручную. Возможна временная задержка.
+      Отображаемая линия носит ориентировочный характер и отражает личную оценку ситуации.
+      Это не онлайн-мониторинг и не инструмент точной навигации. Карта предназначена исключительно для ознакомления.
+    </div>
+
+    <div id="map"></div>
+
+    <button id="exitFullscreenBtn">Свернуть</button>
+
+    <div class="footer-note">
+      Используются данные © OpenStreetMap.
+      Отображение представлено в информационно-аналитических целях.
+    </div>
+
   </div>
-
-  <div class="map-note">
-    Данные собраны из открытых источников.
-    Карта обновляется вручную.
-    Линия носит ориентировочный характер.
-  </div>
-
-  <div id="map"></div>
-
-  <button id="exitFullscreenBtn">Свернуть</button>
-
-  <div class="footer-note">
-    Используются данные © OpenStreetMap.
-    Отображение представлено в информационно-аналитических целях.
-  </div>
-
 </div>
 
+<!-- ================= SCRIPTS ================= -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../assets/js/map.js" defer></script>
+
+</body>
 </html>
