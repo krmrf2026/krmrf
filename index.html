@@ -45,27 +45,6 @@
   </div>
   
 </div>
-
-
-
-<script>
-const now = new Date();
-
-const formatted =
-  now.toLocaleDateString("ru-RU", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric"
-  }) +
-  " " +
-  now.toLocaleTimeString("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-
-document.getElementById("updated").innerText =
-  "Обновлено: " + formatted;
-</script>
   
 <script src="assets/js/home.js" defer></script>
 
