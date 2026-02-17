@@ -1,7 +1,6 @@
 fetch("data/latest.json", { cache: "no-store" })
-  .then(async (response) => {
-
-    const data = await response.json();
+  .then(response => response.json())
+  .then(data => {
 
     // Заголовок
     document.getElementById("latestTitle").textContent = data.title;
@@ -19,27 +18,24 @@ fetch("data/latest.json", { cache: "no-store" })
       container.appendChild(p);
     });
 
-    // Автоматическая дата по моменту обновления файла
-    const lastModified = response.headers.get("Last-Modified");
+    // === Автоматическая дата (текущее время загрузки) ===
+    const now = new Date();
 
-    if (lastModified) {
-      const d = new Date(lastModified);
+    const formatted =
+      now.toLocaleDateString("ru-RU", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      }) +
+      " " +
+      now.toLocaleTimeString("ru-RU", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
 
-      const formatted =
-        d.toLocaleDateString("ru-RU", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        }) +
-        " " +
-        d.toLocaleTimeString("ru-RU", {
-          hour: "2-digit",
-          minute: "2-digit"
-        });
+    document.getElementById("latestUpdated").textContent =
+      "Обновлено: " + formatted;
 
-      document.getElementById("latestUpdated").textContent =
-        "Обновлено: " + formatted;
-    }
   })
   .catch(error => {
     console.error("Ошибка загрузки latest.json:", error);
