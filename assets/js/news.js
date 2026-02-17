@@ -50,7 +50,7 @@ fetch("../data/news.json", { cache: "no-store" })
       if (item.url) {
         const link = document.createElement("a");
         link.href = "../" + item.url;
-        link.textContent = "Открыть отдельную страницу →";
+        link.textContent = "Открыть полную новость →";
         link.className = "news-link";
         body.appendChild(link);
       }
