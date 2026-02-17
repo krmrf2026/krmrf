@@ -1,42 +1,43 @@
-fetch("data/latest.json", { cache: "no-store" })
-  .then(response => response.json())
-  .then(data => {
+fetch("data/news.json", { cache: "no-store" })
+  .then((response) => response.json())
+  .then((items) => {
+    if (!Array.isArray(items) || items.length === 0) {
+      throw new Error("news.json пустой или неправильный формат");
+    }
+
+    // 1) Берём закреп (pinned), если он есть
+    // 2) Если нет - берём самый свежий по updated
+    const pinned = items.find((x) => x && x.pinned === true);
+
+    const sorted = items
+      .filter((x) => x && x.updated)
+      .slice()
+      .sort((a, b) => (b.updated || "").localeCompare(a.updated || ""));
+
+    const latest = pinned || sorted[0];
 
     // Заголовок
-    document.getElementById("latestTitle").textContent = data.title;
+    document.getElementById("latestTitle").textContent = latest.title || "Последнее важное";
+
+    // Дата - строго из JSON
+    document.getElementById("latestUpdated").textContent =
+      "Обновлено: " + (latest.updated || "");
 
     // Картинка
-    document.getElementById("latestImage").src = data.image;
+    const img = document.getElementById("latestImage");
+    img.src = latest.image || "";
+    img.alt = latest.title || "Изображение";
 
     // Текст
     const container = document.getElementById("latestText");
     container.innerHTML = "";
 
-    data.paragraphs.forEach(text => {
+    (latest.paragraphs || []).forEach((text) => {
       const p = document.createElement("p");
       p.textContent = text;
       container.appendChild(p);
     });
-
-    // === Автоматическая дата (текущее время загрузки) ===
-    const now = new Date();
-
-    const formatted =
-      now.toLocaleDateString("ru-RU", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-      }) +
-      " " +
-      now.toLocaleTimeString("ru-RU", {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-
-    document.getElementById("latestUpdated").textContent =
-      "Обновлено: " + formatted;
-
   })
-  .catch(error => {
-    console.error("Ошибка загрузки latest.json:", error);
+  .catch((error) => {
+    console.error("Ошибка загрузки news.json:", error);
   });
