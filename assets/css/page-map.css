@@ -1,10 +1,9 @@
+/* Высота нужна карте для fullscreen */
 html, body {
     height: 100%;
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    background: #f3f4f6;
 }
 
+/* Контейнер карты */
 .wrapper {
     max-width: 1200px;
     margin: 40px auto;
@@ -15,6 +14,7 @@ html, body {
     position: relative;
 }
 
+/* Fullscreen режим */
 .wrapper.fullscreen {
     position: fixed;
     inset: 0;
@@ -28,6 +28,7 @@ html, body {
     background: white;
 }
 
+/* Шапка */
 .header {
     padding: 20px 24px;
     border-bottom: 1px solid #e5e7eb;
@@ -42,6 +43,7 @@ html, body {
     font-weight: 600;
 }
 
+/* Кнопки */
 .btn {
     background: #111827;
     color: white;
@@ -52,6 +54,7 @@ html, body {
     font-size: 14px;
 }
 
+/* Карта */
 #map {
     height: 640px;
 }
@@ -60,6 +63,7 @@ html, body {
     height: 100%;
 }
 
+/* Подпись внизу */
 .footer-note {
     padding: 14px 20px;
     font-size: 12px;
@@ -68,11 +72,13 @@ html, body {
     line-height: 1.5;
 }
 
+/* Скрываем шапку и подпись в fullscreen */
 .wrapper.fullscreen .header,
 .wrapper.fullscreen .footer-note {
     display: none;
 }
 
+/* Кнопка выхода из fullscreen */
 #exitFullscreenBtn {
     position: absolute;
     top: 20px;
@@ -92,12 +98,12 @@ html, body {
     display: block;
 }
 
-/* Убираем ссылку Leaflet */
+/* Leaflet — скрываем ссылку */
 .leaflet-control-attribution a[href*="leaflet"] {
     display: none !important;
 }
 
-/* Делаем attribution аккуратным */
+/* Leaflet — аккуратный attribution */
 .leaflet-control-attribution {
     font-size: 11px;
     color: #6b7280;
