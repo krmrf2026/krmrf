@@ -37,33 +37,9 @@ fetch("../data/zones.geojson")
   .then(r => r.json())
   .then(data => {
 
-    // 1. Добавляем заливку
     zonesLayer.addData(data);
 
-    // 2. Автоматический dissolve через turf
-    let dissolved = null;
-
-    data.features.forEach(feature => {
-      if (!dissolved) {
-        dissolved = feature;
-      } else {
-        dissolved = turf.union(dissolved, feature);
-      }
-    });
-
-    // 3. Рисуем внешний цельный контур
-    const outlineLayer = L.geoJSON(dissolved, {
-      style: {
-        color: "#2b0000",
-        weight: 4,
-        opacity: 1,
-        fillOpacity: 0
-      }
-    }).addTo(map);
-
-    outlineLayer.bringToFront();
-
-    // 4. Стартовый масштаб (без лишнего мира)
+    // Стартовый масштаб ближе
     if (zonesLayer.getBounds().isValid()) {
       map.fitBounds(zonesLayer.getBounds(), {
         padding: [40, 40],
@@ -72,7 +48,7 @@ fetch("../data/zones.geojson")
     }
 
   })
-  .catch(() => {});
+  .catch(console.error);
 
 // ================= REGIONS BORDERS =================
 
@@ -91,7 +67,7 @@ fetch("../data/rf_regions.json")
     regionsBorderLayer.addData(data);
     regionsBorderLayer.bringToFront();
   })
-  .catch(() => {});
+  .catch(console.error);
 
 // ================= FULLSCREEN =================
 
