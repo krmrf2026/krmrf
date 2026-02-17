@@ -1,47 +1,43 @@
-.news-list {
-  margin-top: 16px;
-}
-
-.news-item {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 14px;
-  padding: 14px 16px;
-  margin-bottom: 14px;
+/* Контейнер страницы новости */
+.wrap {
+  max-width: 760px;
+  margin: 40px auto;
   background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06);
 }
 
-.news-summary {
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.news-body {
-  margin-top: 12px;
-}
-
-.news-excerpt {
-  opacity: 0.75;
+/* Заголовок */
+.wrap h1 {
   margin-bottom: 10px;
 }
 
-/* Картинка в архиве */
-.news-image {
-  display: block;
-  width: 100%;
-  max-width: 520px;
-  height: auto;
-  border-radius: 14px;
-  margin: 14px 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+/* Дата */
+.wrap p strong {
+  display: inline-block;
+  margin-bottom: 16px;
 }
 
-/* Картинка на странице отдельной новости */
+/* Картинка по ширине текста */
 .wrap img {
-  display: block;
   width: 100%;
-  max-width: 520px;
   height: auto;
-  border-radius: 16px;
-  margin: 20px 0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  margin: 18px 0 24px 0;
+  display: block;
+}
+
+/* Абзацы */
+.wrap p {
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+/* Ссылка назад */
+.map-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-weight: 500;
 }
