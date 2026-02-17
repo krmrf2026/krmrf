@@ -1,110 +1,144 @@
-/* Высота нужна карте для fullscreen */
-html, body {
-    height: 100%;
+/* =========================================
+   PAGE MAP — KRM РФ 2.0
+   Строгий, интегрированный стиль
+========================================= */
+
+/* Высота нужна для fullscreen */
+html,
+body {
+  height: 100%;
+}
+
+/* ================= WRAPPER ================= */
+
+.wrapper {
+  max-width: 1100px;
+  margin: 40px auto 80px;
+  padding: 0 20px;
+  position: relative;
 }
 
 /* Контейнер карты */
-.wrapper {
-    max-width: 1200px;
-    margin: 40px auto;
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
-    overflow: hidden;
-    position: relative;
+.map-container {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Fullscreen режим */
-.wrapper.fullscreen {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
-    z-index: 9999;
-    background: white;
+/* ================= FULLSCREEN ================= */
+
+.map-container.fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  z-index: 9999;
+  background: var(--surface);
 }
 
-/* Шапка */
-.header {
-    padding: 20px 24px;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* ================= HEADER ================= */
+
+.map-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
+.map-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--title);
 }
 
-/* Кнопки */
+/* ================= BUTTONS ================= */
+
 .btn {
-    background: #111827;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
+  background: var(--link);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease, opacity 0.2s ease;
 }
 
-/* Карта */
-#map {
-    height: 640px;
+.btn:hover {
+  background: var(--link-hover);
 }
 
-.wrapper.fullscreen #map {
-    height: 100%;
-}
+/* Кнопка выхода fullscreen */
 
-/* Подпись внизу */
-.footer-note {
-    padding: 14px 20px;
-    font-size: 12px;
-    color: #6b7280;
-    border-top: 1px solid #e5e7eb;
-    line-height: 1.5;
-}
-
-/* Скрываем шапку и подпись в fullscreen */
-.wrapper.fullscreen .header,
-.wrapper.fullscreen .footer-note {
-    display: none;
-}
-
-/* Кнопка выхода из fullscreen */
 #exitFullscreenBtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
-    background: rgba(0,0,0,0.75);
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: none;
-    font-size: 14px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: none;
+  font-size: 13px;
 }
 
-.wrapper.fullscreen #exitFullscreenBtn {
-    display: block;
+.map-container.fullscreen #exitFullscreenBtn {
+  display: block;
 }
 
-/* Leaflet — скрываем ссылку */
+/* ================= MAP ================= */
+
+#map {
+  height: 640px;
+}
+
+.map-container.fullscreen #map {
+  height: 100%;
+}
+
+/* ================= FOOTER NOTE ================= */
+
+.footer-note {
+  padding: 14px 20px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  line-height: 1.5;
+}
+
+/* Скрываем header и footer в fullscreen */
+
+.map-container.fullscreen .map-header,
+.map-container.fullscreen .footer-note {
+  display: none;
+}
+
+/* ================= LEAFLET ================= */
+
+/* Скрываем ссылку leaflet */
 .leaflet-control-attribution a[href*="leaflet"] {
-    display: none !important;
+  display: none !important;
 }
 
-/* Leaflet — аккуратный attribution */
+/* Аккуратный attribution */
 .leaflet-control-attribution {
-    font-size: 11px;
-    color: #6b7280;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Чуть мягче zoom-кнопки */
+.leaflet-control-zoom a {
+  border-radius: 8px !important;
+  font-weight: 600;
 }
