@@ -52,10 +52,6 @@ fetch("../data/rf_regions.json")
   })
   .catch(() => {});
 
-// Fullscreen
-const wrapper = document.getElementById("mapWrapper");
-let isFullscreen = false;
-
 // === Fullscreen ===
 
 const wrapper = document.getElementById("mapWrapper");
