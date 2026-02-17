@@ -1,0 +1,33 @@
+.news-list {
+  margin-top: 16px;
+}
+
+.news-item {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.news-summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.news-body {
+  margin-top: 10px;
+}
+
+.news-excerpt {
+  opacity: 0.75;
+  margin-bottom: 8px;
+}
+
+.news-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px 0;
+}
