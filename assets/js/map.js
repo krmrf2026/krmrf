@@ -1,13 +1,17 @@
-// Инициализация карты
+// ================= INIT MAP =================
+
 const map = L.map("map", {
   preferCanvas: true,
   attributionControl: true
 });
 
+// Базовый слой
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution: "© OpenStreetMap"
 }).addTo(map);
+
+// ================= COLORS =================
 
 function getColor(name) {
   if (!name) return "#0057b7";
@@ -17,42 +21,79 @@ function getColor(name) {
   return "#0057b7";
 }
 
+// ================= ZONES =================
+
 const zonesLayer = L.geoJSON(null, {
   style: (feature) => ({
     stroke: false,
     fillColor: getColor(feature?.properties?.name),
-    fillOpacity: 0.45
+    fillOpacity: 0.40
   })
 }).addTo(map);
 
+// ================= LOAD ZONES =================
+
 fetch("../data/zones.geojson")
-  .then((r) => r.json())
-  .then((data) => {
+  .then(r => r.json())
+  .then(data => {
+
+    // 1. Добавляем заливку
     zonesLayer.addData(data);
+
+    // 2. Автоматический dissolve через turf
+    let dissolved = null;
+
+    data.features.forEach(feature => {
+      if (!dissolved) {
+        dissolved = feature;
+      } else {
+        dissolved = turf.union(dissolved, feature);
+      }
+    });
+
+    // 3. Рисуем внешний цельный контур
+    const outlineLayer = L.geoJSON(dissolved, {
+      style: {
+        color: "#2b0000",
+        weight: 4,
+        opacity: 1,
+        fillOpacity: 0
+      }
+    }).addTo(map);
+
+    outlineLayer.bringToFront();
+
+    // 4. Стартовый масштаб (без лишнего мира)
     if (zonesLayer.getBounds().isValid()) {
-      map.fitBounds(zonesLayer.getBounds());
+      map.fitBounds(zonesLayer.getBounds(), {
+        padding: [40, 40],
+        maxZoom: 9
+      });
     }
+
   })
   .catch(() => {});
+
+// ================= REGIONS BORDERS =================
 
 const regionsBorderLayer = L.geoJSON(null, {
   style: {
     color: "#4a0d0d",
-    weight: 2.8,
-    opacity: 0.95,
+    weight: 2.5,
+    opacity: 0.9,
     fillOpacity: 0
   }
 }).addTo(map);
 
 fetch("../data/rf_regions.json")
-  .then((r) => r.json())
-  .then((data) => {
+  .then(r => r.json())
+  .then(data => {
     regionsBorderLayer.addData(data);
     regionsBorderLayer.bringToFront();
   })
   .catch(() => {});
 
-// === Fullscreen ===
+// ================= FULLSCREEN =================
 
 const wrapper = document.getElementById("mapWrapper");
 const openBtn = document.getElementById("openFullscreenBtn");
