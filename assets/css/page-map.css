@@ -1,16 +1,32 @@
-/* ===== CLEAN MAP PAGE ===== */
+/* ===== CENTERED MAP VERSION ===== */
 
 html, body {
   height: 100%;
 }
 
-/* Заголовок строки */
+/* Контейнер страницы */
+.map-wrapper {
+  max-width: 1100px;
+  margin: 40px auto 80px;
+  padding: 0 20px;
+}
 
+/* Блок карты */
+.map-container {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Заголовок */
 .map-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--rule);
 }
 
 .map-title-row h2 {
@@ -20,34 +36,25 @@ html, body {
 }
 
 /* Карта */
-
-.map-full {
-  width: 100%;
-  position: relative;
-}
-
 #map {
-  height: 640px;
+  height: 620px;
   width: 100%;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
 }
 
 /* Fullscreen */
-
-.map-full.fullscreen {
+.map-container.fullscreen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: white;
+  border-radius: 0;
+  border: none;
 }
 
-.map-full.fullscreen #map {
+.map-container.fullscreen #map {
   height: 100%;
 }
 
 /* Кнопки */
-
 .btn {
   background: var(--link);
   color: white;
@@ -56,10 +63,6 @@ html, body {
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
-}
-
-.btn:hover {
-  background: var(--link-hover);
 }
 
 #exitFullscreenBtn {
@@ -76,12 +79,11 @@ html, body {
   cursor: pointer;
 }
 
-.map-full.fullscreen #exitFullscreenBtn {
+.map-container.fullscreen #exitFullscreenBtn {
   display: block;
 }
 
 /* Сноска */
-
 .map-footnote {
   font-size: 12px;
   color: var(--muted);
@@ -90,7 +92,6 @@ html, body {
 }
 
 /* Leaflet */
-
 .leaflet-control-attribution a[href*="leaflet"] {
   display: none !important;
 }
@@ -98,4 +99,15 @@ html, body {
 .leaflet-control-attribution {
   font-size: 11px;
   color: var(--muted);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 760px) {
+  .map-wrapper {
+    margin: 20px auto 60px;
+  }
+
+  #map {
+    height: 420px;
+  }
 }
