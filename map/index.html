@@ -14,28 +14,45 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <body>
 
-<div class="wrapper" id="mapWrapper">
+<div class="wrap">
 
-    <div class="header">
-        <h1>Оперативная карта</h1>
-        <button class="btn" id="openFullscreenBtn">Развернуть</button>
-    </div>
+  <h1>KRM РФ</h1>
+  <div class="subtitle">Обстановка и аналитика</div>
 
-    <div id="map"></div>
+  <nav class="main-nav">
+    <a href="../">Главная</a>
+    <span class="divider">|</span>
+    <a href="index.html" class="active">Карта</a>
+    <span class="divider">|</span>
+    <a href="../news/">Архив</a>
+  </nav>
 
-    <button id="exitFullscreenBtn">Свернуть</button>
-    <div class="footer-note">
-        Карта использует открытые картографические данные © OpenStreetMap.
-        Чёрным контуром выделены субъекты Российской Федерации,
-        принятые в её состав в 2022 году: Донецкая Народная Республика,
-        Луганская Народная Республика, Херсонская и Запорожская области.
-        Отображение представлено в информационно-аналитических целях.
-    </div>
+  <div class="nav-rule"></div>
 
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="../assets/js/map.js" defer></script>
+<div class="wrapper" id="mapWrapper">
 
-</body>
+  <div class="map-header">
+    <h2>Оперативная карта</h2>
+    <button class="btn" id="openFullscreenBtn">Развернуть</button>
+  </div>
+
+  <div class="map-note">
+    Данные собраны из открытых источников.
+    Карта обновляется вручную.
+    Линия носит ориентировочный характер.
+  </div>
+
+  <div id="map"></div>
+
+  <button id="exitFullscreenBtn">Свернуть</button>
+
+  <div class="footer-note">
+    Используются данные © OpenStreetMap.
+    Отображение представлено в информационно-аналитических целях.
+  </div>
+
+</div>
+
 </html>
