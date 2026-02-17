@@ -5,30 +5,19 @@ fetch("data/news.json", { cache: "no-store" })
       throw new Error("news.json пустой или неправильный формат");
     }
 
-    // 1) Берём закреп (pinned), если он есть
-    // 2) Если нет - берём самый свежий по updated
-    const pinned = items.find((x) => x && x.pinned === true);
+    // Берём первую запись массива
+    const latest = items[0];
 
-    const sorted = items
-      .filter((x) => x && x.updated)
-      .slice()
-      .sort((a, b) => (b.updated || "").localeCompare(a.updated || ""));
+    document.getElementById("latestTitle").textContent =
+      latest.title || "Последнее важное";
 
-    const latest = pinned || sorted[0];
-
-    // Заголовок
-    document.getElementById("latestTitle").textContent = latest.title || "Последнее важное";
-
-    // Дата - строго из JSON
     document.getElementById("latestUpdated").textContent =
       "Обновлено: " + (latest.updated || "");
 
-    // Картинка
     const img = document.getElementById("latestImage");
     img.src = latest.image || "";
     img.alt = latest.title || "Изображение";
 
-    // Текст
     const container = document.getElementById("latestText");
     container.innerHTML = "";
 
