@@ -18,13 +18,12 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
     <div class="header">
         <h1>Оперативная карта</h1>
-        <button class="btn" onclick="toggleFullScreen()">Развернуть</button>
+        <button class="btn" id="openFullscreenBtn">Развернуть</button>
     </div>
 
     <div id="map"></div>
 
-    <button id="exitFullscreenBtn" onclick="toggleFullScreen()">Свернуть</button>
-
+    <button id="exitFullscreenBtn">Свернуть</button>
     <div class="footer-note">
         Карта использует открытые картографические данные © OpenStreetMap.
         Чёрным контуром выделены субъекты Российской Федерации,
