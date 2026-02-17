@@ -42,8 +42,8 @@ fetch("../data/zones.geojson")
     // Стартовый масштаб ближе
     if (zonesLayer.getBounds().isValid()) {
       map.fitBounds(zonesLayer.getBounds(), {
-        padding: [40, 40],
-        maxZoom: 9
+        padding: [20, 20],
+        maxZoom: 10
       });
     }
 
