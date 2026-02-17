@@ -1,44 +1,47 @@
-/* ===== CENTERED MAP VERSION ===== */
+/* ==============================
+   MAP PAGE — wide centered layout
+   Задача: шапка узкая (wrap), карта шире (как раньше)
+================================ */
 
 html, body {
   height: 100%;
 }
 
-/* Контейнер страницы */
-.map-wrapper {
-  max-width: 1100px;
-  margin: 40px auto 80px;
-  padding: 0 20px;
-}
-
-/* Блок карты */
-.map-container {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-/* Заголовок */
+/* Строка заголовка карты внутри .wrap */
 .map-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 22px;
-  border-bottom: 1px solid var(--rule);
+  margin: 18px 0 18px;
 }
 
 .map-title-row h2 {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
+  color: var(--title);
 }
 
-/* Карта */
+/* Широкий блок карты (как в старом варианте) */
+.map-wide {
+  max-width: 1200px;
+  margin: 0 auto 70px;
+  padding: 0 20px;
+}
+
+/* Контейнер карты */
+.map-container {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Сам map */
 #map {
-  height: 620px;
   width: 100%;
+  height: 640px;
 }
 
 /* Fullscreen */
@@ -48,16 +51,18 @@ html, body {
   z-index: 9999;
   border-radius: 0;
   border: none;
+  background: var(--surface);
 }
 
 .map-container.fullscreen #map {
   height: 100%;
 }
 
-/* Кнопки */
+/* Кнопка "Развернуть" — берется из общего стиля,
+   но если вдруг её нет, оставляем здесь безопасный дубль */
 .btn {
   background: var(--link);
-  color: white;
+  color: #fff;
   border: none;
   padding: 8px 14px;
   border-radius: 8px;
@@ -65,33 +70,39 @@ html, body {
   font-size: 14px;
 }
 
+.btn:hover {
+  background: var(--link-hover);
+}
+
+/* Кнопка выхода из fullscreen */
 #exitFullscreenBtn {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  display: none;
+  top: 18px;
+  right: 18px;
   z-index: 2000;
   background: rgba(0,0,0,0.75);
-  color: white;
+  color: #fff;
   border: none;
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
+  display: none;
+  font-size: 14px;
 }
 
 .map-container.fullscreen #exitFullscreenBtn {
   display: block;
 }
 
-/* Сноска */
+/* Сноска под картой (ширина как у карты) */
 .map-footnote {
   font-size: 12px;
   color: var(--muted);
-  margin-top: 14px;
   line-height: 1.6;
+  margin-top: 12px;
 }
 
-/* Leaflet */
+/* Leaflet attribution */
 .leaflet-control-attribution a[href*="leaflet"] {
   display: none !important;
 }
@@ -101,12 +112,18 @@ html, body {
   color: var(--muted);
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 760px) {
-  .map-wrapper {
-    margin: 20px auto 60px;
+/* Mobile/Tablet */
+@media (max-width: 900px) {
+  .map-wide {
+    padding: 0 12px;
   }
 
+  #map {
+    height: 520px;
+  }
+}
+
+@media (max-width: 560px) {
   #map {
     height: 420px;
   }
