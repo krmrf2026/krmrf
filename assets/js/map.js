@@ -92,10 +92,13 @@ fetch("../data/zones.geojson")
 // ================= REGIONS BORDERS =================
 
 const regionsBorderLayer = L.geoJSON(null, {
+  interactive: false,
   style: {
-    color: "#4a0d0d",
-    weight: 2.5,
+    color: "#2f63c7",      // синий цвет субъектов
+    weight: 1.2,           // тонкая линия
     opacity: 0.9,
+    lineCap: "round",
+    lineJoin: "round",
     fillOpacity: 0
   }
 }).addTo(map);
