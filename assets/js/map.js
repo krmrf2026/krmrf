@@ -23,6 +23,7 @@ function getColor(name) {
 
 // ================= ZONES =================
 
+// Заливка (как у тебя)
 const zonesLayer = L.geoJSON(null, {
   style: (feature) => ({
     stroke: false,
@@ -31,6 +32,36 @@ const zonesLayer = L.geoJSON(null, {
   })
 }).addTo(map);
 
+
+// ====== ВНЕШНИЙ КРАСИВЫЙ КОНТУР (добавлено) ======
+
+// Подложка (мягкая тень)
+const zonesOutlineShadow = L.geoJSON(null, {
+  interactive: false,
+  style: {
+    color: "#000",
+    weight: 6,
+    opacity: 0.20,
+    lineCap: "round",
+    lineJoin: "round",
+    fill: false
+  }
+}).addTo(map);
+
+// Основной контур
+const zonesOutlineLayer = L.geoJSON(null, {
+  interactive: false,
+  style: {
+    color: "#6e1111",
+    weight: 2.2,
+    opacity: 0.95,
+    lineCap: "round",
+    lineJoin: "round",
+    fill: false
+  }
+}).addTo(map);
+
+
 // ================= LOAD ZONES =================
 
 fetch("../data/zones.geojson")
@@ -38,6 +69,14 @@ fetch("../data/zones.geojson")
   .then(data => {
 
     zonesLayer.addData(data);
+
+    // добавляем тот же geojson в контур
+    zonesOutlineShadow.addData(data);
+    zonesOutlineLayer.addData(data);
+
+    // поднимаем контур выше заливки
+    zonesOutlineShadow.bringToFront();
+    zonesOutlineLayer.bringToFront();
 
     // Стартовый масштаб ближе
     if (zonesLayer.getBounds().isValid()) {
