@@ -1,33 +1,38 @@
-/* ================= MAP CLEAN v5 ================= */
+/* ================= MAP CLEAN — FINAL ================= */
 
 html, body {
   height: 100%;
 }
 
-/* Основной блок карты */
+/* ===== Контейнер страницы карты ===== */
+
 .map-section {
-  max-width: 820px;              /* такая же ширина как .wrap */
-  margin: 0 auto 60px;           /* без лишнего воздуха сверху */
+  max-width: 820px;          /* совпадает с .wrap */
+  margin: -30px auto 60px;   /* компенсируем верхний padding wrap */
   padding: 0 20px;
 }
 
-/* Контейнер карты */
+/* ===== Контейнер карты ===== */
+
 .map-container {
   position: relative;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--rule);
   background: var(--surface);
   box-shadow: var(--shadow-soft);
 }
 
-/* Карта */
+/* ===== Карта ===== */
+
 #map {
   width: 100%;
   height: 560px;
+  display: block;
 }
 
-/* Кнопка "Развернуть" */
+/* ===== Кнопка "Развернуть" ===== */
+
 .map-expand {
   position: absolute;
   top: 14px;
@@ -35,7 +40,8 @@ html, body {
   z-index: 1000;
 }
 
-/* Fullscreen */
+/* ===== Fullscreen режим ===== */
+
 .map-container.fullscreen {
   position: fixed;
   inset: 0;
@@ -48,7 +54,8 @@ html, body {
   height: 100%;
 }
 
-/* Кнопки */
+/* ===== Кнопки ===== */
+
 .btn {
   background: var(--link);
   color: #fff;
@@ -57,6 +64,7 @@ html, body {
   border-radius: 8px;
   cursor: pointer;
   font-size: 13px;
+  transition: background 0.2s ease;
 }
 
 .btn:hover {
@@ -64,6 +72,7 @@ html, body {
 }
 
 /* Кнопка выхода */
+
 #exitFullscreenBtn {
   position: absolute;
   top: 14px;
@@ -82,19 +91,21 @@ html, body {
   display: block;
 }
 
-/* Подпись */
+/* ===== Подпись ===== */
+
 .map-footnote {
-  margin-top: 18px;
-  padding: 16px;
+  margin-top: 20px;
+  padding: 16px 18px;
   font-size: 12px;
   color: var(--muted);
   border: 1px solid var(--rule);
-  border-radius: 14px;
+  border-radius: 18px;
   background: var(--surface);
   line-height: 1.6;
 }
 
-/* Leaflet */
+/* ===== Leaflet ===== */
+
 .leaflet-control-attribution a[href*="leaflet"] {
   display: none !important;
 }
@@ -104,12 +115,13 @@ html, body {
   color: var(--muted);
 }
 
-/* Mobile */
+/* ===== Mobile ===== */
+
 @media (max-width: 768px) {
 
   .map-section {
+    margin: -20px auto 40px;
     padding: 0 16px;
-    margin-bottom: 40px;
   }
 
   #map {
