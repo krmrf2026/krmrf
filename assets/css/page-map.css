@@ -7,7 +7,7 @@ html, body {
 /* Основной блок */
 .map-section {
   max-width: 860px;          /* Уже */
-  margin: 40px auto 140px;   /* Воздух снизу */
+  margin: 10px auto 40px;   /* Воздух снизу */
   padding: 0 20px;
 }
 
