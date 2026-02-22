@@ -38,7 +38,7 @@ fetch("data/news.json", { cache: "no-store" })
     // 🔹 Если есть отдельная страница — добавляем кнопку
     if (latest.url) {
       const link = document.createElement("a");
-      link.href = latest.url;
+      link.href = new URL(latest.url, window.location.origin).pathname;
       link.textContent = "Открыть полную новость →";
       link.className = "news-link";
       container.appendChild(link);
