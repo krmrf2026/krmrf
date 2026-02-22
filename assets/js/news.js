@@ -49,7 +49,7 @@ fetch("../data/news.json", { cache: "no-store" })
       // 🔴 ВОТ ЭТО ДОБАВЛЯЕМ
       if (item.url) {
         const link = document.createElement("a");
-        link.href = "../" + item.url;
+        link.href = new URL(item.url, window.location.origin).pathname;
         link.textContent = "Открыть полную новость →";
         link.className = "news-link";
         body.appendChild(link);
