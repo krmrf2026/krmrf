@@ -7,63 +7,87 @@ fetch("../data/news.json", { cache: "no-store" })
 
     const list = document.getElementById("newsList");
     list.innerHTML = "";
-const section = document.body.dataset.section;
-  const sorted = items
-  .filter((x) => x && x.updated)
-  .filter((x) => {
-    if (!section) return true;        // если это /news/ — показываем всё
-    return x.section === section;     // если politics или law — фильтруем
-  })
-  .slice()
-  .sort((a, b) => (b.updated || "").localeCompare(a.updated || ""));
 
-    sorted.forEach((item) => {
-      const details = document.createElement("details");
-      details.className = "news-item";
+    // --- группируем по разделам ---
+    const grouped = {
+      svo: [],
+      politics: [],
+      law: []
+    };
 
-      const summary = document.createElement("summary");
-      summary.className = "news-summary";
-      summary.textContent =
-        (item.updated || "") + " - " + (item.title || "Без названия");
-
-      const body = document.createElement("div");
-      body.className = "news-body";
-
-      if (item.excerpt) {
-        const ex = document.createElement("div");
-        ex.className = "news-excerpt";
-        ex.textContent = item.excerpt;
-        body.appendChild(ex);
-      }
-
-      if (item.image) {
-        const img = document.createElement("img");
-        img.className = "news-image";
-        img.src = "../" + item.image;
-        img.alt = item.title || "Изображение";
-        body.appendChild(img);
-      }
-
-      (item.paragraphs || []).forEach((t) => {
-        const p = document.createElement("p");
-        p.textContent = t;
-        body.appendChild(p);
+    items
+      .filter((x) => x && x.updated)
+      .forEach((item) => {
+        if (grouped[item.section]) {
+          grouped[item.section].push(item);
+        }
       });
 
-      // 🔴 ВОТ ЭТО ДОБАВЛЯЕМ
-      if (item.url) {
-        const link = document.createElement("a");
-        link.href = new URL(item.url, window.location.origin).pathname;
-        link.textContent = "Открыть полную новость →";
-        link.className = "news-link";
-        body.appendChild(link);
-      }
-      // 🔴 КОНЕЦ ДОБАВЛЕНИЯ
-
-      details.appendChild(summary);
-      details.appendChild(body);
-      list.appendChild(details);
+    Object.keys(grouped).forEach((key) => {
+      grouped[key].sort((a, b) =>
+        (b.updated || "").localeCompare(a.updated || "")
+      );
     });
+
+    // --- функция рендера раздела ---
+    const renderSection = (title, key) => {
+      if (!grouped[key] || grouped[key].length === 0) return;
+
+      const h2 = document.createElement("h2");
+      h2.textContent = title;
+      h2.className = "news-section-title";
+      list.appendChild(h2);
+
+      grouped[key].forEach((item) => {
+        const details = document.createElement("details");
+        details.className = "news-item";
+
+        const summary = document.createElement("summary");
+        summary.className = "news-summary";
+        summary.textContent =
+          (item.updated || "") + " - " + (item.title || "Без названия");
+
+        const body = document.createElement("div");
+        body.className = "news-body";
+
+        if (item.excerpt) {
+          const ex = document.createElement("div");
+          ex.className = "news-excerpt";
+          ex.textContent = item.excerpt;
+          body.appendChild(ex);
+        }
+
+        if (item.image) {
+          const img = document.createElement("img");
+          img.className = "news-image";
+          img.src = "../" + item.image;
+          img.alt = item.title || "Изображение";
+          body.appendChild(img);
+        }
+
+        (item.paragraphs || []).forEach((t) => {
+          const p = document.createElement("p");
+          p.textContent = t;
+          body.appendChild(p);
+        });
+
+        if (item.url) {
+          const link = document.createElement("a");
+          link.href = new URL(item.url, window.location.origin).pathname;
+          link.textContent = "Открыть полную новость →";
+          link.className = "news-link";
+          body.appendChild(link);
+        }
+
+        details.appendChild(summary);
+        details.appendChild(body);
+        list.appendChild(details);
+      });
+    };
+
+    renderSection("СВО", "svo");
+    renderSection("Политика", "politics");
+    renderSection("Юридическая помощь", "law");
   })
   .catch((error) => {
     console.error("Ошибка загрузки news.json:", error);
