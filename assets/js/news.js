@@ -7,11 +7,15 @@ fetch("../data/news.json", { cache: "no-store" })
 
     const list = document.getElementById("newsList");
     list.innerHTML = "";
-
-    const sorted = items
-      .filter((x) => x && x.updated)
-      .slice()
-      .sort((a, b) => (b.updated || "").localeCompare(a.updated || ""));
+const section = document.body.dataset.section;
+  const sorted = items
+  .filter((x) => x && x.updated)
+  .filter((x) => {
+    if (!section) return true;        // если это /news/ — показываем всё
+    return x.section === section;     // если politics или law — фильтруем
+  })
+  .slice()
+  .sort((a, b) => (b.updated || "").localeCompare(a.updated || ""));
 
     sorted.forEach((item) => {
       const details = document.createElement("details");
