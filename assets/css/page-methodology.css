@@ -1,11 +1,12 @@
 .content-page .container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .methodology-card {
-  width: 100%;
   max-width: 860px;
+  width: 100%;
   background: #ffffff;
   padding: 3rem;
   border-radius: 16px;
