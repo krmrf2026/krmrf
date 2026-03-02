@@ -11,6 +11,15 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "© OpenStreetMap"
 }).addTo(map);
 
+// ================= UI: UPDATED LABEL =================
+
+const updatedEl = document.getElementById("mapUpdated");
+
+function setMapUpdated(text) {
+  if (!updatedEl) return;
+  updatedEl.textContent = `Обновлено: ${text || "-"}`;
+}
+
 // ================= COLORS =================
 
 function getColor(name) {
@@ -23,7 +32,7 @@ function getColor(name) {
 
 // ================= ZONES =================
 
-// Заливка (как у тебя)
+// Заливка
 const zonesLayer = L.geoJSON(null, {
   style: (feature) => ({
     stroke: false,
@@ -32,8 +41,7 @@ const zonesLayer = L.geoJSON(null, {
   })
 }).addTo(map);
 
-
-// ====== ВНЕШНИЙ КРАСИВЫЙ КОНТУР (добавлено) ======
+// ВНЕШНИЙ КРАСИВЫЙ КОНТУР
 
 // Подложка (мягкая тень)
 const zonesOutlineShadow = L.geoJSON(null, {
@@ -61,16 +69,27 @@ const zonesOutlineLayer = L.geoJSON(null, {
   }
 }).addTo(map);
 
-
 // ================= LOAD ZONES =================
 
-fetch("../data/zones.geojson")
-  .then(r => r.json())
-  .then(data => {
+async function loadZones() {
+  try {
+    // Грузим zones.geojson без кэша + добавляем ?ts=..., чтобы Cloudflare/браузер меньше держали старую версию
+    const url = `../data/zones.geojson?ts=${Date.now()}`;
+    const resp = await fetch(url, { cache: "no-store" });
+    if (!resp.ok) throw new Error(`zones.geojson: HTTP ${resp.status}`);
+
+    // Fallback (может быть неточным на CDN)
+    const lastModified = resp.headers.get("Last-Modified");
+
+    const data = await resp.json();
+
+    // "Правдивая" дата - та, что ты сам записал в zones.geojson (поле updated)
+    const updated = data?.updated || lastModified || "-";
+    setMapUpdated(updated);
 
     zonesLayer.addData(data);
 
-    // добавляем тот же geojson в контур
+    // тот же geojson в контур
     zonesOutlineShadow.addData(data);
     zonesOutlineLayer.addData(data);
 
@@ -78,24 +97,28 @@ fetch("../data/zones.geojson")
     zonesOutlineShadow.bringToFront();
     zonesOutlineLayer.bringToFront();
 
-    // Стартовый масштаб ближе
+    // Стартовый масштаб
     if (zonesLayer.getBounds().isValid()) {
       map.fitBounds(zonesLayer.getBounds(), {
         padding: [20, 20],
         maxZoom: 10
       });
     }
+  } catch (err) {
+    console.error(err);
+    setMapUpdated("ошибка загрузки");
+  }
+}
 
-  })
-  .catch(console.error);
+loadZones();
 
 // ================= REGIONS BORDERS =================
 
 const regionsBorderLayer = L.geoJSON(null, {
   interactive: false,
   style: {
-    color: "#2f63c7",      // синий цвет субъектов
-    weight: 1.2,           // тонкая линия
+    color: "#2f63c7",
+    weight: 1.2,
     opacity: 0.9,
     lineCap: "round",
     lineJoin: "round",
