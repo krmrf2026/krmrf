@@ -1,5 +1,6 @@
-.content-page {
-  padding: 3rem 0;
+.content-page .container {
+  display: flex;
+  justify-content: center;
 }
 
 .methodology-card {
