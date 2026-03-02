@@ -101,7 +101,23 @@ body .wrap {
   background: var(--surface);
   line-height: 1.6;
 }
-
+/* Плашка "Обновлено" прямо на карте (попадает в скриншот) */
+.map-updated {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 700;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+}
 /* Leaflet attribution (оставляем только OSM) */
 .leaflet-control-attribution a[href*="leaflet"] {
   display: none !important;
