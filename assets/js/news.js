@@ -11,6 +11,7 @@ fetch("../data/news.json", { cache: "no-store" })
     // --- группируем по разделам ---
     const grouped = {
       svo: [],
+      kremennaya: [],
       politics: [],
       law: []
     };
@@ -86,6 +87,7 @@ fetch("../data/news.json", { cache: "no-store" })
     };
 
     renderSection("СВО", "svo");
+    renderSection("Кременная", "kremennaya");
     renderSection("Политика", "politics");
     renderSection("Юридическая помощь", "law");
   })
