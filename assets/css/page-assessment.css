@@ -1,0 +1,30 @@
+.assessment {
+max-width: 760px;
+margin: 0 auto;
+}
+
+.assessment-header h1 {
+margin-bottom: 8px;
+}
+
+.assessment-header time {
+color: #777;
+font-size: 14px;
+}
+
+.assessment-lead {
+margin-top: 16px;
+font-size: 18px;
+}
+
+.assessment section {
+margin-top: 32px;
+}
+
+.assessment h2 {
+margin-bottom: 12px;
+}
+
+.assessment ul {
+padding-left: 20px;
+}
