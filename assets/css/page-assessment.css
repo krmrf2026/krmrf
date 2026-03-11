@@ -1,53 +1,33 @@
-/* Отступы страницы */
-.content-page {
-  padding: 3rem 0;
+/* Центрирование контента страницы */
+
+.page-assessment main.container {
+display: flex;
+justify-content: center;
 }
 
-/* Центрируем основной контент */
-main.container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+/* Карточка архива */
+
+.page-assessment .content-card {
+max-width: 860px;
+width: 100%;
 }
 
-/* Карточка страницы */
-.assessment-archive {
-  width: 100%;
-  max-width: 860px;
-  background: #ffffff;
-  padding: 3rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+/* Заголовок страницы */
+
+.page-assessment .archive-lead {
+margin-top: 10px;
+margin-bottom: 28px;
+color: #555;
 }
 
-/* Подзаголовок */
-.archive-lead {
-  margin-top: 0.75rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+/* Список оценок */
+
+.page-assessment .assessment-list {
+list-style: none;
+padding: 0;
+margin: 0;
 }
 
-/* Заголовки месяцев */
-.assessment-archive h2 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Список дат */
-.assessment-list {
-  list-style: none;
-  padding: 0;
-}
-
-.assessment-list li {
-  margin-bottom: 0.6rem;
-}
-
-/* Ссылки */
-.assessment-list a {
-  text-decoration: none;
-}
-
-.assessment-list a:hover {
-  text-decoration: underline;
+.page-assessment .assessment-list li {
+margin-bottom: 8px;
 }
