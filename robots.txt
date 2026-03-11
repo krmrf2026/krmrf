@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /data/
+Allow: /
+
+Sitemap: https://krmrf.ru/sitemap.xml
