@@ -1,23 +1,88 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Архив новостей</title>
-<link rel="icon" type="image/png" href="/assets/img/favicon.webp">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/page-news.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Новости - KRM РФ</title>
+
+<meta name="description" content="Архив новостей проекта KRM РФ. Сводки, события и информация по ЛНР и зоне СВО." />
+
+<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/page-news.css">
+
 </head>
 
-<body>
-  <div class="wrap">
-    <h1>Новости</h1>
 
-    <a class="map-link" href="../">← На главную</a>
+<body class="page-news">
 
-    <div id="newsList" class="news-list"></div>
-  </div>
+<header class="site-header">
+<div class="container">
 
-  <script src="../assets/js/news.js" defer></script>
+<h1>KRM РФ</h1>
+<p class="subtitle">Обстановка и аналитика</p>
+
+<nav class="main-nav">
+
+<a href="../">Главная</a>
+<span class="divider">|</span>
+
+<a href="../map/">Карта СВО</a>
+<span class="divider">|</span>
+
+<a href="../news/" class="active">Новости</a>
+<span class="divider">|</span>
+
+<a href="../assessment/">Оценка фронта</a>
+<span class="divider">|</span>
+
+<a href="../methodology/">Методология</a>
+
+</nav>
+
+</div>
+</header>
+
+
+<main class="content-page">
+
+<div class="container">
+
+<article class="news-card">
+
+<h2>Новости</h2>
+
+<p class="news-description">
+Архив новостей проекта KRM РФ. Материалы публикуются на основе анализа открытых источников
+и отражают события, связанные с ситуацией в ЛНР и зоне проведения СВО.
+</p>
+
+<div id="newsList" class="news-list"></div>
+
+</article>
+
+</div>
+
+</main>
+
+
+<footer class="site-footer">
+
+<div class="container">
+
+<a href="https://t.me/xykrm">Telegram</a>
+<span>|</span>
+<a href="https://max.ru/xykrm">MAX</a>
+
+</div>
+
+</footer>
+
+
+<script src="../assets/js/news.js" defer></script>
+
 </body>
 </html>
