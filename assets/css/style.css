@@ -358,3 +358,13 @@ p {
     max-width: 420px;
   }
 }
+
+#assessmentFooterTitle{
+font-size:22px;
+margin:6px 0 10px 0;
+}
+
+#assessmentFooterDate{
+margin-bottom:14px;
+color:#6b7280;
+}
