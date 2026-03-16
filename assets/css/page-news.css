@@ -126,3 +126,8 @@
   height: auto;
   display: block;
 }
+
+.page-news .site-header .container {
+  max-width: 860px;
+  margin: 0 auto;
+}
