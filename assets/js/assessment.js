@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
   try {
-    const res = await fetch("../data/assessment.json", {
-      cache: "no-store"
-    });
+    // универсальный путь (работает и с главной, и с /assessment/)
+    const basePath = window.location.pathname.includes("/assessment/")
+      ? "../data/assessment.json"
+      : "data/assessment.json";
 
+    const res = await fetch(basePath, { cache: "no-store" });
     const data = await res.json();
 
     if (!Array.isArray(data)) {
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // сортировка (новые сверху)
     data.sort((a, b) => b.date.localeCompare(a.date));
 
-    // ===== РЕНДЕР СПИСКА =====
+    // ===== СПИСОК (только на /assessment/) =====
     const container = document.getElementById("assessmentList");
 
     if (container) {
@@ -33,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       `).join("");
     }
 
-    // ===== ФУТЕР (последняя запись) =====
+    // ===== ГЛАВНАЯ (footer блок) =====
     const latest = data[0];
 
     const title = document.getElementById("assessmentFooterTitle");
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (latest && title && date && link) {
       title.textContent = latest.title || "Последняя оценка";
-      date.textContent = "Дата: " + (latest.date || "");
+      date.textContent = "Дата: " + formatDate(latest.date);
       link.href = latest.url || "#";
     }
 
