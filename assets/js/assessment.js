@@ -6,7 +6,12 @@ fetch('../data/assessment.json', { cache: 'no-store' })
     }
 
     // ========================
-    // 1. ГЛАВНАЯ СТРАНИЦА
+    // 1. СОРТИРОВКА (по дате)
+    // ========================
+    items.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+
+    // ========================
+    // 2. ГЛАВНАЯ СТРАНИЦА
     // ========================
     const titleEl = document.getElementById('assessmentFooterTitle');
 
@@ -19,33 +24,36 @@ fetch('../data/assessment.json', { cache: 'no-store' })
       const linkEl = document.getElementById('assessmentFooterLink');
 
       titleEl.textContent = latest.title || '';
-      dateEl.textContent = latest.date || '';
-      imgEl.src = latest.image || '';
-      imgEl.alt = latest.title || 'Оценка фронта';
-      summaryEl.textContent = latest.summary || '';
+      dateEl.textContent = latest.updated || '';
+
+      if (imgEl) {
+        imgEl.src = latest.image || '';
+        imgEl.alt = latest.title || 'Оценка фронта';
+      }
+
+      summaryEl.textContent = latest.excerpt || latest.summary || '';
       linkEl.href = latest.url || '#';
     }
 
     // ========================
-    // 2. СТРАНИЦА /assessment/
+    // 3. СТРАНИЦА /assessment/
     // ========================
     const list = document.getElementById('assessmentList');
 
     if (list) {
       list.innerHTML = '';
 
-      items.forEach(item => {
-        const card = document.createElement('a');
-        card.href = item.url || '#';
-        card.className = 'card';
+      items.slice(0, 10).forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'news-item';
 
         card.innerHTML = `
-          <img src="${item.image}" alt="${item.title}">
-          <div class="card-content">
-            <div class="card-date">${item.date}</div>
-            <h3>${item.title}</h3>
-            <p>${item.summary}</p>
-          </div>
+          <div class="news-date">${item.updated}</div>
+          <h3 class="news-title">
+            <a href="${item.url || '#'}">${item.title}</a>
+          </h3>
+          <div class="news-meta">${item.period || ''}</div>
+          <p class="news-summary">${item.excerpt || item.summary || ''}</p>
         `;
 
         list.appendChild(card);
