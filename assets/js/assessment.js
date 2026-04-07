@@ -1,127 +1,36 @@
-document.addEventListener("DOMContentLoaded", async () => {
-
-  try {
-    // универсальный путь (главная / assessment)
-    const basePath = window.location.pathname.includes("/assessment/")
-      ? "../data/assessment.json"
-      : "data/assessment.json";
-
-    const res = await fetch(basePath, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-    const raw = await res.json();
-
-    // поддержка и массива, и одного объекта
-    const data = Array.isArray(raw) ? raw : [raw];
-
-    if (!data.length) throw new Error("assessment.json пуст");
-
-    // сортировка (новые сверху)
-    data.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-
-    // =========================
-    // АРХИВ (/assessment/)
-    // =========================
-    const container = document.getElementById("assessmentList");
-
-    if (container) {
-      container.innerHTML = data.map(item => `
-        <article class="update">
-
-          <div class="update-content">
-
-            ${item.image ? `
-              <div class="update-image">
-                <img src="${item.image}" alt="${item.title}" loading="lazy">
-              </div>
-            ` : ""}
-
-            <div class="update-text">
-
-              <h3>
-                <a href="${normalizeUrl(item.url)}">${item.title}</a>
-              </h3>
-
-              <div class="updated-time">
-                ${formatDate(item.date)}
-              </div>
-
-              ${item.summary ? `<p>${item.summary}</p>` : ""}
-
-              <p>
-                <a href="${normalizeUrl(item.url)}" class="news-link">
-                  Читать оценку →
-                </a>
-              </p>
-
-            </div>
-
-          </div>
-
-        </article>
-      `).join("");
+fetch('/data/assessment.json', { cache: 'no-store' })
+  .then(res => res.json())
+  .then(items => {
+    if (!Array.isArray(items) || items.length === 0) {
+      throw new Error('assessment.json пустой или неверный формат');
     }
 
-    // =========================
-    // ГЛАВНАЯ
-    // =========================
-    const latest = data[0];
+    const latest = items[0];
 
-    const title = document.getElementById("assessmentFooterTitle");
-    const date = document.getElementById("assessmentFooterDate");
-    const link = document.getElementById("assessmentFooterLink");
-    const summary = document.getElementById("assessmentFooterSummary");
-    const img = document.getElementById("assessmentFooterImage");
+    const titleEl = document.getElementById('assessmentFooterTitle');
+    const dateEl = document.getElementById('assessmentFooterDate');
+    const imgEl = document.getElementById('assessmentFooterImage');
+    const summaryEl = document.getElementById('assessmentFooterSummary');
+    const linkEl = document.getElementById('assessmentFooterLink');
 
-    if (latest) {
+    if (!titleEl || !dateEl || !imgEl || !summaryEl || !linkEl) return;
 
-      if (title) {
-        title.textContent = latest.title || "Последняя оценка";
-      }
+    // Заголовок
+    titleEl.textContent = latest.title || '';
 
-      if (date) {
-        date.textContent = "Дата: " + formatDate(latest.date);
-      }
+    // Дата
+    dateEl.textContent = latest.date || '';
 
-      if (link) {
-        link.href = normalizeUrl(latest.url);
-      }
+    // Картинка
+    imgEl.src = latest.image || '';
+    imgEl.alt = latest.title || 'Оценка фронта';
 
-      if (summary && latest.summary) {
-        summary.textContent = latest.summary;
-      }
+    // Описание
+    summaryEl.textContent = latest.summary || '';
 
-      if (img && latest.image) {
-        img.src = latest.image;
-        img.alt = latest.title || "Оценка фронта";
-      }
-
-    }
-
-  } catch (err) {
-    console.error("assessment load error", err);
-  }
-
-  // =========================
-  // UTILS
-  // =========================
-
-  function formatDate(dateStr) {
-    if (!dateStr) return "";
-    const d = new Date(dateStr);
-    if (isNaN(d)) return dateStr;
-
-    return d.toLocaleDateString("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-  }
-
-  function normalizeUrl(url) {
-    if (!url) return "#";
-    if (url.startsWith("http") || url.startsWith("/")) return url;
-    return "/" + url.replace(/^\/+/, "");
-  }
-
-});
+    // Ссылка
+    linkEl.href = latest.url || '#';
+  })
+  .catch(err => {
+    console.error('Ошибка загрузки assessment.json:', err);
+  });
