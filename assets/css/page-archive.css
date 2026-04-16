@@ -1,0 +1,43 @@
+.archive-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.archive-container h1 {
+  margin-bottom: 20px;
+}
+
+.archive-container h2 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.archive-month {
+  margin-bottom: 20px;
+}
+
+.archive-month h3 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.archive-month ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.archive-month li {
+  margin-bottom: 4px;
+}
+
+.archive-month a {
+  font-size: 13px;
+  text-decoration: none;
+  color: #333;
+}
+
+.archive-month a:hover {
+  text-decoration: underline;
+}
