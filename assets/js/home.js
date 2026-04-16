@@ -5,7 +5,20 @@ fetch('/data/news.json', { cache: 'no-store' })
       throw new Error('news.json пустой или неверный формат');
     }
 
-    const latest = items[0];
+    // текущая дата (YYYY-MM-DD)
+    const today = new Date().toISOString().split('T')[0];
+
+    // только опубликованные (<= сегодня)
+    const validItems = items.filter(item => item.updated && item.updated <= today);
+
+    if (validItems.length === 0) {
+      throw new Error('Нет актуальных новостей');
+    }
+
+    // сортировка: новые сверху
+    validItems.sort((a, b) => b.updated.localeCompare(a.updated));
+
+    const latest = validItems[0];
 
     const titleEl = document.getElementById('latestTitle');
     const updatedEl = document.getElementById('latestUpdated');
