@@ -1,49 +1,85 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Архив | KRM РФ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Архив новостей и оценок СВО по датам.">
-  <link rel="canonical" href="https://krmrf.ru/archive/">
+<title>Архив материалов - KRM РФ</title>
 
-  <meta property="og:title" content="Архив | KRM РФ">
-  <meta property="og:description" content="Архив новостей и оценок">
-  <meta property="og:url" content="https://krmrf.ru/archive/">
-  <meta property="og:image" content="https://krmrf.ru/assets/img/og.png">
+<link rel="canonical" href="https://krmrf.ru/archive/">
 
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/page-archive.css">
+<meta name="description" content="Архив всех новостей и оценок боевых действий СВО проекта KRM РФ.">
+
+<meta property="og:title" content="Архив материалов - KRM РФ">
+<meta property="og:description" content="Полный архив новостей и аналитических оценок.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://krmrf.ru/archive/">
+<meta property="og:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Архив материалов - KRM РФ">
+<meta name="twitter:description" content="Полный архив новостей и аналитики.">
+<meta name="twitter:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+
+<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/page-archive.css">
+
 </head>
 
-<body>
+<body class="page-archive">
 
-<header>
-  <a href="/" class="logo">KRM РФ</a>
-  <nav>
-    <a href="/news/">Новости</a>
-    <a href="/assessment/">Оценка</a>
-    <a href="/archive/">Архив</a>
-  </nav>
+<header class="site-header">
+  <div class="container">
+
+    <h1 class="logo">KRM РФ</h1>
+    <p class="subtitle">Обстановка и аналитика</p>
+
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Главная</a>
+      <span class="divider">|</span>
+      <a href="/map/" class="nav-link">Карта СВО</a>
+      <span class="divider">|</span>
+      <a href="/news/" class="nav-link">Новости</a>
+      <span class="divider">|</span>
+      <a href="/assessment/" class="nav-link">Оценка фронта</a>
+      <span class="divider">|</span>
+      <a href="/archive/" class="nav-link">Архив</a>
+      <span class="divider">|</span>
+      <a href="/methodology/" class="nav-link">Методология</a>
+    </nav>
+
+  </div>
 </header>
 
-<main class="container archive-container">
+<main class="content-page">
+  <div class="container">
 
-  <h1>Архив</h1>
+    <div class="content-card">
 
-  <section>
-    <h2>Новости</h2>
-    <div id="archiveNews"></div>
-  </section>
+      <h2>Архив материалов</h2>
 
-  <section>
-    <h2>Оценка боевых действий</h2>
-    <div id="archiveAssessment"></div>
-  </section>
+      <p>
+        Все публикации проекта. Материалы разделены на новости и аналитические оценки.
+      </p>
 
+      <section class="archive-section">
+        <h3>Новости</h3>
+        <div id="archiveNews" class="archive-list"></div>
+      </section>
+
+      <section class="archive-section">
+        <h3>Оценка боевых действий</h3>
+        <div id="archiveAssessment" class="archive-list"></div>
+      </section>
+
+    </div>
+
+  </div>
 </main>
 
-<script src="/assets/js/archive.js" defer></script>
+<script src="../assets/js/archive.js" defer></script>
 
 </body>
 </html>
