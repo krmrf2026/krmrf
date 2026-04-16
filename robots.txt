@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 
 Disallow: /data/
+Disallow: /*.json$
 
 Sitemap: https://krmrf.ru/sitemap.xml
