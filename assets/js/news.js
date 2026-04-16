@@ -24,6 +24,7 @@ fetch("../data/news.json", { cache: "no-store" })
         }
       });
 
+    // --- сортировка по дате (новые сверху) ---
     Object.keys(grouped).forEach((key) => {
       grouped[key].sort((a, b) =>
         (b.updated || "").localeCompare(a.updated || "")
@@ -39,7 +40,8 @@ fetch("../data/news.json", { cache: "no-store" })
       h2.className = "news-section-title";
       list.appendChild(h2);
 
-      grouped[key].forEach((item) => {
+      // ВАЖНО: берём только 5 последних
+      grouped[key].slice(0, 5).forEach((item) => {
         const details = document.createElement("details");
         details.className = "news-item";
 
