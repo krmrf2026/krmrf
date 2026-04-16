@@ -1,17 +1,15 @@
 fetch('../data/assessment.json', { cache: 'no-store' })
-  .then(res => res.json())
-  .then(items => {
+  .then((res) => res.json())
+  .then((items) => {
     if (!Array.isArray(items) || items.length === 0) {
       throw new Error('assessment.json пустой или неверный формат');
     }
 
-    // ========================
-    // 1. СОРТИРОВКА (по дате)
-    // ========================
+    // Сортировка: новые сверху
     items.sort((a, b) => new Date(b.updated) - new Date(a.updated));
 
     // ========================
-    // 2. ГЛАВНАЯ СТРАНИЦА
+    // 1. Блок на главной
     // ========================
     const titleEl = document.getElementById('assessmentFooterTitle');
 
@@ -24,42 +22,53 @@ fetch('../data/assessment.json', { cache: 'no-store' })
       const linkEl = document.getElementById('assessmentFooterLink');
 
       titleEl.textContent = latest.title || '';
-      dateEl.textContent = latest.updated || '';
+      if (dateEl) dateEl.textContent = latest.updated || '';
 
       if (imgEl) {
         imgEl.src = latest.image || '';
         imgEl.alt = latest.title || 'Оценка фронта';
       }
 
-      summaryEl.textContent = latest.excerpt || latest.summary || '';
-      linkEl.href = latest.url || '#';
+      if (summaryEl) {
+        summaryEl.textContent = latest.excerpt || latest.summary || '';
+      }
+
+      if (linkEl) {
+        linkEl.href = latest.url || '#';
+      }
     }
 
     // ========================
-    // 3. СТРАНИЦА /assessment/
+    // 2. Страница /assessment/
     // ========================
     const list = document.getElementById('assessmentList');
 
     if (list) {
       list.innerHTML = '';
 
-      items.slice(0, 10).forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'news-item';
+      items.slice(0, 15).forEach((item) => {
+        const card = document.createElement('article');
+        card.className = 'assessment-item';
+
+        const link = item.url || '#';
+        const title = item.title || 'Без названия';
+        const date = item.updated || '';
+        const period = item.period || '';
+        const summary = item.excerpt || item.summary || '';
 
         card.innerHTML = `
-          <div class="news-date">${item.updated}</div>
-          <h3 class="news-title">
-            <a href="${item.url || '#'}">${item.title}</a>
+          <div class="assessment-date">${date}</div>
+          <h3 class="assessment-title">
+            <a href="${link}">${title}</a>
           </h3>
-          <div class="news-meta">${item.period || ''}</div>
-          <p class="news-summary">${item.excerpt || item.summary || ''}</p>
+          ${period ? `<div class="assessment-period">${period}</div>` : ''}
+          ${summary ? `<p class="assessment-summary">${summary}</p>` : ''}
         `;
 
         list.appendChild(card);
       });
     }
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('Ошибка загрузки assessment.json:', err);
   });
