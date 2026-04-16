@@ -1,23 +1,35 @@
 async function loadArchive() {
-  const newsRes = await fetch('/data/news.json', { cache: 'no-store' });
-  const assessmentRes = await fetch('/data/assessment.json', { cache: 'no-store' });
+  try {
+    const [newsRes, assessmentRes] = await Promise.all([
+      fetch('/data/news.json', { cache: 'no-store' }),
+      fetch('/data/assessment.json', { cache: 'no-store' })
+    ]);
 
-  const news = await newsRes.json();
-  const assessment = await assessmentRes.json();
+    const news = await newsRes.json();
+    const assessment = await assessmentRes.json();
 
-  renderArchive(news, document.getElementById('archiveNews'));
-  renderArchive(assessment, document.getElementById('archiveAssessment'));
+    renderArchive(news, document.getElementById('archiveNews'));
+    renderArchive(assessment, document.getElementById('archiveAssessment'));
+
+  } catch (e) {
+    console.error('Ошибка загрузки архива:', e);
+  }
 }
 
 function renderArchive(items, container) {
-  if (!Array.isArray(items) || items.length === 0) return;
+  if (!Array.isArray(items) || items.length === 0 || !container) return;
 
-  // сортировка по дате
-  items.sort((a, b) => b.updated.localeCompare(a.updated));
+  // очистка контейнера
+  container.innerHTML = '';
+
+  // сортировка по дате (новые сверху)
+  const sorted = [...items].sort((a, b) => b.updated.localeCompare(a.updated));
 
   const grouped = {};
 
-  items.forEach(item => {
+  sorted.forEach(item => {
+    if (!item.updated || !item.url || !item.title) return;
+
     const month = item.updated.slice(0, 7); // YYYY-MM
     if (!grouped[month]) grouped[month] = [];
     grouped[month].push(item);
@@ -27,7 +39,8 @@ function renderArchive(items, container) {
     const block = document.createElement('div');
     block.className = 'archive-month';
 
-    const title = document.createElement('h3');
+    // месяц
+    const title = document.createElement('h4');
     title.textContent = formatMonth(month);
 
     const list = document.createElement('ul');
@@ -37,7 +50,9 @@ function renderArchive(items, container) {
 
       const link = document.createElement('a');
       link.href = item.url;
-      link.textContent = `${item.updated} - ${item.title}`;
+
+      // дата отдельно (под CSS)
+      link.innerHTML = `<span class="date">${item.updated}</span>${item.title}`;
 
       li.appendChild(link);
       list.appendChild(li);
