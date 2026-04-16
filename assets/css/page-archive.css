@@ -1,61 +1,43 @@
-/* Карточка контента */
-.page-archive .content-card {
+.archive-container {
   max-width: 860px;
   margin: 0 auto;
 }
 
-/* Заголовки */
-.page-archive h2 {
-  margin-bottom: 12px;
+.archive-container h1 {
+  margin-bottom: 20px;
 }
 
-.archive-section h3 {
-  margin-top: 32px;
-  margin-bottom: 8px;
-  font-size: 16px;
+.archive-container h2 {
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
-/* Блок месяца */
 .archive-month {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-/* Название месяца */
-.archive-month h4 {
-  font-size: 13px;
-  font-weight: 600;
+.archive-month h3 {
+  font-size: 14px;
   color: #666;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
-/* Список */
 .archive-month ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Элемент */
 .archive-month li {
   margin-bottom: 4px;
-  line-height: 1.4;
 }
 
-/* Ссылка */
 .archive-month a {
   font-size: 13px;
-  color: #111;
   text-decoration: none;
+  color: #333;
 }
 
-/* Hover */
 .archive-month a:hover {
   text-decoration: underline;
-}
-
-/* Дата внутри строки */
-.archive-month .date {
-  color: #777;
-  margin-right: 6px;
-  white-space: nowrap;
 }
