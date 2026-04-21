@@ -75,6 +75,13 @@
   <!-- Новости -->
 
   <url>
+  <loc>https://krmrf.ru/news/beshoz-2026-04-21/</loc>
+  <lastmod>2026-04-21</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+  <url>
   <loc>https://krmrf.ru/news/kremennaya-2026-04-16/</loc>
   <lastmod>2026-04-16</lastmod>
   <changefreq>monthly</changefreq>
