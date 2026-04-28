@@ -80,6 +80,14 @@
   </url>
 
   <!-- Новости -->
+
+  <url>
+  <loc>https://krmrf.ru/news/Kremennaya-2026-04-28/</loc>
+  <lastmod>2026-04-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+  
     <url>
   <loc>https://krmrf.ru/news/svo-2026-04-24/</loc>
   <lastmod>2026-04-24</lastmod>
