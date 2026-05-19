@@ -104,6 +104,13 @@
 
   <!-- Новости -->
 
+    <url>
+  <loc>https://krmrf.ru/news/kartasvo-2026-05-19/</loc>
+  <lastmod>2026-05-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>  
+
   <url>
   <loc>https://krmrf.ru/news/krm-2026-05-16/</loc>
   <lastmod>2026-05-16</lastmod>
