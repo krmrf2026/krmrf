@@ -1,73 +1,108 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
-  
-  <title>KRM РФ - Оперативная карта СВО</title>
-  
-  <link rel="canonical" href="https://krmrf.ru/map/">
-  
-<meta property="og:title" content="Карта СВО — KRM РФ">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>KRM РФ - Оперативная карта СВО</title>
+
+<meta name="description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
+
+<link rel="canonical" href="https://krmrf.ru/map/">
+<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Карта СВО - KRM РФ">
 <meta property="og:description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://krmrf.ru/map/">
 <meta property="og:image" content="https://krmrf.ru/assets/img/og-home.jpg">
 
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Карта СВО — KRM РФ">
-<meta name="twitter:description" content="Интерактивная карта боевых действий СВО.">
+<meta name="twitter:title" content="Карта СВО - KRM РФ">
+<meta name="twitter:description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
 <meta name="twitter:image" content="https://krmrf.ru/assets/img/og-home.jpg">
-  
-<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
-  <link rel="stylesheet"
-href="/assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/page-map.css">
+
+<!-- Styles -->
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/page-map.css">
+
 </head>
 
 <body>
 
-<div class="wrap">
-  <h1>KRM РФ</h1>
-  <div class="subtitle">Обстановка и аналитика</div>
+<header class="wrap">
+
+<h1>KRM РФ</h1>
+<div class="subtitle">Обстановка и аналитика</div>
 
 <nav class="main-nav">
-      <a href="/" class="nav-link">Главная</a>
-      <span class="divider">|</span>
-      <a href="/map/" class="nav-link">Карта СВО</a>
-      <span class="divider">|</span>
-      <a href="/news/" class="nav-link">Новости</a>
-      <span class="divider">|</span>
-      <a href="/assessment/" class="nav-link">Оценка фронта</a>
-      <span class="divider">|</span>
-      <a href="/archive/" class="nav-link">Архив</a>
-      <span class="divider">|</span>
-      <a href="/methodology/" class="nav-link">Методология</a>
-    </nav>
 
-  <div class="nav-rule"></div>
+<a href="/" class="nav-link">Главная</a>
+<span class="divider">|</span>
+
+<a href="/map/" class="nav-link">Карта СВО</a>
+<span class="divider">|</span>
+
+<a href="/news/" class="nav-link">Новости</a>
+<span class="divider">|</span>
+
+<a href="/assessment/" class="nav-link">Оценка фронта</a>
+<span class="divider">|</span>
+
+<a href="/archive/" class="nav-link">Архив</a>
+<span class="divider">|</span>
+
+<a href="/methodology/" class="nav-link">Методология</a>
+
+</nav>
+
+<div class="nav-rule"></div>
+
+</header>
+
+<main class="map-section">
+
+<div class="map-container" id="mapWrapper">
+
+<button
+class="btn map-expand"
+id="openFullscreenBtn">
+
+Развернуть
+
+</button>
+
+<div id="map"></div>
+
+<div class="map-updated" id="mapUpdated">
+Обновлено: -
 </div>
-  
-<div class="map-section">
 
-  <div class="map-container" id="mapWrapper">
-    <button class="btn map-expand" id="openFullscreenBtn">Развернуть</button>
-    <div id="map"></div>
-    <div class="map-updated" id="mapUpdated">Обновлено: -</div>
-    <button id="exitFullscreenBtn">Свернуть</button>
-  </div>
-
-  <div class="map-footnote">
-    Данные собраны из открытых источников. Карта публикуется исключительно в ознакомительных целях.
-    Отображение носит ориентировочный характер и не является официальным картографическим материалом.
-    Административные границы, обозначенные синим цветом, приведены в соответствии с действующим законодательством Российской Федерации.
-  </div>
+<button id="exitFullscreenBtn">
+Свернуть
+</button>
 
 </div>
 
-  <footer class="site-footer">
+<div class="map-footnote">
+
+Данные собраны из открытых источников.
+Карта публикуется исключительно в ознакомительных целях.
+
+Отображение носит ориентировочный характер
+и не является официальным картографическим материалом.
+
+Административные границы, обозначенные синим цветом,
+приведены в соответствии с действующим законодательством Российской Федерации.
+
+</div>
+
+</main>
+
+<footer class="site-footer">
 
 <div class="container">
 
@@ -80,7 +115,7 @@ href="/assets/vendor/leaflet/leaflet.css">
 </footer>
 
 <script src="/assets/vendor/leaflet/leaflet.js"></script>
-<script src="../assets/js/map.js" defer></script>
+<script src="/assets/js/map.js" defer></script>
 
 </body>
 </html>
