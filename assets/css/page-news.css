@@ -123,3 +123,110 @@
   max-width: 860px;
   margin: 0 auto;
 }
+/* ============================= */
+/* Служебные блоки статьи */
+/* ============================= */
+
+.note-box {
+  margin: 28px 0;
+  padding: 18px 20px;
+  background: #f7f8fa;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-left: 4px solid #2f5f9f;
+  border-radius: 16px;
+}
+
+.note-box h2,
+.note-box h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.note-box ul,
+.note-box ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.note-box li {
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+
+.article-toc {
+  margin: 30px 0;
+  padding: 18px 20px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+}
+
+.article-toc h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.article-toc ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.article-toc li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.article-toc a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.article-toc a:hover {
+  text-decoration: underline;
+}
+
+.article-disclaimer {
+  margin-top: 32px;
+  padding: 16px 18px;
+  background: #f8f6f2;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* ============================= */
+/* Мелкие правки для статей */
+/* ============================= */
+
+.content-card figure {
+  margin: 22px 0 28px;
+}
+
+.content-card figcaption {
+  margin-top: -12px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.7;
+}
+
+.content-card h2 {
+  margin-top: 34px;
+  margin-bottom: 14px;
+}
+
+.content-card h3 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.content-card ul,
+.content-card ol {
+  margin-bottom: 18px;
+}
+
+.content-card li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
