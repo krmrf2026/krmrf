@@ -10,6 +10,7 @@ fetch("../data/news.json", { cache: "no-store" })
 
     // --- группируем по разделам ---
     const grouped = {
+      warcrimes: [],
       svo: [],
       kremennaya: [],
       politics: [],
@@ -63,7 +64,7 @@ fetch("../data/news.json", { cache: "no-store" })
         if (item.image) {
           const img = document.createElement("img");
           img.className = "news-image";
-          img.src = "../" + item.image;
+          img.src = item.image;
           img.alt = item.title || "Изображение";
           body.appendChild(img);
         }
@@ -88,6 +89,7 @@ fetch("../data/news.json", { cache: "no-store" })
       });
     };
 
+    renderSection("Военные преступления", "warcrimes");
     renderSection("СВО", "svo");
     renderSection("Кременная", "kremennaya");
     renderSection("Политика", "politics");
