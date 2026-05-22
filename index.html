@@ -2,28 +2,52 @@
 <html lang="ru">
 
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>KRM РФ - Обстановка и аналитика, СВО, ЛНР</title>
+<title>
+KRM РФ - Обстановка и аналитика, СВО, ЛНР
+</title>
+
 <link rel="canonical" href="https://krmrf.ru/">
 
-<meta name="description" content="KRM РФ — карта СВО, аналитика боевых действий и архив материалов на основе открытых источников.">
+<meta name="description"
+content="KRM РФ — карта СВО, аналитика боевых действий, гражданские последствия войны и архив материалов на основе открытых источников.">
 
-<meta property="og:title" content="KRM РФ — карта СВО и аналитика">
-<meta property="og:description" content="Карта СВО, ежедневная оценка боевых действий и архив аналитических материалов.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://krmrf.ru/">
-<meta property="og:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+<meta property="og:title"
+content="KRM РФ — карта СВО и аналитика">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="KRM РФ — карта СВО и аналитика">
-<meta name="twitter:description" content="Карта СВО, ежедневная оценка боевых действий и архив аналитических материалов.">
-<meta name="twitter:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+<meta property="og:description"
+content="Карта СВО, ежедневная оценка боевых действий, архив материалов и документирование гражданских последствий войны.">
 
-<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
+<meta property="og:type"
+content="website">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<meta property="og:url"
+content="https://krmrf.ru/">
+
+<meta property="og:image"
+content="https://krmrf.ru/assets/img/og-home.jpg">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="KRM РФ — карта СВО и аналитика">
+
+<meta name="twitter:description"
+content="Карта СВО, ежедневная оценка боевых действий и архив аналитических материалов.">
+
+<meta name="twitter:image"
+content="https://krmrf.ru/assets/img/og-home.jpg">
+
+<link rel="icon"
+type="image/webp"
+href="/assets/img/favicon.webp">
+
+<link rel="stylesheet"
+href="/assets/css/style.css">
 
 </head>
 
@@ -31,78 +55,171 @@
 
 <div class="wrap">
 
-<h1>KRM РФ</h1>
+<header class="home-header">
+
+<h1>
+KRM РФ
+</h1>
 
 <div class="subtitle">
 Обстановка и аналитика
 </div>
 
 <nav class="main-nav">
-      <a href="/" class="nav-link">Главная</a>
-      <span class="divider">|</span>
-      <a href="/map/" class="nav-link">Карта СВО</a>
-      <span class="divider">|</span>
-      <a href="/news/" class="nav-link">Новости</a>
-      <span class="divider">|</span>
-      <a href="/assessment/" class="nav-link">Оценка фронта</a>
-      <span class="divider">|</span>
-      <a href="/archive/" class="nav-link">Архив</a>
-      <span class="divider">|</span>
-      <a href="/methodology/" class="nav-link">Методология</a>
-    </nav>
+
+<a href="/" class="nav-link">
+Главная
+</a>
+
+<span class="divider">|</span>
+
+<a href="/map/" class="nav-link">
+Карта СВО
+</a>
+
+<span class="divider">|</span>
+
+<a href="/news/" class="nav-link">
+Новости
+</a>
+
+<span class="divider">|</span>
+
+<a href="/war-crimes/" class="nav-link">
+Военные преступления
+</a>
+
+<span class="divider">|</span>
+
+<a href="/assessment/" class="nav-link">
+Оценка фронта
+</a>
+
+<span class="divider">|</span>
+
+<a href="/archive/" class="nav-link">
+Архив
+</a>
+
+<span class="divider">|</span>
+
+<a href="/methodology/" class="nav-link">
+Методология
+</a>
+
+</nav>
+
+</header>
 
 <!-- Последнее важное -->
 
-<div class="update">
+<section class="update">
+
+<div class="section-label">
+Последнее важное
+</div>
 
 <h2 id="latestTitle"></h2>
-<div class="updated-time" id="latestUpdated"></div>
+
+<div class="updated-time"
+id="latestUpdated">
+</div>
 
 <div class="update-content">
 
 <div class="update-image">
-<img id="latestImage" alt="Последнее важное">
+
+<img
+id="latestImage"
+alt="Последнее важное"
+loading="lazy">
+
 </div>
 
-<div class="update-text" id="latestText"></div>
-
+<div class="update-text"
+id="latestText">
 </div>
 
 </div>
+
+</section>
 
 <!-- Оценка фронта -->
 
-<div class="update">
+<section class="update">
 
-<div class="subtitle">
+<div class="section-label">
 Оценка фронта
 </div>
 
 <div class="update-content">
 
 <div class="update-image">
-<img id="assessmentFooterImage" alt="Оценка фронта">
+
+<img
+id="assessmentFooterImage"
+alt="Оценка фронта"
+loading="lazy">
+
 </div>
 
 <div class="update-text">
 
 <h2 id="assessmentFooterTitle"></h2>
 
-<div class="updated-time" id="assessmentFooterDate"></div>
+<div class="updated-time"
+id="assessmentFooterDate">
+</div>
 
 <div id="assessmentFooterSummary"></div>
 
 <p>
-<a id="assessmentFooterLink" class="news-link" href="#">
+
+<a
+id="assessmentFooterLink"
+class="news-link"
+href="#">
+
 Читать оценку →
+
 </a>
+
 </p>
 
 </div>
 
 </div>
 
+</section>
+
+<!-- О проекте -->
+
+<section class="update">
+
+<div class="section-label">
+О проекте
 </div>
+
+<div class="update-text">
+
+<p>
+KRM РФ — независимый статический архив,
+посвященный обстановке в ЛНР,
+карте СВО,
+оценке боевых действий,
+гражданским последствиям войны
+и аналитике на основе открытых источников.
+</p>
+
+<p>
+Проект использует принцип:
+"Подтверждено / Вероятно / Требует подтверждения"
+и стремится отделять факты от неподтвержденных сообщений.
+</p>
+
+</div>
+
+</section>
 
 </div>
 
@@ -110,14 +227,26 @@
 
 <div class="footer-inner">
 
-<a href="https://t.me/xykrm" target="_blank" rel="noopener">
+<a
+href="https://t.me/xykrm"
+target="_blank"
+rel="noopener">
+
 Telegram
+
 </a>
 
-<span class="footer-separator">|</span>
+<span class="footer-separator">
+|
+</span>
 
-<a href="https://max.ru/xykrm" target="_blank" rel="noopener">
+<a
+href="https://max.ru/xykrm"
+target="_blank"
+rel="noopener">
+
 MAX
+
 </a>
 
 </div>
