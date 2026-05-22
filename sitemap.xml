@@ -102,6 +102,22 @@
     <priority>0.8</priority>
   </url>
 
+    <!-- Военные преступления -->
+  <url>
+    <loc>https://krmrf.ru/war-crimes/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Отдельные досье военных преступлений -->
+  <url>
+    <loc>https://krmrf.ru/war-crimes/starobelsk-2026-05-22/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Новости -->
 
   <url>
