@@ -1,77 +1,121 @@
-fetch('/data/news.json', { cache: 'no-store' })
-  .then((response) => response.json())
-  .then((items) => {
-    const list = document.getElementById('warCrimesList');
-    if (!list) return;
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (!Array.isArray(items)) {
-      throw new Error('news.json имеет неправильный формат');
+  const container =
+  document.getElementById("warCrimesList");
+
+  if (!container) {
+    return;
+  }
+
+  fetch("/data/news.json", {
+    cache: "no-store"
+  })
+
+  .then(response => {
+
+    if (!response.ok) {
+      throw new Error("Ошибка загрузки news.json");
     }
 
-    const incidents = items
-      .filter((item) => item && item.section === 'warcrimes' && item.updated && item.url)
-      .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
+    return response.json();
+  })
 
-    list.innerHTML = '';
+  .then(news => {
 
-    if (incidents.length === 0) {
-      const p = document.createElement('p');
-      p.textContent = 'Материалы раздела пока не добавлены.';
-      list.appendChild(p);
+    const warCrimes = news
+
+    .filter(item =>
+      item.section === "warcrimes"
+    )
+
+    .sort((a, b) =>
+      new Date(b.updated) -
+      new Date(a.updated)
+    );
+
+    if (!warCrimes.length) {
+
+      container.innerHTML = `
+        <p>
+        Материалы раздела пока отсутствуют.
+        </p>
+      `;
+
       return;
     }
 
-    incidents.forEach((item) => {
-      const details = document.createElement('details');
-      details.className = 'news-item';
-      details.open = true;
+    container.innerHTML = "";
 
-      const summary = document.createElement('summary');
-      summary.className = 'news-summary';
-      summary.textContent = (item.updated || '') + ' - ' + (item.title || 'Без названия');
+    warCrimes.forEach(item => {
 
-      const body = document.createElement('div');
-      body.className = 'news-body';
+      const article =
+      document.createElement("article");
 
-      if (item.excerpt) {
-        const ex = document.createElement('div');
-        ex.className = 'news-excerpt';
-        ex.textContent = item.excerpt;
-        body.appendChild(ex);
-      }
+      article.className = "news-card";
 
-      if (item.image) {
-        const img = document.createElement('img');
-        img.className = 'news-image';
-        img.src = item.image;
-        img.alt = item.title || 'Изображение';
-        body.appendChild(img);
-      }
+      article.innerHTML = `
 
-      (item.paragraphs || []).forEach((text) => {
-        const p = document.createElement('p');
-        p.textContent = text;
-        body.appendChild(p);
-      });
+        <a href="${item.url}" class="news-card-link">
 
-      const link = document.createElement('a');
-      link.href = item.url;
-      link.textContent = 'Открыть досье →';
-      link.className = 'news-link';
-      body.appendChild(link);
+          <div class="news-card-image">
 
-      details.appendChild(summary);
-      details.appendChild(body);
-      list.appendChild(details);
+            <img
+              src="${item.image}"
+              alt="${item.title}"
+              loading="lazy">
+
+          </div>
+
+          <div class="news-card-content">
+
+            <div class="updated-time">
+              ${formatDate(item.updated)}
+            </div>
+
+            <h3>
+              ${item.title}
+            </h3>
+
+            <p>
+              ${item.excerpt || ""}
+            </p>
+
+          </div>
+
+        </a>
+
+      `;
+
+      container.appendChild(article);
+
     });
+
   })
-  .catch((error) => {
-    console.error('Ошибка загрузки раздела военных преступлений:', error);
-    const list = document.getElementById('warCrimesList');
-    if (list) {
-      list.innerHTML = '';
-      const p = document.createElement('p');
-      p.textContent = 'Не удалось загрузить материалы раздела. Обновите страницу позже.';
-      list.appendChild(p);
-    }
+
+  .catch(error => {
+
+    console.error(error);
+
+    container.innerHTML = `
+      <p>
+      Не удалось загрузить материалы раздела.
+      </p>
+    `;
+
   });
+
+});
+
+function formatDate(dateString) {
+
+  const date = new Date(dateString);
+
+  return date.toLocaleDateString("ru-RU", {
+
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+
+  });
+
+}
