@@ -5,11 +5,41 @@ async function loadArchive() {
       fetch('/data/assessment.json', { cache: 'no-store' })
     ]);
 
+    if (!newsRes.ok) {
+      throw new Error('Не удалось загрузить news.json');
+    }
+
+    if (!assessmentRes.ok) {
+      throw new Error('Не удалось загрузить assessment.json');
+    }
+
     const news = await newsRes.json();
     const assessment = await assessmentRes.json();
 
-    renderArchive(news, document.getElementById('archiveNews'));
-    renderArchive(assessment, document.getElementById('archiveAssessment'));
+    // обычные новости
+    const regularNews = Array.isArray(news)
+      ? news.filter(item => item.section !== 'warcrimes')
+      : [];
+
+    // warcrimes
+    const warCrimes = Array.isArray(news)
+      ? news.filter(item => item.section === 'warcrimes')
+      : [];
+
+    renderArchive(
+      regularNews,
+      document.getElementById('archiveNews')
+    );
+
+    renderArchive(
+      warCrimes,
+      document.getElementById('archiveWarCrimes')
+    );
+
+    renderArchive(
+      assessment,
+      document.getElementById('archiveAssessment')
+    );
 
   } catch (e) {
     console.error('Ошибка загрузки архива:', e);
@@ -17,42 +47,69 @@ async function loadArchive() {
 }
 
 function renderArchive(items, container) {
-  if (!Array.isArray(items) || items.length === 0 || !container) return;
+  if (!container) return;
 
-  // очистка контейнера
   container.innerHTML = '';
 
-  // сортировка по дате (новые сверху)
-  const sorted = [...items].sort((a, b) => b.updated.localeCompare(a.updated));
+  if (!Array.isArray(items) || items.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Материалы пока отсутствуют.';
+    container.appendChild(empty);
+    return;
+  }
+
+  // сортировка по дате
+  const sorted = [...items]
+    .filter(item =>
+      item &&
+      item.updated &&
+      item.url &&
+      item.title
+    )
+    .sort((a, b) =>
+      b.updated.localeCompare(a.updated)
+    );
 
   const grouped = {};
 
   sorted.forEach(item => {
-    if (!item.updated || !item.url || !item.title) return;
+    const month = item.updated.slice(0, 7);
 
-    const month = item.updated.slice(0, 7); // YYYY-MM
-    if (!grouped[month]) grouped[month] = [];
+    if (!grouped[month]) {
+      grouped[month] = [];
+    }
+
     grouped[month].push(item);
   });
 
   Object.keys(grouped).forEach(month => {
+
     const block = document.createElement('div');
     block.className = 'archive-month';
 
-    // месяц
+    // заголовок месяца
     const title = document.createElement('h4');
     title.textContent = formatMonth(month);
 
     const list = document.createElement('ul');
 
     grouped[month].forEach(item => {
+
       const li = document.createElement('li');
 
       const link = document.createElement('a');
       link.href = item.url;
 
-      // дата отдельно (под CSS)
-      link.innerHTML = `<span class="date">${item.updated}</span>${item.title}`;
+      // дата
+      const date = document.createElement('span');
+      date.className = 'date';
+      date.textContent = item.updated;
+
+      link.appendChild(date);
+
+      // заголовок
+      const text = document.createTextNode(item.title);
+      link.appendChild(text);
 
       li.appendChild(link);
       list.appendChild(li);
@@ -60,16 +117,29 @@ function renderArchive(items, container) {
 
     block.appendChild(title);
     block.appendChild(list);
+
     container.appendChild(block);
   });
 }
 
 function formatMonth(month) {
   const [year, m] = month.split('-');
+
   const names = [
-    'Январь','Февраль','Март','Апрель','Май','Июнь',
-    'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
   ];
+
   return `${names[parseInt(m, 10) - 1]} ${year}`;
 }
 
