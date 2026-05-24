@@ -51,6 +51,13 @@
 
   <!-- Отдельные оценки -->
 
+  <url>
+    <loc>https://krmrf.ru/assessment/2026-05-24/</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.8</priority>
+  </url>
+
     <url>
     <loc>https://krmrf.ru/assessment/2026-05-17/</loc>
     <lastmod>2026-05-17</lastmod>
