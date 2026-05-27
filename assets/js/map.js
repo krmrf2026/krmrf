@@ -5,47 +5,76 @@ const map = L.map("map", {
   attributionControl: true
 });
 
-// Базовый слой
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: "© OpenStreetMap"
-}).addTo(map);
+// ================= BASE LAYER =================
+
+L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    maxZoom: 19,
+    attribution: "© OpenStreetMap"
+  }
+).addTo(map);
 
 // ================= UI: UPDATED LABEL =================
 
 const updatedEl = document.getElementById("mapUpdated");
 
 function setMapUpdated(text) {
+
   if (!updatedEl) return;
-  updatedEl.textContent = `Обновлено: ${text || "-"}`;
+
+  updatedEl.textContent =
+    `Обновлено: ${text || "-"}`;
 }
 
 // ================= COLORS =================
 
 function getColor(name) {
-  if (!name) return "#0057b7";
+
+  if (!name) {
+    return "#0057b7";
+  }
+
   const n = String(name).toLowerCase();
-  if (n.includes("russian")) return "#c44545";
-  if (n.includes("ukrainian")) return "#0057b7";
+
+  if (n.includes("russian")) {
+    return "#c44545";
+  }
+
+  if (n.includes("ukrainian")) {
+    return "#0057b7";
+  }
+
   return "#0057b7";
 }
 
 // ================= ZONES =================
 
-// Заливка
+// заливка
+
 const zonesLayer = L.geoJSON(null, {
+
   style: (feature) => ({
+
     stroke: false,
-    fillColor: getColor(feature?.properties?.name),
+
+    fillColor: getColor(
+      feature?.properties?.name
+    ),
+
     fillOpacity: 0.40
   })
+
 }).addTo(map);
 
-// ВНЕШНИЙ КРАСИВЫЙ КОНТУР
+// ================= OUTLINE =================
 
-// Подложка (мягкая тень)
+// тень
+
 const zonesOutlineShadow = L.geoJSON(null, {
+
   interactive: false,
+
   style: {
     color: "#000",
     weight: 6,
@@ -54,11 +83,15 @@ const zonesOutlineShadow = L.geoJSON(null, {
     lineJoin: "round",
     fill: false
   }
+
 }).addTo(map);
 
-// Основной контур
+// основной контур
+
 const zonesOutlineLayer = L.geoJSON(null, {
+
   interactive: false,
+
   style: {
     color: "#6e1111",
     weight: 2.2,
@@ -67,45 +100,76 @@ const zonesOutlineLayer = L.geoJSON(null, {
     lineJoin: "round",
     fill: false
   }
+
 }).addTo(map);
 
 // ================= LOAD ZONES =================
 
 async function loadZones() {
-  try {
-    // Грузим zones.geojson без кэша + добавляем ?ts=..., чтобы Cloudflare/браузер меньше держали старую версию
-    const url = `../data/zones.geojson?ts=${Date.now()}`;
-    const resp = await fetch(url, { cache: "no-store" });
-    if (!resp.ok) throw new Error(`zones.geojson: HTTP ${resp.status}`);
 
-    // Fallback (может быть неточным на CDN)
-    const lastModified = resp.headers.get("Last-Modified");
+  try {
+
+    const resp = await fetch(
+      "../data/zones.geojson",
+      {
+        cache: "no-cache"
+      }
+    );
+
+    if (!resp.ok) {
+      throw new Error(
+        `zones.geojson: HTTP ${resp.status}`
+      );
+    }
+
+    const lastModified =
+      resp.headers.get("Last-Modified");
 
     const data = await resp.json();
 
-    // "Правдивая" дата - та, что ты сам записал в zones.geojson (поле updated)
-    const updated = data?.updated || lastModified || "-";
+    // дата обновления
+    const updated =
+      data?.updated ||
+      lastModified ||
+      "-";
+
     setMapUpdated(updated);
 
+    // очистка слоев
+    zonesLayer.clearLayers();
+    zonesOutlineShadow.clearLayers();
+    zonesOutlineLayer.clearLayers();
+
+    // заливка
     zonesLayer.addData(data);
 
-    // тот же geojson в контур
+    // контур
     zonesOutlineShadow.addData(data);
     zonesOutlineLayer.addData(data);
 
-    // поднимаем контур выше заливки
+    // поднять контур выше
     zonesOutlineShadow.bringToFront();
     zonesOutlineLayer.bringToFront();
 
-    // Стартовый масштаб
+    // стартовый масштаб
     if (zonesLayer.getBounds().isValid()) {
-      map.fitBounds(zonesLayer.getBounds(), {
-        padding: [20, 20],
-        maxZoom: 10
-      });
+
+      map.fitBounds(
+        zonesLayer.getBounds(),
+        {
+          padding: [20, 20],
+          maxZoom: 10
+        }
+      );
     }
+
   } catch (err) {
-    console.error(err);
+
+    console.error(
+      "Ошибка загрузки карты:",
+      err
+    );
+
     setMapUpdated("ошибка загрузки");
   }
 }
@@ -115,7 +179,9 @@ loadZones();
 // ================= REGIONS BORDERS =================
 
 const regionsBorderLayer = L.geoJSON(null, {
+
   interactive: false,
+
   style: {
     color: "#2f63c7",
     weight: 1.2,
@@ -124,49 +190,131 @@ const regionsBorderLayer = L.geoJSON(null, {
     lineJoin: "round",
     fillOpacity: 0
   }
+
 }).addTo(map);
 
-fetch("../data/rf_regions.json")
-  .then(r => r.json())
-  .then(data => {
+// ================= LOAD REGIONS =================
+
+async function loadRegions() {
+
+  try {
+
+    const resp = await fetch(
+      "../data/rf_regions.json",
+      {
+        cache: "no-cache"
+      }
+    );
+
+    if (!resp.ok) {
+      throw new Error(
+        `rf_regions.json: HTTP ${resp.status}`
+      );
+    }
+
+    const data = await resp.json();
+
+    regionsBorderLayer.clearLayers();
+
     regionsBorderLayer.addData(data);
+
     regionsBorderLayer.bringToFront();
-  })
-  .catch(console.error);
+
+  } catch (err) {
+
+    console.error(
+      "Ошибка загрузки границ:",
+      err
+    );
+  }
+}
+
+loadRegions();
 
 // ================= FULLSCREEN =================
 
-const wrapper = document.getElementById("mapWrapper");
-const openBtn = document.getElementById("openFullscreenBtn");
-const exitBtn = document.getElementById("exitFullscreenBtn");
+const wrapper =
+  document.getElementById("mapWrapper");
+
+const openBtn =
+  document.getElementById(
+    "openFullscreenBtn"
+  );
+
+const exitBtn =
+  document.getElementById(
+    "exitFullscreenBtn"
+  );
 
 let isFullscreen = false;
 
 function toggleFullScreen() {
+
+  if (!wrapper) return;
+
   if (!isFullscreen) {
+
     if (wrapper.requestFullscreen) {
-      wrapper.requestFullscreen().catch(() => {});
+
+      wrapper.requestFullscreen()
+        .catch(() => {});
     }
+
     wrapper.classList.add("fullscreen");
+
     isFullscreen = true;
+
   } else {
+
     if (document.fullscreenElement) {
-      document.exitFullscreen().catch(() => {});
+
+      document.exitFullscreen()
+        .catch(() => {});
     }
+
     wrapper.classList.remove("fullscreen");
+
     isFullscreen = false;
   }
 
-  setTimeout(() => map.invalidateSize(), 200);
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 200);
 }
 
-openBtn.addEventListener("click", toggleFullScreen);
-exitBtn.addEventListener("click", toggleFullScreen);
+// кнопки
 
-document.addEventListener("fullscreenchange", () => {
-  if (!document.fullscreenElement) {
-    wrapper.classList.remove("fullscreen");
-    isFullscreen = false;
-    setTimeout(() => map.invalidateSize(), 200);
+if (openBtn) {
+  openBtn.addEventListener(
+    "click",
+    toggleFullScreen
+  );
+}
+
+if (exitBtn) {
+  exitBtn.addEventListener(
+    "click",
+    toggleFullScreen
+  );
+}
+
+// выход через ESC
+
+document.addEventListener(
+  "fullscreenchange",
+  () => {
+
+    if (!document.fullscreenElement) {
+
+      wrapper.classList.remove(
+        "fullscreen"
+      );
+
+      isFullscreen = false;
+
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 200);
+    }
   }
-});
+);
