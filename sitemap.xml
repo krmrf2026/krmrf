@@ -126,6 +126,13 @@
   </url>
 
   <!-- Новости -->
+
+  <url>
+  <loc>https://krmrf.ru/news/bpla-lnr-2026-05-27/</loc>
+  <lastmod>2026-05-27</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
   
   <url>
   <loc>https://krmrf.ru/news/vuplatylnr-2026-05-25/</loc>
