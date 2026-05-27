@@ -1,121 +1,205 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  const container =
-  document.getElementById("warCrimesList");
+    const container =
+      document.getElementById(
+        "warCrimesList"
+      );
 
-  if (!container) {
-    return;
-  }
-
-  fetch("/data/news.json", {
-    cache: "no-store"
-  })
-
-  .then(response => {
-
-    if (!response.ok) {
-      throw new Error("Ошибка загрузки news.json");
-    }
-
-    return response.json();
-  })
-
-  .then(news => {
-
-    const warCrimes = news
-
-    .filter(item =>
-      item.section === "warcrimes"
-    )
-
-    .sort((a, b) =>
-      new Date(b.updated) -
-      new Date(a.updated)
-    );
-
-    if (!warCrimes.length) {
-
-      container.innerHTML = `
-        <p>
-        Материалы раздела пока отсутствуют.
-        </p>
-      `;
-
+    if (!container) {
       return;
     }
 
-    container.innerHTML = "";
+    fetch("/data/news.json", {
+      cache: "no-cache"
+    })
 
-    warCrimes.forEach(item => {
+      .then(response => {
 
-      const article =
-      document.createElement("article");
+        if (!response.ok) {
+          throw new Error(
+            `news.json HTTP ${response.status}`
+          );
+        }
 
-      article.className = "news-card";
+        return response.json();
+      })
 
-      article.innerHTML = `
+      .then(news => {
 
-        <a href="${item.url}" class="news-card-link">
+        if (!Array.isArray(news)) {
+          throw new Error(
+            "Неверный формат news.json"
+          );
+        }
 
-          <div class="news-card-image">
+        const warCrimes = news
 
-            <img
-              src="${item.image}"
-              alt="${item.title}"
-              loading="lazy">
+          .filter(item =>
+            item &&
+            item.section === "warcrimes"
+          )
 
-          </div>
+          .sort((a, b) =>
+            new Date(b.updated) -
+            new Date(a.updated)
+          );
 
-          <div class="news-card-content">
+        // пустой раздел
 
-            <div class="updated-time">
-              ${formatDate(item.updated)}
-            </div>
+        if (!warCrimes.length) {
 
-            <h3>
-              ${item.title}
-            </h3>
-
+          container.innerHTML = `
             <p>
-              ${item.excerpt || ""}
+              Материалы раздела пока отсутствуют.
+            </p>
+          `;
+
+          return;
+        }
+
+        // очистка
+
+        container.innerHTML = "";
+
+        // рендер
+
+        warCrimes.forEach(item => {
+
+          const article =
+            document.createElement("article");
+
+          article.className =
+            "news-card";
+
+          // ========================
+          // LINK
+          // ========================
+
+          const link =
+            document.createElement("a");
+
+          link.className =
+            "news-card-link";
+
+          link.href =
+            item.url || "#";
+
+          // ========================
+          // IMAGE
+          // ========================
+
+          const imageWrap =
+            document.createElement("div");
+
+          imageWrap.className =
+            "news-card-image";
+
+          if (item.image) {
+
+            const img =
+              document.createElement("img");
+
+            img.src = item.image;
+
+            img.alt =
+              item.title ||
+              "Изображение";
+
+            img.loading = "lazy";
+
+            imageWrap.appendChild(img);
+          }
+
+          // ========================
+          // CONTENT
+          // ========================
+
+          const content =
+            document.createElement("div");
+
+          content.className =
+            "news-card-content";
+
+          // дата
+
+          const updated =
+            document.createElement("div");
+
+          updated.className =
+            "updated-time";
+
+          updated.textContent =
+            formatDate(item.updated);
+
+          // title
+
+          const h3 =
+            document.createElement("h3");
+
+          h3.textContent =
+            item.title ||
+            "Без названия";
+
+          // excerpt
+
+          const excerpt =
+            document.createElement("p");
+
+          excerpt.textContent =
+            item.excerpt || "";
+
+          // append
+
+          content.appendChild(updated);
+          content.appendChild(h3);
+          content.appendChild(excerpt);
+
+          link.appendChild(imageWrap);
+          link.appendChild(content);
+
+          article.appendChild(link);
+
+          container.appendChild(article);
+        });
+      })
+
+      .catch(error => {
+
+        console.error(
+          "Ошибка загрузки war crimes:",
+          error
+        );
+
+        container.innerHTML = `
+          <div class="card">
+            <p>
+              Не удалось загрузить материалы раздела.
             </p>
 
+            <p>
+              <a href="/archive/">
+                Перейти в архив →
+              </a>
+            </p>
           </div>
-
-        </a>
-
-      `;
-
-      container.appendChild(article);
-
-    });
-
-  })
-
-  .catch(error => {
-
-    console.error(error);
-
-    container.innerHTML = `
-      <p>
-      Не удалось загрузить материалы раздела.
-      </p>
-    `;
-
-  });
-
-});
+        `;
+      });
+  }
+);
 
 function formatDate(dateString) {
 
-  const date = new Date(dateString);
+  const date =
+    new Date(dateString);
 
-  return date.toLocaleDateString("ru-RU", {
-
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-
-  });
-
+  return date.toLocaleDateString(
+    "ru-RU",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  );
 }
