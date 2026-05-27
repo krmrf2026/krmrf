@@ -1,7 +1,10 @@
 User-agent: *
-Allow: /
 
-Disallow: /data/
-Disallow: /*.json$
+Allow: /
+Allow: /data/news.json
+Allow: /data/assessment.json
+
+Disallow: /data/zones.geojson
+Disallow: /data/rf_regions.json
 
 Sitemap: https://krmrf.ru/sitemap.xml
