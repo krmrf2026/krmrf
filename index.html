@@ -6,20 +6,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>
-KRM РФ - Обстановка и аналитика, СВО, ЛНР
-</title>
+<title>KRM РФ — карта СВО, ЛНР и аналитика по открытым источникам</title>
 
 <link rel="canonical" href="https://krmrf.ru/">
 
 <meta name="description"
-content="KRM РФ — карта СВО, аналитика боевых действий, гражданские последствия войны и архив материалов на основе открытых источников.">
+content="KRM РФ — статический архив по обстановке в ЛНР, карте СВО, оценке боевых действий, гражданским последствиям и аналитике на основе открытых источников.">
 
 <meta property="og:title"
-content="KRM РФ — карта СВО и аналитика">
+content="KRM РФ — карта СВО, ЛНР и аналитика">
 
 <meta property="og:description"
-content="Карта СВО, ежедневная оценка боевых действий, архив материалов и документирование гражданских последствий войны.">
+content="Карта СВО, оценка боевых действий, архив материалов, гражданские последствия войны и аналитика по ЛНР на основе открытых источников.">
 
 <meta property="og:type"
 content="website">
@@ -34,10 +32,10 @@ content="https://krmrf.ru/assets/img/og-home.jpg">
 content="summary_large_image">
 
 <meta name="twitter:title"
-content="KRM РФ — карта СВО и аналитика">
+content="KRM РФ — карта СВО, ЛНР и аналитика">
 
 <meta name="twitter:description"
-content="Карта СВО, ежедневная оценка боевых действий и архив аналитических материалов.">
+content="Карта СВО, оценка боевых действий, архив материалов и аналитика по ЛНР на основе открытых источников.">
 
 <meta name="twitter:image"
 content="https://krmrf.ru/assets/img/og-home.jpg">
@@ -49,59 +47,96 @@ href="/assets/img/favicon.webp">
 <link rel="stylesheet"
 href="/assets/css/style.css">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://krmrf.ru/#organization",
+      "name": "KRM РФ",
+      "url": "https://krmrf.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://krmrf.ru/assets/img/og-home.jpg"
+      },
+      "sameAs": [
+        "https://t.me/xykrm",
+        "https://max.ru/xykrm"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://krmrf.ru/#website",
+      "url": "https://krmrf.ru/",
+      "name": "KRM РФ",
+      "description": "Статический архив по обстановке в ЛНР, карте СВО, оценке боевых действий и аналитике на основе открытых источников.",
+      "publisher": {
+        "@id": "https://krmrf.ru/#organization"
+      },
+      "inLanguage": "ru"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://krmrf.ru/#webpage",
+      "url": "https://krmrf.ru/",
+      "name": "KRM РФ — карта СВО, ЛНР и аналитика по открытым источникам",
+      "description": "Главная страница KRM РФ: карта СВО, оценка фронта, новости, архив материалов и методология работы с открытыми источниками.",
+      "isPartOf": {
+        "@id": "https://krmrf.ru/#website"
+      },
+      "about": {
+        "@id": "https://krmrf.ru/#organization"
+      },
+      "inLanguage": "ru"
+    }
+  ]
+}
+</script>
+
 </head>
 
-<body>
+<body class="page-home">
 
-<div class="wrap">
+<header class="site-header">
 
-<header class="home-header">
+<div class="container">
 
-<h1>
+<p class="logo">
+<a href="/">
 KRM РФ
-</h1>
+</a>
+</p>
 
 <div class="subtitle">
-Обстановка и аналитика
+Обстановка и аналитика по открытым источникам
 </div>
 
-<nav class="main-nav">
+<nav class="main-nav" aria-label="Основная навигация">
 
-<a href="/" class="nav-link">
+<a href="/" class="nav-link" aria-current="page">
 Главная
 </a>
-
-<span class="divider">|</span>
 
 <a href="/map/" class="nav-link">
 Карта СВО
 </a>
 
-<span class="divider">|</span>
-
 <a href="/news/" class="nav-link">
 Новости
 </a>
-
-<span class="divider">|</span>
 
 <a href="/war-crimes/" class="nav-link">
 Военные преступления
 </a>
 
-<span class="divider">|</span>
-
 <a href="/assessment/" class="nav-link">
 Оценка фронта
 </a>
 
-<span class="divider">|</span>
-
 <a href="/archive/" class="nav-link">
 Архив
 </a>
-
-<span class="divider">|</span>
 
 <a href="/methodology/" class="nav-link">
 Методология
@@ -109,7 +144,172 @@ KRM РФ
 
 </nav>
 
+</div>
+
 </header>
+
+<main class="wrap">
+
+<!-- Главный экран -->
+
+<section class="update home-hero">
+
+<div class="section-label">
+Статический архив KRM РФ
+</div>
+
+<h1>
+KRM РФ — карта СВО, ЛНР и аналитика по открытым источникам
+</h1>
+
+<div class="update-text">
+
+<p>
+KRM РФ собирает и систематизирует материалы по обстановке в ЛНР,
+карте СВО, оценке боевых действий, гражданским последствиям войны
+и событиям, требующим документирования.
+</p>
+
+<p>
+Сайт используется как статический архив: материалы сохраняются в виде
+отдельных страниц, связанных с картой, оценками фронта, источниками
+и методологией работы с открытыми данными.
+</p>
+
+</div>
+
+<p>
+
+<a class="news-link" href="/map/">
+Открыть карту СВО →
+</a>
+
+</p>
+
+<p>
+
+<a class="news-link" href="/assessment/">
+Читать оценку фронта →
+</a>
+
+</p>
+
+<p>
+
+<a class="news-link" href="/archive/">
+Перейти в архив →
+</a>
+
+</p>
+
+</section>
+
+<!-- Принцип работы -->
+
+<section class="update">
+
+<div class="section-label">
+Принцип работы
+</div>
+
+<h2>
+Как оцениваются данные
+</h2>
+
+<div class="update-text">
+
+<p>
+Материалы KRM РФ разделяют установленные факты, вероятные сведения
+и сообщения, которые требуют дополнительного подтверждения.
+</p>
+
+<p>
+Такой подход нужен, чтобы не смешивать подтверждённую информацию
+с предварительными сообщениями, слухами и неполными данными из открытых источников.
+</p>
+
+</div>
+
+<div class="update-content">
+
+<div class="update-text">
+
+<h3>
+Подтверждено
+</h3>
+
+<p>
+Информация опирается на устойчивые открытые источники, официальные сообщения,
+публикации с прямой фиксацией события или несколько согласованных подтверждений.
+</p>
+
+</div>
+
+<div class="update-text">
+
+<h3>
+Вероятно
+</h3>
+
+<p>
+Данные выглядят согласованными и правдоподобными, но требуют дальнейшего уточнения
+или дополнительной проверки.
+</p>
+
+</div>
+
+<div class="update-text">
+
+<h3>
+Требует подтверждения
+</h3>
+
+<p>
+Сообщение сохраняется как предварительное и не подается как установленный факт.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Карта СВО -->
+
+<section class="update">
+
+<div class="section-label">
+Карта СВО
+</div>
+
+<h2>
+Карта боевых действий и изменений обстановки
+</h2>
+
+<div class="update-text">
+
+<p>
+Карта используется для визуальной фиксации изменений на линии боевых действий,
+зон контроля и участков, где требуется дополнительное уточнение данных.
+</p>
+
+<p>
+Отдельные изменения на карте не всегда означают полный контроль территории:
+для оценки учитываются характер продвижения, устойчивость позиций,
+сообщения с мест и сопоставление открытых источников.
+</p>
+
+</div>
+
+<p>
+
+<a class="news-link" href="/map/">
+Перейти к карте →
+</a>
+
+</p>
+
+</section>
 
 <!-- Последнее важное -->
 
@@ -119,7 +319,9 @@ KRM РФ
 Последнее важное
 </div>
 
-<h2 id="latestTitle"></h2>
+<h2 id="latestTitle">
+Последние материалы KRM РФ
+</h2>
 
 <div class="updated-time"
 id="latestUpdated">
@@ -131,6 +333,7 @@ id="latestUpdated">
 
 <img
 id="latestImage"
+src="/assets/img/og-home.jpg"
 alt="Последнее важное"
 loading="lazy">
 
@@ -138,6 +341,21 @@ loading="lazy">
 
 <div class="update-text"
 id="latestText">
+
+<p>
+Здесь отображается последний важный материал из архива KRM РФ.
+Если автоматическая загрузка не сработала, используйте раздел новостей
+или общий архив материалов.
+</p>
+
+<p>
+
+<a class="news-link" href="/news/">
+Открыть новости →
+</a>
+
+</p>
+
 </div>
 
 </div>
@@ -158,6 +376,7 @@ id="latestText">
 
 <img
 id="assessmentFooterImage"
+src="/assets/img/og-home.jpg"
 alt="Оценка фронта"
 loading="lazy">
 
@@ -165,20 +384,29 @@ loading="lazy">
 
 <div class="update-text">
 
-<h2 id="assessmentFooterTitle"></h2>
+<h2 id="assessmentFooterTitle">
+Оценка боевых действий
+</h2>
 
 <div class="updated-time"
 id="assessmentFooterDate">
 </div>
 
-<div id="assessmentFooterSummary"></div>
+<div id="assessmentFooterSummary">
+
+<p>
+Раздел оценок фиксирует изменения на фронте, динамику боевых действий,
+оперативные выводы и осторожные прогнозы по открытым источникам.
+</p>
+
+</div>
 
 <p>
 
 <a
 id="assessmentFooterLink"
 class="news-link"
-href="#">
+href="/assessment/">
 
 Читать оценку →
 
@@ -192,6 +420,87 @@ href="#">
 
 </section>
 
+<!-- Новости и архив -->
+
+<section class="update">
+
+<div class="section-label">
+Новости и архив
+</div>
+
+<h2>
+Материалы по ЛНР, Кременной, СВО и гражданским последствиям
+</h2>
+
+<div class="update-text">
+
+<p>
+В разделе новостей публикуются материалы по обстановке в ЛНР,
+Кременной, изменениям на фронте, правовым вопросам, выплатам,
+безопасности и другим последствиям войны для гражданского населения.
+</p>
+
+<p>
+Архив объединяет новости, оценки фронта, досье и справочные материалы
+в единую структуру для последующего поиска и проверки.
+</p>
+
+</div>
+
+<p>
+
+<a class="news-link" href="/news/">
+Читать новости →
+</a>
+
+</p>
+
+<p>
+
+<a class="news-link" href="/archive/">
+Открыть архив →
+</a>
+
+</p>
+
+</section>
+
+<!-- Военные преступления -->
+
+<section class="update">
+
+<div class="section-label">
+Документирование
+</div>
+
+<h2>
+Военные преступления и события, требующие фиксации
+</h2>
+
+<div class="update-text">
+
+<p>
+Отдельный раздел используется для материалов, где важно сохранить дату,
+место, обстоятельства, статус данных, источники и последующие обновления.
+</p>
+
+<p>
+Такие страницы должны отделять подтверждённые факты от предварительных сведений
+и сохранять историю уточнений.
+</p>
+
+</div>
+
+<p>
+
+<a class="news-link" href="/war-crimes/">
+Перейти в раздел →
+</a>
+
+</p>
+
+</section>
+
 <!-- О проекте -->
 
 <section class="update">
@@ -199,6 +508,10 @@ href="#">
 <div class="section-label">
 О проекте
 </div>
+
+<h2>
+KRM РФ как статический архив
+</h2>
 
 <div class="update-text">
 
@@ -212,16 +525,25 @@ KRM РФ — независимый статический архив,
 </p>
 
 <p>
-Проект использует принцип:
-"Подтверждено / Вероятно / Требует подтверждения"
-и стремится отделять факты от неподтвержденных сообщений.
+Проект не подменяет официальные источники и не является средством массовой информации.
+Его задача — сохранять материалы в структурированном виде, отделять факты
+от неподтвержденных сообщений и давать читателю понятную точку входа
+к карте, архиву, оценкам и методологии.
 </p>
 
 </div>
 
+<p>
+
+<a class="news-link" href="/methodology/">
+Читать методологию →
+</a>
+
+</p>
+
 </section>
 
-</div>
+</main>
 
 <footer class="site-footer">
 
