@@ -142,6 +142,13 @@
   </url>
 
   <!-- Новости -->
+  
+  <url>
+    <loc>https://krmrf.ru/news/posle-gosudarstva-2026-06-12/</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
   <url>
     <loc>https://krmrf.ru/news/svo-2026-06-09/</loc>
