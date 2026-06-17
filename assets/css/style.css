@@ -1,0 +1,381 @@
+/* =====================================================
+   KRM РФ — единая визуальная система
+   Основа: эталонная страница /news/lnr-vyplaty-terakt-118-26/
+===================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5d5d5d;
+  --color-text-light: #8b8b8b;
+  --color-accent: #d4a373;
+  --color-link: #315f86;
+  --color-link-hover: #183f60;
+  --color-border: #e0e0e0;
+  --color-border-soft: #eeeeee;
+  --color-soft: #f5f5f5;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --max-width: 1280px;
+  --reading-width: 860px;
+  --sidebar-width: 260px;
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, .035);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, picture, video, svg, canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-link);
+  text-underline-offset: .16em;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgba(49, 95, 134, .28);
+  outline-offset: 3px;
+  border-radius: 5px;
+}
+
+.container {
+  width: min(var(--max-width), calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: 8px;
+  z-index: 99999;
+  transform: translateY(-160%);
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- Header: одинаковый на всех страницах ---------- */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  padding: 22px 0 20px;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo,
+.site-header .logo {
+  margin: 0;
+  line-height: 1;
+}
+
+.logo a {
+  color: #111;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.subtitle,
+.site-header .subtitle {
+  display: none;
+}
+
+.main-nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 28px;
+  font-size: .91rem;
+  line-height: 1.25;
+}
+
+.main-nav a,
+.main-nav .nav-link {
+  color: #4f4f4f;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color .18s ease;
+}
+
+.main-nav a:hover,
+.main-nav .nav-link:hover,
+.main-nav a[aria-current="page"],
+.main-nav .nav-link[aria-current="page"] {
+  color: #000;
+}
+
+.main-nav .divider {
+  color: #c9c9c9;
+  margin: 0 14px;
+  user-select: none;
+}
+
+/* ---------- Общие страницы-разделы ---------- */
+.content-page {
+  padding: 44px 0 72px;
+}
+
+.content-card,
+.news-card,
+.methodology-card {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 38px 42px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.content-card > :first-child,
+.news-card > :first-child,
+.methodology-card > :first-child {
+  margin-top: 0;
+}
+
+h1, h2, h3, h4 {
+  color: #111;
+  line-height: 1.22;
+  letter-spacing: -.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: clamp(1.55rem, 2.6vw, 2rem);
+  margin: 2.4em 0 .8em;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin: 1.9em 0 .65em;
+}
+
+h4 {
+  font-size: 1.07rem;
+  margin: 1.6em 0 .55em;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+ul, ol {
+  padding-left: 1.35em;
+}
+
+li {
+  margin-bottom: .55em;
+}
+
+strong {
+  color: #111;
+  font-weight: 700;
+}
+
+.meta {
+  color: var(--color-text-muted);
+  font-size: .91rem;
+  line-height: 1.6;
+  margin: 0 0 30px;
+  padding-left: 16px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.note-box,
+.article-summary,
+.article-disclaimer {
+  padding: 20px 24px;
+  margin: 2em 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.note-box > :first-child,
+.article-summary > :first-child,
+.article-disclaimer > :first-child {
+  margin-top: 0;
+}
+
+.note-box > :last-child,
+.article-summary > :last-child,
+.article-disclaimer > :last-child {
+  margin-bottom: 0;
+}
+
+figure {
+  margin: 2rem 0;
+}
+
+figure img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: #fff;
+}
+
+figcaption {
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: .82rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 2em 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  font-size: .94rem;
+  line-height: 1.55;
+}
+
+th {
+  background: #f5f5f5;
+  color: #555;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+}
+
+tr:not(:last-child) {
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+code, kbd, pre {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 64px;
+  padding: 24px 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  background: #fff;
+  text-align: center;
+  font-size: .91rem;
+}
+
+.site-footer a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.site-footer a:hover {
+  color: #111;
+}
+
+@media (max-width: 760px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    width: min(var(--max-width), calc(100% - 32px));
+  }
+
+  .site-header {
+    padding: 18px 0 16px;
+  }
+
+  .logo a {
+    font-size: 1.55rem;
+  }
+
+  .main-nav {
+    margin-top: 20px;
+    gap: 8px 16px;
+  }
+
+  .main-nav .divider {
+    display: none;
+  }
+
+  .content-page {
+    padding: 28px 0 48px;
+  }
+
+  .content-card,
+  .news-card,
+  .methodology-card {
+    padding: 24px 20px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

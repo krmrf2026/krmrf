@@ -1,0 +1,80 @@
+/* Новости и индекс досье */
+.page-news-index .news-card,
+.page-dossier-index .content-card {
+  width: min(980px, 100%);
+}
+
+.news-description {
+  max-width: 760px;
+  color: var(--color-text-muted);
+  font-size: 1.02rem;
+}
+
+.news-list {
+  margin-top: 34px;
+}
+
+.news-section-title {
+  margin: 48px 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 1.55rem;
+}
+
+.news-section-title:first-child {
+  margin-top: 0;
+}
+
+.news-item {
+  margin: 0 0 10px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.news-summary {
+  cursor: pointer;
+  padding: 15px 17px;
+  font-size: .97rem;
+  font-weight: 600;
+  line-height: 1.5;
+  list-style-position: inside;
+}
+
+.news-item[open] .news-summary {
+  border-bottom: 1px solid var(--color-border-soft);
+  background: #fafafa;
+}
+
+.news-body {
+  padding: 18px;
+}
+
+.news-excerpt {
+  margin-bottom: 16px;
+  color: #3f3f3f;
+}
+
+.news-body p {
+  margin-bottom: 1em;
+}
+
+.news-image {
+  width: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  margin: 18px 0;
+  border-radius: 9px;
+  border: 1px solid var(--color-border);
+}
+
+.page-dossier-index .news-list {
+  padding: 0;
+  list-style: none;
+}
+
+.page-dossier-index .news-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
