@@ -1,85 +1,101 @@
-/* Центрирование */
+/* =====================================================
+   KRM РФ — archive/news/assessment index v2.1
+===================================================== */
 
-.page-assessment main.container {
-  display: flex;
-  justify-content: center;
+.page-archive,
+.page-assessment {
+  --accent: var(--accent-assessment);
 }
 
-/* Карточка */
-
+.page-archive .content-card,
 .page-assessment .content-card {
-  max-width: 860px;
-  width: 100%;
+  max-width: none;
 }
 
-/* Подзаголовок */
-
-.page-assessment .archive-lead {
-  margin-top: 8px;
-  margin-bottom: 18px;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.3;
+.archive-section,
+.archive-month {
+  width: min(var(--article-max), 100%);
+  margin: var(--space-6) auto;
 }
 
-/* Список */
+.archive-section h3,
+.archive-month h4 {
+  width: auto;
+  margin: 0 0 .75rem;
+  color: var(--muted);
+  font-size: .88rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
 
-.page-assessment .assessment-list {
+.archive-month ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Элемент */
+.archive-month li {
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  line-height: 1.45;
+}
+
+.archive-month a {
+  color: var(--title);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 580;
+}
+
+.archive-month a:hover {
+  color: var(--link);
+}
+
+.archive-month .date {
+  display: inline-block;
+  min-width: 5.8em;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.page-assessment main.container {
+  display: block;
+}
+
+.page-assessment .assessment-list {
+  width: min(var(--article-max), 100%);
+  margin: var(--space-5) auto;
+  padding: 0;
+  list-style: none;
+}
 
 .page-assessment .assessment-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
 }
 
-.page-assessment .assessment-item:last-child {
-  border-bottom: none;
+.page-assessment .assessment-item:first-child {
+  border-top: 1px solid var(--rule);
 }
-
-/* Дата */
 
 .page-assessment .assessment-date {
-  font-size: 12px;
-  color: #777;
-  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: .88rem;
+  margin-bottom: .25rem;
 }
 
-/* Заголовок */
-
 .page-assessment .assessment-title {
-  margin: 0 0 2px;
-  font-size: 14px;
-  line-height: 1.25;
-  font-weight: 600;
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  font-weight: 720;
 }
 
 .page-assessment .assessment-title a {
+  color: var(--title);
   text-decoration: none;
-  color: inherit;
 }
 
 .page-assessment .assessment-title a:hover {
-  text-decoration: underline;
-}
-
-/* Период */
-
-.page-assessment .assessment-period {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 2px;
-}
-
-/* Краткое описание */
-
-.page-assessment .assessment-summary {
-  margin: 0;
-  font-size: 12.5px;
-  line-height: 1.35;
-  color: #222;
+  color: var(--link);
 }
