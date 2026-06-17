@@ -1,87 +1,44 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>KRM РФ - Оперативная карта СВО</title>
-
-<meta name="description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
-
-<link rel="canonical" href="https://krmrf.ru/map/">
-<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
-
+<meta content="Интерактивная карта боевых действий СВО на основе открытых источников." name="description"/>
+<link href="https://krmrf.ru/map/" rel="canonical"/>
+<link href="/assets/img/favicon.webp" rel="icon" type="image/webp"/>
 <!-- Open Graph -->
-<meta property="og:title" content="Карта СВО - KRM РФ">
-<meta property="og:description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://krmrf.ru/map/">
-<meta property="og:image" content="https://krmrf.ru/assets/img/og-home.jpg">
-
+<meta content="Карта СВО - KRM РФ" property="og:title"/>
+<meta content="Интерактивная карта боевых действий СВО на основе открытых источников." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://krmrf.ru/map/" property="og:url"/>
+<meta content="https://krmrf.ru/assets/img/og-home.jpg" property="og:image"/>
 <!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Карта СВО - KRM РФ">
-<meta name="twitter:description" content="Интерактивная карта боевых действий СВО на основе открытых источников.">
-<meta name="twitter:image" content="https://krmrf.ru/assets/img/og-home.jpg">
-
+<meta content="summary_large_image" name="twiatter:card"/>
+<meta content="Карта СВО - KRM РФ" name="twitter:title"/>
+<meta content="Интерактивная карта боевых действий СВО на основе открытых источников." name="twitter:description"/>
+<meta content="https://krmrf.ru/assets/img/og-home.jpg" name="twitter:image"/>
 <!-- Styles -->
-<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="/assets/css/page-map.css">
-
-</head>
-
-<body>
-
-<header class="wrap">
-
-<h1>KRM РФ</h1>
-<div class="subtitle">Обстановка и аналитика</div>
-
-<nav class="main-nav">
-      <a href="/" class="nav-link">Главная</a>
-      <span class="divider">|</span>
-      <a href="/map/" class="nav-link">Карта СВО</a>
-      <span class="divider">|</span>
-      <a href="/news/" class="nav-link">Новости</a>
-      <span class="divider">|</span>
-      <a href="/war-crimes/" class="nav-link">Военные преступления</a>
-      <span class="divider">|</span>
-      <a href="/assessment/" class="nav-link">Оценка фронта</a>
-      <span class="divider">|</span>
-      <a href="/archive/" class="nav-link">Архив</a>
-      <span class="divider">|</span>
-      <a href="/methodology/" class="nav-link">Методология</a>
-    </nav>
-
-<div class="nav-rule"></div>
-
-</header>
-
-<main class="map-section">
-
+<link href="/assets/vendor/leaflet/leaflet.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="/assets/css/style.css" rel="stylesheet"/><link href="/assets/css/page-map.css" rel="stylesheet"/></head>
+<body class="page-map"><a class="skip-link" href="#main-content">Перейти к содержанию</a>
+<header class="site-header"><div class="container"><p class="logo"><a href="/">KRM РФ</a></p><p class="subtitle">Обстановка и аналитика</p><nav aria-label="Основная навигация" class="main-nav"><a class="nav-link" href="/">Главная</a><span aria-hidden="true" class="divider">|</span><a aria-current="page" class="nav-link" href="/map/">Карта СВО</a><span aria-hidden="true" class="divider">|</span><a class="nav-link" href="/news/">Новости</a><span aria-hidden="true" class="divider">|</span><a class="nav-link" href="/assessment/">Оценка фронта</a><span aria-hidden="true" class="divider">|</span><a class="nav-link" href="/archive/">Архив</a><span aria-hidden="true" class="divider">|</span><a class="nav-link" href="/war-crimes/">Военные преступления</a><span aria-hidden="true" class="divider">|</span><a class="nav-link" href="/methodology/">Методология</a></nav></div></header>
+<main class="map-section" id="main-content"><h1>Карта СВО</h1><p>Интерактивная карта изменений обстановки на основе открытых источников.</p>
 <div class="map-container" id="mapWrapper">
-
-<button
-class="btn map-expand"
-id="openFullscreenBtn">
+<button class="btn map-expand" id="openFullscreenBtn">
 
 Развернуть
 
 </button>
-
 <div id="map"></div>
-
 <div class="map-updated" id="mapUpdated">
 Обновлено: -
 </div>
-
 <button id="exitFullscreenBtn">
 Свернуть
 </button>
-
 </div>
-
 <div class="map-footnote">
 
 Данные собраны из открытых источников.
@@ -94,23 +51,9 @@ id="openFullscreenBtn">
 приведены в соответствии с действующим законодательством Российской Федерации.
 
 </div>
-
 </main>
-
-<footer class="site-footer">
-
-<div class="container">
-
-<a href="https://t.me/xykrm">Telegram</a>
-<span>|</span>
-<a href="https://max.ru/xykrm">MAX</a>
-
-</div>
-
-</footer>
-
+<footer class="site-footer"><div class="container"><a href="https://t.me/xykrm" rel="noopener" target="_blank">Telegram</a><span>|</span><a href="https://max.ru/xykrm" rel="noopener" target="_blank">MAX</a></div></footer>
 <script src="/assets/vendor/leaflet/leaflet.js"></script>
-<script src="/assets/js/map.js" defer></script>
-
+<script defer="" src="/assets/js/map.js"></script>
 </body>
 </html>
