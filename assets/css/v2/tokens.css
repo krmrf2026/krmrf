@@ -1,0 +1,77 @@
+/* =========================================================
+   KRM РФ — DESIGN TOKENS v2
+   Единые переменные для редакционного архива
+   ========================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Типографика без внешних зависимостей */
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  /* Нейтральная основа */
+  --color-bg: #f7f7f4;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f1f2ef;
+  --color-text: #191b1f;
+  --color-heading: #121417;
+  --color-muted: #62676e;
+  --color-faint: #868b91;
+  --color-border: #d9d9d4;
+  --color-border-strong: #bfc1bd;
+  --color-link: #245d84;
+  --color-link-hover: #173f5c;
+  --color-focus: #0b69a3;
+
+  /* Акценты разделов */
+  --accent-default: #5d6570;
+  --accent-practical: #2d638c;
+  --accent-assessment: #91652b;
+  --accent-dossier: #853a3a;
+  --accent-kremennaya: #77624c;
+  --accent-methodology: #4f6576;
+
+  /* Состояния */
+  --color-info-bg: #eef4f8;
+  --color-info-border: #a9c3d6;
+  --color-warning-bg: #fbf5e7;
+  --color-warning-border: #d8bd78;
+  --color-danger-bg: #f9eeee;
+  --color-danger-border: #c79393;
+
+  /* Размеры */
+  --layout-max: 1200px;
+  --wide-content-max: 1040px;
+  --article-max: 740px;
+  --rail-width: 250px;
+
+  /* Ритм */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Формы */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-soft: 0 16px 44px rgba(20, 24, 29, 0.07);
+
+  /* Переходы */
+  --transition-fast: 140ms ease;
+}
+
+.theme-practical { --page-accent: var(--accent-practical); }
+.theme-assessment { --page-accent: var(--accent-assessment); }
+.theme-dossier { --page-accent: var(--accent-dossier); }
+.theme-kremennaya { --page-accent: var(--accent-kremennaya); }
+.theme-methodology { --page-accent: var(--accent-methodology); }
