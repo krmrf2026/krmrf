@@ -1,0 +1,158 @@
+/* ========================================================================== 
+   KRM РФ — ОПЕРАТИВНАЯ КАРТА
+   ========================================================================== */
+
+.page-map {
+  background: var(--canvas);
+}
+
+.page-map .map-section {
+  width: min(100% - 40px, 1380px);
+  margin: clamp(1.25rem, 4vw, 3rem) auto clamp(4rem, 7vw, 6rem);
+}
+
+.page-map .map-section::before {
+  content: "Оперативная карта СВО";
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.map-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 620px;
+  border: 1px solid var(--line-dark);
+  border-top: 5px solid var(--accent);
+  border-radius: var(--radius-xs);
+  background: #d9d7d0;
+  box-shadow: var(--shadow-paper);
+}
+
+#map {
+  width: 100%;
+  height: min(72vh, 820px);
+  min-height: 620px;
+}
+
+.map-expand,
+#exitFullscreenBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  padding: .62rem .85rem;
+  border-color: rgba(255, 255, 255, .55);
+  background: rgba(23, 23, 22, .9);
+  backdrop-filter: blur(6px);
+}
+
+#exitFullscreenBtn {
+  display: none;
+  z-index: 2000;
+}
+
+.map-container.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  border: 0;
+}
+
+.map-container.fullscreen #map {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.map-container.fullscreen #exitFullscreenBtn {
+  display: block;
+}
+
+.map-updated {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 700;
+  max-width: calc(100% - 2rem);
+  padding: .55rem .7rem;
+  border: 1px solid rgba(23, 23, 22, .25);
+  border-radius: var(--radius-xs);
+  background: rgba(255, 254, 250, .92);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.map-footnote {
+  margin-top: 1rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--ink);
+  background: var(--paper);
+  color: var(--muted-strong);
+  font-size: .8rem;
+  line-height: 1.58;
+  white-space: pre-line;
+}
+
+.leaflet-control-attribution {
+  color: var(--muted) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a[href*="leaflet"] {
+  display: none !important;
+}
+
+.leaflet-bar {
+  border: 1px solid var(--line-dark) !important;
+  border-radius: var(--radius-xs) !important;
+  box-shadow: none !important;
+}
+
+.leaflet-bar a {
+  border-bottom-color: var(--line) !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  border-radius: var(--radius-xs) !important;
+  background: var(--paper) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-paper) !important;
+}
+
+@media (max-width: 760px) {
+  .page-map .map-section {
+    width: min(100% - 16px, 1380px);
+    margin-top: .8rem;
+  }
+
+  .page-map .map-section::before {
+    margin: .8rem .3rem 1rem;
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .map-container,
+  #map {
+    min-height: 520px;
+  }
+
+  #map {
+    height: 68vh;
+  }
+}

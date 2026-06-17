@@ -1,0 +1,291 @@
+/* ========================================================================== 
+   KRM РФ — МАТЕРИАЛЫ, ПАМЯТКИ, ОЦЕНКИ, ДОСЬЕ И РЕДАКЦИОННЫЕ ИНДЕКСЫ
+   ========================================================================== */
+
+.page-news .content-page > .container {
+  align-items: flex-start;
+}
+
+.page-news .news-card,
+.page-news .content-card {
+  margin: 0;
+}
+
+/* Editorial index: /news/ */
+.index-news .news-card {
+  max-width: 1040px;
+}
+
+.index-news .news-description {
+  margin-bottom: 2.5rem;
+}
+
+.news-list {
+  width: 100%;
+}
+
+.news-section-title {
+  margin: 3rem 0 0;
+  padding: .65rem 0 .75rem;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: .86rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.news-item {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+
+.news-summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: 66px;
+  padding: .9rem 2.4rem .9rem 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(1.02rem, 2vw, 1.22rem);
+  font-weight: 700;
+  line-height: 1.35;
+  list-style: none;
+  cursor: pointer;
+}
+
+.news-summary::-webkit-details-marker {
+  display: none;
+}
+
+.news-summary::after {
+  content: "+";
+  position: absolute;
+  right: .35rem;
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.news-item[open] .news-summary::after {
+  content: "−";
+}
+
+.news-summary:hover {
+  color: var(--accent-dark);
+}
+
+.news-item[open] {
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+  background: var(--paper-muted);
+  border-bottom-color: var(--line-strong);
+}
+
+.news-body {
+  padding: 0 0 1.6rem;
+}
+
+.news-body > * {
+  max-width: 70ch;
+}
+
+.news-excerpt {
+  margin-bottom: 1rem;
+  color: var(--muted-strong);
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  line-height: 1.55;
+}
+
+.news-body .news-image {
+  max-width: 740px;
+  margin: 1.1rem 0 1.3rem;
+}
+
+.news-body p {
+  margin-top: .8rem;
+  font-size: .95rem;
+}
+
+.news-link,
+.map-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: var(--accent-dark);
+  font-size: .86rem;
+  font-weight: 850;
+}
+
+/* Dossier index: /war-crimes/ */
+.index-dossier #warCrimesList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.3rem;
+  border: 1px solid var(--line-strong);
+  background: var(--line-strong);
+}
+
+.index-dossier #warCrimesList > .news-card {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--paper);
+  box-shadow: none;
+}
+
+.index-dossier .news-card-link {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.index-dossier .news-card-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--canvas-deep);
+}
+
+.index-dossier .news-card-image::after {
+  content: "CASE FILE";
+  position: absolute;
+  left: .8rem;
+  top: .8rem;
+  padding: .28rem .48rem;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+.index-dossier .news-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.72) contrast(1.06);
+  transition: scale 250ms ease;
+}
+
+.index-dossier .news-card-link:hover .news-card-image img {
+  scale: 1.025;
+}
+
+.index-dossier .news-card-content {
+  padding: 1.25rem;
+}
+
+.index-dossier .news-card-content h3 {
+  margin: .45rem 0 .65rem;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1.16;
+}
+
+.index-dossier .news-card-content p {
+  color: var(--muted-strong);
+  font-size: .92rem;
+  line-height: 1.55;
+}
+
+/* Article variants */
+.page-article .content-card > h1:first-child {
+  max-width: 22ch;
+}
+
+.article-standard .content-card {
+  border-top-color: var(--ink);
+}
+
+.article-guide .content-card {
+  border-top-color: var(--warning);
+}
+
+.article-assessment .content-card {
+  border-top-color: var(--link);
+}
+
+.article-dossier .content-card {
+  border-top-color: var(--accent);
+}
+
+.article-guide .note-box {
+  border-left-color: var(--warning);
+  background: #fbf7e9;
+}
+
+.article-assessment .note-box {
+  border-left-color: var(--link);
+  background: #eef4f6;
+}
+
+.article-dossier .note-box {
+  border-color: #d6b8b1;
+  border-left-color: var(--accent);
+  background: var(--accent-pale);
+}
+
+.article-dossier .content-card > h2 {
+  border-top-color: var(--accent);
+}
+
+.article-assessment .content-card > h2 {
+  border-top-color: var(--link);
+}
+
+.article-guide .content-card > h2 {
+  border-top-color: var(--warning);
+}
+
+.article-dossier figure img {
+  border-color: var(--line-dark);
+}
+
+.article-dossier .article-disclaimer {
+  border-left: 5px solid var(--accent);
+}
+
+.article-assessment .article-disclaimer {
+  border-left: 5px solid var(--link);
+}
+
+.article-guide .article-disclaimer {
+  border-left: 5px solid var(--warning);
+}
+
+@media (max-width: 760px) {
+  .index-dossier #warCrimesList {
+    grid-template-columns: 1fr;
+  }
+
+  .news-summary {
+    min-height: 58px;
+    padding-right: 2rem;
+    font-size: 1rem;
+  }
+
+  .news-item[open] {
+    margin-inline: -.5rem;
+    padding-inline: .5rem;
+  }
+}
+
+.index-dossier .content-card > h1:first-child {
+  max-width: 22ch;
+  margin-inline: 0;
+}
