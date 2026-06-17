@@ -1,59 +1,101 @@
-/* Заголовки */
-.page-archive h2 {
-  margin-bottom: 12px;
+/* =====================================================
+   KRM РФ — archive/news/assessment index v2.1
+===================================================== */
+
+.page-archive,
+.page-assessment {
+  --accent: var(--accent-assessment);
 }
 
-/* Разделы */
-.archive-section {
-  margin-top: 32px;
+.page-archive .content-card,
+.page-assessment .content-card {
+  max-width: none;
 }
 
-.archive-section h3 {
-  margin-bottom: 8px;
-  font-size: 16px;
-}
-
-/* Блок месяца */
+.archive-section,
 .archive-month {
-  margin-bottom: 24px;
+  width: min(var(--article-max), 100%);
+  margin: var(--space-6) auto;
 }
 
-/* Название месяца */
+.archive-section h3,
 .archive-month h4 {
-  font-size: 13px;
-  font-weight: 600;
-  color: #666;
-  margin-bottom: 6px;
+  width: auto;
+  margin: 0 0 .75rem;
+  color: var(--muted);
+  font-size: .88rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
 }
 
-/* Список */
 .archive-month ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Элемент */
 .archive-month li {
-  margin-bottom: 4px;
-  line-height: 1.4;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  line-height: 1.45;
 }
 
-/* Ссылка */
 .archive-month a {
-  font-size: 13px;
-  color: #111;
+  color: var(--title);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 580;
+}
+
+.archive-month a:hover {
+  color: var(--link);
+}
+
+.archive-month .date {
+  display: inline-block;
+  min-width: 5.8em;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.page-assessment main.container {
+  display: block;
+}
+
+.page-assessment .assessment-list {
+  width: min(var(--article-max), 100%);
+  margin: var(--space-5) auto;
+  padding: 0;
+  list-style: none;
+}
+
+.page-assessment .assessment-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-assessment .assessment-item:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.page-assessment .assessment-date {
+  color: var(--muted);
+  font-size: .88rem;
+  margin-bottom: .25rem;
+}
+
+.page-assessment .assessment-title {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  font-weight: 720;
+}
+
+.page-assessment .assessment-title a {
+  color: var(--title);
   text-decoration: none;
 }
 
-/* Hover */
-.archive-month a:hover {
-  text-decoration: underline;
-}
-
-/* Дата */
-.archive-month .date {
-  color: #777;
-  margin-right: 6px;
-  white-space: nowrap;
+.page-assessment .assessment-title a:hover {
+  color: var(--link);
 }
