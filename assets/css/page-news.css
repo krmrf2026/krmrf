@@ -1,232 +1,94 @@
-/* ============================= */
-/* Карточка страницы */
-/* ============================= */
+/* =====================================================
+   KRM РФ — editorial article pages v2.1
+===================================================== */
 
-.news-card,
-.content-card {
-  max-width: 860px;
-  margin: 40px auto;
-  background: #ffffff;
-  padding: 28px 32px;
-  border-radius: 20px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.06);
+.page-news {
+  --accent: var(--accent-practical);
 }
 
-/* ============================= */
-/* Заголовки */
-/* ============================= */
-
-.news-card h1,
-.content-card h1 {
-  margin-bottom: 14px;
+.page-news .content-page {
+  background:
+    radial-gradient(circle at top left, rgba(49, 95, 134, .06), transparent 32rem),
+    var(--bg);
 }
 
-.news-section-title {
-  margin-top: 44px;
-  margin-bottom: 14px;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+.page-news .content-card h1 + .meta {
+  margin-top: .75rem;
 }
 
-/* ============================= */
-/* Картинки */
-/* ============================= */
-
-.content-card img,
-.news-image {
-  width: 100%;
-  height: auto;
-  border-radius: 18px;
-  margin: 18px 0 24px;
-  display: block;
+.page-news .content-card > p:first-of-type {
+  font-size: clamp(1.06rem, 1.3vw, 1.2rem);
+  line-height: 1.68;
+  color: #34332f;
 }
 
-/* ============================= */
-/* Текст */
-/* ============================= */
-
-.content-card p,
-.news-card p {
-  line-height: 1.65;
-  margin-bottom: 18px;
+.page-news .note-box {
+  background: #fff;
 }
 
-.news-excerpt {
-  font-weight: 500;
-  margin-bottom: 10px;
-  opacity: 0.85;
+.page-news .note-box ul {
+  margin-bottom: 0;
 }
 
-/* ============================= */
-/* Карточки архива */
-/* ============================= */
-
-.news-item {
-  margin-bottom: 16px;
-  border-radius: 16px;
-  background: #fafafa;
-  padding: 12px 16px;
-  border: 1px solid rgba(0,0,0,0.05);
-  transition: all 0.2s ease;
+.page-news .source-list {
+  padding-left: 1.2rem;
 }
 
-.news-item[open] {
-  background: #ffffff;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+.page-news .source-list li {
+  margin-bottom: .75em;
 }
 
-.news-summary {
-  cursor: pointer;
-  font-weight: 500;
+.page-news .related-materials,
+.page-news .article-related {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-5);
+}
+
+.page-news .article-related ul,
+.page-news .related-materials ul {
+  width: auto;
+  padding: 0;
   list-style: none;
 }
 
-.news-summary::-webkit-details-marker {
-  display: none;
+.page-news .article-related li,
+.page-news .related-materials li {
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--rule-soft);
 }
 
-.news-summary::after {
-  content: "▾";
-  float: right;
-  opacity: 0.6;
-  transition: transform 0.2s ease;
+.page-news .steps-list {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step;
 }
 
-.news-item[open] .news-summary::after {
-  transform: rotate(180deg);
+.page-news .steps-list li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.35rem;
+  margin-bottom: 1rem;
 }
 
-.news-body {
-  margin-top: 14px;
+.page-news .steps-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: .05rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-size: .84rem;
+  line-height: 1.65rem;
+  text-align: center;
+  font-weight: 720;
 }
 
-/* ============================= */
-/* Ссылки */
-/* ============================= */
-
-.map-link,
-.news-link {
-  display: inline-block;
-  margin-top: 14px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* ============================= */
-/* Выравнивание шапки */
-/* ============================= */
-
-.page-news .site-header .container {
-  max-width: 860px;
-  margin: 0 auto;
-}
-/* ============================= */
-/* Служебные блоки статьи */
-/* ============================= */
-
-.note-box {
-  margin: 28px 0;
-  padding: 18px 20px;
-  background: #f7f8fa;
-  border: 1px solid rgba(0,0,0,0.07);
-  border-left: 4px solid #2f5f9f;
-  border-radius: 16px;
-}
-
-.note-box h2,
-.note-box h3 {
-  margin-top: 0;
-  margin-bottom: 12px;
-}
-
-.note-box ul,
-.note-box ol {
-  margin: 0;
-  padding-left: 22px;
-}
-
-.note-box li {
-  margin-bottom: 8px;
-  line-height: 1.55;
-}
-
-.article-toc {
-  margin: 30px 0;
-  padding: 18px 20px;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 16px;
-}
-
-.article-toc h2 {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 20px;
-}
-
-.article-toc ul {
-  margin: 0;
-  padding-left: 22px;
-}
-
-.article-toc li {
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-
-.article-toc a {
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.article-toc a:hover {
-  text-decoration: underline;
-}
-
-.article-disclaimer {
-  margin-top: 32px;
-  padding: 16px 18px;
-  background: #f8f6f2;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 14px;
-  font-size: 0.95rem;
-  opacity: 0.95;
-}
-
-/* ============================= */
-/* Мелкие правки для статей */
-/* ============================= */
-
-.content-card figure {
-  margin: 22px 0 28px;
-}
-
-.content-card figcaption {
-  margin-top: -12px;
-  font-size: 0.92rem;
-  line-height: 1.45;
-  opacity: 0.7;
-}
-
-.content-card h2 {
-  margin-top: 34px;
-  margin-bottom: 14px;
-}
-
-.content-card h3 {
-  margin-top: 24px;
-  margin-bottom: 10px;
-}
-
-.content-card ul,
-.content-card ol {
-  margin-bottom: 18px;
-}
-
-.content-card li {
-  margin-bottom: 8px;
-  line-height: 1.6;
+@media (min-width: 980px) {
+  .page-news .article-toc ul,
+  .page-news .article-toc ol {
+    columns: 2;
+  }
 }
