@@ -1,0 +1,99 @@
+/* =========================================================
+   KRM РФ — индекс оценок боевых действий
+   Файл: /assets/css/page-assessment.css
+   ========================================================= */
+
+.page-assessment main.container,
+.page-assessment .content-page > .container {
+  display: flex;
+  justify-content: center;
+}
+
+.page-assessment .content-card {
+  max-width: var(--content-width);
+}
+
+.page-assessment .content-card > h2:first-child {
+  margin-bottom: 12px;
+  font-size: clamp(1.85rem, 4vw, 2.25rem);
+}
+
+.page-assessment .archive-lead {
+  margin: 0 0 28px;
+  color: var(--muted-strong);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.page-assessment .assessment-list,
+.page-assessment #assessmentList {
+  margin: 0;
+  padding: 0;
+}
+
+.page-assessment .assessment-item {
+  display: grid;
+  grid-template-columns: 125px minmax(0, 1fr);
+  gap: 4px 22px;
+  padding: 20px 4px;
+  border-top: 1px solid var(--rule);
+}
+
+.page-assessment .assessment-item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-assessment .assessment-date {
+  grid-row: 1 / span 3;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.page-assessment .assessment-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 720;
+  line-height: 1.38;
+}
+
+.page-assessment .assessment-title a {
+  color: var(--title);
+  text-decoration: none;
+}
+
+.page-assessment .assessment-title a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.page-assessment .assessment-period {
+  color: var(--muted-strong);
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.page-assessment .assessment-summary {
+  margin: 5px 0 0;
+  color: var(--muted-strong);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+@media (max-width: 620px) {
+  .page-assessment .assessment-item {
+    display: block;
+    padding: 18px 2px;
+  }
+
+  .page-assessment .assessment-date {
+    margin-bottom: 5px;
+  }
+
+  .page-assessment .assessment-period {
+    margin-top: 5px;
+  }
+}
