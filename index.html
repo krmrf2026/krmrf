@@ -1,277 +1,729 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>KRM РФ — карта СВО, ЛНР, Кременная и аналитика по открытым источникам</title>
-  <meta name="description" content="KRM РФ — статический архив по обстановке в ЛНР, Кременной, карте СВО, оценке боевых действий, гражданским последствиям войны и аналитике на основе открытых источников.">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" href="https://krmrf.ru/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ru_RU">
-  <meta property="og:site_name" content="KRM РФ">
-  <meta property="og:title" content="KRM РФ — карта СВО, ЛНР, Кременная и аналитика">
-  <meta property="og:description" content="Карта СВО, оценки боевых действий, архив материалов, Кременная, ЛНР, гражданские последствия и аналитика по открытым источникам.">
-  <meta property="og:url" content="https://krmrf.ru/">
-  <meta property="og:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+<title>KRM РФ — карта СВО, ЛНР, Кременная и аналитика по открытым источникам</title>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="KRM РФ — карта СВО, ЛНР, Кременная и аналитика">
-  <meta name="twitter:description" content="Карта СВО, оценки боевых действий, архив материалов, Кременная, ЛНР и аналитика по открытым источникам.">
-  <meta name="twitter:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+<link rel="canonical" href="https://krmrf.ru/">
 
-  <link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/page-home.css">
+<meta name="description"
+content="KRM РФ — статический архив по обстановке в ЛНР, Кременной, карте СВО, оценке боевых действий, гражданским последствиям войны и аналитике на основе открытых источников.">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://krmrf.ru/#organization",
-        "name": "KRM РФ",
-        "url": "https://krmrf.ru/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://krmrf.ru/assets/img/favicon.webp"
-        },
-        "sameAs": [
-          "https://t.me/xykrm",
-          "https://max.ru/xykrm"
-        ]
+<meta property="og:title"
+content="KRM РФ — карта СВО, ЛНР, Кременная и аналитика">
+
+<meta property="og:description"
+content="Карта СВО, оценка боевых действий, архив материалов, обстановка в ЛНР и Кременной, гражданские последствия войны и аналитика по открытым источникам.">
+
+<meta property="og:type"
+content="website">
+
+<meta property="og:url"
+content="https://krmrf.ru/">
+
+<meta property="og:image"
+content="https://krmrf.ru/assets/img/og-home.jpg">
+
+<meta property="og:locale"
+content="ru_RU">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="KRM РФ — карта СВО, ЛНР, Кременная и аналитика">
+
+<meta name="twitter:description"
+content="Карта СВО, оценка боевых действий, архив материалов, обстановка в ЛНР и Кременной, гражданские последствия войны и аналитика по открытым источникам.">
+
+<meta name="twitter:image"
+content="https://krmrf.ru/assets/img/og-home.jpg">
+
+<link rel="icon"
+type="image/webp"
+href="/assets/img/favicon.webp">
+
+<link rel="stylesheet"
+href="/assets/css/style.css">
+
+<link rel="stylesheet"
+href="/assets/css/page-home.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://krmrf.ru/#organization",
+      "name": "KRM РФ",
+      "url": "https://krmrf.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://krmrf.ru/assets/img/og-home.jpg"
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://krmrf.ru/#website",
-        "url": "https://krmrf.ru/",
-        "name": "KRM РФ",
-        "description": "Статический архив по обстановке в ЛНР, Кременной, карте СВО, оценке боевых действий и аналитике на основе открытых источников.",
-        "publisher": { "@id": "https://krmrf.ru/#organization" },
-        "inLanguage": "ru-RU"
+      "sameAs": [
+        "https://t.me/xykrm",
+        "https://max.ru/xykrm"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://krmrf.ru/#website",
+      "url": "https://krmrf.ru/",
+      "name": "KRM РФ",
+      "description": "Статический архив по обстановке в ЛНР, Кременной, карте СВО, оценке боевых действий и аналитике на основе открытых источников.",
+      "publisher": {
+        "@id": "https://krmrf.ru/#organization"
       },
-      {
-        "@type": "WebPage",
-        "@id": "https://krmrf.ru/#webpage",
-        "url": "https://krmrf.ru/",
-        "name": "KRM РФ — карта СВО, ЛНР, Кременная и аналитика по открытым источникам",
-        "description": "Главная страница KRM РФ: карта СВО, оценки фронта, материалы, архив, Кременная, ЛНР и методология работы с открытыми источниками.",
-        "isPartOf": { "@id": "https://krmrf.ru/#website" },
-        "about": { "@id": "https://krmrf.ru/#organization" },
-        "inLanguage": "ru-RU"
-      }
-    ]
-  }
-  </script>
+      "inLanguage": "ru"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://krmrf.ru/#webpage",
+      "url": "https://krmrf.ru/",
+      "name": "KRM РФ — карта СВО, ЛНР, Кременная и аналитика по открытым источникам",
+      "description": "Главная страница KRM РФ: карта СВО, оценка фронта, новости, архив материалов, Кременная, ЛНР и методология работы с открытыми источниками.",
+      "isPartOf": {
+        "@id": "https://krmrf.ru/#website"
+      },
+      "about": {
+        "@id": "https://krmrf.ru/#organization"
+      },
+      "inLanguage": "ru"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://krmrf.ru/#navigation",
+      "name": [
+        "Главная",
+        "Карта СВО",
+        "Новости",
+        "Военные преступления",
+        "Оценка фронта",
+        "Архив",
+        "Методология"
+      ],
+      "url": [
+        "https://krmrf.ru/",
+        "https://krmrf.ru/map/",
+        "https://krmrf.ru/news/",
+        "https://krmrf.ru/war-crimes/",
+        "https://krmrf.ru/assessment/",
+        "https://krmrf.ru/archive/",
+        "https://krmrf.ru/methodology/"
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body class="page-home">
-  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
 
-  <header class="site-header">
-    <div class="container">
-      <p class="logo"><a href="/">KRM РФ</a></p>
-      <p class="subtitle">Обстановка и аналитика по открытым источникам</p>
+<a class="skip-link" href="#main-content">
+Перейти к содержанию
+</a>
 
-      <nav class="main-nav" aria-label="Основная навигация">
-        <a href="/" class="nav-link" aria-current="page">Главная</a>
-        <a href="/map/" class="nav-link">Карта СВО</a>
-        <a href="/assessment/" class="nav-link">Оценки</a>
-        <a href="/news/" class="nav-link">Материалы</a>
-        <a href="/war-crimes/" class="nav-link">Досье</a>
-        <a href="/archive/" class="nav-link">Архив</a>
-        <a href="/methodology/" class="nav-link">Методология</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
 
-  <main id="main-content" class="home-main">
-    <section class="home-hero" aria-labelledby="home-title">
-      <div class="home-hero-content">
-        <p class="section-label">Статический архив KRM РФ</p>
-        <h1 id="home-title">Карта СВО, Кременная, ЛНР и аналитика по открытым источникам</h1>
-        <p class="home-lead">KRM РФ сохраняет то, что не должно исчезнуть в оперативной ленте: изменения обстановки, оценки боевых действий, материалы о Кременной и ЛНР, практические памятки, гражданские последствия и документальные досье.</p>
+<div class="container">
 
-        <div class="home-actions" aria-label="Основные действия">
-          <a class="home-button home-button-primary" href="/map/">Открыть карту СВО</a>
-          <a class="home-button" href="/assessment/">Последняя оценка</a>
-          <a class="home-button" href="/archive/">Открыть архив</a>
-        </div>
-      </div>
+<p class="logo">
+<a href="/">
+KRM РФ
+</a>
+</p>
 
-      <aside class="home-hero-panel" aria-labelledby="verification-title">
-        <p class="home-panel-title" id="verification-title">Как обозначается достоверность</p>
-        <ul class="home-status-list">
-          <li><strong>Подтверждено</strong><span>сведения опираются на устойчивые источники или прямую фиксацию события.</span></li>
-          <li><strong>Вероятно</strong><span>данные согласуются между собой, но требуют дальнейшего уточнения.</span></li>
-          <li><strong>Требует подтверждения</strong><span>сообщение сохраняется как предварительное и не подаётся как установленный факт.</span></li>
-        </ul>
-        <a class="home-panel-link" href="/methodology/">Как устроена методология →</a>
-      </aside>
-    </section>
+<div class="subtitle">
+Обстановка и аналитика по открытым источникам
+</div>
 
-    <section class="home-grid" aria-label="Основные разделы KRM РФ">
-      <a class="home-card home-card-featured" href="/map/">
-        <span class="section-label">Карта</span>
-        <h2>Карта СВО</h2>
-        <p>Визуальная фиксация зон контроля, изменений обстановки и участков, где данные требуют дополнительной проверки.</p>
-        <span class="home-card-link">Перейти к карте →</span>
-      </a>
+<nav class="main-nav" aria-label="Основная навигация">
 
-      <a class="home-card" href="/assessment/">
-        <span class="section-label">Аналитика</span>
-        <h2>Оценки фронта</h2>
-        <p>Датированные выпуски о динамике направлений, устойчивости позиций и возможных оперативных сценариях.</p>
-        <span class="home-card-link">Открыть оценки →</span>
-      </a>
+<a href="/" class="nav-link" aria-current="page">
+Главная
+</a>
 
-      <a class="home-card" href="/news/">
-        <span class="section-label">Материалы</span>
-        <h2>Кременная, ЛНР и памятки</h2>
-        <p>Долговечные публикации о гражданской обстановке, выплатах, документах, безопасности и жизни прифронтовых территорий.</p>
-        <span class="home-card-link">Читать материалы →</span>
-      </a>
+<a href="/map/" class="nav-link">
+Карта СВО
+</a>
 
-      <a class="home-card" href="/war-crimes/">
-        <span class="section-label">Документирование</span>
-        <h2>Досье</h2>
-        <p>Фиксация даты, места, обстоятельств, источников, статуса данных и последующих уточнений по значимым событиям.</p>
-        <span class="home-card-link">Открыть досье →</span>
-      </a>
-    </section>
+<a href="/news/" class="nav-link">
+Новости
+</a>
 
-    <section class="home-section home-section-split" aria-labelledby="latestTitle">
-      <div class="home-section-main">
-        <p class="section-label">Последний материал</p>
-        <h2 id="latestTitle">Последние материалы KRM РФ</h2>
-        <div class="updated-time" id="latestUpdated">Обновляется по мере выхода новых публикаций</div>
+<a href="/war-crimes/" class="nav-link">
+Военные преступления
+</a>
 
-        <div class="home-feature">
-          <div class="home-feature-image">
-            <img id="latestImage" src="/assets/img/og-home.jpg" width="1200" height="630" alt="Последний материал KRM РФ" loading="lazy">
-          </div>
-          <div class="home-feature-text" id="latestText">
-            <p>Здесь отображается последний опубликованный материал. Если автоматическая загрузка недоступна, используйте раздел материалов или полный архив.</p>
-            <p><a class="news-link" href="/news/">Открыть материалы →</a></p>
-          </div>
-        </div>
-      </div>
+<a href="/assessment/" class="nav-link">
+Оценка фронта
+</a>
 
-      <aside class="home-section-aside" aria-labelledby="start-title">
-        <p class="section-label">Быстрый вход</p>
-        <h2 id="start-title">Что открыть сначала</h2>
-        <ul class="home-link-list">
-          <li><a href="/map/">Карта боевых действий и изменений обстановки</a></li>
-          <li><a href="/assessment/">Последний выпуск оценки фронта</a></li>
-          <li><a href="/news/">Материалы, памятки и хроника Кременной</a></li>
-          <li><a href="/archive/">Полный архив публикаций</a></li>
-        </ul>
-      </aside>
-    </section>
+<a href="/archive/" class="nav-link">
+Архив
+</a>
 
-    <section class="home-section" aria-labelledby="assessmentFooterTitle">
-      <p class="section-label">Последняя оценка фронта</p>
+<a href="/methodology/" class="nav-link">
+Методология
+</a>
 
-      <div class="home-feature home-feature-assessment">
-        <div class="home-feature-image">
-          <img id="assessmentFooterImage" src="/assets/img/og-home.jpg" width="1200" height="630" alt="Последняя оценка фронта KRM РФ" loading="lazy">
-        </div>
+</nav>
 
-        <div class="home-feature-text">
-          <h2 id="assessmentFooterTitle">Оценка боевых действий</h2>
-          <div class="updated-time" id="assessmentFooterDate">Последняя оценка загружается из архива</div>
-          <div id="assessmentFooterSummary">
-            <p>Раздел фиксирует изменения на фронте, динамику боевых действий, оперативные выводы и осторожные прогнозы по открытым источникам.</p>
-          </div>
-          <p><a id="assessmentFooterLink" class="news-link" href="/assessment/">Читать оценку →</a></p>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <section class="home-section home-section-map" aria-labelledby="principles-title">
-      <div>
-        <p class="section-label">Как читать проект</p>
-        <h2 id="principles-title">Карта, оценка и архив дополняют друг друга</h2>
-        <p>Отдельное изменение на карте не всегда означает устойчивый контроль территории. Для вывода учитываются характер сообщений, география событий, подтверждения с мест, логистика и последующая динамика.</p>
-        <p>Поэтому карту следует читать вместе с датированными оценками, методологией и последующими обновлениями.</p>
-        <p><a class="news-link" href="/news/kartasvo-2026-05-19/">Как читать карту СВО →</a></p>
-      </div>
+</header>
 
-      <aside class="home-note">
-        <h3>Принцип архива</h3>
-        <ul>
-          <li>фиксировать изменения во времени;</li>
-          <li>отделять установленный факт от аналитической оценки;</li>
-          <li>показывать ограничения источников;</li>
-          <li>сохранять постоянные ссылки на важные материалы.</li>
-        </ul>
-      </aside>
-    </section>
+<main id="main-content" class="home-main">
 
-    <section class="home-section home-section-columns" aria-label="Практическая и архивная работа">
-      <div>
-        <p class="section-label">Практическая польза</p>
-        <h2>Памятки для жителей ЛНР</h2>
-        <p>Выплаты, компенсации, документы, жильё, безопасность и другие процедуры, где особенно важны дата актуальности и точный порядок действий.</p>
-        <p><a class="news-link" href="/news/">Открыть материалы →</a></p>
-      </div>
+<section class="home-hero">
 
-      <div>
-        <p class="section-label">Долговременная фиксация</p>
-        <h2>Кременная и гражданские последствия</h2>
-        <p>Изменения городской жизни, дороги, транспорт, связь, топливо, безопасность, БПЛА и события, которые нельзя оставлять только в оперативной ленте.</p>
-        <p><a class="news-link" href="/archive/">Открыть архив →</a></p>
-      </div>
-    </section>
+<div class="home-hero-content">
 
-    <section class="home-section home-about" aria-labelledby="about-title">
-      <p class="section-label">О проекте</p>
-      <h2 id="about-title">Сайт хранит итог, Telegram — оперативный поток</h2>
-      <p>KRM РФ не пытается дублировать обычное СМИ. На сайте сохраняются связанные и долговечные материалы: оценки фронта, хроника Кременной, практические памятки, гражданские последствия и досье. Для значимых публикаций указываются дата, статус сведений, источники, ограничения и история обновлений.</p>
-      <p>Проект не подменяет официальные источники. Его задача — систематизировать открытые данные, отделять факты от неподтверждённых сообщений и сохранять понятную архивную картину событий.</p>
+<p class="section-label">
+Статический архив KRM РФ
+</p>
 
-      <div class="home-actions home-actions-bottom">
-        <a class="home-button home-button-primary" href="/methodology/">Читать методологию</a>
-        <a class="home-button" href="https://t.me/xykrm" target="_blank" rel="noopener noreferrer">Telegram</a>
-        <a class="home-button" href="https://max.ru/xykrm" target="_blank" rel="noopener noreferrer">MAX</a>
-      </div>
-    </section>
+<h1>
+KRM РФ — карта СВО, ЛНР, Кременная и аналитика по открытым источникам
+</h1>
 
-    <noscript>
-      <section class="home-section">
-        <p class="section-label">Основные разделы</p>
-        <h2>Сайт доступен без JavaScript</h2>
-        <p>Автоматические блоки последних публикаций могут не обновиться, но все основные разделы остаются доступны напрямую.</p>
-        <ul class="home-link-list">
-          <li><a href="/map/">Карта СВО</a></li>
-          <li><a href="/assessment/">Оценки фронта</a></li>
-          <li><a href="/news/">Материалы</a></li>
-          <li><a href="/war-crimes/">Досье</a></li>
-          <li><a href="/archive/">Архив</a></li>
-          <li><a href="/methodology/">Методология</a></li>
-        </ul>
-      </section>
-    </noscript>
-  </main>
+<p class="home-lead">
+KRM РФ собирает и систематизирует материалы по обстановке в ЛНР,
+Кременной, карте СВО, оценке боевых действий, гражданским последствиям войны
+и событиям, которые требуют документирования.
+</p>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p><strong>KRM РФ</strong> — статический архив и аналитический проект.</p>
-      <nav aria-label="Дополнительная навигация">
-        <a href="/methodology/">Методология</a>
-        <a href="/archive/">Архив</a>
-        <a href="/map/">Карта СВО</a>
-        <a href="https://t.me/xykrm" target="_blank" rel="noopener noreferrer">Telegram</a>
-        <a href="https://max.ru/xykrm" target="_blank" rel="noopener noreferrer">MAX</a>
-      </nav>
-      <p>Материалы основаны на открытых источниках. Статус данных и ограничения указываются в публикациях.</p>
-    </div>
-  </footer>
+<div class="home-actions" aria-label="Основные разделы сайта">
 
-  <script src="/assets/js/home.js" defer></script>
-  <script src="/assets/js/assessment.js" defer></script>
+<a class="home-button home-button-primary" href="/map/">
+Открыть карту СВО
+</a>
+
+<a class="home-button" href="/assessment/">
+Читать оценку фронта
+</a>
+
+<a class="home-button" href="/archive/">
+Перейти в архив
+</a>
+
+</div>
+
+</div>
+
+<aside class="home-hero-panel" aria-label="Принцип проверки данных">
+
+<p class="home-panel-title">
+Принцип работы
+</p>
+
+<ul class="home-status-list">
+
+<li>
+<strong>Подтверждено</strong>
+<span>данные опираются на устойчивые источники или прямую фиксацию события.</span>
+</li>
+
+<li>
+<strong>Вероятно</strong>
+<span>сведения согласуются между собой, но требуют дальнейшего уточнения.</span>
+</li>
+
+<li>
+<strong>Требует подтверждения</strong>
+<span>сообщение сохраняется как предварительное и не подается как установленный факт.</span>
+</li>
+
+</ul>
+
+<a class="home-panel-link" href="/methodology/">
+Как устроена методология →
+</a>
+
+</aside>
+
+</section>
+
+<section class="home-grid" aria-label="Ключевые разделы">
+
+<a class="home-card home-card-featured" href="/map/">
+
+<span class="section-label">
+Карта
+</span>
+
+<h2>
+Карта СВО
+</h2>
+
+<p>
+Визуальная фиксация зон контроля, изменений обстановки и участков,
+где требуется дополнительная проверка данных.
+</p>
+
+<span class="home-card-link">
+Перейти к карте →
+</span>
+
+</a>
+
+<a class="home-card" href="/assessment/">
+
+<span class="section-label">
+Аналитика
+</span>
+
+<h2>
+Оценка фронта
+</h2>
+
+<p>
+Еженедельные оценки боевых действий, динамики направлений, устойчивости позиций
+и возможных оперативных сценариев.
+</p>
+
+<span class="home-card-link">
+Открыть оценки →
+</span>
+
+</a>
+
+<a class="home-card" href="/news/">
+
+<span class="section-label">
+Материалы
+</span>
+
+<h2>
+Новости и памятки
+</h2>
+
+<p>
+Публикации по ЛНР, Кременной, СВО, гражданской безопасности, выплатам,
+документам и правовым вопросам.
+</p>
+
+<span class="home-card-link">
+Читать новости →
+</span>
+
+</a>
+
+<a class="home-card" href="/war-crimes/">
+
+<span class="section-label">
+Досье
+</span>
+
+<h2>
+Военные преступления
+</h2>
+
+<p>
+Страницы для фиксации даты, места, обстоятельств, источников,
+статуса данных и последующих обновлений.
+</p>
+
+<span class="home-card-link">
+Перейти в раздел →
+</span>
+
+</a>
+
+</section>
+
+<section class="home-section home-section-split">
+
+<div class="home-section-main">
+
+<p class="section-label">
+Последнее важное
+</p>
+
+<h2 id="latestTitle">
+Последние материалы KRM РФ
+</h2>
+
+<div class="updated-time" id="latestUpdated">
+Обновляется по мере выхода новых материалов
+</div>
+
+<div class="home-feature">
+
+<div class="home-feature-image">
+
+<img
+id="latestImage"
+src="/assets/img/og-home.jpg"
+width="1200"
+height="630"
+alt="Последнее важное на KRM РФ"
+loading="lazy">
+
+</div>
+
+<div class="home-feature-text" id="latestText">
+
+<p>
+Здесь отображается последний важный материал из архива KRM РФ.
+Если автоматическая загрузка не сработала, используйте общий раздел новостей
+или архив сайта.
+</p>
+
+<p>
+<a class="news-link" href="/news/">
+Открыть новости →
+</a>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<aside class="home-section-aside">
+
+<p class="section-label">
+Быстрый вход
+</p>
+
+<h2>
+Что открыть сначала
+</h2>
+
+<ul class="home-link-list">
+
+<li>
+<a href="/map/">
+Карта боевых действий и изменений обстановки
+</a>
+</li>
+
+<li>
+<a href="/assessment/">
+Последняя оценка фронта
+</a>
+</li>
+
+<li>
+<a href="/news/">
+Новости, памятки и справочные материалы
+</a>
+</li>
+
+<li>
+<a href="/archive/">
+Полный архив публикаций
+</a>
+</li>
+
+</ul>
+
+</aside>
+
+</section>
+
+<section class="home-section">
+
+<p class="section-label">
+Оценка фронта
+</p>
+
+<div class="home-feature home-feature-assessment">
+
+<div class="home-feature-image">
+
+<img
+id="assessmentFooterImage"
+src="/assets/img/og-home.jpg"
+width="1200"
+height="630"
+alt="Оценка фронта KRM РФ"
+loading="lazy">
+
+</div>
+
+<div class="home-feature-text">
+
+<h2 id="assessmentFooterTitle">
+Оценка боевых действий
+</h2>
+
+<div class="updated-time" id="assessmentFooterDate">
+Последняя оценка подгружается из архива
+</div>
+
+<div id="assessmentFooterSummary">
+
+<p>
+Раздел оценок фиксирует изменения на фронте, динамику боевых действий,
+оперативные выводы и осторожные прогнозы по открытым источникам.
+</p>
+
+</div>
+
+<p>
+<a
+id="assessmentFooterLink"
+class="news-link"
+href="/assessment/">
+Читать оценку →
+</a>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="home-section home-section-map">
+
+<div>
+
+<p class="section-label">
+Карта и данные
+</p>
+
+<h2>
+Карта показывает не только линию, но и уровень уверенности
+</h2>
+
+<p>
+Отдельное продвижение на карте не всегда означает полный контроль территории.
+Для оценки важны устойчивость позиций, характер сообщений, подтверждения с мест,
+география событий и сопоставление открытых источников.
+</p>
+
+<p>
+Поэтому карта должна читаться вместе с оценками фронта, методологией
+и последующими обновлениями.
+</p>
+
+<p>
+<a class="news-link" href="/news/kartasvo-2026-05-19/">
+Как читать карту СВО →
+</a>
+</p>
+
+</div>
+
+<div class="home-note">
+
+<h3>
+Для чего нужна карта
+</h3>
+
+<ul>
+
+<li>
+фиксировать изменения обстановки;</li>
+
+<li>
+отделять подтвержденные данные от предварительных;</li>
+
+<li>
+связывать территориальные изменения с аналитическими материалами;</li>
+
+<li>
+сохранять архивную картину событий.</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="home-section home-section-columns">
+
+<div>
+
+<p class="section-label">
+Гражданские последствия
+</p>
+
+<h2>
+Памятки, выплаты, документы и безопасность
+</h2>
+
+<p>
+Отдельная часть архива посвящена темам, которые напрямую затрагивают гражданских:
+выплаты, компенсации, документы, недвижимость, безопасность, связь, обстрелы,
+БПЛА и жизнь в прифронтовых районах.
+</p>
+
+<p>
+<a class="news-link" href="/news/">
+Открыть материалы →
+</a>
+</p>
+
+</div>
+
+<div>
+
+<p class="section-label">
+Документирование
+</p>
+
+<h2>
+События, которые нельзя терять в ленте
+</h2>
+
+<p>
+Досье и отдельные страницы нужны для материалов, где важно сохранить дату,
+место, обстоятельства, источники, статус данных и историю последующих уточнений.
+</p>
+
+<p>
+<a class="news-link" href="/war-crimes/">
+Перейти к досье →
+</a>
+</p>
+
+</div>
+
+</section>
+
+<section class="home-section home-about">
+
+<p class="section-label">
+О проекте
+</p>
+
+<h2>
+KRM РФ — не просто лента, а статический архив
+</h2>
+
+<p>
+Telegram-канал удобен для оперативных публикаций, но важные материалы быстро уходят вниз.
+Сайт KRM РФ нужен для другого: сохранять публикации в виде отдельных страниц,
+связывать их между собой, добавлять источники, даты, статусы данных,
+карту, архив и методологию.
+</p>
+
+<p>
+Проект не подменяет официальные источники и не является средством массовой информации.
+Задача сайта — аккуратно систематизировать открытые данные, отделять факты
+от неподтвержденных сообщений и давать читателю понятную точку входа
+к карте, оценкам, новостям и архиву.
+</p>
+
+<div class="home-actions home-actions-bottom">
+
+<a class="home-button home-button-primary" href="/methodology/">
+Читать методологию
+</a>
+
+<a class="home-button" href="https://t.me/xykrm" target="_blank" rel="noopener noreferrer">
+Telegram-канал
+</a>
+
+<a class="home-button" href="https://max.ru/xykrm" target="_blank" rel="noopener noreferrer">
+MAX
+</a>
+
+</div>
+
+</section>
+
+<noscript>
+
+<section class="home-section">
+
+<p class="section-label">
+Без JavaScript
+</p>
+
+<h2>
+Основные разделы сайта
+</h2>
+
+<p>
+Если автоматическая подгрузка последних материалов недоступна,
+используйте прямые ссылки на основные разделы.
+</p>
+
+<ul class="home-link-list">
+
+<li>
+<a href="/map/">
+Карта СВО
+</a>
+</li>
+
+<li>
+<a href="/assessment/">
+Оценка фронта
+</a>
+</li>
+
+<li>
+<a href="/news/">
+Новости
+</a>
+</li>
+
+<li>
+<a href="/archive/">
+Архив
+</a>
+</li>
+
+<li>
+<a href="/methodology/">
+Методология
+</a>
+</li>
+
+</ul>
+
+</section>
+
+</noscript>
+
+</main>
+
+<footer class="site-footer">
+
+<div class="footer-inner">
+
+<a
+href="https://t.me/xykrm"
+target="_blank"
+rel="noopener noreferrer">
+
+Telegram
+
+</a>
+
+<span class="footer-separator">
+|
+</span>
+
+<a
+href="https://max.ru/xykrm"
+target="_blank"
+rel="noopener noreferrer">
+
+MAX
+
+</a>
+
+</div>
+
+</footer>
+
+<script src="/assets/js/home.js" defer></script>
+<script src="/assets/js/assessment.js" defer></script>
+
 </body>
 </html>
