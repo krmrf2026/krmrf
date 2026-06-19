@@ -72,3 +72,11 @@
   .archive-list li a { grid-column: 1 / -1; }
   .search-form > div { flex-direction: column; }
 }
+
+@media (min-width: 901px) {
+  .material-grid--latest { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .feature-links--four { grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+.dossier-intro { max-width: 900px; margin: 0 auto var(--space-10); }
+.dossier-intro h2 { margin-top: var(--space-8); font-size: var(--text-xl); }
+.dossier-list-section { padding-block: var(--space-8); }
