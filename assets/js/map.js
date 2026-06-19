@@ -23,20 +23,8 @@ function setMapUpdated(text) {
 
   if (!updatedEl) return;
 
-  if (!text) {
-    updatedEl.textContent = "Дата последнего подтверждённого обновления не установлена";
-    return;
-  }
-
-  const match = String(text).match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}:\d{2}))?/);
-  if (!match) {
-    updatedEl.textContent = text;
-    return;
-  }
-
-  const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-  const [, year, month, day, time] = match;
-  updatedEl.textContent = `${Number(day)} ${months[Number(month) - 1]} ${year} года${time ? `, ${time}` : ""}`;
+  updatedEl.textContent =
+    text || "Дата последнего подтверждённого обновления не установлена";
 }
 
 // ================= COLORS =================

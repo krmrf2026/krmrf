@@ -1,43 +1,44 @@
-<!DOCTYPE html>
-
-<html class="no-js" lang="ru">
+<!doctype html>
+<html lang="ru" class="no-js">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Карта СВО — KRM РФ</title>
-<meta content="Интерактивная карта боевых действий СВО на основе открытых источников." name="description"/>
-<link href="https://krmrf.ru/map/" rel="canonical"/>
-<meta content="ru_RU" property="og:locale"/>
-<meta content="website" property="og:type"/>
-<meta content="Карта СВО — KRM РФ" property="og:title"/>
-<meta content="Интерактивная карта боевых действий СВО на основе открытых источников." property="og:description"/>
-<meta content="https://krmrf.ru/map/" property="og:url"/>
-<meta content="https://krmrf.ru/assets/img/og-home.jpg" property="og:image"/>
-<meta content="Карта СВО" property="og:image:alt"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="Карта СВО — KRM РФ" name="twitter:title"/>
-<meta content="Интерактивная карта боевых действий СВО на основе открытых источников." name="twitter:description"/>
-<meta content="https://krmrf.ru/assets/img/og-home.jpg" name="twitter:image"/>
-<link href="/assets/img/favicon.webp" rel="icon" type="image/webp"/>
-<meta content="#f4f1eb" name="theme-color"/>
-<link href="/assets/css/style.css" rel="stylesheet"/>
-<link href="/assets/css/page-index.css" rel="stylesheet"/>
-<link href="/assets/vendor/leaflet/leaflet.css" rel="stylesheet"/><link href="/assets/css/page-map.css" rel="stylesheet"/>
-<link href="/assets/css/print.css" media="print" rel="stylesheet"/>
+<meta name="description" content="Интерактивная карта KRM РФ на основе открытых данных с датой обновления, легендой и объяснением ограничений.">
+
+<link rel="canonical" href="https://krmrf.ru/map/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Карта СВО">
+<meta property="og:description" content="Интерактивная карта KRM РФ на основе открытых данных с датой обновления, легендой и объяснением ограничений.">
+<meta property="og:url" content="https://krmrf.ru/map/">
+<meta property="og:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+<meta property="og:image:alt" content="Карта СВО">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Карта СВО">
+<meta name="twitter:description" content="Интерактивная карта KRM РФ на основе открытых данных с датой обновления, легендой и объяснением ограничений.">
+<meta name="twitter:image" content="https://krmrf.ru/assets/img/og-home.jpg">
+<link rel="icon" type="image/webp" href="/assets/img/favicon.webp">
+<meta name="theme-color" content="#f4f1eb">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/page-index.css">
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css"><link rel="stylesheet" href="/assets/css/page-map.css">
+<link rel="stylesheet" href="/assets/css/print.css" media="print">
 <script src="/assets/js/head.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://krmrf.ru/#organization","name":"KRM РФ","url":"https://krmrf.ru/"},{"@type":"WebSite","@id":"https://krmrf.ru/#website","url":"https://krmrf.ru/","name":"KRM РФ","description":"Статический доказательный архив и аналитико-справочный проект.","inLanguage":"ru","publisher":{"@id":"https://krmrf.ru/#organization"}},{"@type":"WebPage","@id":"https://krmrf.ru/map/","url":"https://krmrf.ru/map/","name":"Карта СВО","description":"Интерактивная карта KRM РФ на основе открытых данных с датой обновления, легендой и объяснением ограничений.","inLanguage":"ru"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://krmrf.ru/"},{"@type":"ListItem","position":2,"name":"Карта СВО"}]}]}</script>
+
 </head><body class="page page-map"><a class="skip-link" href="#main-content">Перейти к содержанию</a>
 <header class="site-header">
-<div class="site-header__inner container container--wide">
-<div class="site-brand"><p class="site-logo"><a href="/">KRM РФ</a></p><p class="site-tagline">Обстановка и аналитика по открытым источникам</p></div>
-<button aria-controls="site-navigation" aria-expanded="false" class="nav-toggle" type="button"><span>Разделы</span></button>
-<nav aria-label="Основная навигация" class="site-nav" id="site-navigation"><a href="/kremennaya/">Кременная</a><a aria-current="page" href="/map/">Карта СВО</a><a href="/assessment/">Оценка фронта</a><a href="/news/">Материалы</a><a href="/war-crimes/">Досье</a><a href="/reference/">Справочник</a><a href="/archive/">Архив</a></nav>
-</div>
-</header><div class="breadcrumbs-wrap"><nav aria-label="Хлебные крошки" class="breadcrumbs container"><ol><li><a href="/">Главная</a></li><li aria-current="page">Карта СВО</li></ol></nav></div><main class="map-main" id="main-content"><div class="container container--wide"><header class="page-intro"><p class="eyebrow">Обстановка по открытым источникам</p><h1>Карта СВО</h1><p class="lead">Интерактивная карта боевых действий СВО на основе открытых источников. Отображение носит ориентировочный характер и не является официальным картографическим материалом.</p><dl class="map-meta"><div><dt>Последнее подтверждённое обновление</dt><dd data-fallback="2026-06-19 06:20" id="mapUpdated">2026-06-19 06:20</dd></div><div><dt>Статус</dt><dd>Ориентировочная аналитическая карта</dd></div></dl></header><div class="map-layout"><section><div class="map-container" id="mapWrapper"><button class="button map-expand" id="openFullscreenBtn" type="button">Развернуть карту</button><div aria-label="Интерактивная карта зон" id="map" role="application"></div><button class="button" id="exitFullscreenBtn" type="button">Свернуть карту</button></div><noscript><p class="notice">Интерактивная карта требует JavaScript. Основная дата и методологические ограничения доступны на этой странице; подробная текстовая оценка находится в разделе «Оценки фронта».</p></noscript></section><aside class="map-sidebar"><section><h2>Легенда</h2><ul class="legend"><li><span class="legend-swatch legend-swatch--red"></span>Зона контроля Вооружённых сил Российской Федерации</li><li><span class="legend-line"></span>Административные границы</li></ul></section><section><h2>Как читать карту</h2><p>Продвижение, присутствие, огневой контроль и устойчивый контроль территории — разные состояния. Цвет не передаёт всю степень уверенности.</p><a href="/news/svo/kartasvo-2026-05-19/">Подробная инструкция</a></section><section><h2>Связанная аналитика</h2><a href="/assessment/">Последняя оценка фронта</a><a href="/methodology/">Методология</a></section></aside></div><section class="map-notes"><h2>Источники и ограничения</h2><p>Данные собраны из открытых источников. Карта публикуется исключительно в ознакомительных целях.</p><p>Отображение носит ориентировочный характер и не является официальным картографическим материалом.</p><p>Административные границы, обозначенные синим цветом, приведены в соответствии с действующим законодательством Российской Федерации.</p></section></div></main><footer class="site-footer">
-<div class="container container--wide site-footer__grid">
-<div><p class="site-footer__title">KRM РФ</p><p>Карта СВО, оценки фронта, материалы о Кременной и ЛНР, практические памятки и досье по открытым источникам.</p></div>
-<nav aria-label="Разделы в подвале"><a href="/methodology/">Методология</a><a href="/about/">О проекте</a><a href="/archive/">Архив</a></nav>
-<div><p><a href="https://t.me/xykrm" rel="noopener">Telegram</a> · <a href="https://max.ru/xykrm" rel="noopener">MAX</a></p><p>Материалы основаны на открытых источниках; ограничения указываются в публикациях.</p></div>
-</div>
-<div class="container container--wide site-footer__meta"><span>Версия архива: 2026-06-19-r1</span><span>Техническая сборка: 2026-06-19</span></div>
-</footer><script defer="" src="/assets/js/site.js"></script><script src="/assets/vendor/leaflet/leaflet.js"></script><script defer="" src="/assets/js/map.js"></script></body></html>
+  <div class="site-header__inner container container--wide">
+    <div class="site-brand"><p class="site-logo"><a href="/">KRM РФ</a></p><p class="site-tagline">Статический доказательный архив и аналитико-справочный проект</p></div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span>Разделы</span></button>
+    <nav id="site-navigation" class="site-nav" aria-label="Основная навигация"><a href="/">Главная</a><a href="/kremennaya/">Кременная</a><a href="/map/" aria-current="page">Карта</a><a href="/assessment/">Оценки</a><a href="/news/">Материалы</a><a href="/war-crimes/">Досье</a><a href="/reference/">Справочник</a><a href="/archive/">Архив</a><a class="site-nav__utility" href="/search/">Поиск</a></nav>
+  </div>
+</header><div class="breadcrumbs-wrap"><nav class="breadcrumbs container" aria-label="Хлебные крошки"><ol><li><a href="/">Главная</a></li><li aria-current="page">Карта СВО</li></ol></nav></div><main id="main-content" class="map-main"><div class="container container--wide"><header class="page-intro"><p class="eyebrow">Ориентировочные открытые данные</p><h1>Карта СВО</h1><p class="lead">Карта показывает опубликованную оценку зон и административные границы. Она не является официальным картографическим материалом и не заменяет датированную аналитическую оценку.</p><dl class="map-meta"><div><dt>Последнее подтверждённое обновление</dt><dd id="mapUpdated" data-fallback="2026-06-19 06:20">2026-06-19 06:20</dd></div><div><dt>Статус</dt><dd>Ориентировочная аналитическая карта</dd></div></dl></header><div class="map-layout"><section><div class="map-container" id="mapWrapper"><button class="button map-expand" id="openFullscreenBtn" type="button">Развернуть карту</button><div id="map" role="application" aria-label="Интерактивная карта зон"></div><button class="button" id="exitFullscreenBtn" type="button">Свернуть карту</button></div><noscript><p class="notice">Интерактивная карта требует JavaScript. Основная дата и методологические ограничения доступны на этой странице; подробная текстовая оценка находится в разделе «Оценки фронта».</p></noscript></section><aside class="map-sidebar"><section><h2>Легенда</h2><ul class="legend"><li><span class="legend-swatch legend-swatch--red"></span>Зона, обозначенная в наборе данных как Russian</li><li><span class="legend-line"></span>Административные границы</li></ul></section><section><h2>Как читать карту</h2><p>Продвижение, присутствие, огневой контроль и устойчивый контроль территории — разные состояния. Цвет не передаёт всю степень уверенности.</p><a href="/news/svo/kartasvo-2026-05-19/">Подробная инструкция</a></section><section><h2>Связанная аналитика</h2><a href="/assessment/">Последняя оценка фронта</a><a href="/methodology/">Методология</a></section></aside></div><section class="map-notes"><h2>Источники и ограничения</h2><p>Данные собраны из открытых источников. Отображение носит ориентировочный характер. Административные границы приведены в соответствии с формулировкой исходной версии проекта.</p></section></div></main><footer class="site-footer">
+  <div class="container container--wide site-footer__grid">
+    <div><p class="site-footer__title">KRM РФ</p><p>Независимый статический архив материалов о Кременной, ЛНР, фронтовой обстановке, гражданских последствиях и практической помощи.</p></div>
+    <nav aria-label="Разделы в подвале"><a href="/methodology/">Методология</a><a href="/about/">О проекте</a><a href="/archive/">Архив</a><a href="/search/">Поиск</a></nav>
+    <div><p><a href="https://t.me/xykrm" rel="noopener">Telegram</a> · <a href="https://max.ru/xykrm" rel="noopener">MAX</a></p><p>Материалы основаны на открытых источниках; ограничения указываются в публикациях.</p></div>
+  </div>
+  <div class="container container--wide site-footer__meta"><span>Версия архива: 2026-06-19-r1</span><span>Техническая сборка: 2026-06-19</span></div>
+</footer><script src="/assets/js/site.js" defer></script><script src="/assets/vendor/leaflet/leaflet.js"></script><script src="/assets/js/map.js" defer></script></body></html>

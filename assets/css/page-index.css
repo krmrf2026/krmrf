@@ -60,6 +60,42 @@
 .search-result h2 { margin: .2rem 0 .4rem; font-size: var(--text-xl); }
 .error-card { margin: 5rem auto; padding: clamp(2rem,6vw,4rem); text-align: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
 .error-card h1 { font-size: var(--text-3xl); margin: .2rem 0; }
+@media (min-width: 901px) {
+  .hero { padding-block: 4.5rem; }
+  .hero__grid {
+    grid-template-columns: minmax(0,1.62fr) minmax(18.5rem,.78fr);
+    gap: clamp(3rem,4vw,4.5rem);
+  }
+  .home-section { padding-block: 4rem; }
+  .split-feature {
+    grid-template-columns: minmax(16rem,.72fr) minmax(0,1.28fr);
+    gap: clamp(3rem,4.5vw,4.5rem);
+  }
+  .split-feature > :first-child { max-width: 24rem; }
+  .material-grid--three .material-card h2 {
+    font-size: clamp(1.3rem,1.18rem + .28vw,1.5rem);
+    line-height: 1.27;
+  }
+  .feature-links h2 {
+    font-size: clamp(1.35rem,1.2rem + .3vw,1.55rem);
+    line-height: 1.25;
+  }
+  .archive-principle {
+    grid-template-columns: minmax(0,1.18fr) minmax(0,1fr) auto;
+    gap: clamp(2rem,3vw,3rem);
+  }
+  .archive-principle h2 {
+    font-size: clamp(1.8rem,1.6rem + .45vw,2.15rem);
+    line-height: 1.22;
+  }
+  .archive-principle > div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .55rem;
+  }
+  .archive-principle .button + .button { margin-left: 0; }
+}
 @media (max-width: 900px) {
   .hero__grid, .split-feature, .archive-principle { grid-template-columns: 1fr; }
   .material-grid--three, .feature-links, .topic-grid { grid-template-columns: repeat(2,1fr); }
@@ -72,11 +108,3 @@
   .archive-list li a { grid-column: 1 / -1; }
   .search-form > div { flex-direction: column; }
 }
-
-@media (min-width: 901px) {
-  .material-grid--latest { grid-template-columns: repeat(3,minmax(0,1fr)); }
-  .feature-links--four { grid-template-columns: repeat(4,minmax(0,1fr)); }
-}
-.dossier-intro { max-width: 900px; margin: 0 auto var(--space-10); }
-.dossier-intro h2 { margin-top: var(--space-8); font-size: var(--text-xl); }
-.dossier-list-section { padding-block: var(--space-8); }
