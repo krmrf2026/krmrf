@@ -24,7 +24,7 @@ function setMapUpdated(text) {
   if (!updatedEl) return;
 
   updatedEl.textContent =
-    `Обновлено: ${text || "-"}`;
+    text || "Дата последнего подтверждённого обновления не установлена";
 }
 
 // ================= COLORS =================
@@ -170,7 +170,7 @@ async function loadZones() {
       err
     );
 
-    setMapUpdated("ошибка загрузки");
+    setMapUpdated(updatedEl?.dataset?.fallback || "Дата последнего подтверждённого обновления не установлена");
   }
 }
 
@@ -306,7 +306,7 @@ document.addEventListener(
 
     if (!document.fullscreenElement) {
 
-      wrapper.classList.remove(
+      if (wrapper) wrapper.classList.remove(
         "fullscreen"
       );
 
