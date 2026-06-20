@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Каталог публикаций KRM РФ",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id", "type", "title", "url", "section", "datePublished",
+      "dateModified", "excerpt", "image", "imageAlt"
+    ],
+    "properties": {
+      "id": { "type": "string", "minLength": 1 },
+      "type": { "enum": ["article", "guide", "assessment", "dossier"] },
+      "title": { "type": "string", "minLength": 1 },
+      "url": { "type": "string", "pattern": "^/.+/$" },
+      "section": {
+        "enum": [
+          "kremennaya", "svo", "lnr", "law", "civilian-impact",
+          "politics", "assessment", "warcrimes"
+        ]
+      },
+      "datePublished": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+      "dateModified": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+      "status": { "type": ["string", "null"] },
+      "excerpt": { "type": "string", "minLength": 1 },
+      "image": { "type": "string", "pattern": "^/assets/img/" },
+      "imageAlt": { "type": "string" },
+      "period": { "type": "string" },
+      "topics": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+      "locations": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+      "home": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "important": { "type": "integer", "minimum": 1 },
+          "kremennaya": { "type": "integer", "minimum": 1 },
+          "guide": { "type": "integer", "minimum": 1 },
+          "dossier": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "additionalProperties": true
+  }
+}

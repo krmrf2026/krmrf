@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>KRM РФ — Кременная</title>
+  <link href="https://krmrf.ru/kremennaya/feed.xml" rel="self" />
+  <link href="https://krmrf.ru/kremennaya/" />
+  <id>https://krmrf.ru/kremennaya/</id>
+  <updated>2026-06-06T12:00:00+03:00</updated>
+  <entry>
+    <title>Кременная в июне: город живёт, но каждый выезд стал вопросом</title>
+    <link href="https://krmrf.ru/news/kremennaya/krm-2026-06-06/" />
+    <id>https://krmrf.ru/news/kremennaya/krm-2026-06-06/</id>
+    <updated>2026-06-06T12:00:00+03:00</updated>
+    <summary>Кременная в начале июня 2026 года: дроны, дороги, автобусы, топливо, торговля и жизнь города по сообщениям жителей.</summary>
+  </entry>
+  <entry>
+    <title>Кременная в мае: дроны остались рядом</title>
+    <link href="https://krmrf.ru/news/kremennaya/krm-2026-05-16/" />
+    <id>https://krmrf.ru/news/kremennaya/krm-2026-05-16/</id>
+    <updated>2026-05-16T12:00:00+03:00</updated>
+    <summary>Май не принес Кременной спокойствия. Беспилотники продолжают появляться над городом и дорогами вокруг него, но жизнь не остановилась.</summary>
+  </entry>
+  <entry>
+    <title>Кременная между памятью и войной</title>
+    <link href="https://krmrf.ru/news/kremennaya/krm9may-2026-05-09/" />
+    <id>https://krmrf.ru/news/kremennaya/krm9may-2026-05-09/</id>
+    <updated>2026-05-09T12:00:00+03:00</updated>
+    <summary>Кременские леса, Северский Донец и фронт у Кременной уже второй раз за столетие становятся частью большой войны - от боев 1942-1943 годов до современного восточного фронта.</summary>
+  </entry>
+  <entry>
+    <title>Кременная под дронами: как изменилась жизнь в городе</title>
+    <link href="https://krmrf.ru/news/kremennaya/kremennaya-2026-04-28/" />
+    <id>https://krmrf.ru/news/kremennaya/kremennaya-2026-04-28/</id>
+    <updated>2026-04-28T12:00:00+03:00</updated>
+    <summary>К концу апреля дроны стали постоянным фактором в Кременной. Меняется не линия фронта, а повседневная жизнь в городе.</summary>
+  </entry>
+  <entry>
+    <title>Кременная: как изменилась обстановка с конца марта по середину апреля 2026 года</title>
+    <link href="https://krmrf.ru/news/kremennaya/kremennaya-2026-04-16/" />
+    <id>https://krmrf.ru/news/kremennaya/kremennaya-2026-04-16/</id>
+    <updated>2026-04-16T12:00:00+03:00</updated>
+    <summary>Рост активности БПЛА, изменение характера угроз и условий жизни в городе за последние недели.</summary>
+  </entry>
+  <entry>
+    <title>Кременная март 2026: как изменилась обстановка в городе</title>
+    <link href="https://krmrf.ru/news/kremennaya/krm-23-03-2026/" />
+    <id>https://krmrf.ru/news/kremennaya/krm-23-03-2026/</id>
+    <updated>2026-03-23T12:00:00+03:00</updated>
+    <summary>Рост активности БПЛА, удары по инфраструктуре и изменение условий жизни в Кременной за месяц.</summary>
+  </entry>
+  <entry>
+    <title>Кременная 2026: фронт отошёл, но проблемы есть</title>
+    <link href="https://krmrf.ru/news/kremennaya/kremennaya-2026-02-18/" />
+    <id>https://krmrf.ru/news/kremennaya/kremennaya-2026-02-18/</id>
+    <updated>2026-02-18T12:00:00+03:00</updated>
+    <summary>Какова ситуация сейчас глазами самих жителей.</summary>
+  </entry>
+</feed>

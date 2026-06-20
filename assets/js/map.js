@@ -24,7 +24,19 @@ function setMapUpdated(text) {
   if (!updatedEl) return;
 
   updatedEl.textContent =
-    `Обновлено: ${text || "-"}`;
+    text || "Дата последнего подтверждённого обновления не установлена";
+}
+
+
+function formatMapDate(value) {
+  if (!value) return "Дата последнего подтверждённого обновления не установлена";
+  const normalized = String(value).trim().replace(" ", "T");
+  const date = new Date(normalized);
+  if (Number.isNaN(date.getTime())) return String(value);
+  const hasTime = /\d{1,2}:\d{2}/.test(String(value));
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  if (hasTime) { options.hour = "2-digit"; options.minute = "2-digit"; }
+  return new Intl.DateTimeFormat("ru-RU", options).format(date).replace(" г.", " года");
 }
 
 // ================= COLORS =================
@@ -128,12 +140,8 @@ async function loadZones() {
     const data = await resp.json();
 
     // дата обновления
-    const updated =
-      data?.updated ||
-      lastModified ||
-      "-";
-
-    setMapUpdated(updated);
+    const updated = data?.updated || lastModified;
+    setMapUpdated(formatMapDate(updated));
 
     // очистка слоев
     zonesLayer.clearLayers();
@@ -170,7 +178,7 @@ async function loadZones() {
       err
     );
 
-    setMapUpdated("ошибка загрузки");
+    setMapUpdated(updatedEl?.dataset?.fallback || "Дата последнего подтверждённого обновления не установлена");
   }
 }
 
@@ -306,7 +314,7 @@ document.addEventListener(
 
     if (!document.fullscreenElement) {
 
-      wrapper.classList.remove(
+      if (wrapper) wrapper.classList.remove(
         "fullscreen"
       );
 
