@@ -14,7 +14,8 @@
     "period": "30 марта — 5 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-04-12",
@@ -31,7 +32,8 @@
     "period": "6–12 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-04-19",
@@ -48,7 +50,8 @@
     "period": "13–19 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-04-26",
@@ -65,7 +68,8 @@
     "period": "20–26 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-05-03",
@@ -82,7 +86,8 @@
     "period": "27 апреля — 3 мая 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-05-10",
@@ -99,7 +104,8 @@
     "period": "4–10 мая 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-05-17",
@@ -116,7 +122,8 @@
     "period": "11–17 мая 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-05-24",
@@ -133,7 +140,8 @@
     "period": "18–24 мая 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-05-31",
@@ -150,7 +158,8 @@
     "period": "25–31 мая 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-06-07",
@@ -167,7 +176,8 @@
     "period": "1–7 июня 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "assessment-2026-06-14",
@@ -184,7 +194,8 @@
     "period": "8–14 июня 2026",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "bpla-lnr-2026-05-27",
@@ -203,7 +214,24 @@
     ],
     "home": {
       "important": 3
-    }
+    },
+    "sourceIds": [
+      "src-451dc41a03c6",
+      "src-0d0a37a789e6",
+      "src-a1a170a03f87",
+      "src-349dad64bfd0",
+      "src-cf8104cff69a",
+      "src-eba01d5b20ae",
+      "src-e0546708f4f8",
+      "src-79a63a0eb370",
+      "src-80ea19167453",
+      "src-6971576587b1",
+      "src-78e3be7c2ea7",
+      "src-cd8f84d9e6de",
+      "src-c9c602241731",
+      "src-fa277dcdbed8",
+      "src-b76354503114"
+    ]
   },
   {
     "id": "2026-02-18-kremennaya",
@@ -224,7 +252,8 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "kremennaya-2026-04-16",
@@ -245,7 +274,8 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "kremennaya-2026-04-28",
@@ -266,7 +296,8 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "krm-2026-05-16",
@@ -287,7 +318,8 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "krm-2026-06-06",
@@ -309,6 +341,10 @@
     "locations": [
       "Кременная",
       "ЛНР"
+    ],
+    "sourceIds": [
+      "src-044455c699ee",
+      "src-2a459ce2aa67"
     ]
   },
   {
@@ -331,7 +367,8 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "krm9may-2026-05-09",
@@ -351,7 +388,8 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "lnr-2026-05-12",
@@ -367,7 +405,8 @@
     "imageAlt": "Луганск и Луганщина",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "posle-gosudarstva-2026-06-12",
@@ -386,7 +425,20 @@
     ],
     "home": {
       "important": 1
-    }
+    },
+    "sourceIds": [
+      "src-d1fd1180cad6",
+      "src-a8cded0a30e3",
+      "src-54c01af36dbd",
+      "src-540187e2f4ea",
+      "src-4879605f5fae",
+      "src-6a830f116463",
+      "src-7f04d2decca9",
+      "src-b47debd971f6",
+      "src-386de49564cb",
+      "src-d17d0e219213",
+      "src-140a8e92652e"
+    ]
   },
   {
     "id": "hungary-2026-04-13",
@@ -399,7 +451,8 @@
     "status": null,
     "excerpt": "Смена власти в Венгрии может изменить баланс внутри ЕС, но экономические связи с Россией сохраняют инерцию.",
     "image": "/assets/img/news/politics/hungary-2026-04-13/cover.webp",
-    "imageAlt": "Выборы в Венгрии"
+    "imageAlt": "Выборы в Венгрии",
+    "sourceIds": []
   },
   {
     "id": "iran-2026-03-02",
@@ -412,7 +465,8 @@
     "status": null,
     "excerpt": "Гибель Хаменеи должна была стать началом конца Ирана. Вместо этого страна наносит удары по базам США, а новый лидер обещает отомстить.",
     "image": "/assets/img/news/politics/iran-2026-03-02/iran-01.webp",
-    "imageAlt": "Али Хаменеи"
+    "imageAlt": "Али Хаменеи",
+    "sourceIds": []
   },
   {
     "id": "iranoil-2026-04-09",
@@ -425,7 +479,8 @@
     "status": null,
     "excerpt": "Конфликт США и Ирана влияет на нефть, усиливает позиции России и создаёт риски для поддержки Украины.",
     "image": "/assets/img/news/politics/iranoil-2026-04-09/cover.webp",
-    "imageAlt": "Иран и нефтяной рынок"
+    "imageAlt": "Иран и нефтяной рынок",
+    "sourceIds": []
   },
   {
     "id": "odessa-2026-05-02",
@@ -438,7 +493,14 @@
     "status": null,
     "excerpt": "2 мая 2014 года в Одессе погибли 48 человек, большая часть - в Доме профсоюзов. Спустя годы расследование не дало окончательных выводов.",
     "image": "/assets/img/news/politics/odessarus-2026-05-02/cover.webp",
-    "imageAlt": "Дом профсоюзов в Одессе после пожара"
+    "imageAlt": "Дом профсоюзов в Одессе после пожара",
+    "sourceIds": [
+      "src-3d4d842eb14e",
+      "src-3cecbaaf49b7",
+      "src-e60cae01aec7",
+      "src-64e699f2fbaf",
+      "src-929dc7121159"
+    ]
   },
   {
     "id": "beshoz-2026-04-21",
@@ -454,7 +516,13 @@
     "imageAlt": "Бесхозное жилье",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [
+      "src-5ae1b22690ed"
+    ],
+    "reviewedAt": "2026-04-21",
+    "reviewAfter": "2026-07-20",
+    "reviewStatus": "current"
   },
   {
     "id": "beshoz-2026-07-01",
@@ -470,7 +538,11 @@
     "imageAlt": "Регистрация права собственности и ЕГРН",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [],
+    "reviewedAt": "2026-02-26",
+    "reviewAfter": "2026-07-02",
+    "reviewStatus": "current"
   },
   {
     "id": "bobp-2026-03-04",
@@ -486,7 +558,11 @@
     "imageAlt": "Документы военнослужащего",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [],
+    "reviewedAt": "2026-03-04",
+    "reviewAfter": "2026-07-04",
+    "reviewStatus": "current"
   },
   {
     "id": "egrn-2026-05-15",
@@ -502,7 +578,11 @@
     "imageAlt": "Регистрация недвижимости",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [],
+    "reviewedAt": "2026-05-15",
+    "reviewAfter": "2026-08-15",
+    "reviewStatus": "current"
   },
   {
     "id": "evak-2026-03-10",
@@ -518,7 +598,20 @@
     "imageAlt": "Эвакуационная группа на линии фронта",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [
+      "src-dbada24fb28e",
+      "src-94d96161bb90",
+      "src-2bf48999141c",
+      "src-208740499ec7",
+      "src-85dbaf00a591",
+      "src-168426597281",
+      "src-34e86e37cbc5",
+      "src-93da44cafc1c"
+    ],
+    "reviewedAt": "2026-03-10",
+    "reviewAfter": "2026-07-10",
+    "reviewStatus": "current"
   },
   {
     "id": "lnr-vyplaty-terakt-118-26",
@@ -534,7 +627,20 @@
     "imageAlt": "Постановление ЛНР № 118/26 о выплатах пострадавшим от террористических актов",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [
+      "src-e94c01753f8e",
+      "src-b0e5b6ed1516",
+      "src-32ecc907c6e2",
+      "src-197341de9549",
+      "src-ce2f70896ba3",
+      "src-88b0d3e75348",
+      "src-ba3377b9fd05",
+      "src-610f9f7e3883"
+    ],
+    "reviewedAt": "2026-06-17",
+    "reviewAfter": "2026-07-17",
+    "reviewStatus": "current"
   },
   {
     "id": "powrlnr-2026-05-13",
@@ -550,7 +656,15 @@
     "imageAlt": "Компенсация за жилье в ЛНР",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [
+      "src-a715ea6a2cf0",
+      "src-22ce7f5aec0b",
+      "src-541dac45725e"
+    ],
+    "reviewedAt": "2026-05-13",
+    "reviewAfter": "2026-08-13",
+    "reviewStatus": "current"
   },
   {
     "id": "vuplatylnr-2026-05-25",
@@ -566,7 +680,16 @@
     "imageAlt": "Введен режим ЧС в ЛНР",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [
+      "src-126409d4adc0",
+      "src-6572087b9479",
+      "src-b0ebd2a1ce7f",
+      "src-2b9ec16c4f35"
+    ],
+    "reviewedAt": "2026-05-25",
+    "reviewAfter": "2026-07-25",
+    "reviewStatus": "current"
   },
   {
     "id": "zemlyalnr-2026-05-04",
@@ -582,7 +705,11 @@
     "imageAlt": "Оформление земли под домом в ЛНР",
     "locations": [
       "ЛНР"
-    ]
+    ],
+    "sourceIds": [],
+    "reviewedAt": "2026-05-04",
+    "reviewAfter": "2026-08-04",
+    "reviewStatus": "current"
   },
   {
     "id": "geo-2026-03-16",
@@ -598,7 +725,8 @@
     "imageAlt": "Купянское и Краснолиманское направления",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "kartasvo-2026-05-19",
@@ -614,7 +742,8 @@
     "imageAlt": "Карта СВО и линия фронта",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "liman-slavyansk-2026-02-22",
@@ -630,7 +759,8 @@
     "imageAlt": "Лиман северный фас",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "svo-2026-03-06",
@@ -646,7 +776,8 @@
     "imageAlt": "Переправы ВСУ на участке Славянск - Рай Александровка",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "svo-2026-04-24",
@@ -662,7 +793,8 @@
     "imageAlt": "Карта боевых действий СВО",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "svo-2026-05-06",
@@ -678,7 +810,8 @@
     "imageAlt": "Карта боевых действий СВО к 6 мая 2026 года",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "svo-2026-05-15",
@@ -694,7 +827,8 @@
     "imageAlt": "Карта боевых действий СВО к 15 мая 2026 года",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "svo-2026-05-21",
@@ -710,7 +844,8 @@
     "imageAlt": "Карта боевых действий СВО к 21 мая 2026 года",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "svo-2026-06-09",
@@ -729,7 +864,8 @@
     ],
     "home": {
       "important": 2
-    }
+    },
+    "sourceIds": []
   },
   {
     "id": "front-analysis-2026-03-31",
@@ -745,7 +881,8 @@
     "imageAlt": "Линия фронта по противнику",
     "locations": [
       "Восточный фронт"
-    ]
+    ],
+    "sourceIds": []
   },
   {
     "id": "lugansk-2014-06-02",
@@ -761,6 +898,15 @@
     "imageAlt": "Луганск 2 июня 2014 года - здание областной администрации после удара",
     "locations": [
       "ЛНР"
+    ],
+    "sourceIds": [
+      "src-7030874f539c",
+      "src-6f55e8c9227c",
+      "src-147295976366",
+      "src-10a3279f138c",
+      "src-912d5fe56084",
+      "src-64e9f40ed54e",
+      "src-3b0e2a389ab8"
     ]
   },
   {
@@ -770,13 +916,28 @@
     "url": "/war-crimes/starobelsk-2026-05-22/",
     "section": "warcrimes",
     "datePublished": "2026-05-22",
-    "dateModified": "2026-05-22",
+    "dateModified": "2026-05-23",
     "status": "open",
     "excerpt": "Обвинительное досье KRM РФ: удар по учебному корпусу и общежитию Старобельского профессионального колледжа, дети внутри здания, погибшие, пострадавшие и ответственность Украины.",
     "image": "/assets/img/war-crimes/starobelsk-2026-05-22/cover.webp",
     "imageAlt": "Старобельск 22 мая 2026 года - удар по колледжу и общежитию",
     "locations": [
       "ЛНР"
+    ],
+    "sourceIds": [],
+    "revisionHistory": [
+      {
+        "date": "2026-05-22",
+        "summary": "Первичная фиксация события и открытие досье."
+      },
+      {
+        "date": "2026-05-22",
+        "summary": "Обновлены данные о последствиях и ходе спасательных работ."
+      },
+      {
+        "date": "2026-05-23",
+        "summary": "Добавлены новые данные о погибших, пострадавших, заявлениях сторон и завершении поисковых работ."
+      }
     ]
   }
 ]

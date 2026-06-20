@@ -1,0 +1,312 @@
+[
+  {
+    "sourceId": "src-10a3279f138c",
+    "priority": "high",
+    "title": "ZN.ua: сообщение о списке погибших, опубликованном украинской милицией",
+    "url": "https://zn.ua/UKRAINE/mvd-obnarodovalo-spisok-pogibshih-ot-vzryva-v-luganskoy-oga-146389_.html",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-147295976366",
+    "priority": "high",
+    "title": "OHCHR: периодический доклад 2017-2018 годов",
+    "url": "https://ukraine.ohchr.org/sites/default/files/2024-03/UAReport19th_RUS_0.pdf",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-3b0e2a389ab8",
+    "priority": "high",
+    "title": "МИД России: заявление в связи с авиационным нападением на Луганск",
+    "url": "https://mid.ru/ru/foreign_policy/news/1605221/?lang=ru",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-64e9f40ed54e",
+    "priority": "high",
+    "title": "Kyiv Post: сообщение о боях за Луганский погранотряд 2 июня 2014 года",
+    "url": "https://archive.kyivpost.com/ukraine-politics/insurgents-assault-ukrainian-border-guards-in-luhansk-oblast-350281.html",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-6f55e8c9227c",
+    "priority": "high",
+    "title": "OHCHR: Report on the human rights situation in Ukraine, 15 June 2014",
+    "url": "https://www.ohchr.org/sites/default/files/Documents/Countries/UA/HRMMUReport15June2014.pdf",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-7030874f539c",
+    "priority": "high",
+    "title": "OSCE SMM: daily report based on information received until 18:00, 2 June 2014",
+    "url": "https://www.osce.org/ukraine-smm/119479",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-912d5fe56084",
+    "priority": "high",
+    "title": "RFE/RL: разбор конкурирующих версий удара по Луганску",
+    "url": "https://www.rferl.org/a/ukraine-unspun-luhansk-blast/25410384.html",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-126409d4adc0",
+    "priority": "medium",
+    "title": "Постановление Правительства ЛНР № 281/24",
+    "url": "https://sovminlnr.ru/docs/2024/12/13/281_24.pdf",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-168426597281",
+    "priority": "medium",
+    "title": "ombudsmanrf.org/appeal",
+    "url": "https://ombudsmanrf.org/appeal",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-197341de9549",
+    "priority": "medium",
+    "title": "Указ Главы ЛНР № УГ-449/26 о введении режима ЧС",
+    "url": "https://publication.pravo.gov.ru/document/8100202605250001",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-208740499ec7",
+    "priority": "medium",
+    "title": "gvp.gov.ru/gvp/reception/go",
+    "url": "https://gvp.gov.ru/gvp/reception/go",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-22ce7f5aec0b",
+    "priority": "medium",
+    "title": "Постановление Правительства ЛНР N 113/24",
+    "url": "https://base.garant.ru/409044928/",
+    "referencedBy": [
+      "powrlnr-2026-05-13"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-2b9ec16c4f35",
+    "priority": "medium",
+    "title": "Правительство ЛНР",
+    "url": "https://max.ru/government_lnr",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-2bf48999141c",
+    "priority": "medium",
+    "title": "letters.mil.ru/electronic_reception.htm",
+    "url": "https://letters.mil.ru/electronic_reception.htm",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-32ecc907c6e2",
+    "priority": "medium",
+    "title": "Постановление Правительства РФ от 28 декабря 2019 года № 1928",
+    "url": "https://publication.pravo.gov.ru/document/0001201912310071",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-34e86e37cbc5",
+    "priority": "medium",
+    "title": "saraliev.com/обратная-связь/",
+    "url": "http://saraliev.com/обратная-связь/",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-541dac45725e",
+    "priority": "medium",
+    "title": "ЛИЦ: 51,5 тыс. рублей за кв. м",
+    "url": "https://lug-info.ru/news/kompensacija-za-utrachennoe-zhile-v-lnr-vyrosla-do-515-tys.-rublej-za-kvadratnyj/",
+    "referencedBy": [
+      "powrlnr-2026-05-13"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-5ae1b22690ed",
+    "priority": "medium",
+    "title": "портале правовой информации",
+    "url": "http://publication.pravo.gov.ru/document/8100202603160001",
+    "referencedBy": [
+      "beshoz-2026-04-21"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-610f9f7e3883",
+    "priority": "medium",
+    "title": "Официальный сайт МФЦ ЛНР",
+    "url": "https://mfclnr.ru/",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-6572087b9479",
+    "priority": "medium",
+    "title": "Республиканский центр социальной защиты населения",
+    "url": "https://mintrud.lpr-reg.ru/rcszn1.html",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-85dbaf00a591",
+    "priority": "medium",
+    "title": "gvsu.gov.ru/appeals-from-citizens/",
+    "url": "http://gvsu.gov.ru/appeals-from-citizens/",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-88b0d3e75348",
+    "priority": "medium",
+    "title": "Постановление Правительства ЛНР № 281/24 о выплатах при чрезвычайных ситуациях",
+    "url": "https://publication.pravo.gov.ru/document/8100202412130007",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-93da44cafc1c",
+    "priority": "medium",
+    "title": "icrc.org/ru/rodstvennik-propal-ukraina",
+    "url": "https://www.icrc.org/ru/rodstvennik-propal-ukraina",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-94d96161bb90",
+    "priority": "medium",
+    "title": "letters.kremlin.ru/letters/send",
+    "url": "http://letters.kremlin.ru/letters/send",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-a715ea6a2cf0",
+    "priority": "medium",
+    "title": "Постановление Правительства РФ N 2255",
+    "url": "https://publication.pravo.gov.ru/document/0001202312290053",
+    "referencedBy": [
+      "powrlnr-2026-05-13"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-b0e5b6ed1516",
+    "priority": "medium",
+    "title": "Текст постановления Правительства ЛНР № 118/26",
+    "url": "https://sovminlnr.ru/docs/2026/06/08/118_26.pdf",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-b0ebd2a1ce7f",
+    "priority": "medium",
+    "title": "канал Леонида Пасечника в MAX",
+    "url": "https://max.ru/glava_lnr_info/AZ5QqCEUcac",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-ba3377b9fd05",
+    "priority": "medium",
+    "title": "Официальный сайт Республиканского центра социальной защиты населения ЛНР",
+    "url": "https://rcszn-lnr.ru/",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-ce2f70896ba3",
+    "priority": "medium",
+    "title": "Указ Главы ЛНР № УГ-509/26 об отмене режима ЧС",
+    "url": "https://publication.pravo.gov.ru/document/8100202606110001",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-dbada24fb28e",
+    "priority": "medium",
+    "title": "«О государственной геномной регистрации»",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_82263/",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-e94c01753f8e",
+    "priority": "medium",
+    "title": "Официальное опубликование постановления Правительства ЛНР № 118/26",
+    "url": "https://publication.pravo.gov.ru/document/8100202606080001",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  }
+]

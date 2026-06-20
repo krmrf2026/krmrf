@@ -181,6 +181,63 @@ const replaceCatalog = (html, key, items, innerOverride = null) => {
   return html.replace(pattern, `<!-- KRM CATALOG ${key} START -->${replacement}<!-- KRM CATALOG ${key} END -->`);
 };
 
+const syncPublicationMetadata = (html, item, buildDate) => {
+  let updated = html.replace(
+    /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g,
+    (whole, jsonText) => {
+      let data;
+      try { data = JSON.parse(jsonText); } catch { return whole; }
+      const nodes = Array.isArray(data?.['@graph']) ? data['@graph'] : [data];
+      const article = nodes.find(node => node && ['Article', 'NewsArticle', 'Report'].includes(node['@type']));
+      if (!article) return whole;
+      article.headline = item.title;
+      article.datePublished = item.datePublished;
+      article.dateModified = item.dateModified;
+      article.url = `${SITE_URL}${item.url}`;
+      article.mainEntityOfPage = `${SITE_URL}${item.url}`;
+      article.image = `${SITE_URL}${item.image}`;
+      return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+    }
+  );
+
+  const section = SECTION_LABELS[item.section] || item.section;
+  updated = updated.replace(/(<strong>Раздел:<\/strong>\s*)[^<•]+/i, `$1${section}`);
+
+  const revisionMarker = `<!-- KRM REVISION META START -->${item.dateModified > item.datePublished
+    ? `<p class="revision-meta">Материал обновлён: <time datetime="${escapeHtml(item.dateModified)}">${escapeHtml(formatDate(item.dateModified))}</time></p>`
+    : ''}<!-- KRM REVISION META END -->`;
+  if (/<!-- KRM REVISION META START -->[\s\S]*?<!-- KRM REVISION META END -->/.test(updated)) {
+    updated = updated.replace(/<!-- KRM REVISION META START -->[\s\S]*?<!-- KRM REVISION META END -->/, revisionMarker);
+  } else if (item.dateModified > item.datePublished) {
+    const metaMatch = updated.match(/<p\b[^>]*class="[^"]*(?:article-meta|meta)[^"]*"[^>]*>[\s\S]*?<\/p>/i);
+    if (metaMatch) updated = updated.replace(metaMatch[0], `${metaMatch[0]}${revisionMarker}`);
+    else updated = updated.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, `$1${revisionMarker}`);
+  }
+
+  if (item.type === 'guide') {
+    const due = item.reviewAfter < buildDate;
+    const statusClass = due ? 'guide-status--review' : 'guide-status--current';
+    const statusText = due
+      ? `Срок плановой проверки наступил ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте нормы с официальным органом.`
+      : `Плановая повторная проверка актуальности — не позднее ${formatDate(item.reviewAfter)}.`;
+    const reviewed = item.reviewedAt || item.dateModified;
+    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" aria-label="Статус актуальности памятки"><p><strong>${due ? 'Требует повторной проверки' : 'Контроль актуальности'}</strong></p><p>Последняя редакционная проверка: <time datetime="${escapeHtml(reviewed)}">${escapeHtml(formatDate(reviewed))}</time>. ${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
+    if (/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/.test(updated)) {
+      updated = updated.replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/, block);
+    } else {
+      const metaMatch = updated.match(/<p\b[^>]*class="[^"]*(?:article-meta|meta)[^"]*"[^>]*>[\s\S]*?<\/p>/i);
+      if (metaMatch) updated = updated.replace(metaMatch[0], `${metaMatch[0]}${block}`);
+      else updated = updated.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, `$1${block}`);
+    }
+  }
+  return updated;
+};
+
+const mapArchiveInner = manifest => [...(manifest.snapshots || [])]
+  .sort((a, b) => String(b.validFrom).localeCompare(String(a.validFrom)))
+  .map(snapshot => `<li><time datetime="${escapeHtml(snapshot.validFrom)}">${escapeHtml(formatDate(String(snapshot.validFrom).slice(0, 10)))}</time><span>${escapeHtml(snapshot.confidence || 'Оценочная карта')}</span><a href="/map/?snapshot=${encodeURIComponent(snapshot.id)}">Открыть снимок карты</a>${snapshot.assessmentUrl ? ` <a class="archive-secondary-link" href="${escapeHtml(snapshot.assessmentUrl)}">Связанная оценка</a>` : ''}</li>`)
+  .join('');
+
 const updateItemList = (html, items) => html.replace(
   /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g,
   (whole, jsonText) => {
@@ -210,7 +267,7 @@ const archiveInner = (pages, searchByUrl) => {
     const rows = items.map(item => {
       const search = searchByUrl.get(item.url) || {};
       const topics = Array.isArray(item.topics) ? item.topics.join(' ') : '';
-      const locations = Array.isArray(item.locations) ? item.locations.join(' ') : '';
+      const locations = Array.isArray(item.locations) ? item.locations.join('|') : '';
       const haystack = [item.title, item.excerpt, item.period, topics, locations,
         SECTION_LABELS[item.section], TYPE_LABELS[item.type], search.description]
         .filter(Boolean).join(' ');
@@ -235,10 +292,20 @@ const parseSitemap = xml => {
   return map;
 };
 
-const sitemapXml = (pages, oldMap, buildDate) => {
+const sitemapXml = (pages, oldMap, buildDate, redirectedPaths = new Set()) => {
   const publicationUrls = new Set(pages.map(item => `${SITE_URL}${item.url}`));
-  const fixed = [...oldMap.entries()]
-    .filter(([url]) => !publicationUrls.has(url) && !url.endsWith('/404.html'))
+  const requiredStaticPaths = [
+    '/', '/about/', '/archive/', '/assessment/', '/kremennaya/', '/map/', '/map/archive/',
+    '/methodology/', '/news/', '/news/civilian-impact/', '/news/lnr/', '/news/politics/',
+    '/news/svo/', '/reference/', '/search/', '/war-crimes/'
+  ];
+  const staticMap = new Map(oldMap);
+  for (const pathname of requiredStaticPaths) {
+    const url = `${SITE_URL}${pathname}`;
+    if (!staticMap.has(url)) staticMap.set(url, buildDate);
+  }
+  const fixed = [...staticMap.entries()]
+    .filter(([url]) => !publicationUrls.has(url) && !url.endsWith('/404.html') && !redirectedPaths.has(new URL(url).pathname))
     .map(([url, lastmod]) => ({ url, lastmod: lastmod || buildDate }));
   const pubs = pages.map(item => ({
     url: `${SITE_URL}${item.url}`,
@@ -275,6 +342,16 @@ if (errors.length) {
   process.exit(1);
 }
 
+const site = readJson('data/site.json');
+const packageJson = readJson('package.json');
+site.version = packageJson.version;
+site.buildDate = site.buildDate || packageJson.version.match(/\d{4}\.\d{1,2}\.\d{1,2}/)?.[0]?.replaceAll('.', '-') || new Date().toISOString().slice(0, 10);
+
+for (const item of pages) {
+  const file = urlToHtmlFile(item.url);
+  write(file, syncPublicationMetadata(read(file), item, site.buildDate));
+}
+
 const enriched = pages.map(item => {
   const html = read(urlToHtmlFile(item.url));
   const main = html.match(/<main\b[\s\S]*?<\/main>/i)?.[0] || html;
@@ -294,7 +371,10 @@ const searchIndex = enriched.map(item => ({
   type: TYPE_LABELS[item.type] || item.type,
   date: item.datePublished,
   description: item.excerpt || item.htmlDescription,
-  text: item.searchText
+  text: item.searchText,
+  topics: Array.isArray(item.topics) ? item.topics.join(' ') : '',
+  locations: Array.isArray(item.locations) ? item.locations.join(' ') : '',
+  period: item.period || ''
 })).sort((a, b) => String(b.date).localeCompare(String(a.date)));
 const searchByUrl = new Map(searchIndex.map(item => [item.url, item]));
 
@@ -334,6 +414,16 @@ let archive = read('archive/index.html');
 archive = replaceCatalog(archive, 'archive', enriched, archiveInner(enriched, searchByUrl));
 archive = updateItemList(archive, [...enriched].sort(sortNewest));
 write('archive/index.html', archive);
+
+if (exists('data/map/manifest.json') && exists('map/archive/index.html')) {
+  const manifest = readJson('data/map/manifest.json');
+  let mapArchive = read('map/archive/index.html');
+  mapArchive = mapArchive.replace(
+    /<!-- KRM MAP ARCHIVE START -->[\s\S]*?<!-- KRM MAP ARCHIVE END -->/,
+    `<!-- KRM MAP ARCHIVE START --><ol class="archive-list">${mapArchiveInner(manifest)}</ol><!-- KRM MAP ARCHIVE END -->`
+  );
+  write('map/archive/index.html', mapArchive);
+}
 
 writeJson('data/search-index.json', searchIndex);
 
@@ -384,9 +474,6 @@ writeJson('data/news.json', enriched.filter(item => ['article', 'guide', 'dossie
   url: item.url
 })));
 
-const site = readJson('data/site.json');
-site.version = site.version || '2026-06-20-r3';
-site.buildDate = site.buildDate || '2026-06-20';
 site.contentCount = enriched.length;
 writeJson('data/site.json', site);
 
@@ -395,7 +482,10 @@ write('assessment/feed.xml', feedXml('KRM РФ — оценки фронта', '
 write('kremennaya/feed.xml', feedXml('KRM РФ — Кременная', '/kremennaya/feed.xml', '/kremennaya/', enriched.filter(item => item.section === 'kremennaya'), 20));
 
 const oldSitemap = parseSitemap(read('sitemap.xml'));
-write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate));
+const redirectedPaths = new Set(read('_redirects').split(/\r?\n/)
+  .map(line => line.trim()).filter(line => line && !line.startsWith('#'))
+  .map(line => line.split(/\s+/)[0]));
+write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate, redirectedPaths));
 
 console.log(`Сборка завершена: ${enriched.length} публикаций.`);
 console.log('Обновлены главная, индексы, архив, поиск, JSON, sitemap и Atom-ленты.');

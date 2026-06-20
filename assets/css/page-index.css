@@ -94,3 +94,15 @@
 }
 .chronicle-filters { margin: 0 0 var(--space-6); }
 .chronicle-filters__label { margin: 0 0 .6rem; font-weight: 800; }
+
+.archive-facets { max-width: 980px; margin: 0 0 var(--space-6); display: grid; gap: var(--space-4); }
+.filter-group { min-width: 0; margin: 0; padding: 0; border: 0; }
+.filter-group legend { margin: 0 0 .45rem; font-size: var(--text-sm); font-weight: 800; }
+.filter-group .filter-bar { margin-bottom: 0; }
+.filter-count { display: inline-flex; min-width: 1.45rem; height: 1.45rem; align-items: center; justify-content: center; margin-left: .3rem; padding-inline: .3rem; border-radius: 999px; background: var(--color-surface-muted); color: var(--color-text-muted); font-size: .75rem; }
+.filter-bar button[aria-pressed="true"] .filter-count { background: rgba(255,255,255,.2); color: #fff; }
+.filter-bar button:disabled { opacity: .48; cursor: not-allowed; }
+.archive-reset { justify-self: start; }
+.archive-secondary-link { grid-column: 3; font-size: var(--text-sm); font-weight: 500 !important; }
+.search-result--suggestion { border-style: dashed; }
+@media (max-width: 640px) { .archive-secondary-link { grid-column: 1 / -1; } }

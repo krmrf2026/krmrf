@@ -1,5 +1,5 @@
 (() => {
-  const buttons = [...document.querySelectorAll('[data-filter]')];
+  const controls = [...document.querySelectorAll('[data-filter-group][data-filter-value]')];
   const input = document.getElementById('archive-search');
   const status = document.getElementById('archive-status');
   const reset = document.getElementById('archive-reset');
@@ -14,7 +14,7 @@
     'civilian-impact': 'Гражданские последствия',
     politics: 'Политика',
     warcrimes: 'Досье',
-    assessment: 'Оценки'
+    assessment: 'Оценки фронта'
   };
 
   const TYPE_LABELS = {
@@ -56,50 +56,67 @@
     return `${months[Number(month) - 1]} ${year}`;
   };
 
-  const params = new URLSearchParams(window.location.search);
-  const allowed = new Set(buttons.map(button => button.dataset.filter || 'all'));
-  let active = allowed.has(params.get('section')) ? params.get('section') : 'all';
-  if (input && params.get('q')) input.value = params.get('q');
-
+  const state = { type: '', section: '', location: '' };
   let rows = [];
   let extraSearchByUrl = new Map();
+  let hydrated = false;
 
-  const updateUrl = () => {
-    const next = new URLSearchParams();
+  const readUrl = () => {
+    const params = new URLSearchParams(window.location.search);
+    for (const group of Object.keys(state)) {
+      const value = params.get(group) || '';
+      const allowed = controls.some(control => control.dataset.filterGroup === group && control.dataset.filterValue === value);
+      state[group] = allowed ? value : '';
+    }
+    if (input) input.value = params.get('q') || '';
+  };
+
+  const writeUrl = ({ push = false } = {}) => {
+    const params = new URLSearchParams();
+    for (const [group, value] of Object.entries(state)) if (value) params.set(group, value);
     const query = input?.value.trim() || '';
-    if (active !== 'all') next.set('section', active);
-    if (query) next.set('q', query);
-    const url = next.toString() ? `${window.location.pathname}?${next}` : window.location.pathname;
-    history.replaceState(null, '', url);
+    if (query) params.set('q', query);
+    const url = params.toString() ? `${window.location.pathname}?${params}` : window.location.pathname;
+    const method = push ? 'pushState' : 'replaceState';
+    history[method]({ ...state, q: query }, '', url);
   };
 
-  const rowMatchesFilter = row => {
-    if (active === 'all') return true;
-    const section = row.dataset.section || '';
-    const type = row.dataset.type || '';
-    const locations = normalize(row.dataset.locations);
-    const topics = normalize(row.dataset.topics);
-
-    if (active === 'assessment') return type === 'assessment' || section === 'assessment';
-    if (active === 'law') return type === 'guide' || section === 'law';
-    if (active === 'warcrimes') return type === 'dossier' || section === 'warcrimes';
-    if (active === 'kremennaya') return section === 'kremennaya' || locations.includes('кременная');
-    if (active === 'lnr') return section === 'lnr' || locations.includes('лнр');
-    if (active === 'civilian-impact') return section === 'civilian-impact' || topics.includes('civilian-impact');
-    return section === active || type === active;
+  const matchesCategory = (row, candidate = state) => {
+    if (candidate.type && row.dataset.type !== candidate.type) return false;
+    if (candidate.section && row.dataset.section !== candidate.section) return false;
+    if (candidate.location) {
+      const locations = String(row.dataset.locations || '').split('|').map(normalize).filter(Boolean);
+      const target = normalize(candidate.location);
+      if (!locations.includes(target)) return false;
+    }
+    return true;
   };
 
-  const apply = () => {
+  const matchesText = row => {
+    const words = normalize(input?.value).split(' ').filter(Boolean);
+    if (!words.length) return true;
+    const haystack = normalize(`${row.dataset.search || row.textContent} ${extraSearchByUrl.get(row.dataset.url) || ''}`);
+    return words.every(word => haystack.includes(word));
+  };
+
+  const updateCounts = () => {
+    controls.forEach(control => {
+      const group = control.dataset.filterGroup;
+      const value = control.dataset.filterValue;
+      const candidate = { ...state, [group]: value };
+      const count = rows.filter(row => matchesText(row) && matchesCategory(row, candidate)).length;
+      const countEl = control.querySelector('.filter-count');
+      if (countEl) countEl.textContent = String(count);
+      control.disabled = count === 0 && state[group] !== value;
+    });
+  };
+
+  const apply = ({ updateHistory = false, push = false } = {}) => {
     rows = [...listRoot.querySelectorAll('.archive-list li')];
-    const query = normalize(input?.value);
-    const words = query.split(' ').filter(Boolean);
     let visible = 0;
 
     rows.forEach(row => {
-      const haystack = normalize(`${row.dataset.search || row.textContent} ${extraSearchByUrl.get(row.dataset.url) || ''}`);
-      const textMatch = !words.length || words.every(word => haystack.includes(word));
-      const categoryMatch = rowMatchesFilter(row);
-      row.hidden = !(categoryMatch && textMatch);
+      row.hidden = !(matchesCategory(row) && matchesText(row));
       if (!row.hidden) visible += 1;
     });
 
@@ -107,21 +124,24 @@
       group.hidden = ![...group.querySelectorAll('li')].some(row => !row.hidden);
     });
 
-    buttons.forEach(button => {
-      button.setAttribute('aria-pressed', String((button.dataset.filter || 'all') === active));
+    controls.forEach(control => {
+      const active = state[control.dataset.filterGroup] === control.dataset.filterValue;
+      control.setAttribute('aria-pressed', String(active));
     });
 
-    const filterLabel = active === 'all'
-      ? ''
-      : ` · ${buttons.find(button => button.dataset.filter === active)?.textContent.trim() || active}`;
+    const activeLabels = controls
+      .filter(control => control.getAttribute('aria-pressed') === 'true')
+      .map(control => control.dataset.filterLabel || control.childNodes[0]?.textContent?.trim() || control.textContent.trim());
+
     if (status) {
       status.textContent = visible
-        ? `Показано материалов: ${visible} из ${rows.length}${filterLabel}`
-        : 'По выбранным условиям материалы не найдены. Очистите поиск или сбросьте фильтр.';
+        ? `Показано материалов: ${visible} из ${rows.length}${activeLabels.length ? ` · ${activeLabels.join(' · ')}` : ''}`
+        : 'По выбранным условиям материалы не найдены. Измените запрос или сбросьте фильтры.';
     }
 
-    if (reset) reset.hidden = active === 'all' && !(input?.value.trim());
-    updateUrl();
+    if (reset) reset.hidden = !Object.values(state).some(Boolean) && !(input?.value.trim());
+    updateCounts();
+    if (updateHistory) writeUrl({ push });
   };
 
   const renderArchive = (pages, searchByUrl) => {
@@ -137,46 +157,50 @@
     });
 
     listRoot.innerHTML = [...groups.entries()].map(([, items]) => {
-      const first = items[0];
       const rowsHtml = items.map(item => {
         const searchItem = searchByUrl.get(item.url) || {};
         const topics = Array.isArray(item.topics) ? item.topics.join(' ') : '';
-        const locations = Array.isArray(item.locations) ? item.locations.join(' ') : '';
-        const searchText = [
-          item.title,
-          item.excerpt,
-          item.period,
-          topics,
-          locations,
-          SECTION_LABELS[item.section],
-          TYPE_LABELS[item.type],
-          searchItem.description
-        ].filter(Boolean).join(' ');
+        const locations = Array.isArray(item.locations) ? item.locations.join('|') : '';
+        const searchText = [item.title, item.excerpt, item.period, topics, Array.isArray(item.locations) ? item.locations.join(' ') : '',
+          SECTION_LABELS[item.section], TYPE_LABELS[item.type], searchItem.description, searchItem.text]
+          .filter(Boolean).join(' ');
         return `<li data-id="${escapeHtml(item.id)}" data-url="${escapeHtml(item.url)}" data-section="${escapeHtml(item.section)}" data-type="${escapeHtml(item.type)}" data-year="${escapeHtml(String(item.datePublished).slice(0, 4))}" data-topics="${escapeHtml(topics)}" data-locations="${escapeHtml(locations)}" data-search="${escapeHtml(searchText)}">
           <time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time>
           <span>${escapeHtml(TYPE_LABELS[item.type] || 'Материал')}</span>
           <a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a>
         </li>`;
       }).join('');
-      return `<section class="archive-group"><h2>${escapeHtml(monthTitle(first.datePublished))}</h2><ol class="archive-list">${rowsHtml}</ol></section>`;
+      return `<section class="archive-group"><h2>${escapeHtml(monthTitle(items[0].datePublished))}</h2><ol class="archive-list">${rowsHtml}</ol></section>`;
     }).join('');
+    hydrated = true;
   };
 
-  buttons.forEach(button => button.addEventListener('click', () => {
-    const next = button.dataset.filter || 'all';
-    active = next === active && next !== 'all' ? 'all' : next;
-    apply();
+  controls.forEach(control => control.addEventListener('click', () => {
+    const group = control.dataset.filterGroup;
+    const value = control.dataset.filterValue;
+    state[group] = state[group] === value ? '' : value;
+    apply({ updateHistory: true, push: true });
   }));
 
-  input?.addEventListener('input', apply);
+  let inputTimer;
+  input?.addEventListener('input', () => {
+    clearTimeout(inputTimer);
+    inputTimer = setTimeout(() => apply({ updateHistory: true }), 120);
+  });
+
   reset?.addEventListener('click', () => {
-    active = 'all';
+    Object.keys(state).forEach(key => { state[key] = ''; });
     if (input) input.value = '';
-    apply();
+    apply({ updateHistory: true, push: true });
     input?.focus();
   });
 
-  window.addEventListener('popstate', () => window.location.reload());
+  window.addEventListener('popstate', () => {
+    readUrl();
+    apply();
+  });
+
+  readUrl();
 
   Promise.allSettled([
     fetch('/data/pages.json', { credentials: 'same-origin', cache: 'no-store' }).then(response => {
@@ -199,4 +223,6 @@
     }
     apply();
   }).catch(() => apply());
+
+  if (!hydrated) apply();
 })();

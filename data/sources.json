@@ -1,0 +1,1090 @@
+[
+  {
+    "id": "src-044455c699ee",
+    "url": "https://www.interfax.ru/russia/1093272",
+    "title": "Интерфакс об атаке БПЛА на автобус “Рубежное - Кременная”",
+    "publisher": "interfax.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-06"
+    ]
+  },
+  {
+    "id": "src-0d0a37a789e6",
+    "url": "https://lug-info.ru/news/ukrainskie-drony-atakovali-gosuchrezhdenie-v-belokurakino-raneny-15-sotrudnikov/",
+    "title": "Белокуракино",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-10a3279f138c",
+    "url": "https://zn.ua/UKRAINE/mvd-obnarodovalo-spisok-pogibshih-ot-vzryva-v-luganskoy-oga-146389_.html",
+    "title": "ZN.ua: сообщение о списке погибших, опубликованном украинской милицией",
+    "publisher": "zn.ua",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-126409d4adc0",
+    "url": "https://sovminlnr.ru/docs/2024/12/13/281_24.pdf",
+    "title": "Постановление Правительства ЛНР № 281/24",
+    "publisher": "sovminlnr.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ]
+  },
+  {
+    "id": "src-140a8e92652e",
+    "url": "https://ihl-databases.icrc.org/en/customary-ihl/v1/rule14",
+    "title": "обычное МГП, правило 14 о пропорциональности",
+    "publisher": "ihl-databases.icrc.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-147295976366",
+    "url": "https://ukraine.ohchr.org/sites/default/files/2024-03/UAReport19th_RUS_0.pdf",
+    "title": "OHCHR: периодический доклад 2017-2018 годов",
+    "publisher": "ukraine.ohchr.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-168426597281",
+    "url": "https://ombudsmanrf.org/appeal",
+    "title": "ombudsmanrf.org/appeal",
+    "publisher": "ombudsmanrf.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-197341de9549",
+    "url": "https://publication.pravo.gov.ru/document/8100202605250001",
+    "title": "Указ Главы ЛНР № УГ-449/26 о введении режима ЧС",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-208740499ec7",
+    "url": "https://gvp.gov.ru/gvp/reception/go",
+    "title": "gvp.gov.ru/gvp/reception/go",
+    "publisher": "gvp.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-22ce7f5aec0b",
+    "url": "https://base.garant.ru/409044928/",
+    "title": "Постановление Правительства ЛНР N 113/24",
+    "publisher": "base.garant.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "powrlnr-2026-05-13"
+    ]
+  },
+  {
+    "id": "src-2a459ce2aa67",
+    "url": "https://lug-info.ru/news/mintopenergo-prinjato-reshenie-ob-ogranichenii-otpuska-benzina-na-azs-v-lnr/",
+    "title": "ЛИЦ о временном ограничении отпуска топлива в ЛНР",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-06"
+    ]
+  },
+  {
+    "id": "src-2b9ec16c4f35",
+    "url": "https://max.ru/government_lnr",
+    "title": "Правительство ЛНР",
+    "publisher": "max.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ]
+  },
+  {
+    "id": "src-2bf48999141c",
+    "url": "https://letters.mil.ru/electronic_reception.htm",
+    "title": "letters.mil.ru/electronic_reception.htm",
+    "publisher": "letters.mil.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-32ecc907c6e2",
+    "url": "https://publication.pravo.gov.ru/document/0001201912310071",
+    "title": "Постановление Правительства РФ от 28 декабря 2019 года № 1928",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-349dad64bfd0",
+    "url": "https://lug-info.ru/news/narodnyj-front-pomogaet-likvidirovat-posledstvija-nochnoj-ataki-bpla-v-luganske/",
+    "title": "Луганск 8 апреля",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-34e86e37cbc5",
+    "url": "http://saraliev.com/обратная-связь/",
+    "title": "saraliev.com/обратная-связь/",
+    "publisher": "saraliev.com",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-386de49564cb",
+    "url": "https://ihl-databases.icrc.org/en/ihl-treaties/api-1977/article-57",
+    "title": "статья 57 Дополнительного протокола I о мерах предосторожности при нападении",
+    "publisher": "ihl-databases.icrc.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-3b0e2a389ab8",
+    "url": "https://mid.ru/ru/foreign_policy/news/1605221/?lang=ru",
+    "title": "МИД России: заявление в связи с авиационным нападением на Луганск",
+    "publisher": "mid.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-3cecbaaf49b7",
+    "url": "https://ukraine.un.org/en/126054-7-years-no-answers-what-lacking-investigations-events-odesa-2-may-2014",
+    "title": "United Nations in Ukraine: 7 years with no answers",
+    "publisher": "ukraine.un.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "odessa-2026-05-02"
+    ]
+  },
+  {
+    "id": "src-3d4d842eb14e",
+    "url": "https://ukraine.ohchr.org/en/accountability-killings-and-violent-deaths-2-may-2014-odesa-briefing-note-EN",
+    "title": "OHCHR: Accountability for Killings and Violent Deaths on 2 May 2014 in Odesa",
+    "publisher": "ukraine.ohchr.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "odessa-2026-05-02"
+    ]
+  },
+  {
+    "id": "src-451dc41a03c6",
+    "url": "https://lug-info.ru/news/ukrainskie-bpla-i-drg-aktivizirovalis-v-svatovskom-rajone--marochko/",
+    "title": "Сватовский район",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-4879605f5fae",
+    "url": "https://publication.pravo.gov.ru/document/0001202210050006",
+    "title": "ФКЗ от 04.10.2022 № 6-ФКЗ о принятии ЛНР в состав РФ",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-540187e2f4ea",
+    "url": "https://www.kremlin.ru/acts/constitution/item",
+    "title": "Конституция РФ",
+    "publisher": "kremlin.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-541dac45725e",
+    "url": "https://lug-info.ru/news/kompensacija-za-utrachennoe-zhile-v-lnr-vyrosla-do-515-tys.-rublej-za-kvadratnyj/",
+    "title": "ЛИЦ: 51,5 тыс. рублей за кв. м",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "powrlnr-2026-05-13"
+    ]
+  },
+  {
+    "id": "src-54c01af36dbd",
+    "url": "https://pravo.gov.ru/proxy/ips/?docbody=&link_id=13&nd=102030429",
+    "title": "указ Президента РФ от 02.06.1994 о государственном празднике",
+    "publisher": "pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-5ae1b22690ed",
+    "url": "http://publication.pravo.gov.ru/document/8100202603160001",
+    "title": "портале правовой информации",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-2026-04-21"
+    ]
+  },
+  {
+    "id": "src-610f9f7e3883",
+    "url": "https://mfclnr.ru/",
+    "title": "Официальный сайт МФЦ ЛНР",
+    "publisher": "mfclnr.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-64e699f2fbaf",
+    "url": "https://www.coe.int/en/web/portal/international-advisory-panel/-/asset_publisher/EPeqGGDr0yBr/content/iap-report-on-odessa-events",
+    "title": "Council of Europe: International Advisory Panel report on Odesa events",
+    "publisher": "coe.int",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "odessa-2026-05-02"
+    ]
+  },
+  {
+    "id": "src-64e9f40ed54e",
+    "url": "https://archive.kyivpost.com/ukraine-politics/insurgents-assault-ukrainian-border-guards-in-luhansk-oblast-350281.html",
+    "title": "Kyiv Post: сообщение о боях за Луганский погранотряд 2 июня 2014 года",
+    "publisher": "archive.kyivpost.com",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-6572087b9479",
+    "url": "https://mintrud.lpr-reg.ru/rcszn1.html",
+    "title": "Республиканский центр социальной защиты населения",
+    "publisher": "mintrud.lpr-reg.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ]
+  },
+  {
+    "id": "src-6971576587b1",
+    "url": "https://lug-info.ru/news/ukrainskij-bespilotnik-atakoval-fermerskoe-hozjajstvo-v-sele-rozkvit-ranen/",
+    "title": "Розквит",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-6a830f116463",
+    "url": "https://pravo.gov.ru/proxy/ips/?backlink=1&docbody=&nd=102376335&prevDoc=102392721&rdk=0",
+    "title": "ФЗ № 218-ФЗ о государственной регистрации недвижимости",
+    "publisher": "pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-6f55e8c9227c",
+    "url": "https://www.ohchr.org/sites/default/files/Documents/Countries/UA/HRMMUReport15June2014.pdf",
+    "title": "OHCHR: Report on the human rights situation in Ukraine, 15 June 2014",
+    "publisher": "ohchr.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-7030874f539c",
+    "url": "https://www.osce.org/ukraine-smm/119479",
+    "title": "OSCE SMM: daily report based on information received until 18:00, 2 June 2014",
+    "publisher": "osce.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-78e3be7c2ea7",
+    "url": "https://lug-info.ru/news/vsu-dronami-atakovali-srazu-neskolko-naselennyh-punktov-v-lnr-ranen-mirnyj/",
+    "title": "несколько населенных пунктов ЛНР",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-79a63a0eb370",
+    "url": "https://lug-info.ru/news/otdelenija-pochty-lnr-i-mfc-lnr-v-markovke-priostanovili-rabotu-posle-ataki/",
+    "title": "почта и МФЦ в Марковке",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-7f04d2decca9",
+    "url": "https://publication.pravo.gov.ru/Document/View/0001202507070013",
+    "title": "ФЗ от 07.07.2025 № 193-ФЗ о признании документов на недвижимость в новых регионах",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-80ea19167453",
+    "url": "https://lug-info.ru/news/vsu-dronami-atakovali-avtozapravku-v-pervomajske-postradavshih-net/",
+    "title": "Первомайск",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-85dbaf00a591",
+    "url": "http://gvsu.gov.ru/appeals-from-citizens/",
+    "title": "gvsu.gov.ru/appeals-from-citizens/",
+    "publisher": "gvsu.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-88b0d3e75348",
+    "url": "https://publication.pravo.gov.ru/document/8100202412130007",
+    "title": "Постановление Правительства ЛНР № 281/24 о выплатах при чрезвычайных ситуациях",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-912d5fe56084",
+    "url": "https://www.rferl.org/a/ukraine-unspun-luhansk-blast/25410384.html",
+    "title": "RFE/RL: разбор конкурирующих версий удара по Луганску",
+    "publisher": "rferl.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "high",
+    "referencedBy": [
+      "lugansk-2014-06-02"
+    ]
+  },
+  {
+    "id": "src-929dc7121159",
+    "url": "https://tass.ru/info/20689921",
+    "title": "ТАСС: что известно о событиях в Одессе 2 мая 2014 года",
+    "publisher": "tass.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "odessa-2026-05-02"
+    ]
+  },
+  {
+    "id": "src-93da44cafc1c",
+    "url": "https://www.icrc.org/ru/rodstvennik-propal-ukraina",
+    "title": "icrc.org/ru/rodstvennik-propal-ukraina",
+    "publisher": "icrc.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-94d96161bb90",
+    "url": "http://letters.kremlin.ru/letters/send",
+    "title": "letters.kremlin.ru/letters/send",
+    "publisher": "letters.kremlin.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-a1a170a03f87",
+    "url": "https://lug-info.ru/news/vsu-nochju-atakovali-dronami-pjat-municipalitetov-lnr--pasechnik/",
+    "title": "пять муниципалитетов ЛНР",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-a715ea6a2cf0",
+    "url": "https://publication.pravo.gov.ru/document/0001202312290053",
+    "title": "Постановление Правительства РФ N 2255",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "powrlnr-2026-05-13"
+    ]
+  },
+  {
+    "id": "src-a8cded0a30e3",
+    "url": "https://pravo.gov.ru/proxy/ips/?docview=&empire=&nd=102016733&page=1&print=1&rdk=1",
+    "title": "постановление Верховного Совета РФ от 11.06.1992 о праздничном нерабочем дне",
+    "publisher": "pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-b0e5b6ed1516",
+    "url": "https://sovminlnr.ru/docs/2026/06/08/118_26.pdf",
+    "title": "Текст постановления Правительства ЛНР № 118/26",
+    "publisher": "sovminlnr.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-b0ebd2a1ce7f",
+    "url": "https://max.ru/glava_lnr_info/AZ5QqCEUcac",
+    "title": "канал Леонида Пасечника в MAX",
+    "publisher": "max.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "vuplatylnr-2026-05-25"
+    ]
+  },
+  {
+    "id": "src-b47debd971f6",
+    "url": "https://ihl-databases.icrc.org/en%2Fihl-treaties%2Fapi-1977/article-52",
+    "title": "статья 52 Дополнительного протокола I о гражданских объектах и военных целях",
+    "publisher": "ihl-databases.icrc.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-b76354503114",
+    "url": "https://lug-info.ru/news/dron-vsu-atakoval-centr-luganska-raneny-dva-cheloveka--pasechnik/",
+    "title": "центр Луганска",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-ba3377b9fd05",
+    "url": "https://rcszn-lnr.ru/",
+    "title": "Официальный сайт Республиканского центра социальной защиты населения ЛНР",
+    "publisher": "rcszn-lnr.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-c9c602241731",
+    "url": "https://lug-info.ru/news/vsu-nanesli-udar-po-starobelsku-tremja-volnami-ispolzovav-16-bespilotnikov-/",
+    "title": "16 БПЛА по Старобельску",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-cd8f84d9e6de",
+    "url": "https://lug-info.ru/news/tragedija-v-starobelske.-chto-izvestno-na-1300-22-maja/",
+    "title": "Старобельск",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-ce2f70896ba3",
+    "url": "https://publication.pravo.gov.ru/document/8100202606110001",
+    "title": "Указ Главы ЛНР № УГ-509/26 об отмене режима ЧС",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-cf8104cff69a",
+    "url": "https://lug-info.ru/news/bespilotnik-vsu-atakoval-sotrudnikov-mchs-rossii-po-lnr-v-rajone-smoljaninovo/",
+    "title": "Смоляниново",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-d17d0e219213",
+    "url": "https://ihl-databases.icrc.org/en/customary-ihl/v1/rule7",
+    "title": "обычное МГП, правило 7 о различении гражданских объектов и военных целей",
+    "publisher": "ihl-databases.icrc.org",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-d1fd1180cad6",
+    "url": "https://www.prlib.ru/history/619308",
+    "title": "Президентская библиотека о Дне России и Декларации 12 июня 1990 года",
+    "publisher": "prlib.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-dbada24fb28e",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_82263/",
+    "title": "«О государственной геномной регистрации»",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-e0546708f4f8",
+    "url": "https://lug-info.ru/news/sostojanie-troih-ranennyh-v-rezultate-ataki-bpla-zhitelej-markovki-ostaetsja/",
+    "title": "Марковка",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-e60cae01aec7",
+    "url": "https://www.echr.coe.int/w/judgment-concerning-ukraine-2",
+    "title": "ECHR: judgment concerning Ukraine, Odesa events",
+    "publisher": "echr.coe.int",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "odessa-2026-05-02"
+    ]
+  },
+  {
+    "id": "src-e94c01753f8e",
+    "url": "https://publication.pravo.gov.ru/document/8100202606080001",
+    "title": "Официальное опубликование постановления Правительства ЛНР № 118/26",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-eba01d5b20ae",
+    "url": "https://lug-info.ru/news/municipalnye-uchrezhdenija-starobelskogo-okruga-priostanovili-rabotu-iz-za/",
+    "title": "Старобельский округ",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-fa277dcdbed8",
+    "url": "https://lug-info.ru/news/spasatelnaja-operacija-v-starobelske-shla-45-chasov-15-raz-byla-opasnost/",
+    "title": "спасательная операция в Старобельске",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-05-27"
+    ]
+  }
+]
