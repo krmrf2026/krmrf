@@ -1,0 +1,15 @@
+{
+  "name": "krmrf-static-archive",
+  "private": true,
+  "version": "2026.6.20-r3",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "validate": "node tools/validate.mjs",
+    "check": "npm run build && npm run validate",
+    "serve": "node tools/serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>KRM РФ — оценки фронта</title>
   <link href="https://krmrf.ru/assessment/feed.xml" rel="self" />
-  <link href="https://krmrf.ru/" />
-  <id>https://krmrf.ru/</id>
-  <updated>2026-06-19T12:00:00+03:00</updated>
+  <link href="https://krmrf.ru/assessment/" />
+  <id>https://krmrf.ru/assessment/</id>
+  <updated>2026-06-14T12:00:00+03:00</updated>
   <entry>
     <title>Оценка боевых действий СВО: Восточный ТВД, 8–14 июня 2026</title>
     <link href="https://krmrf.ru/assessment/2026-06-14/" />
