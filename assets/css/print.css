@@ -1,7 +1,7 @@
 @page { margin: 18mm 16mm; }
 * { box-shadow: none !important; }
 body { background: #fff !important; color: #000; font: 11pt/1.45 Georgia, serif; }
-.site-header, .site-footer, .breadcrumbs-wrap, .article-toc, .series-nav, .hero-actions, .filter-bar, .map-expand, #exitFullscreenBtn { display: none !important; }
+.site-header, .site-footer, .breadcrumbs-wrap, .article-toc, .series-nav, .hero-actions, .filter-bar, .archive-tools, .map-expand, #exitFullscreenBtn { display: none !important; }
 .content-page, .index-main { padding: 0; }
 .container, .container--content, .container--wide { width: 100%; max-width: none; }
 .content-card { border: 0; padding: 0; }
@@ -10,4 +10,4 @@ a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; overflow-
 h1, h2, h3 { break-after: avoid; }
 figure, table, .note-box { break-inside: avoid; }
 img { max-height: 180mm; object-fit: contain; }
-.article::after { display: block; margin-top: 16pt; padding-top: 8pt; border-top: 1px solid #000; content: "Источник: " attr(data-print-url) " · Дата печати: 19.06.2026"; font: 8pt/1.3 var(--font-sans); }
+.print-meta { display: block !important; margin-top: 16pt; padding-top: 8pt; border-top: 1px solid #000; font: 8pt/1.3 Arial, sans-serif; overflow-wrap: anywhere; }

@@ -1,12 +1,22 @@
 /*
+  Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Frame-Options: SAMEORIGIN
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://*.tile.openstreetmap.org; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
 
-/assets/*
+/assets/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/vendor/*
+  Cache-Control: public, max-age=604800, immutable
+
+/assets/img/*
   Cache-Control: public, max-age=604800
 
 /data/*
-  Cache-Control: public, max-age=300
+  Cache-Control: public, max-age=300, must-revalidate

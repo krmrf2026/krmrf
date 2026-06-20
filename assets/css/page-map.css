@@ -1,5 +1,5 @@
 .map-main { padding: 0 0 var(--space-16); }
-.map-layout { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: var(--space-6); align-items: start; }
+.map-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(270px,300px); gap: var(--space-6); align-items: start; }
 .map-container { position: relative; min-height: 620px; overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: #d7e2dc; }
 #map { width: 100%; height: 620px; }
 .map-expand { position: absolute; z-index: 800; top: .7rem; right: .7rem; }
@@ -23,3 +23,5 @@
 .leaflet-control a { min-width: 34px; min-height: 34px; }
 @media (max-width: 900px) { .map-layout { grid-template-columns: 1fr; } .map-sidebar { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 620px) { .map-container, #map { min-height: 480px; height: 480px; } .map-sidebar { grid-template-columns: 1fr; } }
+
+.map-a11y-summary { margin-top: .8rem; color: var(--color-text-muted); font-size: var(--text-sm); }

@@ -1,1 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>KRM РФ — оценки фронта</title><link href="https://krmrf.ru/assessment/feed.xml" rel="self"/><link href="https://krmrf.ru/"/><id>https://krmrf.ru/</id><updated>2026-06-19T12:00:00+03:00</updated><entry><title>Оценка боевых действий СВО: Восточный ТВД, 8-14 июня 2026</title><link href="https://krmrf.ru/assessment/2026-06-14/"/><id>https://krmrf.ru/assessment/2026-06-14/</id><updated>2026-06-14T12:00:00+03:00</updated><summary>Красный Лиман всё больше превращается в широкую серую зону. Российские группы расширили географию действий, а на Славянском направлении усилилось давление на логистику.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД, 1-7 июня 2026</title><link href="https://krmrf.ru/assessment/2026-06-07/"/><id>https://krmrf.ru/assessment/2026-06-07/</id><updated>2026-06-07T12:00:00+03:00</updated><summary>Главным изменением периода стало Краснолиманское направление. Давление вокруг Красного Лимана усилилось, а БПЛА в ЛНР стали фактором повседневной логистики.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД, 25-31 мая 2026</title><link href="https://krmrf.ru/assessment/2026-05-31/"/><id>https://krmrf.ru/assessment/2026-05-31/</id><updated>2026-05-31T12:00:00+03:00</updated><summary>Купянск-Узловой стал главным изменением периода. ВС РФ усилили давление на Купянском направлении и левом берегу Оскола, а Боровая требует осторожной переоценки.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД, 18-24 мая 2026</title><link href="https://krmrf.ru/assessment/2026-05-24/"/><id>https://krmrf.ru/assessment/2026-05-24/</id><updated>2026-05-24T12:00:00+03:00</updated><summary>Боровское направление стало главным изменением периода. ВС РФ вошли в Боровую и западную часть Шийковки, при сохранении серых зон на окраинах.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-05-17/"/><id>https://krmrf.ru/assessment/2026-05-17/</id><updated>2026-05-17T12:00:00+03:00</updated><summary>Славянское направление стало главным участком недели. Купянское, Краснолиманское и Боровское направления сохраняют давление без резкого перелома.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-05-10/"/><id>https://krmrf.ru/assessment/2026-05-10/</id><updated>2026-05-10T12:00:00+03:00</updated><summary>Фронт сохраняет позиционный характер. Усилилось давление на Краснолиманском и Славянском направлениях, подтверждено освобождение Кривой Луки.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-05-03/"/><id>https://krmrf.ru/assessment/2026-05-03/</id><updated>2026-05-03T12:00:00+03:00</updated><summary>Фронт сохраняет позиционный характер. Усилилось давление на Славянском направлении и ухудшилось положение ВСУ на Купянском участке.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-04-26/"/><id>https://krmrf.ru/assessment/2026-04-26/</id><updated>2026-04-26T12:00:00+03:00</updated><summary>Фронт сохраняет позиционный характер. Усилилось давление ВС РФ на Славянском и Купянском направлениях, отмечен рост роли БПЛА.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-04-19/"/><id>https://krmrf.ru/assessment/2026-04-19/</id><updated>2026-04-19T12:00:00+03:00</updated><summary>Фиксируется дальнейшее давление ВС РФ на Краснолиманском, Купянском и Славянском направлениях с акцентом на износ обороны и логистику противника.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-04-12/"/><id>https://krmrf.ru/assessment/2026-04-12/</id><updated>2026-04-12T12:00:00+03:00</updated><summary>Усилилось давление ВС РФ на Краснолиманском, Славянском, Купянском и Боровском направлениях с акцентом на логистику и серые зоны.</summary></entry><entry><title>Оценка боевых действий СВО: Восточный ТВД</title><link href="https://krmrf.ru/assessment/2026-04-05/"/><id>https://krmrf.ru/assessment/2026-04-05/</id><updated>2026-04-05T12:00:00+03:00</updated><summary>Фиксируется высокая интенсивность боевых действий на Купянском, Краснолиманском и Славянском направлениях.</summary></entry></feed>
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>KRM РФ — оценки фронта</title>
+  <link href="https://krmrf.ru/assessment/feed.xml" rel="self" />
+  <link href="https://krmrf.ru/" />
+  <id>https://krmrf.ru/</id>
+  <updated>2026-06-19T12:00:00+03:00</updated>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 8–14 июня 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-06-14/" />
+    <id>https://krmrf.ru/assessment/2026-06-14/</id>
+    <updated>2026-06-14T12:00:00+03:00</updated>
+    <summary>Красный Лиман всё больше превращается в широкую серую зону. Российские группы расширили географию действий, а на Славянском направлении усилилось давление на логистику.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 1–7 июня 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-06-07/" />
+    <id>https://krmrf.ru/assessment/2026-06-07/</id>
+    <updated>2026-06-07T12:00:00+03:00</updated>
+    <summary>Главным изменением периода стало Краснолиманское направление. Давление вокруг Красного Лимана усилилось, а БПЛА в ЛНР стали фактором повседневной логистики.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 25–31 мая 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-05-31/" />
+    <id>https://krmrf.ru/assessment/2026-05-31/</id>
+    <updated>2026-05-31T12:00:00+03:00</updated>
+    <summary>Купянск-Узловой стал главным изменением периода. ВС РФ усилили давление на Купянском направлении и левом берегу Оскола, а Боровая требует осторожной переоценки.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 18–24 мая 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-05-24/" />
+    <id>https://krmrf.ru/assessment/2026-05-24/</id>
+    <updated>2026-05-24T12:00:00+03:00</updated>
+    <summary>Боровское направление стало главным изменением периода. ВС РФ вошли в Боровую и западную часть Шийковки, при сохранении серых зон на окраинах.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 11–17 мая 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-05-17/" />
+    <id>https://krmrf.ru/assessment/2026-05-17/</id>
+    <updated>2026-05-17T12:00:00+03:00</updated>
+    <summary>Славянское направление стало главным участком недели. Купянское, Краснолиманское и Боровское направления сохраняют давление без резкого перелома.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 4–10 мая 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-05-10/" />
+    <id>https://krmrf.ru/assessment/2026-05-10/</id>
+    <updated>2026-05-10T12:00:00+03:00</updated>
+    <summary>Фронт сохраняет позиционный характер. Усилилось давление на Краснолиманском и Славянском направлениях, подтверждено освобождение Кривой Луки.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 27 апреля — 3 мая 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-05-03/" />
+    <id>https://krmrf.ru/assessment/2026-05-03/</id>
+    <updated>2026-05-03T12:00:00+03:00</updated>
+    <summary>Фронт сохраняет позиционный характер. Усилилось давление на Славянском направлении и ухудшилось положение ВСУ на Купянском участке.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 20–26 апреля 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-04-26/" />
+    <id>https://krmrf.ru/assessment/2026-04-26/</id>
+    <updated>2026-04-26T12:00:00+03:00</updated>
+    <summary>Фронт сохраняет позиционный характер. Усилилось давление ВС РФ на Славянском и Купянском направлениях, отмечен рост роли БПЛА.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 13–19 апреля 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-04-19/" />
+    <id>https://krmrf.ru/assessment/2026-04-19/</id>
+    <updated>2026-04-19T12:00:00+03:00</updated>
+    <summary>Фиксируется дальнейшее давление ВС РФ на Краснолиманском, Купянском и Славянском направлениях с акцентом на износ обороны и логистику противника.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 6–12 апреля 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-04-12/" />
+    <id>https://krmrf.ru/assessment/2026-04-12/</id>
+    <updated>2026-04-12T12:00:00+03:00</updated>
+    <summary>Усилилось давление ВС РФ на Краснолиманском, Славянском, Купянском и Боровском направлениях с акцентом на логистику и серые зоны.</summary>
+  </entry>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 30 марта — 5 апреля 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-04-05/" />
+    <id>https://krmrf.ru/assessment/2026-04-05/</id>
+    <updated>2026-04-05T12:00:00+03:00</updated>
+    <summary>Фиксируется высокая интенсивность боевых действий на Купянском, Краснолиманском и Славянском направлениях.</summary>
+  </entry>
+</feed>
