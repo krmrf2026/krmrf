@@ -19,6 +19,9 @@
       "ЛНР",
       "Донбасс"
     ],
+    "home": {
+      "important": 1
+    },
     "sourceIds": [
       "src-0417aefc9dae",
       "src-ce9c0cb4faae",
@@ -477,9 +480,6 @@
     "locations": [
       "ЛНР"
     ],
-    "home": {
-      "important": 1
-    },
     "sourceIds": [
       "src-d1fd1180cad6",
       "src-a8cded0a30e3",
