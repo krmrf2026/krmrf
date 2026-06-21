@@ -119,3 +119,9 @@ a:hover { color: var(--color-link-hover); }
   .site-nav a { flex-basis: calc(50% - .3rem); }
   .breadcrumbs ol { font-size: .8rem; }
 }
+
+.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+.revision-meta { margin: .4rem 0 1rem; color: var(--color-text-muted); font-size: var(--text-sm); }
+.guide-status { margin: 1rem 0 1.5rem; padding: var(--space-4); border: 1px solid var(--color-border); border-left: 4px solid var(--color-confirmed); background: var(--color-accent-soft); }
+.guide-status--review { border-left-color: var(--color-warning); background: #fff7e7; }
+.guide-status p { margin: .2rem 0; }

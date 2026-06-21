@@ -1,13 +1,21 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.6.20-r3",
+  "version": "2026.6.20-r4",
   "type": "module",
   "scripts": {
+    "sources:sync": "node tools/sources.mjs",
+    "map:snapshot": "node tools/map-snapshot.mjs",
     "build": "node tools/build.mjs",
     "validate": "node tools/validate.mjs",
-    "check": "npm run build && npm run validate",
-    "serve": "node tools/serve.mjs"
+    "test:smoke": "node tools/smoke.mjs",
+    "check": "npm run sources:sync && npm run images && npm run map:snapshot && npm run build && npm run validate && npm run test:smoke",
+    "serve": "node tools/serve.mjs",
+    "release": "npm run check && npm run test:negative && node tools/release.mjs && node tools/fixity.mjs",
+    "fixity": "node tools/fixity.mjs",
+    "test:negative": "node tools/negative-tests.mjs",
+    "source:capture": "node tools/source-capture.mjs",
+    "images": "node tools/images.mjs"
   },
   "engines": {
     "node": ">=20"

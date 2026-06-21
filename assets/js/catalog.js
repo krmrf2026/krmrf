@@ -57,8 +57,14 @@
     const section = SECTION_LABELS[item.section] || item.section || 'Материалы';
     const type = TYPE_LABELS[item.type] || item.type || 'Материал';
     const topics = Array.isArray(item.topics) ? item.topics.join(' ') : '';
+    const derived = value => {
+      const match = String(value || '').match(/^\/assets\/img\/(.+)\.([a-z0-9]+)$/i);
+      if (!match) return [];
+      return [480, 960].map(width => `/assets/img/derived/${match[1]}-${width}.webp`);
+    };
+    const responsive = derived(item.image);
     const image = item.image
-      ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.imageAlt || '')}" width="640" height="360" loading="lazy" decoding="async" sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 900px) calc(50vw - 2rem), 370px">`
+      ? `<img src="${escapeHtml(item.image)}"${responsive.length ? ` srcset="${escapeHtml(responsive[0])} 480w, ${escapeHtml(responsive[1])} 960w"` : ''} alt="${escapeHtml(item.imageAlt || '')}" width="640" height="360" loading="lazy" decoding="async" sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 900px) calc(50vw - 2rem), 370px">`
       : '';
     const template = document.createElement('template');
     template.innerHTML = `<article class="material-card" data-section="${escapeHtml(item.section)}" data-type="${escapeHtml(item.type)}"${topics ? ` data-topics="${escapeHtml(topics)}"` : ''}>

@@ -61,11 +61,19 @@
     <lastmod>2026-06-14</lastmod>
   </url>
   <url>
+    <loc>https://krmrf.ru/assessment/2026-06-21/</loc>
+    <lastmod>2026-06-21</lastmod>
+  </url>
+  <url>
     <loc>https://krmrf.ru/kremennaya/</loc>
     <lastmod>2026-06-20</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/map/</loc>
+    <lastmod>2026-06-20</lastmod>
+  </url>
+  <url>
+    <loc>https://krmrf.ru/map/archive/</loc>
     <lastmod>2026-06-20</lastmod>
   </url>
   <url>
@@ -83,10 +91,6 @@
   <url>
     <loc>https://krmrf.ru/news/civilian-impact/bpla-lnr-2026-05-27/</loc>
     <lastmod>2026-05-27</lastmod>
-  </url>
-  <url>
-    <loc>https://krmrf.ru/news/kremennaya/</loc>
-    <lastmod>2026-06-20</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/kremennaya/kremennaya-2026-02-18/</loc>
@@ -246,6 +250,6 @@
   </url>
   <url>
     <loc>https://krmrf.ru/war-crimes/starobelsk-2026-05-22/</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-23</lastmod>
   </url>
 </urlset>
