@@ -1,5 +1,22 @@
 [
   {
+    "id": "src-0417aefc9dae",
+    "url": "https://www.kremlin.ru/acts/bank/7640",
+    "title": "Федеральный закон от 13.03.1995 № 32-ФЗ",
+    "publisher": "kremlin.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
+    ]
+  },
+  {
     "id": "src-044455c699ee",
     "url": "https://www.interfax.ru/russia/1093272",
     "title": "Интерфакс об атаке БПЛА на автобус “Рубежное - Кременная”",
@@ -357,6 +374,23 @@
     ]
   },
   {
+    "id": "src-468ed4008b37",
+    "url": "https://znanierussia.ru/articles/%D0%A0%D1%83%D0%B4%D0%B5%D0%BD%D0%BA%D0%BE%2C_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%9C%D0%B0%D1%82%D0%B2%D0%B5%D0%B5%D0%B2%D0%B8%D1%87",
+    "title": "Николай Матвеевич Руденко",
+    "publisher": "znanierussia.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
+    ]
+  },
+  {
     "id": "src-4879605f5fae",
     "url": "https://publication.pravo.gov.ru/document/0001202210050006",
     "title": "ФКЗ от 04.10.2022 № 6-ФКЗ о принятии ЛНР в состав РФ",
@@ -371,6 +405,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-493aa80c14d0",
+    "url": "https://warheroes.ru/hero/hero.asp?Hero_id=8428",
+    "title": "Степан Иванович Швец",
+    "publisher": "warheroes.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
     ]
   },
   {
@@ -748,6 +799,23 @@
     ]
   },
   {
+    "id": "src-a02000552dd8",
+    "url": "https://warheroes.ru/hero/hero.asp?Hero_id=9104",
+    "title": "Александр Иванович Свечкарёв",
+    "publisher": "warheroes.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
+    ]
+  },
+  {
     "id": "src-a1a170a03f87",
     "url": "https://lug-info.ru/news/vsu-nochju-atakovali-dronami-pjat-municipalitetov-lnr--pasechnik/",
     "title": "пять муниципалитетов ЛНР",
@@ -901,6 +969,23 @@
     ]
   },
   {
+    "id": "src-cca9d1d1460e",
+    "url": "https://militera.lib.ru/h/liberation/01.html",
+    "title": "справочник «Освобождение городов»",
+    "publisher": "militera.lib.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
+    ]
+  },
+  {
     "id": "src-cd8f84d9e6de",
     "url": "https://lug-info.ru/news/tragedija-v-starobelske.-chto-izvestno-na-1300-22-maja/",
     "title": "Старобельск",
@@ -932,6 +1017,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-ce9c0cb4faae",
+    "url": "https://zakon.rada.gov.ua/go/3107-20",
+    "title": "закон Украины № 3107-IX",
+    "publisher": "zakon.rada.gov.ua",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
     ]
   },
   {
@@ -983,6 +1085,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-db56f90360db",
+    "url": "https://warheroes.ru/hero/hero.asp?Hero_id=18229",
+    "title": "Прокопий Михайлович Герасименко",
+    "publisher": "warheroes.ru",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "22-iyunya-kremennaya-donbass-2026-06-22"
     ]
   },
   {

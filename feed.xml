@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-06-21T12:00:00+03:00</updated>
+  <updated>2026-06-22T12:00:00+03:00</updated>
+  <entry>
+    <title>22 июня и Кременная: когда война входит в дом</title>
+    <link href="https://krmrf.ru/news/kremennaya/22-iyunya-kremennaya-donbass-2026-06-22/" />
+    <id>https://krmrf.ru/news/kremennaya/22-iyunya-kremennaya-donbass-2026-06-22/</id>
+    <updated>2026-06-22T12:00:00+03:00</updated>
+    <summary>22 июня через Кременную и Донбасс: не общий пересказ войны, а память о доме, дороге, лесах, советских семьях и войне, которая с 2014 года снова вошла в жизнь людей.</summary>
+  </entry>
   <entry>
     <title>Оценка боевых действий СВО: Восточный ТВД, 15–21 июня 2026</title>
     <link href="https://krmrf.ru/assessment/2026-06-21/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/assessment/2026-04-26/</id>
     <updated>2026-04-26T12:00:00+03:00</updated>
     <summary>Фронт сохраняет позиционный характер. Усилилось давление ВС РФ на Славянском и Купянском направлениях, отмечен рост роли БПЛА.</summary>
-  </entry>
-  <entry>
-    <title>Что изменилось на фронте СВО к 24 апреля 2026 года</title>
-    <link href="https://krmrf.ru/news/svo/svo-2026-04-24/" />
-    <id>https://krmrf.ru/news/svo/svo-2026-04-24/</id>
-    <updated>2026-04-24T12:00:00+03:00</updated>
-    <summary>Апрель закрепил позиционный характер боёв: малые продвижения, давление на логистику и ключевая роль БПЛА.</summary>
   </entry>
 </feed>

@@ -1,5 +1,38 @@
 [
   {
+    "id": "22-iyunya-kremennaya-donbass-2026-06-22",
+    "type": "article",
+    "title": "22 июня и Кременная: когда война входит в дом",
+    "url": "/news/kremennaya/22-iyunya-kremennaya-donbass-2026-06-22/",
+    "section": "kremennaya",
+    "datePublished": "2026-06-22",
+    "dateModified": "2026-06-22",
+    "status": null,
+    "excerpt": "22 июня через Кременную и Донбасс: не общий пересказ войны, а память о доме, дороге, лесах, советских семьях и войне, которая с 2014 года снова вошла в жизнь людей.",
+    "image": "/assets/img/news/kremennaya/22-iyunya-kremennaya-donbass-2026-06-22/cover.webp",
+    "imageAlt": "Кременские леса и память о войне",
+    "topics": [
+      "history"
+    ],
+    "locations": [
+      "Кременная",
+      "ЛНР",
+      "Донбасс"
+    ],
+    "home": {
+      "important": 1
+    },
+    "sourceIds": [
+      "src-0417aefc9dae",
+      "src-ce9c0cb4faae",
+      "src-cca9d1d1460e",
+      "src-493aa80c14d0",
+      "src-a02000552dd8",
+      "src-db56f90360db",
+      "src-468ed4008b37"
+    ]
+  },
+  {
     "id": "assessment-2026-06-21",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 15–21 июня 2026",
@@ -447,9 +480,6 @@
     "locations": [
       "ЛНР"
     ],
-    "home": {
-      "important": 1
-    },
     "sourceIds": [
       "src-d1fd1180cad6",
       "src-a8cded0a30e3",
