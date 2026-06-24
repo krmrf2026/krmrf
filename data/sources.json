@@ -1,5 +1,22 @@
 [
   {
+    "id": "src-0073a6a93540",
+    "url": "https://t.me/xykrm/5824",
+    "title": "сообщение о повреждении социальной инфраструктуры 10 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
     "id": "src-0417aefc9dae",
     "url": "https://www.kremlin.ru/acts/bank/7640",
     "title": "Федеральный закон от 13.03.1995 № 32-ФЗ",
@@ -425,6 +442,23 @@
     ]
   },
   {
+    "id": "src-4e2dd3e2ee28",
+    "url": "https://t.me/xykrm/5837",
+    "title": "сообщение о школе-интернате №1",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
     "id": "src-540187e2f4ea",
     "url": "https://www.kremlin.ru/acts/constitution/item",
     "title": "Конституция РФ",
@@ -507,6 +541,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-626151c113d9",
+    "url": "https://t.me/xykrm/5814",
+    "title": "обстановка в Кременной на утро 9 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
     ]
   },
   {
@@ -663,6 +714,40 @@
     ]
   },
   {
+    "id": "src-7abf7f395dc6",
+    "url": "https://t.me/xykrm/5920",
+    "title": "оперативная обстановка в ЛНР на 20 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
+    "id": "src-7b1599567bb2",
+    "url": "https://t.me/xykrm/5947",
+    "title": "сообщение об атаке по энергетикам 22 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
     "id": "src-7f04d2decca9",
     "url": "https://publication.pravo.gov.ru/Document/View/0001202507070013",
     "title": "ФЗ от 07.07.2025 № 193-ФЗ о признании документов на недвижимость в новых регионах",
@@ -799,6 +884,40 @@
     ]
   },
   {
+    "id": "src-9d4d8839d67f",
+    "url": "https://t.me/xykrm/5945",
+    "title": "обстановка в Кременной и ЛНР на 23 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
+    "id": "src-9ee7e11cb1f9",
+    "url": "https://t.me/xykrm/5912",
+    "title": "обстановка в Кременной на 19 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
     "id": "src-a02000552dd8",
     "url": "https://warheroes.ru/hero/hero.asp?Hero_id=9104",
     "title": "Александр Иванович Свечкарёв",
@@ -833,6 +952,23 @@
     ]
   },
   {
+    "id": "src-a52d8ef624c2",
+    "url": "https://t.me/xykrm/5893",
+    "title": "обстановка в Кременной на 17 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
     "id": "src-a715ea6a2cf0",
     "url": "https://publication.pravo.gov.ru/document/0001202312290053",
     "title": "Постановление Правительства РФ N 2255",
@@ -864,6 +1000,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-aad42549acd9",
+    "url": "https://t.me/xykrm/5830",
+    "title": "оперативная обстановка в ЛНР на 11 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
     ]
   },
   {
@@ -949,6 +1102,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-bd4ecf9c29a6",
+    "url": "https://t.me/xykrm/5867",
+    "title": "обстановка в Кременной на 15 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
     ]
   },
   {
@@ -1088,6 +1258,23 @@
     ]
   },
   {
+    "id": "src-d6280a486d25",
+    "url": "https://t.me/xykrm/5802",
+    "title": "сообщение жителя о дронах, маршрутке и передвижении по Кременной",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
+    ]
+  },
+  {
     "id": "src-db56f90360db",
     "url": "https://warheroes.ru/hero/hero.asp?Hero_id=18229",
     "title": "Прокопий Михайлович Герасименко",
@@ -1136,6 +1323,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-e0c786c072fd",
+    "url": "https://t.me/xykrm/5937",
+    "title": "обстановка в Кременной на 22 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
     ]
   },
   {
@@ -1204,6 +1408,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-fb4328eac4a4",
+    "url": "https://t.me/xykrm/5842",
+    "title": "оперативная обстановка на 12 июня",
+    "publisher": "t.me",
+    "registeredAt": "2026-06-20",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-06-24"
     ]
   }
 ]

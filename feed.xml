@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-06-22T12:00:00+03:00</updated>
+  <updated>2026-06-24T12:00:00+03:00</updated>
+  <entry>
+    <title>Кременная к 24 июня: обычный день стал тяжелее</title>
+    <link href="https://krmrf.ru/news/kremennaya/krm-2026-06-24/" />
+    <id>https://krmrf.ru/news/kremennaya/krm-2026-06-24/</id>
+    <updated>2026-06-24T12:00:00+03:00</updated>
+    <summary>Кременная к концу июня 2026 года: дроны, дороги, топливо, связь, транспорт и повреждения гражданской инфраструктуры стали частью повседневной безопасности жителей.</summary>
+  </entry>
   <entry>
     <title>22 июня и Кременная: когда война входит в дом</title>
     <link href="https://krmrf.ru/news/kremennaya/22-iyunya-kremennaya-donbass-2026-06-22/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/kremennaya/kremennaya-2026-04-28/</id>
     <updated>2026-04-28T12:00:00+03:00</updated>
     <summary>К концу апреля дроны стали постоянным фактором в Кременной. Меняется не линия фронта, а повседневная жизнь в городе.</summary>
-  </entry>
-  <entry>
-    <title>Оценка боевых действий СВО: Восточный ТВД, 20–26 апреля 2026</title>
-    <link href="https://krmrf.ru/assessment/2026-04-26/" />
-    <id>https://krmrf.ru/assessment/2026-04-26/</id>
-    <updated>2026-04-26T12:00:00+03:00</updated>
-    <summary>Фронт сохраняет позиционный характер. Усилилось давление ВС РФ на Славянском и Купянском направлениях, отмечен рост роли БПЛА.</summary>
   </entry>
 </feed>
