@@ -335,6 +335,9 @@ for (const full of htmlFiles) {
   const rel = path.relative(ROOT, full).replace(/\\/g, '/');
   const html = fs.readFileSync(full, 'utf8');
   const refs = [...html.matchAll(/\b(?:href|src)=["']([^"']+)["']/gi)].map(match => match[1]);
+  for (const match of html.matchAll(/\bsrcset\s*=\s*(["'])([\s\S]*?)\1/gi)) {
+    refs.push(...match[2].split(',').map(item => item.trim().split(/\s+/)[0]).filter(Boolean));
+  }
   for (const ref of refs) {
     if (!ref.startsWith('/') || ref.startsWith('//')) continue;
     const file = urlToFile(ref);
