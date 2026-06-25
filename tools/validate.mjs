@@ -56,6 +56,17 @@ const validDate = value => {
   const date = new Date(`${value}T00:00:00Z`);
   return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
 };
+
+const formatDateTime = value => {
+  const raw = String(value || '').trim();
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  if (!match) return raw;
+  const [, year, month, day, hour, minute] = match;
+  const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  return `${Number(day)} ${months[Number(month) - 1]} ${year} года, ${hour}:${minute}`;
+};
+
 const externalLinks = html => {
   const main = html.match(/<main\b[\s\S]*?<\/main>/i)?.[0] || '';
   const urls = [];
@@ -78,17 +89,21 @@ let sitemap;
 let sources;
 let schema;
 let preservationQueue;
+let taxonomy;
 try { pages = readJson('data/pages.json'); } catch (error) { errors.push(`data/pages.json: ${error.message}`); pages = []; }
 try { search = readJson('data/search-index.json'); } catch (error) { errors.push(`data/search-index.json: ${error.message}`); search = []; }
 try { sources = readJson('data/sources.json'); } catch (error) { errors.push(`data/sources.json: ${error.message}`); sources = []; }
 try { schema = readJson('data/pages.schema.json'); } catch (error) { errors.push(`data/pages.schema.json: ${error.message}`); schema = {}; }
 try { preservationQueue = readJson('data/source-preservation-queue.json'); } catch (error) { errors.push(`data/source-preservation-queue.json: ${error.message}`); preservationQueue = []; }
+try { taxonomy = readJson('data/taxonomy.json'); } catch (error) { errors.push(`data/taxonomy.json: ${error.message}`); taxonomy = { topics: {}, locations: {} }; }
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
 if (!Array.isArray(search)) errors.push('data/search-index.json должен содержать массив.');
 if (!Array.isArray(sources)) errors.push('data/sources.json должен содержать массив.');
 if (!Array.isArray(preservationQueue)) errors.push('data/source-preservation-queue.json должен содержать массив.');
+const knownTopics = new Set(Object.keys(taxonomy?.topics || {}));
+const knownLocations = new Set(Object.keys(taxonomy?.locations || {}));
 
 const schemaTypes = new Set(schema?.items?.properties?.type?.enum || []);
 const schemaSections = new Set(schema?.items?.properties?.section?.enum || []);
@@ -150,6 +165,15 @@ for (const [index, item] of pages.entries()) {
   if (urls.has(item.url)) errors.push(`Повторяющийся URL: ${item.url}`);
   ids.add(item.id); urls.add(item.url); pageByUrl.set(item.url, item);
 
+  if (item.topics !== undefined) {
+    if (!Array.isArray(item.topics)) errors.push(`${prefix}: topics должен быть массивом.`);
+    else for (const topic of item.topics) if (!knownTopics.has(topic)) errors.push(`${prefix}: неизвестный topic=${topic}; добавьте код в data/taxonomy.json или используйте существующий код.`);
+  }
+  if (item.locations !== undefined) {
+    if (!Array.isArray(item.locations)) errors.push(`${prefix}: locations должен быть массивом.`);
+    else for (const location of item.locations) if (!knownLocations.has(location)) errors.push(`${prefix}: неизвестная территория=${location}; добавьте её в data/taxonomy.json или используйте существующую.`);
+  }
+
   if (item.type === 'guide') {
     if (!validDate(item.reviewAfter)) errors.push(`${prefix}: для памятки нужен корректный reviewAfter.`);
     if (!validDate(item.reviewedAt || item.dateModified)) errors.push(`${prefix}: для памятки нужен корректный reviewedAt/dateModified.`);
@@ -194,6 +218,16 @@ for (const [index, item] of pages.entries()) {
   }
 
   const html = read(file);
+  const expectedBodyClass = `page page-content page--${item.type === 'guide' ? 'guide' : item.type === 'dossier' ? 'dossier' : item.type === 'assessment' ? 'assessment' : 'article'}`;
+  const bodyTag = html.match(/<body\b[^>]*>/i)?.[0] || '';
+  const bodyClass = attr(bodyTag, 'class');
+  if (bodyClass !== expectedBodyClass) errors.push(`${file}: body class должен быть "${expectedBodyClass}", сейчас "${bodyClass || 'нет'}".`);
+  if (!/<main\b[^>]*id=["']main-content["'][^>]*>/i.test(html) && !/<main\b[^>]*id=["']main-content["'][^>]*>/i.test(html)) errors.push(`${file}: main должен иметь id="main-content".`);
+  if (!html.includes('class="nav-toggle"') && !html.includes("class='nav-toggle'")) errors.push(`${file}: нет общей мобильной кнопки nav-toggle.`);
+  if (!html.includes('id="site-navigation"') && !html.includes("id='site-navigation'")) errors.push(`${file}: нет общей навигации id="site-navigation".`);
+  for (const asset of [...html.matchAll(/(?:href|src)=["'](\/assets\/(?:css|js)\/[^"']+)["']/gi)].map(match => match[1])) {
+    if (!asset.includes('?v=')) errors.push(`${file}: ассет без версии для cache busting: ${asset}`);
+  }
   const h1Matches = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)];
   if (h1Matches.length !== 1) errors.push(`${file}: H1 = ${h1Matches.length}, должен быть один.`);
   else if (normalizeText(h1Matches[0][1]) !== normalizeText(item.title)) errors.push(`${file}: H1 не совпадает с pages.json title.`);
@@ -300,6 +334,11 @@ for (const group of ['type', 'section', 'location']) if (!archive.includes(`data
 
 try {
   const manifest = readJson('data/map/manifest.json');
+  if (JSON.stringify(manifest).includes('orientировочная')) errors.push('data/map/manifest.json: найдено смешанное слово orientировочная.');
+  if (exists('map/index.html') && manifest.updated) {
+    const mapHtml = read('map/index.html');
+    if (!mapHtml.includes(formatDateTime(manifest.updated))) errors.push('map/index.html: fallback-дата карты не согласована с data/map/manifest.json updated.');
+  }
   const current = fs.readFileSync(path.join(ROOT, manifest.current.replace(/^\//, '')));
   if (sha256(current) !== manifest.currentHash) errors.push('data/map/manifest.json: currentHash не совпадает с zones.geojson.');
   if (!Array.isArray(manifest.snapshots) || !manifest.snapshots.length) errors.push('data/map/manifest.json: нет снимков карты.');
@@ -334,6 +373,10 @@ walk(ROOT);
 for (const full of htmlFiles) {
   const rel = path.relative(ROOT, full).replace(/\\/g, '/');
   const html = fs.readFileSync(full, 'utf8');
+  for (const link of html.matchAll(/<a\b[^>]*>/gi)) {
+    const tag = link[0];
+    if (/target=["']_blank["']/i.test(tag) && !/rel=["'][^"']*noopener/i.test(tag)) errors.push(`${rel}: target="_blank" без rel="noopener".`);
+  }
   const refs = [...html.matchAll(/\b(?:href|src)=["']([^"']+)["']/gi)].map(match => match[1]);
   for (const match of html.matchAll(/\bsrcset\s*=\s*(["'])([\s\S]*?)\1/gi)) {
     refs.push(...match[2].split(',').map(item => item.trim().split(/\s+/)[0]).filter(Boolean));

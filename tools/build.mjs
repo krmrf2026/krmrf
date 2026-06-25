@@ -238,6 +238,17 @@ const mapArchiveInner = manifest => [...(manifest.snapshots || [])]
   .map(snapshot => `<li><time datetime="${escapeHtml(snapshot.validFrom)}">${escapeHtml(formatDate(String(snapshot.validFrom).slice(0, 10)))}</time><span>${escapeHtml(snapshot.confidence || 'Оценочная карта')}</span><a href="/map/?snapshot=${encodeURIComponent(snapshot.id)}">Открыть снимок карты</a>${snapshot.assessmentUrl ? ` <a class="archive-secondary-link" href="${escapeHtml(snapshot.assessmentUrl)}">Связанная оценка</a>` : ''}</li>`)
   .join('');
 
+
+const formatDateTime = value => {
+  const raw = String(value || '').trim();
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  if (!match) return formatDate(raw.slice(0, 10));
+  const [, year, month, day, hour, minute] = match;
+  const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  return `${Number(day)} ${months[Number(month) - 1]} ${year} года, ${hour}:${minute}`;
+};
+
 const updateItemList = (html, items) => html.replace(
   /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g,
   (whole, jsonText) => {
@@ -423,6 +434,12 @@ if (exists('data/map/manifest.json') && exists('map/archive/index.html')) {
     `<!-- KRM MAP ARCHIVE START --><ol class="archive-list">${mapArchiveInner(manifest)}</ol><!-- KRM MAP ARCHIVE END -->`
   );
   write('map/archive/index.html', mapArchive);
+  if (exists('map/index.html') && manifest.updated) {
+    let mapPage = read('map/index.html');
+    const formatted = formatDateTime(manifest.updated);
+    mapPage = mapPage.replace(/<dd data-fallback="[^"]*" id="mapUpdated">[^<]*<\/dd>/, `<dd data-fallback="${escapeHtml(formatted)}" id="mapUpdated">${escapeHtml(formatted)}</dd>`);
+    write('map/index.html', mapPage);
+  }
 }
 
 writeJson('data/search-index.json', searchIndex);

@@ -53,7 +53,7 @@ if (!same) {
     sha256: hash,
     assessmentUrl: latestAssessment?.url || null,
     methodologyUrl: '/methodology/',
-    confidence: data.provenance?.confidence || 'orientировочная аналитическая оценка',
+    confidence: data.provenance?.confidence || 'ориентировочная аналитическая оценка',
     sourceIds: Array.isArray(data.provenance?.sourceIds) ? data.provenance.sourceIds : [],
     summary: data.provenance?.summary || 'Снимок опубликованной оценочной зоны территориального контроля KRM РФ.'
   });
