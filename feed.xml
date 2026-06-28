@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-06-24T12:00:00+03:00</updated>
+  <updated>2026-06-28T12:00:00+03:00</updated>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 22–28 июня 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-06-28/" />
+    <id>https://krmrf.ru/assessment/2026-06-28/</id>
+    <updated>2026-06-28T12:00:00+03:00</updated>
+    <summary>Красный Лиман остаётся глубокой городской серой зоной, Купянский узел усиливается через Заосколье и левый берег, а для Кременной и ЛНР главным риском недели остаются БПЛА, дороги, связь и работа служб под ударами.</summary>
+  </entry>
   <entry>
     <title>Кременная к 24 июня: обычный день стал тяжелее</title>
     <link href="https://krmrf.ru/news/kremennaya/krm-2026-06-24/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/politics/odessarus-2026-05-02/</id>
     <updated>2026-05-02T12:00:00+03:00</updated>
     <summary>2 мая 2014 года в Одессе погибли 48 человек, большая часть - в Доме профсоюзов. Спустя годы расследование не дало окончательных выводов.</summary>
-  </entry>
-  <entry>
-    <title>Кременная под дронами: как изменилась жизнь в городе</title>
-    <link href="https://krmrf.ru/news/kremennaya/kremennaya-2026-04-28/" />
-    <id>https://krmrf.ru/news/kremennaya/kremennaya-2026-04-28/</id>
-    <updated>2026-04-28T12:00:00+03:00</updated>
-    <summary>К концу апреля дроны стали постоянным фактором в Кременной. Меняется не линия фронта, а повседневная жизнь в городе.</summary>
   </entry>
 </feed>
