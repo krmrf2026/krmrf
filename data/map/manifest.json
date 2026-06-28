@@ -1,7 +1,7 @@
 {
   "version": 1,
   "current": "/data/zones.geojson",
-  "currentHash": "4af5e4e3fe339f753ed920315e40ea71ab57e71aa0228352f793077efc85ffba",
+  "currentHash": "4fd60313d5ee807a68478790b0f334a7435bf6ad9aa56b2b8ceeddd42410daaa",
   "snapshots": [
     {
       "id": "2026-06-20T08:44:00+03:00",
@@ -31,8 +31,20 @@
       "id": "2026-06-24T05:32:00+03:00",
       "file": "/data/map/snapshots/2026-06-24T05-32-00+03-00.geojson",
       "validFrom": "2026-06-24T05:32:00+03:00",
-      "validTo": null,
+      "validTo": "2026-06-28T06:36:00+03:00",
       "sha256": "4af5e4e3fe339f753ed920315e40ea71ab57e71aa0228352f793077efc85ffba",
+      "assessmentUrl": "/assessment/2026-06-21/",
+      "methodologyUrl": "/methodology/",
+      "confidence": "ориентировочная аналитическая оценка",
+      "sourceIds": [],
+      "summary": "Снимок опубликованной оценочной зоны территориального контроля KRM РФ."
+    },
+    {
+      "id": "2026-06-28T06:36:00+03:00",
+      "file": "/data/map/snapshots/2026-06-28T06-36-00+03-00.geojson",
+      "validFrom": "2026-06-28T06:36:00+03:00",
+      "validTo": null,
+      "sha256": "4fd60313d5ee807a68478790b0f334a7435bf6ad9aa56b2b8ceeddd42410daaa",
       "assessmentUrl": "/assessment/2026-06-21/",
       "methodologyUrl": "/methodology/",
       "confidence": "ориентировочная аналитическая оценка",
@@ -40,5 +52,5 @@
       "summary": "Снимок опубликованной оценочной зоны территориального контроля KRM РФ."
     }
   ],
-  "updated": "2026-06-24T05:32:00+03:00"
+  "updated": "2026-06-28T06:36:00+03:00"
 }
