@@ -3,6 +3,7 @@ import process from 'node:process';
 
 const pages = JSON.parse(fs.readFileSync('data/pages.json', 'utf8'));
 const search = JSON.parse(fs.readFileSync('data/search-index.json', 'utf8'));
+const taxonomy = JSON.parse(fs.readFileSync('data/taxonomy.json', 'utf8'));
 const archive = fs.readFileSync('archive/index.html', 'utf8');
 const map = fs.readFileSync('map/index.html', 'utf8');
 const errors = [];
@@ -17,6 +18,21 @@ has('Гражданские последствия', item => item.section === 'c
 
 for (const token of ['data-filter-group="type"', 'data-filter-group="section"', 'data-filter-group="location"', 'id="archive-reset"']) {
   if (!archive.includes(token)) errors.push(`Архив: отсутствует ${token}`);
+}
+
+
+const css = [
+  fs.readFileSync('assets/css/style.css', 'utf8'),
+  fs.readFileSync('assets/css/page-index.css', 'utf8')
+].join('\n');
+if (!/\[hidden\]\s*\{[^}]*display\s*:\s*none\s*!important/i.test(css)) {
+  errors.push('CSS: отсутствует правило [hidden] { display: none !important; }, фильтры могут менять hidden без визуального скрытия.');
+}
+
+for (const [value, label] of Object.entries(taxonomy.sections || {})) {
+  if (pages.some(item => item.section === value) && !archive.includes(`data-filter-group="section" data-filter-label="${label}" data-filter-value="${value}"`)) {
+    errors.push(`Архив: нет кнопки раздела «${label}» (${value}), хотя такие публикации есть в data/pages.json.`);
+  }
 }
 if (!map.includes('id="mapStatus"')) errors.push('Карта: отсутствует live-status ошибок.');
 if (!map.includes('/map/archive/')) errors.push('Карта: отсутствует ссылка на архив снимков.');
