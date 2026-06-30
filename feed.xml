@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-06-28T12:00:00+03:00</updated>
+  <updated>2026-06-30T12:00:00+03:00</updated>
+  <entry>
+    <title>Кременской округ под ударами ВСУ: погибшие и пострадавшие среди гражданского населения, 2024–2026</title>
+    <link href="https://krmrf.ru/war-crimes/kremenskoy-okrug-civilians-2024-2026/" />
+    <id>https://krmrf.ru/war-crimes/kremenskoy-okrug-civilians-2024-2026/</id>
+    <updated>2026-06-30T12:00:00+03:00</updated>
+    <summary>Новое досье KRM РФ по Кременной и Кременскому округу: погибшие, раненые, атаки БПЛА, удары по гражданскому транспорту, жилому сектору, службам жизнеобеспечения и местам повседневной жизни в 2024–2026 годах.</summary>
+  </entry>
   <entry>
     <title>Оценка боевых действий СВО: Восточный ТВД, 22–28 июня 2026</title>
     <link href="https://krmrf.ru/assessment/2026-06-28/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/assessment/2026-05-03/</id>
     <updated>2026-05-03T12:00:00+03:00</updated>
     <summary>Фронт сохраняет позиционный характер. Усилилось давление на Славянском направлении и ухудшилось положение ВСУ на Купянском участке.</summary>
-  </entry>
-  <entry>
-    <title>Одесса 2 мая 2014 года: трагедия, которую Украина так и не расследовала до конца</title>
-    <link href="https://krmrf.ru/news/politics/odessarus-2026-05-02/" />
-    <id>https://krmrf.ru/news/politics/odessarus-2026-05-02/</id>
-    <updated>2026-05-02T12:00:00+03:00</updated>
-    <summary>2 мая 2014 года в Одессе погибли 48 человек, большая часть - в Доме профсоюзов. Спустя годы расследование не дало окончательных выводов.</summary>
   </entry>
 </feed>
