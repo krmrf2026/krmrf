@@ -1,5 +1,69 @@
 [
   {
+    "id": "kremenskoy-okrug-civilians-2024-2026",
+    "type": "dossier",
+    "title": "Кременской округ под ударами ВСУ: погибшие и пострадавшие среди гражданского населения, 2024–2026",
+    "url": "/war-crimes/kremenskoy-okrug-civilians-2024-2026/",
+    "section": "warcrimes",
+    "datePublished": "2026-06-30",
+    "dateModified": "2026-06-30",
+    "status": "open",
+    "excerpt": "Новое досье KRM РФ по Кременной и Кременскому округу: погибшие, раненые, атаки БПЛА, удары по гражданскому транспорту, жилому сектору, службам жизнеобеспечения и местам повседневной жизни в 2024–2026 годах.",
+    "image": "/assets/img/war-crimes/kremenskoy-okrug-civilians-2024-2026/cover.webp",
+    "imageAlt": "Кременской округ под ударами ВСУ — досье KRM РФ о погибших и пострадавших среди гражданского населения",
+    "period": "27 апреля 2024 — 29 июня 2026",
+    "topics": [
+      "safety",
+      "daily",
+      "infrastructure"
+    ],
+    "locations": [
+      "Кременная",
+      "Кременской район",
+      "ЛНР"
+    ],
+    "sourceIds": [
+      "src-577073dee4e1",
+      "src-4db4c1e3b5ff",
+      "src-1381da361633",
+      "src-24991c3c900a",
+      "src-5cd14a6c849d",
+      "src-bbc802f9484d",
+      "src-92f6a63b0438",
+      "src-ad54e82e9010",
+      "src-12a115b81583",
+      "src-78631c3ac6b7",
+      "src-629067411a83",
+      "src-326d21ffa51c",
+      "src-a2a879f66182",
+      "src-711eaf96a74d",
+      "src-8341d6b9f845",
+      "src-93148310a667",
+      "src-99a019c27b34",
+      "src-b95adfb5cfbf",
+      "src-74c1037b1e20",
+      "src-07e01b327757",
+      "src-9400a8ae0cb0",
+      "src-a97e4c242225",
+      "src-cbfdbe496060",
+      "src-18ac1847f8b8",
+      "src-80acb896df84",
+      "src-73da7475e1a6",
+      "src-f54ab0d704c3",
+      "src-1709d6650ccb",
+      "src-202392f77ca4"
+    ],
+    "revisionHistory": [
+      {
+        "date": "2026-06-30",
+        "summary": "Создана первая публичная версия досье по архиву KRM РФ за период 27.04.2024 — 29.06.2026."
+      }
+    ],
+    "home": {
+      "important": 1
+    }
+  },
+  {
     "id": "assessment-2026-06-28",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 22–28 июня 2026",
@@ -21,7 +85,10 @@
       "Кременная",
       "ЛНР"
     ],
-    "sourceIds": []
+    "sourceIds": [],
+    "home": {
+      "important": 3
+    }
   },
   {
     "id": "krm-2026-06-24",
@@ -58,7 +125,10 @@
       "src-e0c786c072fd",
       "src-9d4d8839d67f",
       "src-7b1599567bb2"
-    ]
+    ],
+    "home": {
+      "important": 2
+    }
   },
   {
     "id": "22-iyunya-kremennaya-donbass-2026-06-22",
@@ -80,9 +150,6 @@
       "ЛНР",
       "Донбасс"
     ],
-    "home": {
-      "important": 1
-    },
     "sourceIds": [
       "src-0417aefc9dae",
       "src-ce9c0cb4faae",
@@ -208,9 +275,6 @@
     "locations": [
       "Восточный фронт"
     ],
-    "home": {
-      "important": 2
-    },
     "sourceIds": []
   },
   {
@@ -280,7 +344,10 @@
       "src-912d5fe56084",
       "src-64e9f40ed54e",
       "src-3b0e2a389ab8"
-    ]
+    ],
+    "home": {
+      "dossier": 3
+    }
   },
   {
     "id": "assessment-2026-05-31",
@@ -315,9 +382,6 @@
     "locations": [
       "ЛНР"
     ],
-    "home": {
-      "important": 3
-    },
     "sourceIds": [
       "src-451dc41a03c6",
       "src-0d0a37a789e6",
@@ -408,7 +472,10 @@
         "date": "2026-05-23",
         "summary": "Добавлены новые данные о погибших, пострадавших, заявлениях сторон и завершении поисковых работ."
       }
-    ]
+    ],
+    "home": {
+      "dossier": 2
+    }
   },
   {
     "id": "svo-2026-05-21",

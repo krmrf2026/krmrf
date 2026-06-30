@@ -1,11 +1,42 @@
 [
   {
+    "sourceId": "src-07e01b327757",
+    "priority": "high",
+    "title": "№2371",
+    "url": "https://t.me/xykrm/2371",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
     "sourceId": "src-10a3279f138c",
     "priority": "high",
     "title": "ZN.ua: сообщение о списке погибших, опубликованном украинской милицией",
     "url": "https://zn.ua/UKRAINE/mvd-obnarodovalo-spisok-pogibshih-ot-vzryva-v-luganskoy-oga-146389_.html",
     "referencedBy": [
       "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-12a115b81583",
+    "priority": "high",
+    "title": "№923",
+    "url": "https://t.me/xykrm/923",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-1381da361633",
+    "priority": "high",
+    "title": "архив KRM РФ, №2889",
+    "url": "https://t.me/xykrm/2889",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
     ],
     "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
   },
@@ -20,12 +51,108 @@
     "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
   },
   {
+    "sourceId": "src-1709d6650ccb",
+    "priority": "high",
+    "title": "№2478",
+    "url": "https://t.me/xykrm/2478",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-18ac1847f8b8",
+    "priority": "high",
+    "title": "№1014",
+    "url": "https://t.me/xykrm/1014",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-202392f77ca4",
+    "priority": "high",
+    "title": "№5726",
+    "url": "https://t.me/xykrm/5726",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-24991c3c900a",
+    "priority": "high",
+    "title": "архив KRM РФ, №4789",
+    "url": "https://t.me/xykrm/4789",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-326d21ffa51c",
+    "priority": "high",
+    "title": "№3358",
+    "url": "https://t.me/xykrm/3358",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
     "sourceId": "src-3b0e2a389ab8",
     "priority": "high",
     "title": "МИД России: заявление в связи с авиационным нападением на Луганск",
     "url": "https://mid.ru/ru/foreign_policy/news/1605221/?lang=ru",
     "referencedBy": [
       "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-4db4c1e3b5ff",
+    "priority": "high",
+    "title": "архив KRM РФ, №1995",
+    "url": "https://t.me/xykrm/1995",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-577073dee4e1",
+    "priority": "high",
+    "title": "архив KRM РФ, №1419",
+    "url": "https://t.me/xykrm/1419",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-5cd14a6c849d",
+    "priority": "high",
+    "title": "архив KRM РФ, №5256",
+    "url": "https://t.me/xykrm/5256",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-629067411a83",
+    "priority": "high",
+    "title": "№2310",
+    "url": "https://t.me/xykrm/2310",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
     ],
     "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
   },
@@ -60,12 +187,187 @@
     "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
   },
   {
+    "sourceId": "src-711eaf96a74d",
+    "priority": "high",
+    "title": "архив KRM РФ, №1160",
+    "url": "https://t.me/xykrm/1160",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-73da7475e1a6",
+    "priority": "high",
+    "title": "№651",
+    "url": "https://t.me/xykrm/651",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-74c1037b1e20",
+    "priority": "high",
+    "title": "№2277",
+    "url": "https://t.me/xykrm/2277",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-78631c3ac6b7",
+    "priority": "high",
+    "title": "№2154",
+    "url": "https://t.me/xykrm/2154",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-80acb896df84",
+    "priority": "high",
+    "title": "№1610",
+    "url": "https://t.me/xykrm/1610",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-8341d6b9f845",
+    "priority": "high",
+    "title": "архив KRM РФ, №5587",
+    "url": "https://t.me/xykrm/5587",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
     "sourceId": "src-912d5fe56084",
     "priority": "high",
     "title": "RFE/RL: разбор конкурирующих версий удара по Луганску",
     "url": "https://www.rferl.org/a/ukraine-unspun-luhansk-blast/25410384.html",
     "referencedBy": [
       "lugansk-2014-06-02"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-92f6a63b0438",
+    "priority": "high",
+    "title": "архив KRM РФ, №5756",
+    "url": "https://t.me/xykrm/5756",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-93148310a667",
+    "priority": "high",
+    "title": "№2070",
+    "url": "https://t.me/xykrm/2070",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-9400a8ae0cb0",
+    "priority": "high",
+    "title": "№2384",
+    "url": "https://t.me/xykrm/2384",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-99a019c27b34",
+    "priority": "high",
+    "title": "№2105",
+    "url": "https://t.me/xykrm/2105",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-a2a879f66182",
+    "priority": "high",
+    "title": "№4988",
+    "url": "https://t.me/xykrm/4988",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-a97e4c242225",
+    "priority": "high",
+    "title": "№2521",
+    "url": "https://t.me/xykrm/2521",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-ad54e82e9010",
+    "priority": "high",
+    "title": "архив KRM РФ, №5928",
+    "url": "https://t.me/xykrm/5928",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-b95adfb5cfbf",
+    "priority": "high",
+    "title": "№3104",
+    "url": "https://t.me/xykrm/3104",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-bbc802f9484d",
+    "priority": "high",
+    "title": "архив KRM РФ, №5455",
+    "url": "https://t.me/xykrm/5455",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026",
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-cbfdbe496060",
+    "priority": "high",
+    "title": "№4592",
+    "url": "https://t.me/xykrm/4592",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
+    ],
+    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+  },
+  {
+    "sourceId": "src-f54ab0d704c3",
+    "priority": "high",
+    "title": "№660",
+    "url": "https://t.me/xykrm/660",
+    "referencedBy": [
+      "kremenskoy-okrug-civilians-2024-2026"
     ],
     "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
   },
