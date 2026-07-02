@@ -203,9 +203,9 @@ git push origin main
 
 ```text
 data/zones.geojson
-data/map/manifest.json
-data/map/snapshots/...
-map/archive/index.html
+data/zones.geojson
+data/zones.geojson...
+map/index.html
 map/index.html
 ```
 
@@ -216,7 +216,7 @@ git checkout main
 git pull origin main
 git status
 git diff -- data/zones.geojson
-git diff -- data/map/manifest.json
+git diff -- data/zones.geojson
 npm run check
 ```
 
@@ -225,7 +225,7 @@ npm run check
 ```bash
 git status
 git diff -- data/zones.geojson
-git diff -- data/map/manifest.json
+git diff -- data/zones.geojson
 ```
 
 Если изменение карты было намеренным:
@@ -239,12 +239,10 @@ git push origin main
 Если карта не должна была меняться, откатить изменения:
 
 ```bash
-git restore data/zones.geojson data/map/manifest.json map/archive/index.html
-git clean -fd data/map/snapshots
+git restore data/zones.geojson data/zones.geojson map/index.html
 npm run check
 ```
 
-Осторожно: `git clean -fd data/map/snapshots` удалит новые неотслеживаемые снимки. Использовать только если уверен, что они лишние.
 
 ## 11. Если `noviy-sait` отстал от `main`
 
@@ -280,7 +278,7 @@ Git покажет конфликтные файлы.
 - `archive/index.html`;
 - `sitemap.xml`;
 - `data/search-index.json`;
-- `data/map/manifest.json`.
+- `data/zones.geojson`.
 
 Порядок:
 
@@ -363,7 +361,7 @@ git push origin main
 - `/archive/`;
 - `/search/`;
 - `/map/`;
-- `/map/archive/`;
+- `/map/`;
 - последнюю публикацию;
 - последнюю оценку;
 - последнюю памятку;
@@ -377,7 +375,6 @@ git push origin main
 - не править production прямо на Cloudflare;
 - не удалять `data/pages.json`;
 - не удалять `data/zones.geojson`;
-- не удалять `data/map/snapshots`, если они отражают реальные изменения карты;
 - не делать `git reset --hard origin/main`, если есть незакоммиченная важная работа;
 - не делать `git push --force` без полного понимания;
 - не запускать `npm run release`, чтобы “починить” случайные изменения, пока не ясно, что они правильные.

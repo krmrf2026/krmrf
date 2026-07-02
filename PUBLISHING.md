@@ -114,9 +114,9 @@ git status
 Если после `npm run check` появились изменения, например:
 
 ```text
-modified: data/map/manifest.json
-modified: map/archive/index.html
-untracked: data/map/snapshots/....geojson
+modified: data/zones.geojson
+modified: map/index.html
+untracked: data/zones.geojson....geojson
 ```
 
 их нужно закоммитить:
@@ -476,19 +476,19 @@ data/zones.geojson
 npm run check
 ```
 
-Сборщик запустит `tools/map-snapshot.mjs`.
+Сборщик запустит ``.
 
 Он:
 
 1. читает `data/zones.geojson`;
 2. проверяет поле `updated`;
 3. считает SHA-256 текущей карты;
-4. сравнивает карту с `data/map/manifest.json`;
-5. если такого снимка ещё нет, создаёт файл в `data/map/snapshots/...geojson`;
-6. обновляет `data/map/manifest.json`;
-7. сборщик обновляет `map/archive/index.html`.
+4. сравнивает карту с `data/zones.geojson`;
+5. если такого снимка ещё нет, создаёт файл в `data/zones.geojson...geojson`;
+6. обновляет `data/zones.geojson`;
+7. сборщик обновляет `map/index.html`.
 
-### Зачем нужны снимки карты
+### Зачем нужны карта
 
 Снимки карты нужны не для красоты. Они фиксируют, как карта выглядела на конкретную дату.
 
@@ -510,19 +510,19 @@ data/zones.geojson
 Архивные снимки — это:
 
 ```text
-data/map/snapshots/2026-...geojson
+data/zones.geojson2026-...geojson
 ```
 
 Манифест снимков — это:
 
 ```text
-data/map/manifest.json
+data/zones.geojson
 ```
 
 Страница архива карты — это:
 
 ```text
-map/archive/index.html
+map/index.html
 ```
 
 ### Почему после `npm run check` появляется новый снимок карты
@@ -533,16 +533,16 @@ map/archive/index.html
 
 ```text
 data/zones.geojson
-data/map/manifest.json
-data/map/snapshots/....geojson
-map/archive/index.html
+data/zones.geojson
+data/zones.geojson....geojson
+map/index.html
 ```
 
 Если карта не должна была меняться, но появился новый снимок, нужно проверить:
 
 ```bash
 git diff -- data/zones.geojson
-git diff -- data/map/manifest.json
+git diff -- data/zones.geojson
 ```
 
 ### Важное правило карты
@@ -679,7 +679,7 @@ npm run check
 
 ```bash
 git diff -- data/zones.geojson
-git diff -- data/map/manifest.json
+git diff -- data/zones.geojson
 ```
 
 Если карта изменилась намеренно — коммитить. Если нет — разобраться до коммита.
@@ -702,7 +702,7 @@ git diff -- data/map/manifest.json
 - не добавлять запись в `data/pages.json` без HTML;
 - не менять URL опубликованных страниц без крайней необходимости;
 - не запускать `npm run release` после каждой статьи;
-- не удалять снимки карты, если они отражают намеренное изменение карты;
+- не удалять карта, если они отражают намеренное изменение карты;
 - не удалять `assets/img/derived`, если они созданы сборщиком и используются сайтом.
 
 ## 18. Контрольный чек-лист перед push в `main`

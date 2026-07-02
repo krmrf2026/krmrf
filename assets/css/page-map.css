@@ -26,7 +26,6 @@
 
 .map-a11y-summary { margin-top: .8rem; color: var(--color-text-muted); font-size: var(--text-sm); }
 
-.map-status, .map-snapshot { margin: .8rem 0 0; padding: .7rem .85rem; border-left: 4px solid var(--color-warning); background: #fff7e7; font-size: var(--text-sm); }
+.map-status { margin: .8rem 0 0; padding: .7rem .85rem; border-left: 4px solid var(--color-warning); background: #fff7e7; font-size: var(--text-sm); }
 .map-status[data-level="error"] { border-left-color: var(--color-danger); }
 .map-status[data-level="success"] { border-left-color: var(--color-confirmed); background: var(--color-accent-soft); }
-.map-snapshot { border-left-color: var(--color-accent); background: var(--color-accent-soft); }

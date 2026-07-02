@@ -81,19 +81,7 @@ const zonesOutlineLayer = L.geoJSON(null, {
   }
 }).addTo(map);
 
-const resolveZonesSource = async () => {
-  const snapshotId = new URLSearchParams(window.location.search).get('snapshot');
-  if (!snapshotId) return { url: '/data/zones.geojson', snapshot: null };
-
-  const response = await fetch('/data/map/manifest.json', { cache: 'no-cache' });
-  if (!response.ok) throw new Error(`manifest.json: HTTP ${response.status}`);
-  const manifest = await response.json();
-  const snapshot = manifest.snapshots?.find(item => item.id === snapshotId);
-  if (!snapshot?.file || !snapshot.file.startsWith('/data/map/snapshots/')) {
-    throw new Error('Запрошенный снимок карты не найден');
-  }
-  return { url: snapshot.file, snapshot };
-};
+const resolveZonesSource = async () => ({ url: '/data/zones.geojson', snapshot: null });
 
 const loadZones = async () => {
   try {

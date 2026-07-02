@@ -233,10 +233,6 @@ const syncPublicationMetadata = (html, item, buildDate) => {
   return updated;
 };
 
-const mapArchiveInner = manifest => [...(manifest.snapshots || [])]
-  .sort((a, b) => String(b.validFrom).localeCompare(String(a.validFrom)))
-  .map(snapshot => `<li><time datetime="${escapeHtml(snapshot.validFrom)}">${escapeHtml(formatDate(String(snapshot.validFrom).slice(0, 10)))}</time><span>${escapeHtml(snapshot.confidence || 'Оценочная карта')}</span><a href="/map/?snapshot=${encodeURIComponent(snapshot.id)}">Открыть снимок карты</a>${snapshot.assessmentUrl ? ` <a class="archive-secondary-link" href="${escapeHtml(snapshot.assessmentUrl)}">Связанная оценка</a>` : ''}</li>`)
-  .join('');
 
 
 const formatDateTime = value => {
@@ -306,7 +302,7 @@ const parseSitemap = xml => {
 const sitemapXml = (pages, oldMap, buildDate, redirectedPaths = new Set()) => {
   const publicationUrls = new Set(pages.map(item => `${SITE_URL}${item.url}`));
   const requiredStaticPaths = [
-    '/', '/about/', '/archive/', '/assessment/', '/kremennaya/', '/map/', '/map/archive/',
+    '/', '/about/', '/archive/', '/assessment/', '/kremennaya/', '/map/',
     '/methodology/', '/news/', '/news/civilian-impact/', '/news/lnr/', '/news/politics/',
     '/news/svo/', '/reference/', '/search/', '/war-crimes/'
   ];
@@ -425,22 +421,6 @@ let archive = read('archive/index.html');
 archive = replaceCatalog(archive, 'archive', enriched, archiveInner(enriched, searchByUrl));
 archive = updateItemList(archive, [...enriched].sort(sortNewest));
 write('archive/index.html', archive);
-
-if (exists('data/map/manifest.json') && exists('map/archive/index.html')) {
-  const manifest = readJson('data/map/manifest.json');
-  let mapArchive = read('map/archive/index.html');
-  mapArchive = mapArchive.replace(
-    /<!-- KRM MAP ARCHIVE START -->[\s\S]*?<!-- KRM MAP ARCHIVE END -->/,
-    `<!-- KRM MAP ARCHIVE START --><ol class="archive-list">${mapArchiveInner(manifest)}</ol><!-- KRM MAP ARCHIVE END -->`
-  );
-  write('map/archive/index.html', mapArchive);
-  if (exists('map/index.html') && manifest.updated) {
-    let mapPage = read('map/index.html');
-    const formatted = formatDateTime(manifest.updated);
-    mapPage = mapPage.replace(/<dd data-fallback="[^"]*" id="mapUpdated">[^<]*<\/dd>/, `<dd data-fallback="${escapeHtml(formatted)}" id="mapUpdated">${escapeHtml(formatted)}</dd>`);
-    write('map/index.html', mapPage);
-  }
-}
 
 writeJson('data/search-index.json', searchIndex);
 
