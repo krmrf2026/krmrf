@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-06-30T12:00:00+03:00</updated>
+  <updated>2026-07-02T12:00:00+03:00</updated>
+  <entry>
+    <title>Обстановка на фронте СВО к 2 июля 2026 года</title>
+    <link href="https://krmrf.ru/news/svo/svo-2026-07-02/" />
+    <id>https://krmrf.ru/news/svo/svo-2026-07-02/</id>
+    <updated>2026-07-02T12:00:00+03:00</updated>
+    <summary>Обзор KRM РФ к 2 июля: Красный Лиман, Купянск, Славянское направление, Покровск, Константиновка, БПЛА, логистика, спорные зоны контроля и гражданская обстановка в ЛНР.</summary>
+  </entry>
   <entry>
     <title>Кременской округ под ударами ВСУ: погибшие и пострадавшие среди гражданского населения, 2024–2026</title>
     <link href="https://krmrf.ru/war-crimes/kremenskoy-okrug-civilians-2024-2026/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/reference/zemlyalnr-2026-05-04/</id>
     <updated>2026-05-04T12:00:00+03:00</updated>
     <summary>Владельцам домов в ЛНР стоит проверить статус дома, земли, ЕГРН, долей и наследства до подачи заявления на бесплатное оформление участка.</summary>
-  </entry>
-  <entry>
-    <title>Оценка боевых действий СВО: Восточный ТВД, 27 апреля — 3 мая 2026</title>
-    <link href="https://krmrf.ru/assessment/2026-05-03/" />
-    <id>https://krmrf.ru/assessment/2026-05-03/</id>
-    <updated>2026-05-03T12:00:00+03:00</updated>
-    <summary>Фронт сохраняет позиционный характер. Усилилось давление на Славянском направлении и ухудшилось положение ВСУ на Купянском участке.</summary>
   </entry>
 </feed>
