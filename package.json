@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "sources:sync": "node tools/sources.mjs",
-    "map:snapshot": "node tools/map-snapshot.mjs",
     "build": "node tools/build.mjs",
     "validate": "node tools/validate.mjs",
     "test:smoke": "node tools/smoke.mjs",
-    "check": "npm run sources:sync && npm run images && npm run map:snapshot && npm run build && npm run validate && npm run test:smoke",
+    "check": "npm run sources:sync && npm run images && npm run build && npm run validate && npm run test:smoke",
     "serve": "node tools/serve.mjs",
     "release": "npm run check && npm run test:negative && node tools/release.mjs && node tools/fixity.mjs",
     "fixity": "node tools/fixity.mjs",

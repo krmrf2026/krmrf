@@ -73,14 +73,14 @@ war-crimes/index.html
 reference/index.html
 search/index.html
 map/index.html
-map/archive/index.html
+map/index.html
 data/news.json
 data/search-index.json
 data/site.json
 data/sources.json
 data/source-preservation-queue.json
-data/map/manifest.json
-data/map/snapshots/...
+data/zones.geojson
+data/zones.geojson...
 feed.xml
 assessment/feed.xml
 kremennaya/feed.xml
@@ -131,8 +131,8 @@ krmrf/
     sources.json                     реестр источников
     source-preservation-queue.json   очередь сохранения источников
     zones.geojson                    текущая карта
-    map/manifest.json                список снимков карты
-    map/snapshots/...                архивные снимки карты
+    map/manifest.json                список карты
+    map/snapshots/...                архивные карта
 
   news/
     svo/.../index.html               статьи СВО
@@ -159,7 +159,6 @@ krmrf/
     build.mjs                        сборка главной, индексов, поиска, sitemap, лент
     images.mjs                       создание производных картинок
     sources.mjs                      синхронизация источников
-    map-snapshot.mjs                 снимки карты
     validate.mjs                     проверка сайта
     smoke.mjs                        smoke-тесты
     release.mjs                      релизный ZIP
@@ -183,7 +182,6 @@ npm run check
 ```text
 sources:sync  → синхронизация источников
 images        → создание производных WebP
-map:snapshot  → проверка/создание снимка карты
 build         → сборка главной, индексов, поиска, sitemap, feed
 validate      → проверка ошибок
 test:smoke    → быстрые пользовательские тесты
@@ -210,7 +208,7 @@ python -m http.server 8000
 ```bash
 npm run sources:sync   # обновить источники
 npm run images         # создать недостающие 480/960 WebP
-npm run map:snapshot   # создать/проверить снимок карты
+   # создать/проверить снимок карты
 npm run build          # пересобрать главную, индексы, поиск, sitemap, feed
 npm run validate       # проверить сайт
 npm run test:smoke     # smoke-тесты
@@ -1043,15 +1041,15 @@ npm run check
 Скрипт создаст или проверит снимок:
 
 ```text
-data/map/snapshots/2026-07-01T08-10-00+03-00.geojson
+data/zones.geojson2026-07-01T08-10-00+03-00.geojson
 ```
 
 и обновит:
 
 ```text
-data/map/manifest.json
+data/zones.geojson
 map/index.html
-map/archive/index.html
+map/index.html
 ```
 
 Важно:
@@ -1138,7 +1136,7 @@ npm run check
 ```text
 Реестр источников синхронизирован: 113 записей, 52 публикаций.
 Производные изображения уже существуют: проверено 286 файлов.
-Снимок карты уже существует: /data/map/snapshots/....geojson
+Снимок карты уже существует: /data/zones.geojson....geojson
 Сборка завершена: 52 публикаций.
 Проверка пройдена: 52 публикаций, 70 HTML-страниц, ошибок нет.
 Smoke-тесты пройдены.
@@ -1454,10 +1452,10 @@ git push origin noviy-sait
 
 ```text
 data/zones.geojson
-data/map/manifest.json
-data/map/snapshots/...
+data/zones.geojson
+data/zones.geojson...
 map/index.html
-map/archive/index.html
+map/index.html
 ```
 
 ---

@@ -333,29 +333,10 @@ for (const url of urls) if (!archive.includes(`href="${url}"`)) errors.push(`arc
 for (const group of ['type', 'section', 'location']) if (!archive.includes(`data-filter-group="${group}"`)) errors.push(`archive/index.html: нет группы фильтров ${group}`);
 
 try {
-  const manifest = readJson('data/map/manifest.json');
-  if (JSON.stringify(manifest).includes('orientировочная')) errors.push('data/map/manifest.json: найдено смешанное слово orientировочная.');
-  if (exists('map/index.html') && manifest.updated) {
-    const mapHtml = read('map/index.html');
-    if (!mapHtml.includes(formatDateTime(manifest.updated))) errors.push('map/index.html: fallback-дата карты не согласована с data/map/manifest.json updated.');
-  }
-  const current = fs.readFileSync(path.join(ROOT, manifest.current.replace(/^\//, '')));
-  if (sha256(current) !== manifest.currentHash) errors.push('data/map/manifest.json: currentHash не совпадает с zones.geojson.');
-  if (!Array.isArray(manifest.snapshots) || !manifest.snapshots.length) errors.push('data/map/manifest.json: нет снимков карты.');
-  else {
-    const snapshotIds = new Set();
-    const snapshotFiles = new Set();
-    for (const snapshot of manifest.snapshots) {
-      if (snapshotIds.has(snapshot.id)) errors.push(`Карта: повторяющийся id снимка ${snapshot.id}.`);
-      if (snapshotFiles.has(snapshot.file)) errors.push(`Карта: повторяющийся файл снимка ${snapshot.file}.`);
-      snapshotIds.add(snapshot.id); snapshotFiles.add(snapshot.file);
-    const file = snapshot.file?.replace(/^\//, '');
-    if (!file || !exists(file)) errors.push(`Карта: отсутствует снимок ${snapshot.file}`);
-    else if (sha256(fs.readFileSync(path.join(ROOT, file))) !== snapshot.sha256) errors.push(`Карта: SHA-256 снимка ${snapshot.id} не совпадает.`);
-      if (!snapshot.validFrom || !snapshot.assessmentUrl || !snapshot.methodologyUrl || !snapshot.confidence) errors.push(`Карта: неполные provenance-метаданные снимка ${snapshot.id}.`);
-    }
-  }
-  if (!exists('map/archive/index.html')) errors.push('Карта: отсутствует пользовательская страница архива снимков.');
+  const zones = readJson('data/zones.geojson');
+  if (!zones || zones.type !== 'FeatureCollection') errors.push('data/zones.geojson: ожидается FeatureCollection.');
+  if (!zones.updated) errors.push('data/zones.geojson: отсутствует поле updated.');
+  if (!Array.isArray(zones.features)) errors.push('data/zones.geojson: отсутствует массив features.');
 } catch (error) {
   errors.push(`Карта: ${error.message}`);
 }
