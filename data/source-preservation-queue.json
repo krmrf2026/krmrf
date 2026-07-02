@@ -1,15 +1,5 @@
 [
   {
-    "sourceId": "src-07e01b327757",
-    "priority": "high",
-    "title": "№2371",
-    "url": "https://t.me/xykrm/2371",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
     "sourceId": "src-10a3279f138c",
     "priority": "high",
     "title": "ZN.ua: сообщение о списке погибших, опубликованном украинской милицией",
@@ -17,17 +7,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-12a115b81583",
-    "priority": "high",
-    "title": "№923",
-    "url": "https://t.me/xykrm/923",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-1381da361633",
@@ -38,7 +18,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-147295976366",
@@ -48,37 +28,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-1709d6650ccb",
-    "priority": "high",
-    "title": "№2478",
-    "url": "https://t.me/xykrm/2478",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-18ac1847f8b8",
-    "priority": "high",
-    "title": "№1014",
-    "url": "https://t.me/xykrm/1014",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-202392f77ca4",
-    "priority": "high",
-    "title": "№5726",
-    "url": "https://t.me/xykrm/5726",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-24991c3c900a",
@@ -89,17 +39,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-326d21ffa51c",
-    "priority": "high",
-    "title": "№3358",
-    "url": "https://t.me/xykrm/3358",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-3b0e2a389ab8",
@@ -109,7 +49,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-4db4c1e3b5ff",
@@ -121,7 +61,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-577073dee4e1",
@@ -132,7 +72,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-5cd14a6c849d",
@@ -143,7 +83,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-629067411a83",
@@ -154,7 +94,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-64e9f40ed54e",
@@ -164,7 +104,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-6f55e8c9227c",
@@ -174,7 +114,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-7030874f539c",
@@ -184,7 +124,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-711eaf96a74d",
@@ -194,47 +134,7 @@
     "referencedBy": [
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-73da7475e1a6",
-    "priority": "high",
-    "title": "№651",
-    "url": "https://t.me/xykrm/651",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-74c1037b1e20",
-    "priority": "high",
-    "title": "№2277",
-    "url": "https://t.me/xykrm/2277",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-78631c3ac6b7",
-    "priority": "high",
-    "title": "№2154",
-    "url": "https://t.me/xykrm/2154",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-80acb896df84",
-    "priority": "high",
-    "title": "№1610",
-    "url": "https://t.me/xykrm/1610",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-8341d6b9f845",
@@ -244,7 +144,7 @@
     "referencedBy": [
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-912d5fe56084",
@@ -254,7 +154,7 @@
     "referencedBy": [
       "lugansk-2014-06-02"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-92f6a63b0438",
@@ -265,7 +165,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-93148310a667",
@@ -276,47 +176,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-9400a8ae0cb0",
-    "priority": "high",
-    "title": "№2384",
-    "url": "https://t.me/xykrm/2384",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-99a019c27b34",
-    "priority": "high",
-    "title": "№2105",
-    "url": "https://t.me/xykrm/2105",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-a2a879f66182",
-    "priority": "high",
-    "title": "№4988",
-    "url": "https://t.me/xykrm/4988",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-a97e4c242225",
-    "priority": "high",
-    "title": "№2521",
-    "url": "https://t.me/xykrm/2521",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-ad54e82e9010",
@@ -327,17 +187,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-b95adfb5cfbf",
-    "priority": "high",
-    "title": "№3104",
-    "url": "https://t.me/xykrm/3104",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-bbc802f9484d",
@@ -349,27 +199,7 @@
       "kremenskoy-okrug-civilians-2024-2026",
       "kremenskoy-okrug-civilians-2024-2026"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-cbfdbe496060",
-    "priority": "high",
-    "title": "№4592",
-    "url": "https://t.me/xykrm/4592",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-f54ab0d704c3",
-    "priority": "high",
-    "title": "№660",
-    "url": "https://t.me/xykrm/660",
-    "referencedBy": [
-      "kremenskoy-okrug-civilians-2024-2026"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-126409d4adc0",
@@ -379,7 +209,7 @@
     "referencedBy": [
       "vuplatylnr-2026-05-25"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-168426597281",
@@ -389,7 +219,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-197341de9549",
@@ -399,7 +229,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-208740499ec7",
@@ -409,7 +239,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-22ce7f5aec0b",
@@ -419,17 +249,7 @@
     "referencedBy": [
       "powrlnr-2026-05-13"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-2b9ec16c4f35",
-    "priority": "medium",
-    "title": "Правительство ЛНР",
-    "url": "https://max.ru/government_lnr",
-    "referencedBy": [
-      "vuplatylnr-2026-05-25"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-2bf48999141c",
@@ -439,7 +259,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-32ecc907c6e2",
@@ -449,27 +269,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-34e86e37cbc5",
-    "priority": "medium",
-    "title": "saraliev.com/обратная-связь/",
-    "url": "http://saraliev.com/обратная-связь/",
-    "referencedBy": [
-      "evak-2026-03-10"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-541dac45725e",
-    "priority": "medium",
-    "title": "ЛИЦ: 51,5 тыс. рублей за кв. м",
-    "url": "https://lug-info.ru/news/kompensacija-za-utrachennoe-zhile-v-lnr-vyrosla-do-515-tys.-rublej-za-kvadratnyj/",
-    "referencedBy": [
-      "powrlnr-2026-05-13"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-5ae1b22690ed",
@@ -479,7 +279,7 @@
     "referencedBy": [
       "beshoz-2026-04-21"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-610f9f7e3883",
@@ -489,7 +289,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-6572087b9479",
@@ -499,7 +299,7 @@
     "referencedBy": [
       "vuplatylnr-2026-05-25"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-85dbaf00a591",
@@ -509,7 +309,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-88b0d3e75348",
@@ -519,7 +319,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-93da44cafc1c",
@@ -529,7 +329,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-94d96161bb90",
@@ -539,7 +339,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-a715ea6a2cf0",
@@ -549,7 +349,7 @@
     "referencedBy": [
       "powrlnr-2026-05-13"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-b0e5b6ed1516",
@@ -559,17 +359,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
-  },
-  {
-    "sourceId": "src-b0ebd2a1ce7f",
-    "priority": "medium",
-    "title": "канал Леонида Пасечника в MAX",
-    "url": "https://max.ru/glava_lnr_info/AZ5QqCEUcac",
-    "referencedBy": [
-      "vuplatylnr-2026-05-25"
-    ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-ba3377b9fd05",
@@ -579,7 +369,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-ce2f70896ba3",
@@ -589,7 +379,7 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-dbada24fb28e",
@@ -599,7 +389,7 @@
     "referencedBy": [
       "evak-2026-03-10"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
     "sourceId": "src-e94c01753f8e",
@@ -609,6 +399,6 @@
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
     ],
-    "action": "Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture."
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   }
 ]

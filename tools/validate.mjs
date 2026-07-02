@@ -112,7 +112,6 @@ for (const section of SECTIONS) if (!schemaSections.has(section)) errors.push(`p
 
 const sourceById = new Map();
 let unpreservedSourceCount = 0;
-let unpreservedPriorityCount = 0;
 const sourceByUrl = new Map();
 for (const source of sources) {
   if (!source?.id || !source?.url) {
@@ -134,17 +133,27 @@ for (const source of sources) {
   }
   if (!['normal', 'medium', 'high'].includes(source.preservationPriority || '')) errors.push(`sources.json ${source.id}: неверный preservationPriority.`);
   if (!Array.isArray(source.referencedBy)) errors.push(`sources.json ${source.id}: referencedBy должен быть массивом.`);
-  if (!source.accessedAt || (!source.archiveUrl && !source.localCopy)) {
-    unpreservedSourceCount += 1;
-    if (source.preservationPriority === 'high' || source.preservationPriority === 'medium') unpreservedPriorityCount += 1;
-  }
+  if (!source.accessedAt || (!source.archiveUrl && !source.localCopy)) unpreservedSourceCount += 1;
 }
-if (unpreservedSourceCount) warnings.push(`В реестре ${unpreservedSourceCount} источников без сохранённой копии; ${unpreservedPriorityCount} из них находятся в приоритетной очереди data/source-preservation-queue.json.`);
-const queuedIds = new Set(preservationQueue.map(item => item.sourceId));
-for (const source of sources) {
-  const shouldQueue = ['high', 'medium'].includes(source.preservationPriority) && !source.localCopy && !source.archiveUrl;
-  if (shouldQueue && !queuedIds.has(source.id)) errors.push(`Очередь источников: отсутствует ${source.id}.`);
-  if (!shouldQueue && queuedIds.has(source.id)) errors.push(`Очередь источников: лишняя запись ${source.id}.`);
+if (unpreservedSourceCount) warnings.push(`В реестре ${unpreservedSourceCount} источников без сохранённой копии; ${preservationQueue.length} оставлены в короткой очереди data/source-preservation-queue.json.`);
+
+const queuedIds = new Set();
+for (const item of preservationQueue) {
+  if (!item.sourceId) {
+    errors.push('Очередь источников: запись без sourceId.');
+    continue;
+  }
+
+  if (queuedIds.has(item.sourceId)) errors.push(`Очередь источников: повтор ${item.sourceId}.`);
+  queuedIds.add(item.sourceId);
+
+  const source = sourceById.get(item.sourceId);
+  if (!source) {
+    errors.push(`Очередь источников: неизвестный sourceId ${item.sourceId}.`);
+    continue;
+  }
+
+  if (source.localCopy || source.archiveUrl) errors.push(`Очередь источников: источник уже сохранён ${item.sourceId}.`);
 }
 
 const ids = new Set();

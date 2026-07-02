@@ -29,6 +29,63 @@ const fileForUrl = url => `${url.replace(/^\//, '').replace(/\/$/, '')}/index.ht
 const pageSources = new Map();
 const referencesBySource = new Map();
 const priorityRank = { normal: 1, medium: 2, high: 3 };
+
+const primaryPreservationHosts = [
+  'publication.pravo.gov.ru',
+  'sovminlnr.ru',
+  'consultant.ru',
+  'base.garant.ru',
+  'garant.ru',
+  'kremlin.ru',
+  'letters.kremlin.ru',
+  'mfclnr.ru',
+  'rcszn-lnr.ru',
+  'mintrud.lpr-reg.ru',
+  'gvp.gov.ru',
+  'gvsu.gov.ru',
+  'letters.mil.ru',
+  'ombudsmanrf.org',
+  'icrc.org',
+  'ohchr.org',
+  'ukraine.ohchr.org',
+  'osce.org',
+  'mid.ru'
+];
+
+const hostOf = url => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '').toLowerCase();
+  } catch {
+    return '';
+  }
+};
+
+const hostMatches = (host, allowed) => allowed.some(item => host === item || host.endsWith(`.${item}`));
+
+const pageById = new Map(pages.map(page => [page.id, page]));
+
+const isImportantForPreservation = record => {
+  const host = hostOf(record.url);
+  const referencedBy = record.referencedBy || [];
+  const refPages = referencedBy.map(id => pageById.get(id)).filter(Boolean);
+
+  const inDossier = refPages.some(page => page.type === 'dossier' || page.section === 'warcrimes');
+  const inLawGuide = refPages.some(page => page.type === 'guide' || page.section === 'law');
+
+  const isTelegram = host === 't.me' || host === 'telegram.me';
+  const isKrmArchive = /архив KRM РФ/i.test(record.title || '');
+  const isRepeated = referencedBy.length > 1;
+  const isPrimaryHost = hostMatches(host, primaryPreservationHosts);
+
+  // Досье: сохранять не каждую одиночную telegram-ссылку, а только ключевое.
+  if (inDossier && (!isTelegram || isKrmArchive || isRepeated)) return true;
+
+  // Правовые памятки: сохранять официальные и первичные правовые источники.
+  if (inLawGuide && isPrimaryHost) return true;
+
+  return false;
+};
+
 const pagePriority = page => page.type === 'dossier' || page.type === 'assessment' ? 'high' : page.type === 'guide' ? 'medium' : 'normal';
 for (const page of pages) {
   const html = read(fileForUrl(page.url));
@@ -81,14 +138,14 @@ const registry = [...byUrl.values()].map(record => {
   };
 }).sort((a, b) => String(a.id).localeCompare(String(b.id)));
 const queue = registry
-  .filter(record => record.preservationPriority !== 'normal' && !record.localCopy && !record.archiveUrl)
+  .filter(record => isImportantForPreservation(record) && !record.localCopy && !record.archiveUrl)
   .map(record => ({
     sourceId: record.id,
     priority: record.preservationPriority,
     title: record.title,
     url: record.url,
     referencedBy: record.referencedBy,
-    action: 'Сохранить допустимую локальную копию или точный архивный URL, затем выполнить npm run source:capture.'
+    action: 'Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL.'
   }))
   .sort((a, b) => priorityRank[b.priority] - priorityRank[a.priority] || a.sourceId.localeCompare(b.sourceId));
 write('data/pages.json', `${JSON.stringify(updatedPages, null, 2)}
