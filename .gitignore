@@ -1,3 +1,11 @@
 node_modules/
 .DS_Store
 *.log
+# accidental terminal/log paste files
+/FETCH_HEAD
+/node
+/npm
+/krmrf-static-archive@*
+/128902
+/d
+/assets/img/news/reference/beshoz-123-26-2026-07-04/123
