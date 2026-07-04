@@ -9,3 +9,16 @@ node_modules/
 /128902
 /d
 /assets/img/news/reference/beshoz-123-26-2026-07-04/123
+
+# release archives: keep as local/GitHub Release assets, not in Git history
+/releases/*.zip
+/releases/*.zip.sha256
+
+# accidental terminal/log paste files
+/FETCH_HEAD
+/node
+/npm
+/krmrf-static-archive@*
+/128902
+/d
+/assets/img/news/reference/beshoz-123-26-2026-07-04/123

@@ -14,7 +14,8 @@
     "fixity": "node tools/fixity.mjs",
     "test:negative": "node tools/negative-tests.mjs",
     "source:capture": "node tools/source-capture.mjs",
-    "images": "node tools/images.mjs"
+    "images": "node tools/images.mjs",
+    "sources:report": "node tools/sources-report.mjs"
   },
   "engines": {
     "node": ">=20"
