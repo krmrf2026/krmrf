@@ -1,5 +1,35 @@
 [
   {
+    "id": "beshoz-123-26-2026-07-04",
+    "type": "guide",
+    "title": "Постановление ЛНР № 123/26 о бесхозном жилье: что изменилось после утверждения порядка учета",
+    "url": "/news/reference/beshoz-123-26-2026-07-04/",
+    "section": "law",
+    "datePublished": "2026-07-04",
+    "dateModified": "2026-07-04",
+    "status": null,
+    "excerpt": "Разбор постановления ЛНР № 123/26: что именно добавил порядок учета бесхозяйного жилья, как теперь работает реестр и что делать собственнику после 1 июля 2026 года.",
+    "image": "/assets/img/news/reference/beshoz-123-26-2026-07-04/cover.webp",
+    "imageAlt": "Реестр бесхозяйного жилья и ЕГРН в ЛНР",
+    "locations": [
+      "ЛНР"
+    ],
+    "sourceIds": [
+      "src-66710b680a08",
+      "src-3527e8deb830",
+      "src-ee19123e999e",
+      "src-5ae1b22690ed",
+      "src-e2a1999c613c",
+      "src-4bf2cef73554",
+      "src-b6c1c7a14c8b",
+      "src-8deb940f10fa",
+      "src-b63752083bc7"
+    ],
+    "reviewedAt": "2026-07-04",
+    "reviewAfter": "2026-10-04",
+    "reviewStatus": "current"
+  },
+  {
     "id": "svo-2026-07-02",
     "type": "article",
     "title": "Обстановка на фронте СВО к 2 июля 2026 года",

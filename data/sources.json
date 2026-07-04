@@ -444,6 +444,23 @@
     ]
   },
   {
+    "id": "src-3527e8deb830",
+    "url": "https://sovminlnr.ru/akty-soveta-ministrov/postanovleniya/36443-ob-utverzhdenii-poryadka-ucheta-zhilyh-pomescheniy-imeyuschih-priznaki-beshozyaynogo-imuschestva.html",
+    "title": "карточка акта на сайте Правительства ЛНР",
+    "publisher": "sovminlnr.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
     "id": "src-386de49564cb",
     "url": "https://ihl-databases.icrc.org/en/ihl-treaties/api-1977/article-57",
     "title": "статья 57 Дополнительного протокола I о мерах предосторожности при нападении",
@@ -580,6 +597,23 @@
     ]
   },
   {
+    "id": "src-4bf2cef73554",
+    "url": "https://rteklnr.gosuslugi.ru/novosti-i-sobytiya/rosreestr-informiruet-zavershenie-perehodnogo-perioda-registratsii-prav-na-nedvizhimost-do-1-iyulya-2026-goda.html",
+    "title": "Разъяснение Росреестра ЛНР о завершении переходного периода регистрации прав до 1 июля 2026 года",
+    "publisher": "rteklnr.gosuslugi.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
     "id": "src-4db4c1e3b5ff",
     "url": "https://t.me/xykrm/1995",
     "title": "архив KRM РФ, №1995",
@@ -698,6 +732,7 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
+      "beshoz-123-26-2026-07-04",
       "beshoz-2026-04-21"
     ]
   },
@@ -820,6 +855,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "vuplatylnr-2026-05-25"
+    ]
+  },
+  {
+    "id": "src-66710b680a08",
+    "url": "http://publication.pravo.gov.ru/document/8100202606170003",
+    "title": "Постановление Правительства ЛНР от 16.06.2026 № 123/26",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
     ]
   },
   {
@@ -1126,6 +1178,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-8deb940f10fa",
+    "url": "https://www.gosuslugi.ru/help/faq/registrate_real_estate/104172",
+    "title": "Госуслуги: сроки регистрации прав собственности на недвижимость",
+    "publisher": "gosuslugi.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
     ]
   },
   {
@@ -1506,6 +1575,40 @@
     ]
   },
   {
+    "id": "src-b63752083bc7",
+    "url": "https://gorod-lugansk.gosuslugi.ru/deyatelnost/napravleniya-deyatelnosti/beshozyaynoe-zhile/",
+    "title": "Официальная страница администрации Луганска о бесхозяйном жилье",
+    "publisher": "gorod-lugansk.gosuslugi.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
+    "id": "src-b6c1c7a14c8b",
+    "url": "https://rosreestr.gov.ru/activity/okazanie-gosudarstvennykh-uslug/kadastrovyy-uchet-i-ili-registratsiya-prav-/predstavlenie-dokumentov-na-gosudarstvennuyu-registraciyu-prav/",
+    "title": "Росреестр: представление документов на государственную регистрацию прав",
+    "publisher": "rosreestr.gov.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
     "id": "src-b76354503114",
     "url": "https://lug-info.ru/news/dron-vsu-atakoval-centr-luganska-raneny-dva-cheloveka--pasechnik/",
     "title": "центр Луганска",
@@ -1831,6 +1934,23 @@
     ]
   },
   {
+    "id": "src-e2a1999c613c",
+    "url": "http://publication.pravo.gov.ru/document/0001202512150024",
+    "title": "Федеральный конституционный закон от 15.12.2025 № 4-ФКЗ",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
     "id": "src-e60cae01aec7",
     "url": "https://www.echr.coe.int/w/judgment-concerning-ukraine-2",
     "title": "ECHR: judgment concerning Ukraine, Odesa events",
@@ -1879,6 +1999,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-ee19123e999e",
+    "url": "https://sovminlnr.ru/docs/2026/06/18/123_26.pdf",
+    "title": "PDF постановления",
+    "publisher": "sovminlnr.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "beshoz-123-26-2026-07-04"
     ]
   },
   {
