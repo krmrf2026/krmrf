@@ -25,3 +25,19 @@
     if (window.innerWidth > 900 && isOpen()) close();
   });
 })();
+
+(() => {
+  const METRIKA_ID = 110383043;
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link) return;
+
+    const sourceItem = link.closest('li[id^="src-"]');
+    if (!sourceItem) return;
+
+    if (typeof window.ym === 'function') {
+      window.ym(METRIKA_ID, 'reachGoal', 'source_click');
+    }
+  });
+})();
