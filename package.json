@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.6.20-r4",
+  "version": "2026.7.4-r1",
   "type": "module",
   "scripts": {
     "sources:sync": "node tools/sources.mjs",
