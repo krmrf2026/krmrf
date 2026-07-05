@@ -20,3 +20,43 @@
 
 /data/*
   Cache-Control: public, max-age=300, must-revalidate
+
+# Service/repository files: visible only as technical artifacts, not indexable content
+/tools/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/package.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/package-lock.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/README.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/PUBLISHING.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/RECOVERY.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/SOURCES.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/KRM_RF_R4_IMPLEMENTATION_REPORT.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/.gitignore
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/data/pages.schema.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/data/sources.schema.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/data/source-preservation-queue.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/releases/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
