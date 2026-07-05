@@ -1,4 +1,31 @@
 User-agent: *
-Allow: /
+
+# Service and repository files are not public reading paths.
+Disallow: /tools/
+Disallow: /node_modules/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /README.md
+Disallow: /PUBLISHING.md
+Disallow: /RECOVERY.md
+Disallow: /SOURCES.md
+Disallow: /KRM_RF_R4_IMPLEMENTATION_REPORT.md
+Disallow: /.gitignore
+Disallow: /data/pages.schema.json
+Disallow: /data/sources.schema.json
+Disallow: /data/source-preservation-queue.json
+Disallow: /releases/
+
+# Public machine-readable site files.
+Allow: /data/pages.json
+Allow: /data/search-index.json
+Allow: /data/site.json
+Allow: /data/news.json
+Allow: /data/assessment.json
+Allow: /data/war-crimes.json
+Allow: /data/sources.json
+Allow: /data/map/
+Allow: /data/zones.geojson
+Allow: /data/rf_regions.json
 
 Sitemap: https://krmrf.ru/sitemap.xml

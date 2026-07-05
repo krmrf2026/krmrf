@@ -4,7 +4,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Frame-Options: SAMEORIGIN
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://*.tile.openstreetmap.org; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://mc.yandex.ru; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.tile.openstreetmap.org https://mc.yandex.ru; connect-src 'self' https://*.tile.openstreetmap.org https://mc.yandex.ru https://*.mc.yandex.ru https://mc.webvisor.org; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
 
 /assets/css/*
   Cache-Control: public, max-age=3600, must-revalidate
@@ -20,3 +20,43 @@
 
 /data/*
   Cache-Control: public, max-age=300, must-revalidate
+
+# Service/repository files: visible only as technical artifacts, not indexable content
+/tools/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/package.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/package-lock.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/README.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/PUBLISHING.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/RECOVERY.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/SOURCES.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/KRM_RF_R4_IMPLEMENTATION_REPORT.md
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/.gitignore
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/data/pages.schema.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/data/sources.schema.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/data/source-preservation-queue.json
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/releases/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet

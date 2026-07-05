@@ -8,7 +8,9 @@ const ROOT = process.cwd();
 const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/site.json'), 'utf8'));
 const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
 const version = pkg.version || site.version;
-const releaseDir = path.join(ROOT, 'releases');
+const releaseDir = process.env.KRM_RELEASE_DIR
+  ? path.resolve(process.env.KRM_RELEASE_DIR)
+  : path.resolve(ROOT, '..', 'krmrf-releases');
 fs.mkdirSync(releaseDir, { recursive: true });
 
 const excludedDirectories = new Set(['.git', 'node_modules', 'releases']);
@@ -117,5 +119,5 @@ const archivePath = path.join(releaseDir, archiveName);
 fs.writeFileSync(archivePath, archive);
 const archiveHash = sha256(archive);
 fs.writeFileSync(`${archivePath}.sha256`, `${archiveHash}  ${archiveName}\n`, 'utf8');
-console.log(`Релиз создан: releases/${archiveName}`);
+console.log(`Релиз создан: ${archivePath}`);
 console.log(`SHA-256: ${archiveHash}`);
