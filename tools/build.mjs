@@ -304,7 +304,7 @@ const sitemapXml = (pages, oldMap, buildDate, redirectedPaths = new Set()) => {
   const requiredStaticPaths = [
     '/', '/about/', '/archive/', '/assessment/', '/kremennaya/', '/map/',
     '/methodology/', '/news/', '/news/civilian-impact/', '/news/lnr/', '/news/politics/',
-    '/news/svo/', '/reference/', '/search/', '/war-crimes/'
+    '/news/svo/', '/privacy/', '/reference/', '/search/', '/war-crimes/'
   ];
   const staticMap = new Map(oldMap);
   for (const pathname of requiredStaticPaths) {
