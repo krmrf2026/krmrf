@@ -68,7 +68,7 @@ const renderMapChanges = (payload, zonesUpdated = '') => {
 
   const changes = Array.isArray(payload?.changes) ? payload.changes : [];
   if (!changes.length) {
-    appendText(mapChangesEl, 'p', 'Журнал изменений карты пока не заполнен. При изменении data/zones.geojson добавьте запись в data/map-changes.json.');
+    appendText(mapChangesEl, 'p', 'Описание последнего обновления карты пока не заполнено.');
     return;
   }
 
@@ -91,7 +91,7 @@ const renderMapChanges = (payload, zonesUpdated = '') => {
   }
 
   if (zonesUpdated && latest.zonesUpdated && String(latest.zonesUpdated) !== String(zonesUpdated)) {
-    setStatus('Внимание: дата последнего изменения в data/map-changes.json не совпадает с updated в data/zones.geojson. Проверьте журнал карты.', 'warning');
+    setStatus('Внимание: дата последнего описанного изменения не совпадает с датой карты. Проверьте обновление карты.', 'warning');
   }
 };
 
@@ -106,7 +106,7 @@ const loadMapChanges = async zonesUpdated => {
     console.error('Ошибка загрузки журнала изменений карты:', error);
     mapChangesEl.textContent = '';
     appendText(mapChangesEl, 'h2', 'Что изменилось на карте');
-    appendText(mapChangesEl, 'p', 'Журнал изменений карты временно недоступен. Основная геометрия карты загружается из data/zones.geojson.');
+    appendText(mapChangesEl, 'p', 'Описание последних изменений временно недоступно. Основная карта остаётся доступной.');
   }
 };
 
