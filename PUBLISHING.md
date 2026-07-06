@@ -470,7 +470,33 @@ data/zones.geojson
 
 Не `zones.json`.
 
-При обновлении карты менять нужно именно `data/zones.geojson`. После этого выполнить:
+При обновлении карты менять нужно именно `data/zones.geojson`.
+
+Если меняется геометрия или смысл карты, обязательно меняются два файла:
+
+```text
+data/zones.geojson
+data/map-changes.json
+```
+
+В `data/zones.geojson` обнови поле `updated`.
+
+В `data/map-changes.json` добавь новую верхнюю запись в `changes[0]`:
+
+```json
+{
+  "id": "map-YYYY-MM-DD-HHMM",
+  "zonesUpdated": "то же значение, что updated в data/zones.geojson",
+  "title": "Короткий заголовок изменения",
+  "summary": "1–2 предложения: что именно изменилось на карте",
+  "details": ["краткий пункт", "краткий пункт"],
+  "relatedUrl": "/assessment/YYYY-MM-DD/",
+  "relatedTitle": "Название связанной оценки фронта",
+  "status": "current"
+}
+```
+
+После этого выполнить:
 
 ```bash
 npm run check
@@ -486,7 +512,8 @@ npm run check
 4. сравнивает карту с `data/zones.geojson`;
 5. если такого снимка ещё нет, создаёт файл в `data/zones.geojson...geojson`;
 6. обновляет `data/zones.geojson`;
-7. сборщик обновляет `map/index.html`.
+7. проверяет согласованность `data/map-changes.json` с `data/zones.geojson`;
+8. сборщик обновляет `map/index.html`.
 
 ### Зачем нужны карта
 
@@ -547,7 +574,7 @@ git diff -- data/zones.geojson
 
 ### Важное правило карты
 
-Если ты меняешь геометрию или смысл карты, обнови поле `updated` в `data/zones.geojson`.
+Если ты меняешь геометрию или смысл карты, обнови поле `updated` в `data/zones.geojson` и добавь верхнюю запись в `data/map-changes.json`.
 
 Если попытаться создать снимок с тем же `updated`, но другой контрольной суммой, скрипт может остановиться, потому что архивные снимки нельзя перезаписывать задним числом.
 

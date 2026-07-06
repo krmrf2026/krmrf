@@ -35,6 +35,8 @@ for (const [value, label] of Object.entries(taxonomy.sections || {})) {
   }
 }
 if (!map.includes('id="mapStatus"')) errors.push('Карта: отсутствует live-status ошибок.');
+if (!map.includes('id="mapChanges"')) errors.push('Карта: отсутствует блок журнала изменений.');
+if (!fs.existsSync('data/map-changes.json')) errors.push('Карта: отсутствует data/map-changes.json.');
 if (!archive.includes('data-locations="Восточный фронт')) errors.push('Архив: многословная территория «Восточный фронт» не записана в fallback-разметку.');
 const archiveScript = fs.readFileSync('assets/js/archive-filter.js', 'utf8');
 if (!archiveScript.includes("split('|')")) errors.push('Архив: территории не разбираются как отдельные фасеты.');

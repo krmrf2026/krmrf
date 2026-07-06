@@ -346,6 +346,23 @@ try {
   if (!zones || zones.type !== 'FeatureCollection') errors.push('data/zones.geojson: ожидается FeatureCollection.');
   if (!zones.updated) errors.push('data/zones.geojson: отсутствует поле updated.');
   if (!Array.isArray(zones.features)) errors.push('data/zones.geojson: отсутствует массив features.');
+
+  const changes = readJson('data/map-changes.json');
+  if (changes?.schema !== 'krmrf-map-changes-v1') errors.push('data/map-changes.json: неверный schema.');
+  if (!Array.isArray(changes?.changes) || !changes.changes.length) errors.push('data/map-changes.json: нужен непустой changes.');
+  const latestChange = changes?.changes?.[0];
+  if (latestChange) {
+    if (!latestChange.id || !latestChange.zonesUpdated || !latestChange.title || !latestChange.summary) {
+      errors.push('data/map-changes.json: последняя запись требует id, zonesUpdated, title и summary.');
+    }
+    if (zones.updated && latestChange.zonesUpdated && String(latestChange.zonesUpdated) !== String(zones.updated)) {
+      errors.push('data/map-changes.json: changes[0].zonesUpdated должен совпадать с data/zones.geojson updated.');
+    }
+    if (latestChange.relatedUrl) {
+      const relatedFile = urlToFile(latestChange.relatedUrl);
+      if (!relatedFile || !exists(relatedFile)) errors.push(`data/map-changes.json: битая relatedUrl ${latestChange.relatedUrl}`);
+    }
+  }
 } catch (error) {
   errors.push(`Карта: ${error.message}`);
 }
