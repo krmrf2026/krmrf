@@ -6,6 +6,7 @@ const map = L.map('map', {
 const statusEl = document.getElementById('mapStatus');
 const updatedEl = document.getElementById('mapUpdated');
 const snapshotEl = document.getElementById('mapSnapshot');
+const mapChangesEl = document.getElementById('mapChanges');
 
 const setStatus = (message, level = 'info') => {
   if (!statusEl) return;
@@ -50,6 +51,65 @@ const formatMapDate = value => {
   return new Intl.DateTimeFormat('ru-RU', options).format(date).replace(' г.', ' года');
 };
 
+
+const appendText = (parent, tagName, text, className = '') => {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  element.textContent = text;
+  parent.appendChild(element);
+  return element;
+};
+
+const renderMapChanges = (payload, zonesUpdated = '') => {
+  if (!mapChangesEl) return;
+  const heading = mapChangesEl.querySelector('h2')?.textContent || 'Что изменилось на карте';
+  mapChangesEl.textContent = '';
+  appendText(mapChangesEl, 'h2', heading);
+
+  const changes = Array.isArray(payload?.changes) ? payload.changes : [];
+  if (!changes.length) {
+    appendText(mapChangesEl, 'p', 'Журнал изменений карты пока не заполнен. При изменении data/zones.geojson добавьте запись в data/map-changes.json.');
+    return;
+  }
+
+  const latest = changes[0];
+  appendText(mapChangesEl, 'p', formatMapDate(latest.zonesUpdated || payload.updated || zonesUpdated), 'eyebrow');
+  appendText(mapChangesEl, 'h3', latest.title || 'Последнее изменение карты');
+  appendText(mapChangesEl, 'p', latest.summary || 'Краткое описание изменения не заполнено.');
+
+  if (Array.isArray(latest.details) && latest.details.length) {
+    const list = document.createElement('ul');
+    for (const detail of latest.details.slice(0, 4)) appendText(list, 'li', detail);
+    mapChangesEl.appendChild(list);
+  }
+
+  if (latest.relatedUrl && latest.relatedTitle) {
+    const link = document.createElement('a');
+    link.href = latest.relatedUrl;
+    link.textContent = latest.relatedTitle;
+    mapChangesEl.appendChild(link);
+  }
+
+  if (zonesUpdated && latest.zonesUpdated && String(latest.zonesUpdated) !== String(zonesUpdated)) {
+    setStatus('Внимание: дата последнего изменения в data/map-changes.json не совпадает с updated в data/zones.geojson. Проверьте журнал карты.', 'warning');
+  }
+};
+
+const loadMapChanges = async zonesUpdated => {
+  if (!mapChangesEl) return;
+  try {
+    const response = await fetch('/data/map-changes.json', { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`map-changes.json: HTTP ${response.status}`);
+    const payload = await response.json();
+    renderMapChanges(payload, zonesUpdated);
+  } catch (error) {
+    console.error('Ошибка загрузки журнала изменений карты:', error);
+    mapChangesEl.textContent = '';
+    appendText(mapChangesEl, 'h2', 'Что изменилось на карте');
+    appendText(mapChangesEl, 'p', 'Журнал изменений карты временно недоступен. Основная геометрия карты загружается из data/zones.geojson.');
+  }
+};
+
 const getColor = name => {
   const normalized = String(name || '').toLowerCase();
   if (normalized.includes('russian')) return '#c44545';
@@ -91,7 +151,9 @@ const loadZones = async () => {
 
     const lastModified = response.headers.get('Last-Modified');
     const data = await response.json();
-    setMapUpdated(formatMapDate(data?.updated || source.snapshot?.validFrom || lastModified));
+    const zonesUpdated = data?.updated || source.snapshot?.validFrom || lastModified;
+    setMapUpdated(formatMapDate(zonesUpdated));
+    loadMapChanges(zonesUpdated);
 
     if (snapshotEl) {
       if (source.snapshot) {
