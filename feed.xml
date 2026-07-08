@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-07-05T12:00:00+03:00</updated>
+  <updated>2026-07-08T12:00:00+03:00</updated>
+  <entry>
+    <title>БПЛА в ЛНР летом 2026 года: рост атак и гражданских рисков</title>
+    <link href="https://krmrf.ru/news/civilian-impact/bpla-lnr-2026-07-08/" />
+    <id>https://krmrf.ru/news/civilian-impact/bpla-lnr-2026-07-08/</id>
+    <updated>2026-07-08T12:00:00+03:00</updated>
+    <summary>Летом 2026 года БПЛА всё чаще затрагивали гражданскую жизнь в ЛНР: дороги, автобусы, легковые автомобили, АЗС, бензин, коммунальные службы, энергетиков, воду, свет и обычные поездки людей.</summary>
+  </entry>
   <entry>
     <title>Оценка боевых действий СВО: Восточный ТВД, 29 июня — 5 июля 2026</title>
     <link href="https://krmrf.ru/assessment/2026-07-05/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/assessment/2026-05-10/</id>
     <updated>2026-05-10T12:00:00+03:00</updated>
     <summary>Фронт сохраняет позиционный характер. Усилилось давление на Краснолиманском и Славянском направлениях, подтверждено освобождение Кривой Луки.</summary>
-  </entry>
-  <entry>
-    <title>Кременная между памятью и войной</title>
-    <link href="https://krmrf.ru/news/kremennaya/krm9may-2026-05-09/" />
-    <id>https://krmrf.ru/news/kremennaya/krm9may-2026-05-09/</id>
-    <updated>2026-05-09T12:00:00+03:00</updated>
-    <summary>Кременские леса, Северский Донец и фронт у Кременной уже второй раз за столетие становятся частью большой войны - от боев 1942-1943 годов до современного восточного фронта.</summary>
   </entry>
 </feed>
