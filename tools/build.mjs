@@ -181,6 +181,30 @@ const replaceCatalog = (html, key, items, innerOverride = null) => {
   return html.replace(pattern, `<!-- KRM CATALOG ${key} START -->${replacement}<!-- KRM CATALOG ${key} END -->`);
 };
 
+
+const latestKremennayaStateItem = pages => {
+  const kremennaya = pages.filter(item => item.section === 'kremennaya');
+  const stateItems = kremennaya.filter(item => {
+    const topics = Array.isArray(item.topics) ? item.topics : [];
+    return topics.length === 0 || topics.some(topic => ['safety', 'daily', 'infrastructure'].includes(topic));
+  });
+  return [...(stateItems.length ? stateItems : kremennaya)].sort(sortNewest)[0] || null;
+};
+
+const syncKremennayaIntro = (html, latestState) => {
+  let updated = html;
+
+  if (latestState) {
+    const currentState = `<section class="current-state"><h2>Последнее зафиксированное состояние</h2><p>${escapeHtml(latestState.excerpt || '')}</p><p><a href="${escapeHtml(latestState.url)}">Открыть материал от ${escapeHtml(formatDate(latestState.datePublished))}</a></p></section>`;
+    updated = updated.replace(/<section class="current-state">[\s\S]*?<\/section>/, currentState);
+  }
+
+  const chronicleIntro = `<section class="chronicle-intro"><h2>Что сохраняет хроника</h2><p>В этом разделе собраны материалы о Кременной: безопасность, БПЛА, дороги, транспорт, топливо, связь, коммунальные службы, повреждения гражданской инфраструктуры и изменения повседневной жизни города. Хроника помогает смотреть не на один отдельный эпизод, а на то, как обстановка менялась по датам.</p></section>`;
+  updated = updated.replace(/<section class="chronicle-intro">[\s\S]*?<\/section>/, chronicleIntro);
+
+  return updated;
+};
+
 const syncPublicationMetadata = (html, item, buildDate) => {
   let updated = html.replace(
     /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g,
@@ -402,6 +426,9 @@ for (const [file, key] of pageJobs) {
   const items = selectItems(enriched, key);
   let html = read(file);
   html = replaceCatalog(html, key, items);
+  if (key === 'chronicle:kremennaya') {
+    html = syncKremennayaIntro(html, latestKremennayaStateItem(enriched));
+  }
   html = updateItemList(html, items);
   write(file, html);
 }

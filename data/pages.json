@@ -1,5 +1,41 @@
 [
   {
+    "id": "bpla-lnr-2026-07-08",
+    "type": "article",
+    "title": "БПЛА в ЛНР летом 2026 года: рост атак и гражданских рисков",
+    "url": "/news/civilian-impact/bpla-lnr-2026-07-08/",
+    "section": "civilian-impact",
+    "datePublished": "2026-07-08",
+    "dateModified": "2026-07-08",
+    "status": null,
+    "excerpt": "Летом 2026 года БПЛА всё чаще затрагивали гражданскую жизнь в ЛНР: дороги, автобусы, легковые автомобили, АЗС, бензин, коммунальные службы, энергетиков, воду, свет и обычные поездки людей.",
+    "image": "/assets/img/news/civilian-impact/bpla-lnr-2026-07-08/cover.webp",
+    "imageAlt": "Автобус с повреждёнными окнами на маршруте Рубежное — Северодонецк — Луганск",
+    "topics": [
+      "safety",
+      "daily",
+      "infrastructure"
+    ],
+    "locations": [
+      "ЛНР",
+      "Кременная"
+    ],
+    "sourceIds": [
+      "src-8ec1812b5499",
+      "src-85f97bc9c91c",
+      "src-a4c00e804260",
+      "src-01116cd29952",
+      "src-35215e0223a5",
+      "src-b6c1c9efcc81",
+      "src-469e9b2b4989",
+      "src-99a31a5b2ecd",
+      "src-a59a3fdae263"
+    ],
+    "home": {
+      "important": 1
+    }
+  },
+  {
     "id": "assessment-2026-07-05",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 29 июня — 5 июля 2026",
@@ -138,10 +174,7 @@
         "date": "2026-06-30",
         "summary": "Создана первая публичная версия досье по архиву KRM РФ за период 27.04.2024 — 29.06.2026."
       }
-    ],
-    "home": {
-      "important": 1
-    }
+    ]
   },
   {
     "id": "assessment-2026-06-28",

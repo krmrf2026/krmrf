@@ -17,6 +17,23 @@
     ]
   },
   {
+    "id": "src-01116cd29952",
+    "url": "https://lug-info.ru/news/vsu-atakovali-skoruju-pomosch-na-doroge-troickoe-svatovo-pogib-voditel/",
+    "title": "ЛИЦ: атака на скорую помощь на дороге Троицкое — Сватово",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
+    ]
+  },
+  {
     "id": "src-0417aefc9dae",
     "url": "https://www.kremlin.ru/acts/bank/7640",
     "title": "Федеральный закон от 13.03.1995 № 32-ФЗ",
@@ -444,6 +461,23 @@
     ]
   },
   {
+    "id": "src-35215e0223a5",
+    "url": "https://tass.ru/proisshestviya/27791623",
+    "title": "ТАСС: удар по автомобилю на трассе Бараниковка — Краснореченское",
+    "publisher": "tass.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
+    ]
+  },
+  {
     "id": "src-3527e8deb830",
     "url": "https://sovminlnr.ru/akty-soveta-ministrov/postanovleniya/36443-ob-utverzhdenii-poryadka-ucheta-zhilyh-pomescheniy-imeyuschih-priznaki-beshozyaynogo-imuschestva.html",
     "title": "карточка акта на сайте Правительства ЛНР",
@@ -560,6 +594,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "22-iyunya-kremennaya-donbass-2026-06-22"
+    ]
+  },
+  {
+    "id": "src-469e9b2b4989",
+    "url": "https://news.rambler.ru/army/56679358-v-kremennoy-pri-udare-bpla-pogib-traktorist/",
+    "title": "Рамблер/ТАСС: удар по трактору коммунального предприятия в Кременной",
+    "publisher": "news.rambler.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
     ]
   },
   {
@@ -1164,6 +1215,23 @@
     ]
   },
   {
+    "id": "src-85f97bc9c91c",
+    "url": "https://lug-info.ru/news/mintrans-i-otdelenie-cb-po-lnr-prorabotali-strahovanie-azs-i-benzovozov-ot-atak/",
+    "title": "ЛИЦ: страхование АЗС и бензовозов от атак БПЛА",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
+    ]
+  },
+  {
     "id": "src-88b0d3e75348",
     "url": "https://publication.pravo.gov.ru/document/8100202412130007",
     "title": "Постановление Правительства ЛНР № 281/24 о выплатах при чрезвычайных ситуациях",
@@ -1195,6 +1263,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
+    "id": "src-8ec1812b5499",
+    "url": "https://rt.rbc.ru/rbcfreenews/6a1718fa9a794727e9412713",
+    "title": "РБК: удары по Сватово и Северодонецку 27 мая",
+    "publisher": "rt.rbc.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
     ]
   },
   {
@@ -1336,6 +1421,23 @@
     ]
   },
   {
+    "id": "src-99a31a5b2ecd",
+    "url": "https://www.interfax.ru/russia/1100831",
+    "title": "Интерфакс: удар по автобусу в Лисичанске и гражданским грузовым автомобилям",
+    "publisher": "interfax.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
+    ]
+  },
+  {
     "id": "src-9d4d8839d67f",
     "url": "https://t.me/xykrm/5945",
     "title": "обстановка в Кременной и ЛНР на 23 июня",
@@ -1421,6 +1523,23 @@
     ]
   },
   {
+    "id": "src-a4c00e804260",
+    "url": "https://www.lugansk.kp.ru/daily/277789.4/5260684/",
+    "title": "КП Луганск: удар по спецмашине «Рубежноетепло»",
+    "publisher": "lugansk.kp.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
+    ]
+  },
+  {
     "id": "src-a52d8ef624c2",
     "url": "https://t.me/xykrm/5893",
     "title": "обстановка в Кременной на 17 июня",
@@ -1435,6 +1554,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "krm-2026-06-24"
+    ]
+  },
+  {
+    "id": "src-a59a3fdae263",
+    "url": "https://news.rambler.ru/army/56700682-v-lnr-pri-udare-bpla-vsu-po-avtomobilyu-pogib-chelovek/",
+    "title": "Рамблер/ТАСС: удар по «Газели» на дороге Старобельск — Беловодск",
+    "publisher": "news.rambler.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
     ]
   },
   {
@@ -1606,6 +1742,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
+    "id": "src-b6c1c9efcc81",
+    "url": "https://lug-info.ru/news/dron-vsu-atakoval-rubezhanskih-energetikov-raneny-dva-cheloveka/",
+    "title": "ЛИЦ: атака на рубежанских энергетиков",
+    "publisher": "lug-info.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "bpla-lnr-2026-07-08"
     ]
   },
   {
