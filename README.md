@@ -427,7 +427,8 @@ git switch noviy-sait
 git status
 git add -A
 git commit -m "описание изменений"
-git push origin noviy-sait
+
+
 ```
 
 Потом в Codespaces:
@@ -517,6 +518,7 @@ git status
 git switch noviy-sait
 git pull --rebase origin noviy-sait
 npm run check
+
 git status
 ```
 
