@@ -15,7 +15,8 @@
     "test:negative": "node tools/negative-tests.mjs",
     "source:capture": "node tools/source-capture.mjs",
     "images": "node tools/images.mjs",
-    "sources:report": "node tools/sources-report.mjs"
+    "sources:report": "node tools/sources-report.mjs",
+    "redirects": "node tools/redirect-aliases.mjs"
   },
   "engines": {
     "node": ">=20"
