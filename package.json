@@ -16,7 +16,8 @@
     "source:capture": "node tools/source-capture.mjs",
     "images": "node tools/images.mjs",
     "sources:report": "node tools/sources-report.mjs",
-    "redirects": "node tools/redirect-aliases.mjs"
+    "redirects": "node tools/redirect-aliases.mjs",
+    "redirect-pages": "node tools/redirect-pages.mjs"
   },
   "engines": {
     "node": ">=20"
