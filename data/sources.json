@@ -770,6 +770,23 @@
     ]
   },
   {
+    "id": "src-598bb3ed08a8",
+    "url": "https://t.me/xykrm",
+    "title": "KRM РФ в Telegram",
+    "publisher": "t.me",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "normal",
+    "referencedBy": [
+      "krm-2026-07-10"
+    ]
+  },
+  {
     "id": "src-5ae1b22690ed",
     "url": "http://publication.pravo.gov.ru/document/8100202603160001",
     "title": "портале правовой информации",
