@@ -22,7 +22,9 @@
       "Кременской район",
       "ЛНР"
     ],
-    "sourceIds": [],
+    "sourceIds": [
+      "src-598bb3ed08a8"
+    ],
     "home": {
       "important": 1
     }
