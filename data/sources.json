@@ -68,6 +68,23 @@
     ]
   },
   {
+    "id": "src-04767f358a7a",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/1927c9677fcdd17f0b591c14890a519ba9c06f9b/",
+    "title": "Статья 44 ГК РФ: отмена решения о признании безвестно отсутствующим",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-07e01b327757",
     "url": "https://t.me/xykrm/2371",
     "title": "№2371",
@@ -99,6 +116,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-0eab6b7f75c8",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/7f1f4a4da8f964fefc396a23c67845f8111f697d/",
+    "title": "Статья 276 ГПК РФ: куда подаётся заявление",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -205,6 +239,23 @@
     ]
   },
   {
+    "id": "src-14aa24c309b8",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/807f0f66520608de738f73f326a9b309ac205a32/",
+    "title": "Статья 45 ГК РФ: объявление гражданина умершим и определение дня смерти",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-168426597281",
     "url": "https://ombudsmanrf.org/appeal",
     "title": "ombudsmanrf.org/appeal",
@@ -218,6 +269,8 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
+      "bobp-2026-03-04",
+      "bobp-2026-03-04",
       "evak-2026-03-10"
     ]
   },
@@ -270,6 +323,41 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-2009cc20e9b3",
+    "url": "https://mil.ru/contacts/citizens",
+    "title": "Раздел Министерства обороны России для обращений граждан",
+    "publisher": "mil.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04",
+      "bobp-2026-03-04"
+    ]
+  },
+  {
+    "id": "src-2013fccbc7ba",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/302a446335f2af635d876ae9e7ced822817ce4cd/",
+    "title": "Статья 280 ГПК РФ: отмена решения при обнаружении человека",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -1164,6 +1252,23 @@
     ]
   },
   {
+    "id": "src-7fe0ad097a90",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_8982/9e43cedf0f660aa107b296ec91b196dbe5836c68/",
+    "title": "Статья 19 Семейного кодекса РФ: расторжение брака с безвестно отсутствующим супругом",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-80acb896df84",
     "url": "https://t.me/xykrm/1610",
     "title": "№1610",
@@ -1263,6 +1368,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "lnr-vyplaty-terakt-118-26"
+    ]
+  },
+  {
+    "id": "src-89a4f6a01b66",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/0ae164bb05f0e236cc4763331fa69c8014989c5a/",
+    "title": "Статья 277 ГПК РФ: содержание заявления",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -1383,6 +1505,8 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
+      "bobp-2026-03-04",
+      "bobp-2026-03-04",
       "evak-2026-03-10"
     ]
   },
@@ -1421,6 +1545,23 @@
     ]
   },
   {
+    "id": "src-96578d614d6b",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/76b5d5ce5bcba627ba2f8df5b31b94119e27b739/",
+    "title": "Статья 279 ГПК РФ: последствия решения суда",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-99a019c27b34",
     "url": "https://t.me/xykrm/2105",
     "title": "№2105",
@@ -1452,6 +1593,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-07-08"
+    ]
+  },
+  {
+    "id": "src-9cd1541a4f9d",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5143/447cb52266ccd39fb054b7e8392441f3b165ffe7/",
+    "title": "Статья 24 Федерального закона № 52-ФЗ: специальный порядок объявления умершим",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -1711,6 +1869,24 @@
     ]
   },
   {
+    "id": "src-b1034e501388",
+    "url": "https://sledcom.ru/reception",
+    "title": "интернет-приёмная Следственного комитета России",
+    "publisher": "sledcom.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04",
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-b47debd971f6",
     "url": "https://ihl-databases.icrc.org/en%2Fihl-treaties%2Fapi-1977/article-52",
     "title": "статья 52 Дополнительного протокола I о гражданских объектах и военных целях",
@@ -1742,6 +1918,23 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
+    "id": "src-b63cfe930e1e",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_456660/baa59ebd763ea266bbb289d83d8127bb8e32d935/",
+    "title": "Правила выдачи справки об обстоятельствах исчезновения или возможной гибели",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -1866,6 +2059,23 @@
     ]
   },
   {
+    "id": "src-c68617ceb8d1",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_456660/",
+    "title": "Постановление Правительства РФ от 1 сентября 2023 года № 1421",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-c9c602241731",
     "url": "https://lug-info.ru/news/vsu-nanesli-udar-po-starobelsku-tremja-volnami-ispolzovav-16-bespilotnikov-/",
     "title": "16 БПЛА по Старобельску",
@@ -1914,6 +2124,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "22-iyunya-kremennaya-donbass-2026-06-22"
+    ]
+  },
+  {
+    "id": "src-cd3efeccfb3b",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/241ef9b118787df5386cdc5872c40c8ee596f9e2/",
+    "title": "Статья 43 ГК РФ: доверительное управление имуществом безвестно отсутствующего",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -1982,6 +2209,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-d115a58e56b6",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/453658bafca7e5da5b95f71f3228438092d61c6b/",
+    "title": "Статья 278 ГПК РФ: действия суда и участие прокурора",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -2066,6 +2310,7 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
+      "bobp-2026-03-04",
       "evak-2026-03-10"
     ]
   },
@@ -2121,6 +2366,24 @@
     ]
   },
   {
+    "id": "src-e3362ce2a72a",
+    "url": "https://epp.genproc.gov.ru/ru/gprf/internet-reception/personal-reception-svo/",
+    "title": "обращение в прокуратуру по вопросам защиты прав участников СВО и членов их семей",
+    "publisher": "epp.genproc.gov.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04",
+      "bobp-2026-03-04"
+    ]
+  },
+  {
     "id": "src-e60cae01aec7",
     "url": "https://www.echr.coe.int/w/judgment-concerning-ukraine-2",
     "title": "ECHR: judgment concerning Ukraine, Odesa events",
@@ -2135,6 +2398,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "odessa-2026-05-02"
+    ]
+  },
+  {
+    "id": "src-e7e4972d30c9",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_156525/53a2a49569b52bafa6620fb7e1f8c526011a927a/",
+    "title": "Статья 10 Федерального закона № 400-ФЗ: пенсия по случаю потери кормильца",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
@@ -2186,6 +2466,40 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "beshoz-123-26-2026-07-04"
+    ]
+  },
+  {
+    "id": "src-eebe924a93f5",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/2f2f47dfb9ea94b4a267925f629eb248b5293e1d/",
+    "title": "Статья 46 ГК РФ: последствия явки гражданина, объявленного умершим",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
+    ]
+  },
+  {
+    "id": "src-f0ab9d48b2bc",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5143/dcf6a9cdf6136b9a410d2f953eec0cf0887b7b6a/",
+    "title": "Статья 23 Федерального закона № 52-ФЗ: специальный порядок признания безвестно отсутствующим для лиц, связанных со СВО",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-04",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "bobp-2026-03-04"
     ]
   },
   {
