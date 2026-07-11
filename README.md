@@ -66,21 +66,18 @@ npm run check
 index.html
 archive/index.html
 news/index.html
-news/svo/index.html
+news/*/index.html
 kremennaya/index.html
 assessment/index.html
 war-crimes/index.html
 reference/index.html
 search/index.html
 map/index.html
-map/index.html
 data/news.json
 data/search-index.json
 data/site.json
 data/sources.json
 data/source-preservation-queue.json
-data/zones.geojson
-data/zones.geojson...
 feed.xml
 assessment/feed.xml
 kremennaya/feed.xml
@@ -88,7 +85,7 @@ sitemap.xml
 assets/img/derived/...
 ```
 
-Это нормально. Если эти изменения появились после `npm run check`, чаще всего их надо коммитить.
+Это нормально. Сборщик также нормализует общие метаданные, версии ассетов, Метрику и футеры HTML. Если изменения появились после успешного `npm run check`, их обычно нужно коммитить вместе с исходной правкой.
 
 ### 0.3. Файлы, которые не надо трогать просто так
 
@@ -127,12 +124,11 @@ krmrf/
     pages.json                       главный каталог публикаций
     news.json                        производный JSON для новостей
     search-index.json                поисковый индекс
-    site.json                        данные сайта
+    site.json                        версия, дата сборки и версия ассетов
     sources.json                     реестр источников
     source-preservation-queue.json   очередь сохранения источников
     zones.geojson                    текущая карта
-    map/manifest.json                список карты
-    map/snapshots/...                архивные карта
+    map-changes.json                 журнал изменений карты
 
   news/
     svo/.../index.html               статьи СВО
@@ -159,10 +155,16 @@ krmrf/
     build.mjs                        сборка главной, индексов, поиска, sitemap, лент
     images.mjs                       создание производных картинок
     sources.mjs                      синхронизация источников
-    validate.mjs                     проверка сайта
-    smoke.mjs                        smoke-тесты
-    release.mjs                      релизный ZIP
-    fixity.mjs                       SHA-256 проверка
+    redirect-aliases.mjs             проверка и сборка правил редиректов
+    redirect-pages.mjs               резервные HTML-страницы редиректов
+    images.mjs                       создание производных изображений
+    build.mjs                        сборка каталогов, поиска, sitemap и лент
+    normalize-html.mjs               единый технический шаблон всех HTML
+    validate.mjs                     структурная и содержательная проверка
+    smoke.mjs                        пользовательские smoke-тесты
+    negative-tests.mjs               проверка отказа на ошибочных сценариях
+    release.mjs                      SHA256SUMS и релизный ZIP
+    fixity.mjs                       проверка SHA-256
 ```
 
 ---
@@ -180,11 +182,14 @@ npm run check
 Она запускает всё важное:
 
 ```text
-sources:sync  → синхронизация источников
-images        → создание производных WebP
-build         → сборка главной, индексов, поиска, sitemap, feed
-validate      → проверка ошибок
-test:smoke    → быстрые пользовательские тесты
+sources:sync   → синхронизация и дедупликация источников
+redirects      → сборка правил редиректов
+redirect-pages → резервные HTML-страницы редиректов
+images         → создание производных WebP
+build          → сборка главной, индексов, поиска, sitemap и лент
+normalize      → единые метаданные, ассеты, Метрика и футеры HTML
+validate       → структурная и содержательная проверка
+test:smoke     → быстрые пользовательские тесты
 ```
 
 Если `npm run check` прошёл — сайт технически собран правильно.
@@ -206,14 +211,17 @@ python -m http.server 8000
 ### 2.3. Отдельные команды
 
 ```bash
-npm run sources:sync   # обновить источники
-npm run images         # создать недостающие 480/960 WebP
-   # создать/проверить снимок карты
-npm run build          # пересобрать главную, индексы, поиск, sitemap, feed
-npm run validate       # проверить сайт
-npm run test:smoke     # smoke-тесты
-npm run release        # релизный ZIP и SHA-256, не для каждой статьи
-npm run fixity         # проверить SHA256SUMS
+npm run sources:sync    # синхронизировать и дедублировать источники
+npm run redirects       # пересобрать файл правил редиректов
+npm run redirect-pages  # создать резервные HTML-редиректы
+npm run images          # создать недостающие производные WebP
+npm run build           # пересобрать каталоги, поиск, sitemap и ленты
+npm run normalize       # привести общий HTML к единому шаблону
+npm run validate        # проверить структуру и данные сайта
+npm run test:smoke      # проверить ключевые пользовательские сценарии
+npm run test:negative   # убедиться, что ошибочные сценарии блокируются
+npm run release         # создать SHA256SUMS, ZIP и его SHA-256
+npm run fixity          # сверить файлы с SHA256SUMS
 ```
 
 Для обычной статьи почти всегда достаточно:
@@ -1019,52 +1027,33 @@ test -f assets/img/derived/news/svo/svo-2026-07-02/cover-960.webp && echo "960 �
 
 ## 16. Как обновить карту
 
-Главный файл карты:
+Текущее состояние карты хранится в:
 
 ```text
 data/zones.geojson
 ```
 
-Если ты меняешь карту, меняй именно его.
+Журнал содержательных изменений карты хранится в:
 
-Внутри должен быть `updated`.
-
-Пример:
-
-```json
-"updated": "2026-07-01T08:10:00+03:00"
+```text
+data/map-changes.json
 ```
 
-После изменения карты:
+Если меняется геометрия, статус зоны или смысл отображаемых данных:
+
+1. измени `data/zones.geojson`;
+2. обнови поле `updated` внутри GeoJSON;
+3. добавь новую верхнюю запись в `data/map-changes.json`;
+4. запусти `npm run check`;
+5. проверь `map/index.html` и карту в браузере.
+
+Текущая архитектура не создаёт отдельные датированные файлы-снимки и не использует `data/map/manifest.json`. История содержательных изменений фиксируется Git, журналом `data/map-changes.json`, релизными архивами и `SHA256SUMS`.
+
+Полезная проверка перед коммитом:
 
 ```bash
-npm run check
+git diff -- data/zones.geojson data/map-changes.json map/index.html
 ```
-
-Скрипт создаст или проверит снимок:
-
-```text
-data/zones.geojson2026-07-01T08-10-00+03-00.geojson
-```
-
-и обновит:
-
-```text
-data/zones.geojson
-map/index.html
-map/index.html
-```
-
-Важно:
-
-```text
-Если меняешь геометрию карты, но оставляешь старый updated, скрипт может ругнуться:
-снимок с такой датой уже существует с другой контрольной суммой.
-```
-
-Решение: поставить новый `updated`.
-
----
 
 ## 17. Как работают источники
 
@@ -1137,11 +1126,11 @@ npm run check
 Нормальный результат выглядит примерно так:
 
 ```text
-Реестр источников синхронизирован: 113 записей, 52 публикаций.
-Производные изображения уже существуют: проверено 286 файлов.
-Снимок карты уже существует: /data/zones.geojson....geojson
-Сборка завершена: 52 публикаций.
-Проверка пройдена: 52 публикаций, 70 HTML-страниц, ошибок нет.
+Реестр источников синхронизирован: 149 записей, 56 публикаций.
+Очередь сохранения ключевых источников: 56.
+Производные изображения уже существуют: проверено ... файлов.
+Сборка завершена: 56 публикаций.
+Проверка пройдена: 56 публикаций, 129 HTML-страниц, ошибок нет.
 Smoke-тесты пройдены.
 ```
 
@@ -1293,7 +1282,7 @@ git commit -m "feat: добавить обзор СВО к 2 июля 2026"
 git commit -m "feat: добавить материал о Кременной к 24 июня"
 git commit -m "fix: исправить запись в pages.json"
 git commit -m "chore: пересобрать сайт"
-git commit -m "chore: обновить карту и снимок"
+git commit -m "chore: обновить карту"
 git commit -m "docs: обновить README"
 ```
 
@@ -1455,9 +1444,7 @@ git push origin noviy-sait
 
 ```text
 data/zones.geojson
-data/zones.geojson
-data/zones.geojson...
-map/index.html
+data/map-changes.json
 map/index.html
 ```
 
@@ -1742,7 +1729,7 @@ npm run check
 npm run release
 ```
 
-`release` создаёт ZIP и SHA-256.
+`release` пересобирает сайт, выполняет положительные и негативные тесты, обновляет `SHA256SUMS` и создаёт ZIP с отдельной контрольной суммой. По умолчанию архивы пишутся в соседнюю с репозиторием папку `../krmrf-releases/`. Другую папку можно задать переменной `KRM_RELEASE_DIR`.
 
 ---
 
@@ -1879,7 +1866,7 @@ nothing to commit, working tree clean
 запись была в data/pages.json;
 картинка лежала по правильному пути;
 источники были синхронизированы;
-карта имела снимки;
+карта и журнал её изменений были согласованы;
 поиск и архив обновились;
 sitemap и feed обновились;
 проверка прошла;

@@ -411,7 +411,6 @@ const searchByUrl = new Map(searchIndex.map(item => [item.url, item]));
 
 const pageJobs = [
   ['news/index.html', 'news'],
-  ['news/kremennaya/index.html', 'section:kremennaya'],
   ['news/svo/index.html', 'section:svo'],
   ['news/lnr/index.html', 'section:lnr'],
   ['news/civilian-impact/index.html', 'section:civilian-impact'],

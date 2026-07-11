@@ -90,12 +90,14 @@ let sources;
 let schema;
 let preservationQueue;
 let taxonomy;
+let site;
 try { pages = readJson('data/pages.json'); } catch (error) { errors.push(`data/pages.json: ${error.message}`); pages = []; }
 try { search = readJson('data/search-index.json'); } catch (error) { errors.push(`data/search-index.json: ${error.message}`); search = []; }
 try { sources = readJson('data/sources.json'); } catch (error) { errors.push(`data/sources.json: ${error.message}`); sources = []; }
 try { schema = readJson('data/pages.schema.json'); } catch (error) { errors.push(`data/pages.schema.json: ${error.message}`); schema = {}; }
 try { preservationQueue = readJson('data/source-preservation-queue.json'); } catch (error) { errors.push(`data/source-preservation-queue.json: ${error.message}`); preservationQueue = []; }
 try { taxonomy = readJson('data/taxonomy.json'); } catch (error) { errors.push(`data/taxonomy.json: ${error.message}`); taxonomy = { topics: {}, locations: {} }; }
+try { site = readJson('data/site.json'); } catch (error) { errors.push(`data/site.json: ${error.message}`); site = {}; }
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
@@ -133,6 +135,7 @@ for (const source of sources) {
   }
   if (!['normal', 'medium', 'high'].includes(source.preservationPriority || '')) errors.push(`sources.json ${source.id}: неверный preservationPriority.`);
   if (!Array.isArray(source.referencedBy)) errors.push(`sources.json ${source.id}: referencedBy должен быть массивом.`);
+  else if (new Set(source.referencedBy).size !== source.referencedBy.length) errors.push(`sources.json ${source.id}: referencedBy содержит повторы.`);
   if (!source.accessedAt || (!source.archiveUrl && !source.localCopy)) unpreservedSourceCount += 1;
 }
 if (unpreservedSourceCount) warnings.push(`В реестре ${unpreservedSourceCount} источников без сохранённой копии; ${preservationQueue.length} оставлены в короткой очереди data/source-preservation-queue.json.`);
@@ -255,6 +258,17 @@ for (const [index, item] of pages.entries()) {
     /<meta\b[^>]*name=["']twitter:title["'][^>]*>/i
   ]) if (!selector.test(html)) errors.push(`${file}: отсутствует обязательный метатег.`);
 
+  const articleMetaExpected = {
+    'article:published_time': `${item.datePublished}T00:00:00+03:00`,
+    'article:modified_time': `${item.dateModified}T00:00:00+03:00`,
+    'article:section': SECTION_LABELS[item.section]
+  };
+  for (const [property, expected] of Object.entries(articleMetaExpected)) {
+    const tag = (html.match(new RegExp(`<meta\\b(?=[^>]*property=["']${property}["'])[^>]*>`, 'i')) || [])[0] || '';
+    if (!tag) errors.push(`${file}: отсутствует ${property}.`);
+    else if (attr(tag, 'content') !== expected) errors.push(`${file}: ${property} не совпадает с pages.json.`);
+  }
+
   const scripts = [...html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi)];
   if (!scripts.length) errors.push(`${file}: нет JSON-LD.`);
   let articleNode = null;
@@ -315,7 +329,6 @@ for (const line of redirects) {
 const requiredCatalogs = {
   'index.html': ['home:important', 'home:assessment', 'home:kremennaya', 'home:guide', 'home:dossier'],
   'news/index.html': ['news'],
-  'news/kremennaya/index.html': ['section:kremennaya'],
   'news/svo/index.html': ['section:svo'],
   'news/lnr/index.html': ['section:lnr'],
   'news/civilian-impact/index.html': ['section:civilian-impact'],
@@ -380,6 +393,35 @@ walk(ROOT);
 for (const full of htmlFiles) {
   const rel = path.relative(ROOT, full).replace(/\\/g, '/');
   const html = fs.readFileSync(full, 'utf8');
+  const isFullPage = html.includes('id="site-navigation"') || html.includes("id='site-navigation'");
+  const isGeneratedRedirect = html.includes('KRM GENERATED HTML REDIRECT');
+  if (isFullPage) {
+    const expectedVersion = site.assetVersion || site.version;
+    const requiredMeta = [
+      ['property', 'og:locale', 'ru_RU'],
+      ['property', 'og:site_name', 'KRM РФ'],
+      ['property', 'og:image:alt', null],
+      ['name', 'twitter:image:alt', null]
+    ];
+    for (const [attribute, key, expected] of requiredMeta) {
+      const tag = (html.match(new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["']${key}["'])[^>]*>`, 'i')) || [])[0] || '';
+      if (!tag) errors.push(`${rel}: отсутствует ${key}.`);
+      else if (expected && attr(tag, 'content') !== expected) errors.push(`${rel}: ${key} должен быть «${expected}».`);
+    }
+    const footer = `<span>Версия архива: ${site.version}</span><span>Техническая сборка: ${site.buildDate}</span>`;
+    if (!html.includes(footer)) errors.push(`${rel}: футер не совпадает с data/site.json.`);
+    const metrikaPattern = new RegExp(`<script\\b[^>]*src=["']/assets/js/metrika\\.js\\?v=${String(expectedVersion).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'i');
+    if (!metrikaPattern.test(html)) errors.push(`${rel}: нет общей внешней загрузки Яндекс.Метрики.`);
+    if (!html.includes('https://mc.yandex.ru/watch/110383043')) errors.push(`${rel}: нет noscript-пикселя Яндекс.Метрики.`);
+    for (const script of html.matchAll(/<script\b(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)) {
+      const type = attr(script[0].match(/<script\b[^>]*>/i)?.[0] || '', 'type').toLowerCase();
+      if (type !== 'application/ld+json' && script[2].trim()) errors.push(`${rel}: исполняемый inline-script несовместим с CSP.`);
+    }
+    for (const asset of html.matchAll(/(?:href|src)=["'](\/assets\/(?:css|js|vendor)\/[^"']+)["']/gi)) {
+      if (!asset[1].endsWith(`?v=${expectedVersion}`)) errors.push(`${rel}: версия ассета не совпадает с data/site.json: ${asset[1]}`);
+    }
+  }
+  if (isGeneratedRedirect && /<script\b/i.test(html)) errors.push(`${rel}: redirect-page содержит inline-script, который блокируется CSP.`);
   for (const link of html.matchAll(/<a\b[^>]*>/gi)) {
     const tag = link[0];
     if (/target=["']_blank["']/i.test(tag) && !/rel=["'][^"']*noopener/i.test(tag)) errors.push(`${rel}: target="_blank" без rel="noopener".`);

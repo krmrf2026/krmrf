@@ -115,8 +115,8 @@ git status
 
 ```text
 modified: data/zones.geojson
+modified: data/map-changes.json
 modified: map/index.html
-untracked: data/zones.geojson....geojson
 ```
 
 их нужно закоммитить:
@@ -462,121 +462,55 @@ war-crimes/.../index.html
 
 ## 12. Обновление карты
 
-Главный файл текущей карты:
+Текущая карта хранится в:
 
 ```text
 data/zones.geojson
 ```
 
-Не `zones.json`.
-
-При обновлении карты менять нужно именно `data/zones.geojson`.
-
-Если меняется геометрия или смысл карты, обязательно меняются два файла:
+Журнал содержательных изменений хранится в:
 
 ```text
-data/zones.geojson
 data/map-changes.json
 ```
 
-В `data/zones.geojson` обнови поле `updated`.
+Не используй `zones.json`, `data/map/manifest.json` или `data/map/snapshots/`: таких рабочих файлов в текущей архитектуре нет.
 
-В `data/map-changes.json` добавь новую верхнюю запись в `changes[0]`:
+При изменении геометрии, статуса зоны или смысла карты:
+
+1. измени `data/zones.geojson`;
+2. обнови поле `updated`;
+3. добавь новую верхнюю запись в массив `changes` файла `data/map-changes.json`;
+4. запусти `npm run check`;
+5. открой `/map/` и проверь подписи, легенду, границы и мобильный режим.
+
+Пример записи журнала:
 
 ```json
 {
   "id": "map-YYYY-MM-DD-HHMM",
   "zonesUpdated": "то же значение, что updated в data/zones.geojson",
   "title": "Короткий заголовок изменения",
-  "summary": "1–2 предложения: что именно изменилось на карте",
+  "summary": "Что именно изменилось на карте",
   "details": ["краткий пункт", "краткий пункт"],
   "relatedUrl": "/assessment/YYYY-MM-DD/",
-  "relatedTitle": "Название связанной оценки фронта",
+  "relatedTitle": "Название связанной оценки",
   "status": "current"
 }
 ```
 
-После этого выполнить:
+История карты сохраняется четырьмя способами:
+
+- Git фиксирует каждое изменение файлов;
+- `data/map-changes.json` объясняет содержательный смысл правки;
+- релизный ZIP сохраняет полное состояние сайта;
+- `SHA256SUMS` подтверждает целостность файлов релиза.
+
+Перед коммитом проверь:
 
 ```bash
-npm run check
+git diff -- data/zones.geojson data/map-changes.json map/index.html
 ```
-
-Сборщик запустит ``.
-
-Он:
-
-1. читает `data/zones.geojson`;
-2. проверяет поле `updated`;
-3. считает SHA-256 текущей карты;
-4. сравнивает карту с `data/zones.geojson`;
-5. если такого снимка ещё нет, создаёт файл в `data/zones.geojson...geojson`;
-6. обновляет `data/zones.geojson`;
-7. проверяет согласованность `data/map-changes.json` с `data/zones.geojson`;
-8. сборщик обновляет `map/index.html`.
-
-### Зачем нужны карта
-
-Снимки карты нужны не для красоты. Они фиксируют, как карта выглядела на конкретную дату.
-
-Это нужно, чтобы:
-
-- видеть историю изменений карты;
-- не потерять старое состояние зоны;
-- понимать, какая оценка была опубликована в прошлом;
-- связать карту с оценкой фронта за период;
-- иметь доказательную и редакционную преемственность;
-- не перезаписывать историю задним числом.
-
-Текущая карта — это:
-
-```text
-data/zones.geojson
-```
-
-Архивные снимки — это:
-
-```text
-data/zones.geojson2026-...geojson
-```
-
-Манифест снимков — это:
-
-```text
-data/zones.geojson
-```
-
-Страница архива карты — это:
-
-```text
-map/index.html
-```
-
-### Почему после `npm run check` появляется новый снимок карты
-
-Новый снимок создаётся, если SHA-256 текущего `data/zones.geojson` ещё не записан в manifest.
-
-Если карта реально обновлялась — это нормально. Нужно коммитить:
-
-```text
-data/zones.geojson
-data/zones.geojson
-data/zones.geojson....geojson
-map/index.html
-```
-
-Если карта не должна была меняться, но появился новый снимок, нужно проверить:
-
-```bash
-git diff -- data/zones.geojson
-git diff -- data/zones.geojson
-```
-
-### Важное правило карты
-
-Если ты меняешь геометрию или смысл карты, обнови поле `updated` в `data/zones.geojson` и добавь верхнюю запись в `data/map-changes.json`.
-
-Если попытаться создать снимок с тем же `updated`, но другой контрольной суммой, скрипт может остановиться, потому что архивные снимки нельзя перезаписывать задним числом.
 
 ## 13. Источники при публикации
 
@@ -613,14 +547,14 @@ npm run check
 - полный `npm run check`;
 - негативные тесты валидатора;
 - новый `SHA256SUMS`;
-- ZIP в `releases/`;
+- ZIP в соседнюю папку `../krmrf-releases/` (или в `KRM_RELEASE_DIR`);
 - `.zip.sha256`;
 - проверку `npm run fixity`.
 
 Если ZIP создался случайно и не нужен:
 
 ```bash
-rm -f releases/*.zip releases/*.zip.sha256
+rm -f ../krmrf-releases/*.zip ../krmrf-releases/*.zip.sha256
 git status
 ```
 
@@ -700,16 +634,15 @@ npm run images
 npm run check
 ```
 
-### Появился новый снимок карты, хотя ты не ожидал
+### Карта изменилась, хотя ты этого не ожидал
 
 Проверить:
 
 ```bash
-git diff -- data/zones.geojson
-git diff -- data/zones.geojson
+git diff -- data/zones.geojson data/map-changes.json map/index.html
 ```
 
-Если карта изменилась намеренно — коммитить. Если нет — разобраться до коммита.
+Если правка карты была намеренной — проверить поле `updated`, запись в журнале и коммитить. Если нет — восстановить только эти файлы и повторить `npm run check`.
 
 ### `npm run fixity` показывает FAILED
 
