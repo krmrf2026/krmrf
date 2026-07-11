@@ -103,14 +103,14 @@ npm run release
 - `npm run check`;
 - негативные тесты валидатора;
 - новый `SHA256SUMS`;
-- ZIP в соседнюю папку `../krmrf-releases/` (или в `KRM_RELEASE_DIR`);
+- ZIP в `releases/`;
 - `.zip.sha256`;
 - проверку `npm run fixity`.
 
 Если ZIP создался случайно и не нужен:
 
 ```bash
-rm -f ../krmrf-releases/*.zip ../krmrf-releases/*.zip.sha256
+rm -f releases/*.zip releases/*.zip.sha256
 git status
 ```
 
@@ -121,7 +121,7 @@ git status
 Пример:
 
 ```bash
-sha256sum -c ../krmrf-releases/krmrf-site-<VERSION>.zip.sha256
+sha256sum -c releases/krmrf-site-2026.6.20-r4.zip.sha256
 ```
 
 После распаковки:
@@ -145,13 +145,67 @@ npm run check
 npm run serve
 ```
 
-## 8. Восстановление карты
+Открыть локальный сайт через порт Codespaces или `http://localhost:8000/`.
 
-Рабочие файлы карты:
+## 8. Восстановление из ZIP
+
+1. Проверить `.sha256` ZIP.
+2. Распаковать архив.
+3. Перейти в папку.
+4. Выполнить:
+
+```bash
+npm install
+npm run fixity
+npm run check
+npm run serve
+```
+
+Если нужно заново создать репозиторий:
+
+```bash
+git init
+git add -A
+git commit -m "restore: восстановить KRM РФ из релизного архива"
+git branch -M main
+git remote add origin <новый-url-репозитория>
+git push -u origin main
+```
+
+## 9. Если production сломан после push
+
+Не править файлы руками на Cloudflare.
+
+Порядок:
+
+```bash
+git checkout main
+git pull origin main
+git log --oneline -10
+```
+
+Найти плохой коммит.
+
+Безопасный откат через revert:
+
+```bash
+git revert <hash-плохого-коммита>
+npm run check
+git status
+git push origin main
+```
+
+Не использовать `git reset --force` для общей ветки без крайней необходимости.
+
+## 10. Если сломалась карта
+
+Главные файлы карты:
 
 ```text
 data/zones.geojson
-data/map-changes.json
+data/zones.geojson
+data/zones.geojson...
+map/index.html
 map/index.html
 ```
 
@@ -161,27 +215,36 @@ map/index.html
 git checkout main
 git pull origin main
 git status
-git diff -- data/zones.geojson data/map-changes.json map/index.html
+git diff -- data/zones.geojson
+git diff -- data/zones.geojson
 npm run check
 ```
 
-Если изменение было намеренным, проверь `updated` в GeoJSON и новую запись в `data/map-changes.json`, затем коммить:
+Если `npm run check` создал новый снимок карты, проверить:
 
 ```bash
-git add data/zones.geojson data/map-changes.json map/index.html
-git commit -m "chore: обновить карту"
+git status
+git diff -- data/zones.geojson
+git diff -- data/zones.geojson
+```
+
+Если изменение карты было намеренным:
+
+```bash
+git add -A
+git commit -m "chore: обновить снимок карты"
 git push origin main
 ```
 
-Если карта не должна была меняться:
+Если карта не должна была меняться, откатить изменения:
 
 ```bash
-git restore data/zones.geojson data/map-changes.json map/index.html
+git restore data/zones.geojson data/zones.geojson map/index.html
 npm run check
 ```
 
 
-## 9. Если `noviy-sait` отстал от `main`
+## 11. Если `noviy-sait` отстал от `main`
 
 Обновить:
 
@@ -203,7 +266,7 @@ git commit -m "chore: синхронизировать noviy-sait с main"
 git push origin noviy-sait
 ```
 
-## 10. Если при merge конфликт
+## 12. Если при merge конфликт
 
 Git покажет конфликтные файлы.
 
@@ -211,11 +274,11 @@ Git покажет конфликтные файлы.
 
 - `data/pages.json`;
 - `data/zones.geojson`;
-- `data/map-changes.json`;
 - `index.html`;
 - `archive/index.html`;
 - `sitemap.xml`;
-- `data/search-index.json`.
+- `data/search-index.json`;
+- `data/zones.geojson`.
 
 Порядок:
 
@@ -232,7 +295,7 @@ npm run check
 
 Если конфликт в производном файле, часто правильнее сохранить исходные файлы (`data/pages.json`, HTML, `data/zones.geojson`) и дать `npm run check` пересобрать производные.
 
-## 11. Если публикация исчезла из архива или поиска
+## 13. Если публикация исчезла из архива или поиска
 
 Проверить:
 
@@ -248,7 +311,7 @@ npm run check
 
 Если запись есть, но производных файлов нет — `npm run check` не был выполнен или изменения не были закоммичены.
 
-## 12. Если после `git push` сайт не изменился
+## 14. Если после `git push` сайт не изменился
 
 Проверить:
 
@@ -268,7 +331,7 @@ git log --oneline -5
 
 Если после `npm run check` были изменения, но ты сделал только `git push` без `git add` и `git commit`, GitHub их не получил.
 
-## 13. Минимальная аварийная схема
+## 15. Минимальная аварийная схема
 
 Если всё непонятно:
 
@@ -290,7 +353,7 @@ git push origin main
 
 Если проверка не проходит, читать последнюю ошибку и чинить только указанный файл.
 
-## 14. Проверка после восстановления
+## 16. Проверка после восстановления
 
 Открыть:
 
@@ -298,13 +361,14 @@ git push origin main
 - `/archive/`;
 - `/search/`;
 - `/map/`;
+- `/map/`;
 - последнюю публикацию;
 - последнюю оценку;
 - последнюю памятку;
 - sitemap;
 - мобильную версию.
 
-## 15. Что не делать при аварии
+## 17. Что не делать при аварии
 
 Не делать:
 

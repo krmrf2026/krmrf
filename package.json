@@ -1,14 +1,14 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.7.11-r2",
+  "version": "2026.7.11-r1",
   "type": "module",
   "scripts": {
     "sources:sync": "node tools/sources.mjs",
     "build": "node tools/build.mjs",
     "validate": "node tools/validate.mjs",
     "test:smoke": "node tools/smoke.mjs",
-    "check": "npm run sources:sync && npm run redirects && npm run redirect-pages && npm run images && npm run build && npm run normalize && npm run validate && npm run test:smoke",
+    "check": "npm run sources:sync && npm run images && npm run build && npm run validate && npm run test:smoke",
     "serve": "node tools/serve.mjs",
     "release": "npm run check && npm run test:negative && node tools/release.mjs && node tools/fixity.mjs",
     "fixity": "node tools/fixity.mjs",
@@ -17,8 +17,7 @@
     "images": "node tools/images.mjs",
     "sources:report": "node tools/sources-report.mjs",
     "redirects": "node tools/redirect-aliases.mjs",
-    "redirect-pages": "node tools/redirect-pages.mjs",
-    "normalize": "node tools/normalize-html.mjs"
+    "redirect-pages": "node tools/redirect-pages.mjs"
   },
   "engines": {
     "node": ">=20"

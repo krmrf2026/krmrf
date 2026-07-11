@@ -3,7 +3,6 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import crypto from 'node:crypto';
 import process from 'node:process';
-import { spawnSync } from 'node:child_process';
 
 const ROOT = process.cwd();
 const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/site.json'), 'utf8'));
@@ -16,45 +15,18 @@ fs.mkdirSync(releaseDir, { recursive: true });
 
 const excludedDirectories = new Set(['.git', 'node_modules', 'releases']);
 const excludedFiles = new Set(['.DS_Store', 'SHA256SUMS']);
-
-const shouldExclude = file => {
-  const normalized = file.replace(/\\/g, '/');
-  const parts = normalized.split('/');
-  return parts.some(part => excludedDirectories.has(part))
-    || excludedFiles.has(path.posix.basename(normalized));
+const files = [];
+const walk = directory => {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    if (entry.isDirectory() && excludedDirectories.has(entry.name)) continue;
+    if (!entry.isDirectory() && excludedFiles.has(entry.name)) continue;
+    const absolute = path.join(directory, entry.name);
+    if (entry.isDirectory()) walk(absolute);
+    else files.push(path.relative(ROOT, absolute).replace(/\\/g, '/'));
+  }
 };
-
-const gitFiles = () => {
-  const result = spawnSync(
-    'git',
-    ['ls-files', '--cached', '--others', '--exclude-standard', '-z'],
-    { cwd: ROOT, encoding: 'buffer' }
-  );
-  if (result.status !== 0 || !result.stdout?.length) return null;
-  return result.stdout.toString('utf8').split('\0').filter(Boolean)
-    .map(file => file.replace(/\\/g, '/'))
-    .filter(file => !shouldExclude(file))
-    .filter(file => fs.existsSync(path.join(ROOT, file)) && fs.statSync(path.join(ROOT, file)).isFile());
-};
-
-const walkFiles = () => {
-  const collected = [];
-  const walk = directory => {
-    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-      const absolute = path.join(directory, entry.name);
-      const relative = path.relative(ROOT, absolute).replace(/\\/g, '/');
-      if (entry.isDirectory()) {
-        if (!shouldExclude(relative)) walk(absolute);
-      } else if (!shouldExclude(relative)) {
-        collected.push(relative);
-      }
-    }
-  };
-  walk(ROOT);
-  return collected;
-};
-
-const files = [...new Set(gitFiles() || walkFiles())].sort((a, b) => a.localeCompare(b));
+walk(ROOT);
+files.sort((a, b) => a.localeCompare(b));
 
 const sha256 = buffer => crypto.createHash('sha256').update(buffer).digest('hex');
 const sums = files.map(file => `${sha256(fs.readFileSync(path.join(ROOT, file)))}  ${file}`).join('\n') + '\n';

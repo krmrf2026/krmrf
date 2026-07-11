@@ -127,15 +127,14 @@ const updatedPages = pages.map(page => ({
 }));
 const registry = [...byUrl.values()].map(record => {
   const references = referencesBySource.get(record.id) || [];
-  const uniqueReferences = [...new Map(references.map(reference => [reference.pageId, reference])).values()];
-  const computedPriority = uniqueReferences.reduce((priority, reference) => {
+  const computedPriority = references.reduce((priority, reference) => {
     const candidate = pagePriority(reference);
     return priorityRank[candidate] > priorityRank[priority] ? candidate : priority;
   }, 'normal');
   return {
     ...record,
     preservationPriority: priorityRank[computedPriority] > priorityRank[record.preservationPriority || 'normal'] ? computedPriority : (record.preservationPriority || computedPriority),
-    referencedBy: uniqueReferences.map(reference => reference.pageId).sort()
+    referencedBy: references.map(reference => reference.pageId).sort()
   };
 }).sort((a, b) => String(a.id).localeCompare(String(b.id)));
 const queue = registry
