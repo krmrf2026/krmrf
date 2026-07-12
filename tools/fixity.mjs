@@ -10,7 +10,19 @@ if (!fs.existsSync(manifest)) {
   process.exit(1);
 }
 
+const isForbiddenRootArtifact = name =>
+  name === 'FETCH_HEAD' ||
+  name === 'node' ||
+  name.startsWith('krmrf-static-archive@');
+
 const errors = [];
+
+for (const name of fs.readdirSync(ROOT)) {
+  if (isForbiddenRootArtifact(name)) {
+    errors.push(`Посторонний файл в корне репозитория: ${name}`);
+  }
+}
+
 for (const line of fs.readFileSync(manifest, 'utf8').split(/\r?\n/).filter(Boolean)) {
   const match = line.match(/^([a-f0-9]{64})  (.+)$/);
   if (!match) {
@@ -18,6 +30,12 @@ for (const line of fs.readFileSync(manifest, 'utf8').split(/\r?\n/).filter(Boole
     continue;
   }
   const [, expected, rel] = match;
+
+  if (!rel.includes('/') && isForbiddenRootArtifact(rel)) {
+    errors.push(`Запрещённая запись в SHA256SUMS: ${rel}`);
+    continue;
+  }
+
   const file = path.join(ROOT, rel);
   if (!fs.existsSync(file)) {
     errors.push(`Отсутствует: ${rel}`);

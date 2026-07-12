@@ -15,11 +15,22 @@ fs.mkdirSync(releaseDir, { recursive: true });
 
 const excludedDirectories = new Set(['.git', 'node_modules', 'releases']);
 const excludedFiles = new Set(['.DS_Store', 'SHA256SUMS']);
+
+const isForbiddenRootArtifact = (directory, name) =>
+  path.resolve(directory) === ROOT && (
+    name === 'FETCH_HEAD' ||
+    name === 'node' ||
+    name.startsWith('krmrf-static-archive@')
+  );
+
+const shouldExcludeFile = (directory, name) =>
+  excludedFiles.has(name) || isForbiddenRootArtifact(directory, name);
+
 const files = [];
 const walk = directory => {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (entry.isDirectory() && excludedDirectories.has(entry.name)) continue;
-    if (!entry.isDirectory() && excludedFiles.has(entry.name)) continue;
+    if (!entry.isDirectory() && shouldExcludeFile(directory, entry.name)) continue;
     const absolute = path.join(directory, entry.name);
     if (entry.isDirectory()) walk(absolute);
     else files.push(path.relative(ROOT, absolute).replace(/\\/g, '/'));
