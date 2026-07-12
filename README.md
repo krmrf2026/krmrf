@@ -383,7 +383,7 @@ git status
 ```bash
 git status
 git diff --name-only
-```
+```сдф
 
 Если изменения нужны — закоммить их.
 
