@@ -32,6 +32,41 @@ const exists = file => fs.existsSync(path.join(ROOT, file));
 const readJson = file => JSON.parse(read(file));
 const writeJson = (file, value) => write(file, `${JSON.stringify(value, null, 2)}\n`);
 
+const PUBLIC_HTML_SKIP_DIRS = new Set([
+  '.git',
+  'node_modules',
+  'releases'
+]);
+
+const listHtmlFiles = dir => {
+  const files = [];
+
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory() && PUBLIC_HTML_SKIP_DIRS.has(entry.name)) {
+      continue;
+    }
+
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      files.push(...listHtmlFiles(fullPath));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.html')) {
+      files.push(path.relative(ROOT, fullPath));
+    }
+  }
+
+  return files;
+};
+
+const syncAssetVersions = (html, version) => html.replace(
+  /((?:href|src)=["']\/assets\/(?:css|js)\/[^"'?]+)(?:\?v=[^"']*)?(["'])/gi,
+  (_whole, prefix, quote) => `${prefix}?v=${version}${quote}`
+);
+
+
 const escapeHtml = value => String(value ?? '')
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
@@ -375,8 +410,35 @@ if (errors.length) {
 
 const site = readJson('data/site.json');
 const packageJson = readJson('package.json');
+
 site.version = packageJson.version;
-site.buildDate = site.buildDate || packageJson.version.match(/\d{4}\.\d{1,2}\.\d{1,2}/)?.[0]?.replaceAll('.', '-') || new Date().toISOString().slice(0, 10);
+
+const versionDateMatch = packageJson.version.match(
+  /(\d{4})\.(\d{1,2})\.(\d{1,2})/
+);
+
+const versionDate = versionDateMatch
+  ? [
+      versionDateMatch[1],
+      versionDateMatch[2].padStart(2, '0'),
+      versionDateMatch[3].padStart(2, '0')
+    ].join('-')
+  : null;
+
+const latestContentDate = pages
+  .flatMap(item => [item.dateModified, item.datePublished])
+  .filter(value => /^\d{4}-\d{2}-\d{2}$/.test(String(value)))
+  .sort()
+  .at(-1);
+
+site.buildDate = [versionDate, latestContentDate]
+  .filter(Boolean)
+  .sort()
+  .at(-1) || new Date().toISOString().slice(0, 10);
+
+for (const file of listHtmlFiles(ROOT)) {
+  write(file, syncAssetVersions(read(file), site.version));
+}
 
 for (const item of pages) {
   const file = urlToHtmlFile(item.url);
