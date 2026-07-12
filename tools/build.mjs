@@ -363,7 +363,7 @@ const sitemapXml = (pages, oldMap, buildDate, redirectedPaths = new Set()) => {
   const requiredStaticPaths = [
     '/', '/about/', '/archive/', '/assessment/', '/kremennaya/', '/map/',
     '/methodology/', '/news/', '/news/civilian-impact/', '/news/lnr/', '/news/politics/',
-    '/news/svo/', '/privacy/', '/reference/', '/search/', '/war-crimes/'
+    '/news/svo/', '/privacy/', '/reference/', '/war-crimes/'
   ];
   const staticMap = new Map(oldMap);
   for (const pathname of requiredStaticPaths) {
@@ -371,7 +371,13 @@ const sitemapXml = (pages, oldMap, buildDate, redirectedPaths = new Set()) => {
     if (!staticMap.has(url)) staticMap.set(url, buildDate);
   }
   const fixed = [...staticMap.entries()]
-    .filter(([url]) => !publicationUrls.has(url) && !url.endsWith('/404.html') && !redirectedPaths.has(new URL(url).pathname))
+    .filter(([url]) => {
+      const pathname = new URL(url).pathname;
+      return !publicationUrls.has(url)
+        && !url.endsWith('/404.html')
+        && pathname !== '/search/'
+        && !redirectedPaths.has(pathname);
+    })
     .map(([url, lastmod]) => ({ url, lastmod: lastmod || buildDate }));
   const pubs = pages.map(item => ({
     url: `${SITE_URL}${item.url}`,
@@ -473,7 +479,6 @@ const searchByUrl = new Map(searchIndex.map(item => [item.url, item]));
 
 const pageJobs = [
   ['news/index.html', 'news'],
-  ['news/kremennaya/index.html', 'section:kremennaya'],
   ['news/svo/index.html', 'section:svo'],
   ['news/lnr/index.html', 'section:lnr'],
   ['news/civilian-impact/index.html', 'section:civilian-impact'],
