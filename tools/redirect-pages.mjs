@@ -44,9 +44,6 @@ const makeHtml = (from, to) => {
   <link rel="canonical" href="${escapeHtml(targetAbs)}">
   <meta http-equiv="refresh" content="0; url=${escapeHtml(targetAbs)}">
   <!-- ${MARKER}: ${escapeHtml(from)} -> ${escapeHtml(to)} -->
-  <script>
-    window.location.replace(${JSON.stringify(norm(to))});
-  </script>
 </head>
 <body>
   <main>
