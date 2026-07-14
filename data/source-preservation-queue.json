@@ -202,6 +202,17 @@
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
+    "sourceId": "src-02bc255a8b58",
+    "priority": "medium",
+    "title": "Статья 69 Федерального закона № 218-ФЗ",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_182661/2791246851e070d0e424b19b47aba5c2f81036f5/",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
     "sourceId": "src-04767f358a7a",
     "priority": "medium",
     "title": "Статья 44 ГК РФ: отмена решения о признании безвестно отсутствующим",
@@ -238,6 +249,17 @@
     "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/807f0f66520608de738f73f326a9b309ac205a32/",
     "referencedBy": [
       "bobp-2026-03-04"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-14c6dc7eb33f",
+    "priority": "medium",
+    "title": "Постановление Правительства ЛНР от 16 июня 2026 года № 123/26",
+    "url": "https://publication.pravo.gov.ru/document/8100202606170003",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
@@ -319,7 +341,42 @@
     "title": "карточка акта на сайте Правительства ЛНР",
     "url": "https://sovminlnr.ru/akty-soveta-ministrov/postanovleniya/36443-ob-utverzhdenii-poryadka-ucheta-zhilyh-pomescheniy-imeyuschih-priznaki-beshozyaynogo-imuschestva.html",
     "referencedBy": [
-      "beshoz-123-26-2026-07-04"
+      "beshoz-123-26-2026-07-04",
+      "egrn-posle-1-iyulya-2026"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-3b824a52d27d",
+    "priority": "medium",
+    "title": "Федеральным законом № 193-ФЗ",
+    "url": "https://publication.pravo.gov.ru/document/0001202507070013?index=1&pageSize=20",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-451e58c015fb",
+    "priority": "medium",
+    "title": "Постановление Правительства РФ от 19 декабря 2025 года № 2079",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_522466/92d969e26a4326c5d02fa79b8f9cf4994ee5633b/",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-4879605f5fae",
+    "priority": "medium",
+    "title": "ФКЗ от 04.10.2022 № 6-ФКЗ о принятии ЛНР в состав РФ",
+    "url": "https://publication.pravo.gov.ru/document/0001202210050006",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "posle-gosudarstva-2026-06-12"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
@@ -340,6 +397,8 @@
     "title": "Официальный сайт МФЦ ЛНР",
     "url": "https://mfclnr.ru/",
     "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
       "lnr-vyplaty-terakt-118-26"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
@@ -375,6 +434,18 @@
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
+    "sourceId": "src-80fa3c4a82a8",
+    "priority": "medium",
+    "title": "Статья 12 Федерального конституционного закона № 6-ФКЗ",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_428184/4398c9a03d9483b602b8c0b4b3882ba091a87be9/",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
     "sourceId": "src-85dbaf00a591",
     "priority": "medium",
     "title": "gvsu.gov.ru/appeals-from-citizens/",
@@ -401,6 +472,17 @@
     "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/0ae164bb05f0e236cc4763331fa69c8014989c5a/",
     "referencedBy": [
       "bobp-2026-03-04"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-8a371623e46b",
+    "priority": "medium",
+    "title": "Федеральный конституционный закон № 4-ФКЗ",
+    "url": "https://publication.pravo.gov.ru/document/0001202512150024",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
@@ -453,6 +535,16 @@
     "url": "https://publication.pravo.gov.ru/document/0001202312290053",
     "referencedBy": [
       "powrlnr-2026-05-13"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-a9ac2d194a0e",
+    "priority": "medium",
+    "title": "Закон ЛНР № 249-I",
+    "url": "https://publication.pravo.gov.ru/document/8100202603160001",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
@@ -517,12 +609,34 @@
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
   {
+    "sourceId": "src-cf9cca57e7bd",
+    "priority": "medium",
+    "title": "Статья 21.1 № 6-ФКЗ",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_428184/0bc7195e737e6af56ad96991c9803429186ee762/",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
     "sourceId": "src-d115a58e56b6",
     "priority": "medium",
     "title": "Статья 278 ГПК РФ: действия суда и участие прокурора",
     "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/453658bafca7e5da5b95f71f3228438092d61c6b/",
     "referencedBy": [
       "bobp-2026-03-04"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-d1be348350a0",
+    "priority": "medium",
+    "title": "статье 62 № 218-ФЗ",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_182661/e064cc95b1bdffa4d12abb92fdfc56dea94198df/",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   },
@@ -594,6 +708,17 @@
     "url": "https://www.consultant.ru/document/cons_doc_LAW_5143/dcf6a9cdf6136b9a410d2f953eec0cf0887b7b6a/",
     "referencedBy": [
       "bobp-2026-03-04"
+    ],
+    "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
+  },
+  {
+    "sourceId": "src-f7f592e1cad5",
+    "priority": "medium",
+    "title": "статье 235 Гражданского кодекса РФ",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/8164301022c75a87e7eb4ca24cbeee288288d53c/",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ],
     "action": "Сохранить только если источник действительно нужен как доказательство: локальная копия, PDF, скриншот страницы или точный архивный URL."
   }

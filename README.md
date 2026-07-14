@@ -463,7 +463,7 @@ assets/img/news/svo/svo-2026-07-02/cover.webp
 
 ```bash
 git status
-npm run check
+сдуфк
 git add -A
 git commit -m "обновить сайт"
 git push origin noviy-sait
