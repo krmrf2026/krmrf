@@ -34,6 +34,24 @@
     ]
   },
   {
+    "id": "src-02bc255a8b58",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_182661/2791246851e070d0e424b19b47aba5c2f81036f5/",
+    "title": "Статья 69 Федерального закона № 218-ФЗ",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-0417aefc9dae",
     "url": "https://www.kremlin.ru/acts/bank/7640",
     "title": "Федеральный закон от 13.03.1995 № 32-ФЗ",
@@ -253,6 +271,24 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "bobp-2026-03-04"
+    ]
+  },
+  {
+    "id": "src-14c6dc7eb33f",
+    "url": "https://publication.pravo.gov.ru/document/8100202606170003",
+    "title": "Постановление Правительства ЛНР от 16 июня 2026 года № 123/26",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -515,6 +551,24 @@
     ]
   },
   {
+    "id": "src-331aa55c727c",
+    "url": "https://www.donetsk.kp.ru/daily/277795.5/5271946/",
+    "title": "3 июля 2026 года",
+    "publisher": "donetsk.kp.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-349dad64bfd0",
     "url": "https://lug-info.ru/news/narodnyj-front-pomogaet-likvidirovat-posledstvija-nochnoj-ataki-bpla-v-luganske/",
     "title": "Луганск 8 апреля",
@@ -579,7 +633,8 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
-      "beshoz-123-26-2026-07-04"
+      "beshoz-123-26-2026-07-04",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -617,6 +672,26 @@
     ]
   },
   {
+    "id": "src-3b824a52d27d",
+    "url": "https://publication.pravo.gov.ru/document/0001202507070013?index=1&pageSize=20",
+    "title": "Федеральным законом № 193-ФЗ",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-3cecbaaf49b7",
     "url": "https://ukraine.un.org/en/126054-7-years-no-answers-what-lacking-investigations-events-odesa-2-may-2014",
     "title": "United Nations in Ukraine: 7 years with no answers",
@@ -651,6 +726,24 @@
     ]
   },
   {
+    "id": "src-42a0554dfbee",
+    "url": "https://81.notariat.ru/ru-ru/chamber_notaries/",
+    "title": "Нотариальная палата ЛНР",
+    "publisher": "81.notariat.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-451dc41a03c6",
     "url": "https://lug-info.ru/news/ukrainskie-bpla-i-drg-aktivizirovalis-v-svatovskom-rajone--marochko/",
     "title": "Сватовский район",
@@ -665,6 +758,23 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "bpla-lnr-2026-05-27"
+    ]
+  },
+  {
+    "id": "src-451e58c015fb",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_522466/92d969e26a4326c5d02fa79b8f9cf4994ee5633b/",
+    "title": "Постановление Правительства РФ от 19 декабря 2025 года № 2079",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -713,8 +823,9 @@
     "sha256": null,
     "status": "referenced",
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
-    "preservationPriority": "normal",
+    "preservationPriority": "medium",
     "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
       "posle-gosudarstva-2026-06-12"
     ]
   },
@@ -786,6 +897,25 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "krm-2026-06-24"
+    ]
+  },
+  {
+    "id": "src-50f747794089",
+    "url": "https://nslnr.su/zakonodatelstvo/normativno-pravovaya-baza/28476/",
+    "title": "Закон ЛНР № 249-I",
+    "publisher": "nslnr.su",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -924,6 +1054,8 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
       "lnr-vyplaty-terakt-118-26"
     ]
   },
@@ -1303,6 +1435,25 @@
     ]
   },
   {
+    "id": "src-80fa3c4a82a8",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_428184/4398c9a03d9483b602b8c0b4b3882ba091a87be9/",
+    "title": "Статья 12 Федерального конституционного закона № 6-ФКЗ",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-8341d6b9f845",
     "url": "https://t.me/xykrm/5587",
     "title": "архив KRM РФ, №5587",
@@ -1385,6 +1536,24 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "bobp-2026-03-04"
+    ]
+  },
+  {
+    "id": "src-8a371623e46b",
+    "url": "https://publication.pravo.gov.ru/document/0001202512150024",
+    "title": "Федеральный конституционный закон № 4-ФКЗ",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -1545,6 +1714,24 @@
     ]
   },
   {
+    "id": "src-9576d3f82f9b",
+    "url": "https://notariat.ru/ru-ru/news/na-zakonnyh-osnovaniyah-kak-poluchit-svedeniya-egrn-cherez-notariusa-2309",
+    "title": "Федеральная нотариальная палата",
+    "publisher": "notariat.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-96578d614d6b",
     "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/76b5d5ce5bcba627ba2f8df5b31b94119e27b739/",
     "title": "Статья 279 ГПК РФ: последствия решения суда",
@@ -1559,6 +1746,24 @@
     "preservationPriority": "medium",
     "referencedBy": [
       "bobp-2026-03-04"
+    ]
+  },
+  {
+    "id": "src-98283546a1a2",
+    "url": "https://rosreestr.gov.ru/feedback/poryadok-rassmotreniya/obrashchenie-grazhdan-v-upravlenie-rosreestra-po-luganskoy-narodnoy-respublike/",
+    "title": "официальном разделе Росреестра",
+    "publisher": "rosreestr.gov.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -1800,6 +2005,23 @@
     ]
   },
   {
+    "id": "src-a9ac2d194a0e",
+    "url": "https://publication.pravo.gov.ru/document/8100202603160001",
+    "title": "Закон ЛНР № 249-I",
+    "publisher": "publication.pravo.gov.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-aad42549acd9",
     "url": "https://t.me/xykrm/5830",
     "title": "оперативная обстановка в ЛНР на 11 июня",
@@ -1951,7 +2173,8 @@
     "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
     "preservationPriority": "medium",
     "referencedBy": [
-      "beshoz-123-26-2026-07-04"
+      "beshoz-123-26-2026-07-04",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -2212,6 +2435,24 @@
     ]
   },
   {
+    "id": "src-cf9cca57e7bd",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_428184/0bc7195e737e6af56ad96991c9803429186ee762/",
+    "title": "Статья 21.1 № 6-ФКЗ",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
+    ]
+  },
+  {
     "id": "src-d115a58e56b6",
     "url": "https://www.consultant.ru/document/cons_doc_LAW_39570/453658bafca7e5da5b95f71f3228438092d61c6b/",
     "title": "Статья 278 ГПК РФ: действия суда и участие прокурора",
@@ -2243,6 +2484,24 @@
     "preservationPriority": "normal",
     "referencedBy": [
       "posle-gosudarstva-2026-06-12"
+    ]
+  },
+  {
+    "id": "src-d1be348350a0",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_182661/e064cc95b1bdffa4d12abb92fdfc56dea94198df/",
+    "title": "статье 62 № 218-ФЗ",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -2312,6 +2571,24 @@
     "referencedBy": [
       "bobp-2026-03-04",
       "evak-2026-03-10"
+    ]
+  },
+  {
+    "id": "src-de752bc7ffa8",
+    "url": "https://81.notariat.ru/ru-ru/help/poryadok-podachi-notariusu-zayavleniya-o-prinyatii-nasledstva-li/",
+    "title": "порядок подачи заявления о принятии наследства",
+    "publisher": "81.notariat.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
@@ -2517,6 +2794,24 @@
     "preservationPriority": "high",
     "referencedBy": [
       "kremenskoy-okrug-civilians-2024-2026"
+    ]
+  },
+  {
+    "id": "src-f7f592e1cad5",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_5142/8164301022c75a87e7eb4ca24cbeee288288d53c/",
+    "title": "статье 235 Гражданского кодекса РФ",
+    "publisher": "consultant.ru",
+    "registeredAt": "2026-07-12",
+    "accessedAt": null,
+    "archiveUrl": null,
+    "localCopy": null,
+    "sha256": null,
+    "status": "referenced",
+    "notes": "Источник зарегистрирован автоматически по ссылке в публикации; дата доступа и архивная копия заполняются вручную для ключевых доказательств.",
+    "preservationPriority": "medium",
+    "referencedBy": [
+      "egrn-posle-1-iyulya-2026",
+      "egrn-posle-1-iyulya-2026"
     ]
   },
   {
