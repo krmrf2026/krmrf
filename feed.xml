@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-07-14T12:00:00+03:00</updated>
+  <updated>2026-07-17T12:00:00+03:00</updated>
+  <entry>
+    <title>Обстановка на фронте СВО к 17 июля 2026 года</title>
+    <link href="https://krmrf.ru/news/svo/svo-2026-07-17/" />
+    <id>https://krmrf.ru/news/svo/svo-2026-07-17/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <summary>Полумесячная сводка KRM РФ к 17 июля: освобождение Константиновки, бои в Купянске и Красном Лимане, северные и южные участки, БПЛА и ЛНР.</summary>
+  </entry>
   <entry>
     <title>Регистрация недвижимости в ЛНР после 1 июля 2026 года: что делать тем, кто не успел</title>
     <link href="https://krmrf.ru/news/reference/egrn-posle-1-iyulya-2026/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/reference/egrn-2026-05-15/</id>
     <updated>2026-05-15T12:00:00+03:00</updated>
     <summary>Регистрация права в ЕГРН становится ключевым фактором защиты недвижимости в ЛНР. Разбираем сроки, украинские документы и риски бесхозяйного жилья.</summary>
-  </entry>
-  <entry>
-    <title>Что изменилось на фронте СВО к 15 мая 2026 года</title>
-    <link href="https://krmrf.ru/news/svo/svo-2026-05-15/" />
-    <id>https://krmrf.ru/news/svo/svo-2026-05-15/</id>
-    <updated>2026-05-15T12:00:00+03:00</updated>
-    <summary>После 6 мая главный центр тяжести сместился к Северско-Славянскому узлу. Диброва, Кривая Лука, Закотное, Пазено, Каленики, Резниковка и Рай-Александровка стали связанной линией давления, но быстрый оперативный перелом пока не подтвержден.</summary>
   </entry>
 </feed>
