@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-07-17T12:00:00+03:00</updated>
+  <updated>2026-07-19T12:00:00+03:00</updated>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 13–19 июля 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-07-19/" />
+    <id>https://krmrf.ru/assessment/2026-07-19/</id>
+    <updated>2026-07-19T12:00:00+03:00</updated>
+    <summary>Неделя закрепила изменения в Купянске, Красном Лимане и на Славянском направлении. Отдельного оперативного перелома после утреннего среза 17 июля не подтверждено.</summary>
+  </entry>
   <entry>
     <title>Обстановка на фронте СВО к 17 июля 2026 года</title>
     <link href="https://krmrf.ru/news/svo/svo-2026-07-17/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/kremennaya/krm-2026-05-16/</id>
     <updated>2026-05-16T12:00:00+03:00</updated>
     <summary>Май не принес Кременной спокойствия. Беспилотники продолжают появляться над городом и дорогами вокруг него, но жизнь не остановилась.</summary>
-  </entry>
-  <entry>
-    <title>Регистрация недвижимости в ЛНР в 2026 году: что нужно знать собственникам жилья, земли и домов</title>
-    <link href="https://krmrf.ru/news/reference/egrn-2026-05-15/" />
-    <id>https://krmrf.ru/news/reference/egrn-2026-05-15/</id>
-    <updated>2026-05-15T12:00:00+03:00</updated>
-    <summary>Регистрация права в ЕГРН становится ключевым фактором защиты недвижимости в ЛНР. Разбираем сроки, украинские документы и риски бесхозяйного жилья.</summary>
   </entry>
 </feed>
