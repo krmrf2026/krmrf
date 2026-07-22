@@ -20,8 +20,7 @@
       "Славянское направление",
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "svo-2026-07-17",
@@ -44,7 +43,6 @@
       "Кременная",
       "ЛНР"
     ],
-    "sourceIds": [],
     "home": {
       "important": 1
     }
@@ -63,28 +61,6 @@
     "imageAlt": "Документы, ключи и план недвижимости для регистрации права в ЕГРН",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-80fa3c4a82a8",
-      "src-8a371623e46b",
-      "src-f7f592e1cad5",
-      "src-331aa55c727c",
-      "src-3b824a52d27d",
-      "src-02bc255a8b58",
-      "src-42a0554dfbee",
-      "src-de752bc7ffa8",
-      "src-9576d3f82f9b",
-      "src-d1be348350a0",
-      "src-610f9f7e3883",
-      "src-98283546a1a2",
-      "src-50f747794089",
-      "src-cf9cca57e7bd",
-      "src-14c6dc7eb33f",
-      "src-4879605f5fae",
-      "src-a9ac2d194a0e",
-      "src-3527e8deb830",
-      "src-b6c1c7a14c8b",
-      "src-451e58c015fb"
     ],
     "home": {
       "important": 2
@@ -114,8 +90,7 @@
       "Славянское направление",
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "krm-2026-07-10",
@@ -139,9 +114,6 @@
       "Кременная",
       "Кременской район",
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-598bb3ed08a8"
     ],
     "home": {
       "important": 3
@@ -168,17 +140,6 @@
       "ЛНР",
       "Кременная"
     ],
-    "sourceIds": [
-      "src-8ec1812b5499",
-      "src-85f97bc9c91c",
-      "src-a4c00e804260",
-      "src-01116cd29952",
-      "src-35215e0223a5",
-      "src-b6c1c9efcc81",
-      "src-469e9b2b4989",
-      "src-99a31a5b2ecd",
-      "src-a59a3fdae263"
-    ],
     "home": {
       "important": 4
     }
@@ -204,8 +165,7 @@
       "Славянское направление",
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "beshoz-123-26-2026-07-04",
@@ -221,17 +181,6 @@
     "imageAlt": "Реестр бесхозяйного жилья и ЕГРН в ЛНР",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-66710b680a08",
-      "src-3527e8deb830",
-      "src-ee19123e999e",
-      "src-5ae1b22690ed",
-      "src-e2a1999c613c",
-      "src-4bf2cef73554",
-      "src-b6c1c7a14c8b",
-      "src-8deb940f10fa",
-      "src-b63752083bc7"
     ],
     "reviewedAt": "2026-07-04",
     "reviewAfter": "2026-10-04",
@@ -257,8 +206,7 @@
       "Славянское направление",
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "kremenskoy-okrug-civilians-2024-2026",
@@ -282,37 +230,6 @@
       "Кременная",
       "Кременской район",
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-577073dee4e1",
-      "src-4db4c1e3b5ff",
-      "src-1381da361633",
-      "src-24991c3c900a",
-      "src-5cd14a6c849d",
-      "src-bbc802f9484d",
-      "src-92f6a63b0438",
-      "src-ad54e82e9010",
-      "src-12a115b81583",
-      "src-78631c3ac6b7",
-      "src-629067411a83",
-      "src-326d21ffa51c",
-      "src-a2a879f66182",
-      "src-711eaf96a74d",
-      "src-8341d6b9f845",
-      "src-93148310a667",
-      "src-99a019c27b34",
-      "src-b95adfb5cfbf",
-      "src-74c1037b1e20",
-      "src-07e01b327757",
-      "src-9400a8ae0cb0",
-      "src-a97e4c242225",
-      "src-cbfdbe496060",
-      "src-18ac1847f8b8",
-      "src-80acb896df84",
-      "src-73da7475e1a6",
-      "src-f54ab0d704c3",
-      "src-1709d6650ccb",
-      "src-202392f77ca4"
     ],
     "revisionHistory": [
       {
@@ -342,8 +259,7 @@
       "Славянское направление",
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "krm-2026-06-24",
@@ -365,21 +281,6 @@
       "Кременная",
       "Кременской район",
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-d6280a486d25",
-      "src-626151c113d9",
-      "src-0073a6a93540",
-      "src-aad42549acd9",
-      "src-4e2dd3e2ee28",
-      "src-fb4328eac4a4",
-      "src-bd4ecf9c29a6",
-      "src-a52d8ef624c2",
-      "src-9ee7e11cb1f9",
-      "src-7abf7f395dc6",
-      "src-e0c786c072fd",
-      "src-9d4d8839d67f",
-      "src-7b1599567bb2"
     ]
   },
   {
@@ -401,15 +302,6 @@
       "Кременная",
       "ЛНР",
       "Донбасс"
-    ],
-    "sourceIds": [
-      "src-0417aefc9dae",
-      "src-ce9c0cb4faae",
-      "src-cca9d1d1460e",
-      "src-493aa80c14d0",
-      "src-a02000552dd8",
-      "src-db56f90360db",
-      "src-468ed4008b37"
     ]
   },
   {
@@ -433,8 +325,7 @@
       "Славянское направление",
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "lnr-vyplaty-terakt-118-26",
@@ -450,16 +341,6 @@
     "imageAlt": "Постановление ЛНР № 118/26 о выплатах пострадавшим от террористических актов",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-e94c01753f8e",
-      "src-b0e5b6ed1516",
-      "src-32ecc907c6e2",
-      "src-197341de9549",
-      "src-ce2f70896ba3",
-      "src-88b0d3e75348",
-      "src-ba3377b9fd05",
-      "src-610f9f7e3883"
     ],
     "reviewedAt": "2026-06-17",
     "reviewAfter": "2026-07-17",
@@ -480,8 +361,7 @@
     "period": "8–14 июня 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "posle-gosudarstva-2026-06-12",
@@ -497,19 +377,6 @@
     "imageAlt": "ЛНР, Россия и повседневная жизнь на прифронтовой территории",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-d1fd1180cad6",
-      "src-a8cded0a30e3",
-      "src-54c01af36dbd",
-      "src-540187e2f4ea",
-      "src-4879605f5fae",
-      "src-6a830f116463",
-      "src-7f04d2decca9",
-      "src-b47debd971f6",
-      "src-386de49564cb",
-      "src-d17d0e219213",
-      "src-140a8e92652e"
     ]
   },
   {
@@ -526,8 +393,7 @@
     "imageAlt": "Общая карта изменений на фронте СВО к 9 июня 2026 года",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "assessment-2026-06-07",
@@ -544,8 +410,7 @@
     "period": "1–7 июня 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "krm-2026-06-06",
@@ -567,10 +432,6 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-044455c699ee",
-      "src-2a459ce2aa67"
     ]
   },
   {
@@ -587,15 +448,6 @@
     "imageAlt": "Луганск 2 июня 2014 года - здание областной администрации после удара",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-7030874f539c",
-      "src-6f55e8c9227c",
-      "src-147295976366",
-      "src-10a3279f138c",
-      "src-912d5fe56084",
-      "src-64e9f40ed54e",
-      "src-3b0e2a389ab8"
     ],
     "home": {
       "dossier": 3
@@ -616,8 +468,7 @@
     "period": "25–31 мая 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "bpla-lnr-2026-05-27",
@@ -633,23 +484,6 @@
     "imageAlt": "Последствия атак БПЛА по гражданской инфраструктуре ЛНР весной 2026 года",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-451dc41a03c6",
-      "src-0d0a37a789e6",
-      "src-a1a170a03f87",
-      "src-349dad64bfd0",
-      "src-cf8104cff69a",
-      "src-eba01d5b20ae",
-      "src-e0546708f4f8",
-      "src-79a63a0eb370",
-      "src-80ea19167453",
-      "src-6971576587b1",
-      "src-78e3be7c2ea7",
-      "src-cd8f84d9e6de",
-      "src-c9c602241731",
-      "src-fa277dcdbed8",
-      "src-b76354503114"
     ]
   },
   {
@@ -666,12 +500,6 @@
     "imageAlt": "Введен режим ЧС в ЛНР",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-126409d4adc0",
-      "src-6572087b9479",
-      "src-b0ebd2a1ce7f",
-      "src-2b9ec16c4f35"
     ],
     "reviewedAt": "2026-05-25",
     "reviewAfter": "2026-07-25",
@@ -692,8 +520,7 @@
     "period": "18–24 мая 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "starobelsk-2026-05-22",
@@ -710,7 +537,6 @@
     "locations": [
       "ЛНР"
     ],
-    "sourceIds": [],
     "revisionHistory": [
       {
         "date": "2026-05-22",
@@ -743,8 +569,7 @@
     "imageAlt": "Карта боевых действий СВО к 21 мая 2026 года",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "kartasvo-2026-05-19",
@@ -760,8 +585,7 @@
     "imageAlt": "Карта СВО и линия фронта",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "assessment-2026-05-17",
@@ -778,8 +602,7 @@
     "period": "11–17 мая 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "krm-2026-05-16",
@@ -800,8 +623,7 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "egrn-2026-05-15",
@@ -818,7 +640,6 @@
     "locations": [
       "ЛНР"
     ],
-    "sourceIds": [],
     "reviewedAt": "2026-05-15",
     "reviewAfter": "2026-08-15",
     "reviewStatus": "current"
@@ -837,8 +658,7 @@
     "imageAlt": "Карта боевых действий СВО к 15 мая 2026 года",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "powrlnr-2026-05-13",
@@ -854,11 +674,6 @@
     "imageAlt": "Компенсация за жилье в ЛНР",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-a715ea6a2cf0",
-      "src-22ce7f5aec0b",
-      "src-541dac45725e"
     ],
     "reviewedAt": "2026-05-13",
     "reviewAfter": "2026-08-13",
@@ -878,8 +693,7 @@
     "imageAlt": "Луганск и Луганщина",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "assessment-2026-05-10",
@@ -896,8 +710,7 @@
     "period": "4–10 мая 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "krm9may-2026-05-09",
@@ -917,8 +730,7 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "svo-2026-05-06",
@@ -934,8 +746,7 @@
     "imageAlt": "Карта боевых действий СВО к 6 мая 2026 года",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "zemlyalnr-2026-05-04",
@@ -952,7 +763,6 @@
     "locations": [
       "ЛНР"
     ],
-    "sourceIds": [],
     "reviewedAt": "2026-05-04",
     "reviewAfter": "2026-08-04",
     "reviewStatus": "current"
@@ -972,8 +782,7 @@
     "period": "27 апреля — 3 мая 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "odessa-2026-05-02",
@@ -986,14 +795,7 @@
     "status": null,
     "excerpt": "2 мая 2014 года в Одессе погибли 48 человек, большая часть - в Доме профсоюзов. Спустя годы расследование не дало окончательных выводов.",
     "image": "/assets/img/news/politics/odessarus-2026-05-02/cover.webp",
-    "imageAlt": "Дом профсоюзов в Одессе после пожара",
-    "sourceIds": [
-      "src-3d4d842eb14e",
-      "src-3cecbaaf49b7",
-      "src-e60cae01aec7",
-      "src-64e699f2fbaf",
-      "src-929dc7121159"
-    ]
+    "imageAlt": "Дом профсоюзов в Одессе после пожара"
   },
   {
     "id": "kremennaya-2026-04-28",
@@ -1014,8 +816,7 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "assessment-2026-04-26",
@@ -1032,8 +833,7 @@
     "period": "20–26 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "svo-2026-04-24",
@@ -1049,8 +849,7 @@
     "imageAlt": "Карта боевых действий СВО",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "beshoz-2026-04-21",
@@ -1059,7 +858,7 @@
     "url": "/news/reference/beshoz-2026-04-21/",
     "section": "law",
     "datePublished": "2026-04-21",
-    "dateModified": "2026-04-21",
+    "dateModified": "2026-07-21",
     "status": null,
     "excerpt": "Новый закон вводит процедуру выявления и учета заброшенного жилья. Ключевой момент — переход в муниципальную собственность после включения в реестр.",
     "image": "/assets/img/news/reference/beshoz-2026-04-21/cover.webp",
@@ -1067,12 +866,15 @@
     "locations": [
       "ЛНР"
     ],
-    "sourceIds": [
-      "src-5ae1b22690ed"
-    ],
     "reviewedAt": "2026-04-21",
     "reviewAfter": "2026-07-20",
-    "reviewStatus": "current"
+    "reviewStatus": "review-due",
+    "revisionHistory": [
+      {
+        "date": "2026-07-21",
+        "summary": "Статус изменён на «требует проверки» после наступления даты планового пересмотра; содержание памятки не обновлялось."
+      }
+    ]
   },
   {
     "id": "assessment-2026-04-19",
@@ -1089,8 +891,7 @@
     "period": "13–19 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "kremennaya-2026-04-16",
@@ -1111,8 +912,7 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "hungary-2026-04-13",
@@ -1125,8 +925,7 @@
     "status": null,
     "excerpt": "Смена власти в Венгрии может изменить баланс внутри ЕС, но экономические связи с Россией сохраняют инерцию.",
     "image": "/assets/img/news/politics/hungary-2026-04-13/cover.webp",
-    "imageAlt": "Выборы в Венгрии",
-    "sourceIds": []
+    "imageAlt": "Выборы в Венгрии"
   },
   {
     "id": "assessment-2026-04-12",
@@ -1143,8 +942,7 @@
     "period": "6–12 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "iranoil-2026-04-09",
@@ -1157,8 +955,7 @@
     "status": null,
     "excerpt": "Конфликт США и Ирана влияет на нефть, усиливает позиции России и создаёт риски для поддержки Украины.",
     "image": "/assets/img/news/politics/iranoil-2026-04-09/cover.webp",
-    "imageAlt": "Иран и нефтяной рынок",
-    "sourceIds": []
+    "imageAlt": "Иран и нефтяной рынок"
   },
   {
     "id": "assessment-2026-04-05",
@@ -1175,8 +972,7 @@
     "period": "30 марта — 5 апреля 2026",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "front-analysis-2026-03-31",
@@ -1192,8 +988,7 @@
     "imageAlt": "Линия фронта по противнику",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "krm-2026-03-23",
@@ -1215,8 +1010,7 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "geo-2026-03-16",
@@ -1232,8 +1026,7 @@
     "imageAlt": "Купянское и Краснолиманское направления",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "evak-2026-03-10",
@@ -1249,16 +1042,6 @@
     "imageAlt": "Эвакуационная группа на линии фронта",
     "locations": [
       "ЛНР"
-    ],
-    "sourceIds": [
-      "src-dbada24fb28e",
-      "src-94d96161bb90",
-      "src-2bf48999141c",
-      "src-208740499ec7",
-      "src-85dbaf00a591",
-      "src-168426597281",
-      "src-34e86e37cbc5",
-      "src-93da44cafc1c"
     ],
     "reviewedAt": "2026-07-11",
     "reviewAfter": "2026-11-11",
@@ -1278,8 +1061,7 @@
     "imageAlt": "Переправы ВСУ на участке Славянск - Рай Александровка",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "bobp-2026-03-04",
@@ -1296,29 +1078,6 @@
     "locations": [
       "ЛНР"
     ],
-    "sourceIds": [
-      "src-2009cc20e9b3",
-      "src-e3362ce2a72a",
-      "src-b1034e501388",
-      "src-168426597281",
-      "src-93da44cafc1c",
-      "src-f0ab9d48b2bc",
-      "src-9cd1541a4f9d",
-      "src-c68617ceb8d1",
-      "src-b63cfe930e1e",
-      "src-0eab6b7f75c8",
-      "src-89a4f6a01b66",
-      "src-d115a58e56b6",
-      "src-96578d614d6b",
-      "src-2013fccbc7ba",
-      "src-cd3efeccfb3b",
-      "src-04767f358a7a",
-      "src-14aa24c309b8",
-      "src-eebe924a93f5",
-      "src-e7e4972d30c9",
-      "src-7fe0ad097a90",
-      "src-dbada24fb28e"
-    ],
     "reviewedAt": "2026-07-11",
     "reviewAfter": "2026-10-11",
     "reviewStatus": "current"
@@ -1334,8 +1093,7 @@
     "status": null,
     "excerpt": "Гибель Хаменеи должна была стать началом конца Ирана. Вместо этого страна наносит удары по базам США, а новый лидер обещает отомстить.",
     "image": "/assets/img/news/politics/iran-2026-03-02/iran-01.webp",
-    "imageAlt": "Али Хаменеи",
-    "sourceIds": []
+    "imageAlt": "Али Хаменеи"
   },
   {
     "id": "beshoz-2026-07-01",
@@ -1352,7 +1110,6 @@
     "locations": [
       "ЛНР"
     ],
-    "sourceIds": [],
     "reviewedAt": "2026-07-04",
     "reviewAfter": "2026-08-04",
     "reviewStatus": "current"
@@ -1371,8 +1128,7 @@
     "imageAlt": "Лиман северный фас",
     "locations": [
       "Восточный фронт"
-    ],
-    "sourceIds": []
+    ]
   },
   {
     "id": "2026-02-18-kremennaya",
@@ -1393,7 +1149,6 @@
     "locations": [
       "Кременная",
       "ЛНР"
-    ],
-    "sourceIds": []
+    ]
   }
 ]

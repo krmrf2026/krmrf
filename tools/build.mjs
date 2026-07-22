@@ -66,6 +66,19 @@ const syncAssetVersions = (html, version) => html.replace(
   (_whole, prefix, quote) => `${prefix}?v=${version}${quote}`
 );
 
+const syncFooterMeta = (html, version, buildDate) => html
+  .replace(/Версия архива:\s*[^<]*/g, `Версия архива: ${version}`)
+  .replace(/Техническая сборка:\s*[^<]*/g, `Техническая сборка: ${buildDate}`);
+
+const formatMapDateTime = value => {
+  const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/);
+  if (!match) return String(value || '');
+  const [, year, month, day, hour, minute] = match;
+  const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  return `${Number(day)} ${months[Number(month) - 1]} ${year} года, ${hour}:${minute}`;
+};
+
 
 const escapeHtml = value => String(value ?? '')
   .replace(/&/g, '&amp;')
@@ -443,7 +456,8 @@ site.buildDate = [versionDate, latestContentDate]
   .at(-1) || new Date().toISOString().slice(0, 10);
 
 for (const file of listHtmlFiles(ROOT)) {
-  write(file, syncAssetVersions(read(file), site.version));
+  const html = syncAssetVersions(read(file), site.version);
+  write(file, syncFooterMeta(html, site.version, site.buildDate));
 }
 
 for (const item of pages) {
@@ -510,6 +524,22 @@ if (latestAssessment) {
   home = home.replace(/<a class="button" href="[^"]*">Последняя оценка<\/a>/, `<a class="button" href="${escapeHtml(latestAssessment.url)}">Последняя оценка</a>`);
 }
 write('index.html', home);
+
+let mapPage = read('map/index.html');
+const zones = readJson('data/zones.geojson');
+const mapUpdated = formatMapDateTime(zones.updated);
+if (mapUpdated) {
+  mapPage = mapPage.replace(/<dd([^>]*\bid="mapUpdated"[^>]*)>[^<]*<\/dd>/, (_whole, attrs) => {
+    const syncedAttrs = /data-fallback="[^"]*"/.test(attrs)
+      ? attrs.replace(/data-fallback="[^"]*"/, `data-fallback="${escapeHtml(mapUpdated)}"`)
+      : `${attrs} data-fallback="${escapeHtml(mapUpdated)}"`;
+    return `<dd${syncedAttrs}>${escapeHtml(mapUpdated)}</dd>`;
+  });
+}
+if (latestAssessment) {
+  mapPage = mapPage.replace(/<a href="\/assessment\/[^"]*">Последняя оценка фронта<\/a>/, `<a href="${escapeHtml(latestAssessment.url)}">Последняя оценка фронта</a>`);
+}
+write('map/index.html', mapPage);
 
 let archive = read('archive/index.html');
 archive = replaceCatalog(archive, 'archive', enriched, archiveInner(enriched, searchByUrl));
