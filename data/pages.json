@@ -44,7 +44,7 @@
       "ЛНР"
     ],
     "home": {
-      "important": 1
+      "important": 2
     }
   },
   {
@@ -63,7 +63,7 @@
       "ЛНР"
     ],
     "home": {
-      "important": 2
+      "important": 3
     },
     "reviewedAt": "2026-07-14",
     "reviewAfter": "2026-08-14",
@@ -116,7 +116,7 @@
       "ЛНР"
     ],
     "home": {
-      "important": 3
+      "important": 4
     }
   },
   {
@@ -141,7 +141,7 @@
       "Кременная"
     ],
     "home": {
-      "important": 4
+      "important": 5
     }
   },
   {
@@ -1150,5 +1150,27 @@
       "Кременная",
       "ЛНР"
     ]
+  },
+  {
+    "id": "egrn-lnr-iz-drugogo-regiona-2026-07-22",
+    "type": "guide",
+    "title": "Как оформить недвижимость в ЛНР из другого региона",
+    "url": "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/",
+    "section": "law",
+    "datePublished": "2026-07-22",
+    "dateModified": "2026-07-22",
+    "status": null,
+    "excerpt": "Как собственнику квартиры, дома или земли в ЛНР подать документы из другого региона через Госуслуги, Госключ, экстерриториальный МФЦ или представителя — и где дистанционная подача не решает юридическую проблему.",
+    "image": "/assets/img/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/cover.webp",
+    "imageAlt": "Два заявления на недвижимость через Госуслуги и подписание в приложении «Госключ»",
+    "locations": [
+      "ЛНР"
+    ],
+    "home": {
+      "important": 1
+    },
+    "reviewedAt": "2026-07-22",
+    "reviewAfter": "2026-08-22",
+    "reviewStatus": "current"
   }
 ]

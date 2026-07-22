@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.7.21-r1",
+  "version": "2026.7.22-r1",
   "type": "module",
   "scripts": {
     "build": "node tools/build.mjs",
