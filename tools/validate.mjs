@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 
@@ -11,7 +10,6 @@ const warnings = [];
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const exists = file => fs.existsSync(path.join(ROOT, file));
 const readJson = file => JSON.parse(read(file));
-const sha256 = buffer => crypto.createHash('sha256').update(buffer).digest('hex');
 
 const TYPE_LABELS = {
   article: 'Материал', guide: 'Практическая памятка',
@@ -77,7 +75,7 @@ const externalLinks = html => {
       if (parsed.hostname === 'krmrf.ru' || parsed.hostname.endsWith('.krmrf.ru')) continue;
       urls.push(url);
     } catch {
-      // Broken absolute links are caught below by registry validation.
+      // External URLs are checked for valid HTTP(S) syntax below.
     }
   }
   return [...new Set(urls)];
@@ -86,22 +84,16 @@ const externalLinks = html => {
 let pages;
 let search;
 let sitemap;
-let sources;
 let schema;
-let preservationQueue;
 let taxonomy;
 try { pages = readJson('data/pages.json'); } catch (error) { errors.push(`data/pages.json: ${error.message}`); pages = []; }
 try { search = readJson('data/search-index.json'); } catch (error) { errors.push(`data/search-index.json: ${error.message}`); search = []; }
-try { sources = readJson('data/sources.json'); } catch (error) { errors.push(`data/sources.json: ${error.message}`); sources = []; }
 try { schema = readJson('data/pages.schema.json'); } catch (error) { errors.push(`data/pages.schema.json: ${error.message}`); schema = {}; }
-try { preservationQueue = readJson('data/source-preservation-queue.json'); } catch (error) { errors.push(`data/source-preservation-queue.json: ${error.message}`); preservationQueue = []; }
 try { taxonomy = readJson('data/taxonomy.json'); } catch (error) { errors.push(`data/taxonomy.json: ${error.message}`); taxonomy = { topics: {}, locations: {} }; }
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
 if (!Array.isArray(search)) errors.push('data/search-index.json должен содержать массив.');
-if (!Array.isArray(sources)) errors.push('data/sources.json должен содержать массив.');
-if (!Array.isArray(preservationQueue)) errors.push('data/source-preservation-queue.json должен содержать массив.');
 const knownTopics = new Set(Object.keys(taxonomy?.topics || {}));
 const knownLocations = new Set(Object.keys(taxonomy?.locations || {}));
 
@@ -109,52 +101,6 @@ const schemaTypes = new Set(schema?.items?.properties?.type?.enum || []);
 const schemaSections = new Set(schema?.items?.properties?.section?.enum || []);
 for (const type of TYPES) if (!schemaTypes.has(type)) errors.push(`pages.schema.json не содержит type=${type}`);
 for (const section of SECTIONS) if (!schemaSections.has(section)) errors.push(`pages.schema.json не содержит section=${section}`);
-
-const sourceById = new Map();
-let unpreservedSourceCount = 0;
-const sourceByUrl = new Map();
-for (const source of sources) {
-  if (!source?.id || !source?.url) {
-    errors.push('sources.json: запись без id или url.');
-    continue;
-  }
-  if (sourceById.has(source.id)) errors.push(`sources.json: повторяющийся id ${source.id}`);
-  if (sourceByUrl.has(source.url)) errors.push(`sources.json: повторяющийся URL ${source.url}`);
-  sourceById.set(source.id, source);
-  sourceByUrl.set(source.url, source);
-  try { new URL(source.url); } catch { errors.push(`sources.json: невалидный URL ${source.url}`); }
-  if (!source.title || !source.publisher || !validDate(source.registeredAt)) errors.push(`sources.json ${source.id}: нужны title, publisher и корректный registeredAt.`);
-  if (source.accessedAt !== null && source.accessedAt !== undefined && !validDate(source.accessedAt)) errors.push(`sources.json ${source.id}: неверный accessedAt.`);
-  if (source.localCopy) {
-    const local = source.localCopy.replace(/^\//, '');
-    if (!exists(local)) errors.push(`sources.json ${source.id}: отсутствует localCopy ${source.localCopy}`);
-    else if (!/^[a-f0-9]{64}$/.test(source.sha256 || '')) errors.push(`sources.json ${source.id}: для localCopy нужен SHA-256.`);
-    else if (sha256(fs.readFileSync(path.join(ROOT, local))) !== source.sha256) errors.push(`sources.json ${source.id}: SHA-256 localCopy не совпадает.`);
-  }
-  if (!['normal', 'medium', 'high'].includes(source.preservationPriority || '')) errors.push(`sources.json ${source.id}: неверный preservationPriority.`);
-  if (!Array.isArray(source.referencedBy)) errors.push(`sources.json ${source.id}: referencedBy должен быть массивом.`);
-  if (!source.accessedAt || (!source.archiveUrl && !source.localCopy)) unpreservedSourceCount += 1;
-}
-if (unpreservedSourceCount) warnings.push(`В реестре ${unpreservedSourceCount} источников без сохранённой копии; ${preservationQueue.length} оставлены в короткой очереди data/source-preservation-queue.json.`);
-
-const queuedIds = new Set();
-for (const item of preservationQueue) {
-  if (!item.sourceId) {
-    errors.push('Очередь источников: запись без sourceId.');
-    continue;
-  }
-
-  if (queuedIds.has(item.sourceId)) errors.push(`Очередь источников: повтор ${item.sourceId}.`);
-  queuedIds.add(item.sourceId);
-
-  const source = sourceById.get(item.sourceId);
-  if (!source) {
-    errors.push(`Очередь источников: неизвестный sourceId ${item.sourceId}.`);
-    continue;
-  }
-
-  if (source.localCopy || source.archiveUrl) errors.push(`Очередь источников: источник уже сохранён ${item.sourceId}.`);
-}
 
 const ids = new Set();
 const urls = new Set();
@@ -204,11 +150,6 @@ for (const [index, item] of pages.entries()) {
     }
   }
 
-  if (!Array.isArray(item.sourceIds)) errors.push(`${prefix}: sourceIds должен быть массивом, допускается пустой.`);
-  else {
-    if (new Set(item.sourceIds).size !== item.sourceIds.length) errors.push(`${prefix}: sourceIds содержит повторы.`);
-    for (const id of item.sourceIds) if (!sourceById.has(id)) errors.push(`${prefix}: неизвестный sourceId ${id}`);
-  }
 
   const file = urlToFile(item.url);
   if (!file || !exists(file)) {
@@ -283,12 +224,13 @@ for (const [index, item] of pages.entries()) {
   if (item.type === 'guide' && !html.includes('KRM GUIDE STATUS START')) errors.push(`${file}: отсутствует генерируемый блок актуальности памятки.`);
 
   const linkedSources = externalLinks(html);
-  const linkedIds = new Set(linkedSources.map(url => sourceByUrl.get(url)?.id).filter(Boolean));
-  for (const url of linkedSources) if (!sourceByUrl.has(url)) errors.push(`${file}: внешний источник не зарегистрирован в sources.json: ${url}`);
-  for (const id of linkedIds) if (!item.sourceIds.includes(id)) errors.push(`${file}: sourceIds не содержит ${id}.`);
-  for (const id of item.sourceIds) {
-    const source = sourceById.get(id);
-    if (source && !linkedSources.includes(source.url)) warnings.push(`${file}: sourceId ${id} не найден среди ссылок основного текста.`);
+  for (const url of linkedSources) {
+    try {
+      const parsed = new URL(url);
+      if (!['http:', 'https:'].includes(parsed.protocol)) errors.push(`${file}: внешний URL использует неподдерживаемый протокол: ${url}`);
+    } catch {
+      errors.push(`${file}: невалидный внешний URL: ${url}`);
+    }
   }
 }
 

@@ -40,8 +40,6 @@
 /RECOVERY.md
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
 
-/SOURCES.md
-  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
 
 /KRM_RF_R4_IMPLEMENTATION_REPORT.md
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
@@ -52,11 +50,7 @@
 /data/pages.schema.json
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
 
-/data/sources.schema.json
-  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
 
-/data/source-preservation-queue.json
-  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
 
 /releases/*
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet

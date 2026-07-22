@@ -14,8 +14,7 @@
       "dateModified",
       "excerpt",
       "image",
-      "imageAlt",
-      "sourceIds"
+      "imageAlt"
     ],
     "properties": {
       "id": {
@@ -89,14 +88,6 @@
         "type": "array",
         "items": {
           "type": "string"
-        },
-        "uniqueItems": true
-      },
-      "sourceIds": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "pattern": "^src-[a-f0-9]{12}$"
         },
         "uniqueItems": true
       },
