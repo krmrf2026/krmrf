@@ -14,7 +14,9 @@
       "dateModified",
       "excerpt",
       "image",
-      "imageAlt"
+      "imageAlt",
+      "seoTitle",
+      "seoDescription"
     ],
     "properties": {
       "id": {
@@ -153,6 +155,16 @@
             "minimum": 1
           }
         }
+      },
+      "seoTitle": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 56
+      },
+      "seoDescription": {
+        "type": "string",
+        "minLength": 50,
+        "maxLength": 160
       }
     },
     "allOf": [

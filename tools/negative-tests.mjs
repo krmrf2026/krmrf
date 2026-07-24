@@ -9,7 +9,10 @@ const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'krmrf-negative-'));
 const project = path.join(temp, 'site');
 const filter = source => !source.includes(`${path.sep}.git${path.sep}`)
   && !source.includes(`${path.sep}node_modules${path.sep}`)
-  && !source.includes(`${path.sep}releases${path.sep}`);
+  && !source.includes(`${path.sep}releases${path.sep}`)
+  && !source.includes(`${path.sep}dist${path.sep}`)
+  && !source.includes(`${path.sep}krmrf-releases${path.sep}`)
+  && path.basename(source) !== 'SHA256SUMS';
 
 fs.cpSync(ROOT, project, { recursive: true, filter });
 const pagesFile = path.join(project, 'data/pages.json');
@@ -48,6 +51,30 @@ test('modified before published', () => {
 test('title and H1 mismatch', () => {
   fs.writeFileSync(htmlFile, originalHtml.replace(/<h1([^>]*)>[\s\S]*?<\/h1>/i, '<h1$1>Заведомо неверный H1</h1>'));
 }, 'H1 не совпадает');
+
+test('duplicate url', () => {
+  const pages = JSON.parse(originalPages); pages[1].url = pages[0].url;
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}
+`);
+}, 'Повторяющийся URL');
+
+test('missing seo description', () => {
+  const pages = JSON.parse(originalPages); delete pages[0].seoDescription;
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}
+`);
+}, 'отсутствует seoDescription');
+
+test('long seo title', () => {
+  const pages = JSON.parse(originalPages); pages[0].seoTitle = 'Слишком длинный SEO-заголовок, который намеренно превышает допустимую техническую длину';
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}
+`);
+}, 'seoTitle длиннее 56');
+
+test('broken image', () => {
+  const pages = JSON.parse(originalPages); pages[0].image = '/assets/img/missing-image.webp';
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}
+`);
+}, 'отсутствует изображение');
 
 fs.rmSync(temp, { recursive: true, force: true });
 if (results.some(item => !item.passed)) {

@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import process from 'node:process';
 
 const pages = JSON.parse(fs.readFileSync('data/pages.json', 'utf8'));
-const search = JSON.parse(fs.readFileSync('data/search-index.json', 'utf8'));
+const searchPayload = JSON.parse(fs.readFileSync('data/search-index.json', 'utf8'));
+const searchDocuments = searchPayload.documents || [];
+const searchTerms = searchPayload.terms || {};
 const taxonomy = JSON.parse(fs.readFileSync('data/taxonomy.json', 'utf8'));
 const archive = fs.readFileSync('archive/index.html', 'utf8');
 const map = fs.readFileSync('map/index.html', 'utf8');
@@ -42,12 +44,13 @@ const archiveScript = fs.readFileSync('assets/js/archive-filter.js', 'utf8');
 if (!archiveScript.includes("split('|')")) errors.push('Архив: территории не разбираются как отдельные фасеты.');
 
 const normalize = value => String(value || '').toLocaleLowerCase('ru-RU').replace(/ё/g, 'е');
-const queries = [
-  ['кременная', item => normalize(`${item.title} ${item.text}`).includes('кременн')],
-  ['выплаты', item => normalize(`${item.title} ${item.text}`).includes('выплат')],
-  ['красный лиман', item => normalize(`${item.title} ${item.text}`).includes('красн') && normalize(`${item.title} ${item.text}`).includes('лиман')]
-];
-for (const [query, predicate] of queries) if (!search.some(predicate)) errors.push(`Поиск: контрольный запрос «${query}» не имеет результата.`);
+const queries = ['кременная', 'выплаты', 'красный', 'лиман'];
+for (const query of queries) {
+  const inMetadata = searchDocuments.some(item => normalize(`${item.title} ${item.description} ${item.locations}`).includes(query));
+  const inTerms = Object.keys(searchTerms).some(term => term.includes(query));
+  if (!inMetadata && !inTerms) errors.push(`Поиск: контрольный термин «${query}» отсутствует.`);
+}
+if (searchPayload.version !== 2 || searchDocuments.length !== pages.length) errors.push('Поиск: индекс v2 не согласован с pages.json.');
 
 if (errors.length) {
   console.error(errors.map(item => `• ${item}`).join('\n'));
