@@ -1,0 +1,31 @@
+name: Release archives
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: sudo apt-get update && sudo apt-get install -y imagemagick unzip
+      - run: npm ci
+      - run: npm run release
+        env:
+          KRM_RELEASE_DIR: ${{ github.workspace }}/release-output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: krmrf-release
+          path: release-output/
+          if-no-files-found: error

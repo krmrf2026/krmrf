@@ -1,25 +1,14 @@
 node_modules/
+dist/
+releases/
+krmrf-releases/
 .DS_Store
 *.log
-# accidental terminal/log paste files
+*.tmp
+
+# Локальные релизные артефакты и случайные вставки терминала
+SHA256SUMS
 /FETCH_HEAD
 /node
 /npm
 /krmrf-static-archive@*
-/128902
-/d
-/assets/img/news/reference/beshoz-123-26-2026-07-04/123
-
-# release archives: keep as local/GitHub Release assets, not in Git history
-
-# accidental terminal/log paste files
-/FETCH_HEAD
-/node
-/npm
-/krmrf-static-archive@*
-/128902
-/d
-/assets/img/news/reference/beshoz-123-26-2026-07-04/123
-
-# release archives: keep outside public deployment and Git history
-/releases/

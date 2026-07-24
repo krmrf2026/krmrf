@@ -2,24 +2,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
+import { SITE_URL, TYPE_LABELS, SECTION_LABELS } from './lib/project.mjs';
 
 const ROOT = path.resolve(process.cwd());
-const SITE_URL = 'https://krmrf.ru';
 const errors = [];
 const warnings = [];
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const exists = file => fs.existsSync(path.join(ROOT, file));
 const readJson = file => JSON.parse(read(file));
 
-const TYPE_LABELS = {
-  article: 'Материал', guide: 'Практическая памятка',
-  assessment: 'Оценка фронта', dossier: 'CASE FILE'
-};
-const SECTION_LABELS = {
-  kremennaya: 'Кременная', svo: 'СВО', law: 'Справочник', lnr: 'ЛНР',
-  'civilian-impact': 'Гражданские последствия', politics: 'Политика',
-  assessment: 'Оценки фронта', warcrimes: 'Досье'
-};
 const TYPES = new Set(Object.keys(TYPE_LABELS));
 const SECTIONS = new Set(Object.keys(SECTION_LABELS));
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -93,7 +84,7 @@ try { taxonomy = readJson('data/taxonomy.json'); } catch (error) { errors.push(`
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
-if (!Array.isArray(search)) errors.push('data/search-index.json должен содержать массив.');
+if (search?.version !== 2 || !Array.isArray(search?.documents) || !search?.terms || typeof search.terms !== 'object') errors.push('data/search-index.json должен соответствовать формату v2.');
 const knownTopics = new Set(Object.keys(taxonomy?.topics || {}));
 const knownLocations = new Set(Object.keys(taxonomy?.locations || {}));
 
@@ -107,10 +98,12 @@ const urls = new Set();
 const pageByUrl = new Map();
 for (const [index, item] of pages.entries()) {
   const prefix = `pages.json[${index}] ${item?.id || '?'}`;
-  for (const field of ['id', 'type', 'title', 'url', 'section', 'datePublished', 'dateModified', 'excerpt', 'image', 'imageAlt']) {
+  for (const field of ['id', 'type', 'title', 'seoTitle', 'seoDescription', 'url', 'section', 'datePublished', 'dateModified', 'excerpt', 'image', 'imageAlt']) {
     if (item?.[field] === undefined || item?.[field] === null || item?.[field] === '') errors.push(`${prefix}: отсутствует ${field}`);
   }
   if (!TYPES.has(item.type)) errors.push(`${prefix}: неизвестный type=${item.type}`);
+  if (String(item.seoTitle || '').length > 56) errors.push(`${prefix}: seoTitle длиннее 56 символов.`);
+  if (String(item.seoDescription || '').length < 50 || String(item.seoDescription || '').length > 160) errors.push(`${prefix}: seoDescription должен быть длиной 50–160 символов.`);
   if (!SECTIONS.has(item.section)) errors.push(`${prefix}: неизвестный section=${item.section}`);
   if (!/^\/[a-z0-9/_-]+\/$/i.test(item.url || '')) errors.push(`${prefix}: URL должен начинаться и заканчиваться слешем.`);
   if (!validDate(item.datePublished)) errors.push(`${prefix}: невозможная datePublished=${item.datePublished}`);
@@ -184,17 +177,30 @@ for (const [index, item] of pages.entries()) {
   if (!/<html\b[^>]*\blang=["']ru["']/i.test(html)) errors.push(`${file}: отсутствует lang="ru".`);
 
   const title = normalizeText(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
-  if (!title.includes(normalizeText(item.title))) errors.push(`${file}: <title> не содержит точный заголовок публикации.`);
+  const expectedTitle = `${item.seoTitle} — KRM РФ`;
+  if (title !== normalizeText(expectedTitle)) errors.push(`${file}: <title> должен быть «${expectedTitle}».`);
+  if (title.length > 65) errors.push(`${file}: <title> длиннее 65 символов.`);
 
   const canonicalTag = (html.match(/<link\b[^>]*rel=["']canonical["'][^>]*>/i) || html.match(/<link\b[^>]*href=["'][^"']+["'][^>]*rel=["']canonical["'][^>]*>/i))?.[0] || '';
   const canonical = attr(canonicalTag, 'href');
   if (canonical !== `${SITE_URL}${item.url}`) errors.push(`${file}: canonical не совпадает с ${item.url}`);
-  for (const selector of [
-    /<meta\b[^>]*name=["']description["'][^>]*>/i,
-    /<meta\b[^>]*property=["']og:title["'][^>]*>/i,
-    /<meta\b[^>]*property=["']og:url["'][^>]*>/i,
-    /<meta\b[^>]*name=["']twitter:title["'][^>]*>/i
-  ]) if (!selector.test(html)) errors.push(`${file}: отсутствует обязательный метатег.`);
+  const metaValue = (attribute, key) => {
+    const tag = (html.match(/<meta\b[^>]*>/gi) || []).find(candidate => attr(candidate, attribute).toLowerCase() === key.toLowerCase());
+    return tag ? attr(tag, 'content') : '';
+  };
+  const expectedMeta = {
+    description: item.seoDescription,
+    'og:title': item.seoTitle,
+    'og:description': item.seoDescription,
+    'og:url': `${SITE_URL}${item.url}`,
+    'twitter:title': item.seoTitle,
+    'twitter:description': item.seoDescription
+  };
+  for (const [key, expected] of Object.entries(expectedMeta)) {
+    const attribute = key.startsWith('og:') ? 'property' : 'name';
+    const actual = metaValue(attribute, key);
+    if (normalizeText(actual) !== normalizeText(expected)) errors.push(`${file}: ${key} не совпадает с pages.json.`);
+  }
 
   const scripts = [...html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi)];
   if (!scripts.length) errors.push(`${file}: нет JSON-LD.`);
@@ -211,6 +217,10 @@ for (const [index, item] of pages.entries()) {
   if (!articleNode) errors.push(`${file}: JSON-LD не содержит Article.`);
   else {
     if (normalizeText(articleNode.headline) !== normalizeText(item.title)) errors.push(`${file}: JSON-LD headline не совпадает с H1/pages.json.`);
+    if (normalizeText(articleNode.alternativeHeadline) !== normalizeText(item.seoTitle)) errors.push(`${file}: JSON-LD altHeadline не совпадает с seoTitle.`);
+    if (normalizeText(articleNode.description) !== normalizeText(item.seoDescription)) errors.push(`${file}: JSON-LD description не совпадает с seoDescription.`);
+    const expectedSchemaType = item.type === 'assessment' || item.type === 'dossier' ? 'Report' : item.type === 'article' ? 'NewsArticle' : 'Article';
+    if (articleNode['@type'] !== expectedSchemaType) errors.push(`${file}: JSON-LD @type должен быть ${expectedSchemaType}.`);
     if (articleNode.datePublished !== item.datePublished) errors.push(`${file}: JSON-LD datePublished не совпадает с pages.json.`);
     if (articleNode.dateModified !== item.dateModified) errors.push(`${file}: JSON-LD dateModified не совпадает с pages.json.`);
   }
@@ -234,11 +244,17 @@ for (const [index, item] of pages.entries()) {
   }
 }
 
-const searchUrls = new Set(search.map(item => item.url));
+const searchDocuments = Array.isArray(search?.documents) ? search.documents : [];
+const searchUrls = new Set(searchDocuments.map(item => item.url));
 for (const url of urls) if (!searchUrls.has(url)) errors.push(`search-index.json не содержит ${url}`);
-for (const item of search) {
-  if (!item.title || !item.url || !item.description || !item.text) errors.push(`search-index.json ${item.url || '?'}: неполная запись.`);
+if (searchDocuments.length !== pages.length) errors.push('search-index.json: число документов не совпадает с pages.json.');
+for (const item of searchDocuments) {
+  if (!item.title || !item.url || !item.description) errors.push(`search-index.json ${item.url || '?'}: неполная запись.`);
   for (const field of ['topics', 'locations', 'period']) if (item[field] === undefined) errors.push(`search-index.json ${item.url}: отсутствует поле ${field}.`);
+}
+for (const [term, postings] of Object.entries(search?.terms || {})) {
+  if (!term || !Array.isArray(postings) || !postings.length) errors.push(`search-index.json: некорректный термин «${term}».`);
+  else if (postings.some(id => !Number.isInteger(id) || id < 0 || id >= searchDocuments.length)) errors.push(`search-index.json: термин «${term}» ссылается на неизвестный документ.`);
 }
 
 for (const item of pages) {
@@ -246,6 +262,28 @@ for (const item of pages) {
   if (!block) errors.push(`sitemap.xml не содержит ${item.url}`);
   else if (block[1] !== item.dateModified) errors.push(`sitemap.xml: lastmod ${item.url} не совпадает с dateModified.`);
 }
+
+const headersFile = read('_headers');
+const requiredSecurityHeaders = [
+  'Strict-Transport-Security: max-age=31536000; includeSubDomains',
+  'X-Content-Type-Options: nosniff',
+  'X-Frame-Options: DENY',
+  'X-Permitted-Cross-Domain-Policies: none',
+  'Referrer-Policy: strict-origin-when-cross-origin',
+  'Origin-Agent-Cluster: ?1',
+  'Cross-Origin-Opener-Policy: same-origin-allow-popups',
+  "style-src-elem 'self'",
+  "style-src-attr 'unsafe-inline'",
+  "frame-ancestors 'none'",
+  'block-all-mixed-content'
+];
+for (const header of requiredSecurityHeaders) {
+  if (!headersFile.includes(header)) errors.push(`_headers: отсутствует обязательная политика «${header}».`);
+}
+if (headersFile.includes('mc.webvisor.org')) errors.push('_headers: разрешён неиспользуемый домен mc.webvisor.org.');
+const styleDirective = headersFile.match(/(?:^|;\s*)style-src\s+([^;]+)/m)?.[1] || '';
+if (!styleDirective) errors.push('_headers: отсутствует основная директива style-src.');
+else if (styleDirective.includes("'unsafe-inline'")) errors.push("_headers: style-src не должен разрешать 'unsafe-inline'.");
 
 const redirects = read('_redirects').split(/\r?\n/).map(line => line.trim()).filter(line => line && !line.startsWith('#'));
 for (const line of redirects) {
@@ -303,6 +341,10 @@ try {
       const relatedFile = urlToFile(latestChange.relatedUrl);
       if (!relatedFile || !exists(relatedFile)) errors.push(`data/map-changes.json: битая relatedUrl ${latestChange.relatedUrl}`);
     }
+    const mapHtml = read('map/index.html');
+    if (!mapHtml.includes(`data-updated-iso=\"${zones.updated}\"`) && !mapHtml.includes(`data-updated-iso='${zones.updated}'`)) errors.push('map/index.html: статичная дата не совпадает с zones.updated.');
+    if (!normalizeText(mapHtml).includes(normalizeText(latestChange.title))) errors.push('map/index.html: нет последнего заголовка из map-changes.json.');
+    if (/mapSnapshot/.test(mapHtml)) errors.push('map/index.html: остался устаревший элемент mapSnapshot.');
   }
 } catch (error) {
   errors.push(`Карта: ${error.message}`);
@@ -311,7 +353,7 @@ try {
 const htmlFiles = [];
 const walk = directory => {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    if (['.git', 'node_modules', 'releases'].includes(entry.name)) continue;
+    if (['.git', 'node_modules', 'dist', 'releases', 'krmrf-releases'].includes(entry.name)) continue;
     const full = path.join(directory, entry.name);
     if (entry.isDirectory()) walk(full);
     else if (entry.name.endsWith('.html')) htmlFiles.push(full);
@@ -336,6 +378,59 @@ for (const full of htmlFiles) {
   }
 }
 
+for (const full of htmlFiles) {
+  const rel = path.relative(ROOT, full).replace(/\\/g, '/');
+  const html = fs.readFileSync(full, 'utf8');
+  if (/^(?:google|yandex_)[a-z0-9]+\.html$/i.test(path.basename(rel))) continue;
+  const robotsTag = (html.match(/<meta\b[^>]*name=["']robots["'][^>]*>/i) || [])[0] || '';
+  const indexable = !/noindex/i.test(attr(robotsTag, 'content')) && !/<meta\s+http-equiv=["']refresh["']/i.test(html);
+  if (indexable) {
+    const title = normalizeText(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
+    const descriptionTag = (html.match(/<meta\b[^>]*name=["']description["'][^>]*>/i) || [])[0] || '';
+    const description = attr(descriptionTag, 'content');
+    if (!title || title.length > 65) errors.push(`${rel}: индексируемый title должен быть длиной 1–65 символов.`);
+    if (!description || description.length < 50 || description.length > 160) errors.push(`${rel}: индексируемый description должен быть длиной 50–160 символов.`);
+    const canonicalTag = (html.match(/<link\b[^>]*rel=["']canonical["'][^>]*>/i) || html.match(/<link\b[^>]*href=["'][^"']+["'][^>]*rel=["']canonical["'][^>]*>/i))?.[0] || '';
+    if (!attr(canonicalTag, 'href').startsWith(`${SITE_URL}/`)) errors.push(`${rel}: индексируемая страница без корректного canonical.`);
+  }
+  if (/\sstyle=["']/.test(html)) errors.push(`${rel}: inline-style запрещён строгой CSP.`);
+  const identifiers = [...html.matchAll(/\bid=["']([^"']+)["']/gi)].map(match => match[1]);
+  const duplicateIds = [...new Set(identifiers.filter((id, index) => identifiers.indexOf(id) !== index))];
+  if (duplicateIds.length) errors.push(`${rel}: повторяющиеся id: ${duplicateIds.join(', ')}.`);
+  for (const image of html.matchAll(/<img\b[^>]*>/gi)) {
+    const tag = image[0];
+    if (!/\balt=["']/.test(tag)) errors.push(`${rel}: изображение без alt.`);
+    if (!/\bwidth=["']/.test(tag) || !/\bheight=["']/.test(tag)) errors.push(`${rel}: изображение без width/height.`);
+  }
+  for (const match of html.matchAll(/(<button\b[^>]*>)([\s\S]*?)<\/button>/gi)) {
+    const text = normalizeText(match[2]);
+    if (!text && !/\baria-label=["'][^"']+/i.test(match[1])) errors.push(`${rel}: кнопка без доступного имени.`);
+  }
+  for (const match of html.matchAll(/(<a\b[^>]*>)([\s\S]*?)<\/a>/gi)) {
+    const text = normalizeText(match[2]);
+    if (!text && !/\baria-label=["'][^"']+/i.test(match[1])) errors.push(`${rel}: ссылка без доступного имени.`);
+  }
+  if (/<html\b/i.test(html) && !/<meta\s+http-equiv=["']refresh["']/i.test(html)) {
+    if (!/<html\b[^>]*lang=["']ru["']/i.test(html)) errors.push(`${rel}: отсутствует lang="ru".`);
+    if (!/<meta\b[^>]*name=["']viewport["']/i.test(html)) errors.push(`${rel}: отсутствует viewport.`);
+  }
+}
+
+const imageRoot = path.join(ROOT, 'assets/img');
+const walkImages = directory => {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const full = path.join(directory, entry.name);
+    if (entry.isDirectory()) walkImages(full);
+    else {
+      const rel = path.relative(ROOT, full).replace(/\\/g, '/');
+      const size = fs.statSync(full).size;
+      if (!path.extname(entry.name)) errors.push(`${rel}: файл изображения без расширения.`);
+      if (size < 100) errors.push(`${rel}: подозрительно маленький файл изображения (${size} байт).`);
+    }
+  }
+};
+walkImages(imageRoot);
+
 const jsFiles = [];
 const toolFiles = [];
 for (const entry of fs.readdirSync(path.join(ROOT, 'assets/js'))) if (entry.endsWith('.js')) jsFiles.push(`assets/js/${entry}`);
@@ -343,6 +438,12 @@ for (const entry of fs.readdirSync(path.join(ROOT, 'tools'))) if (entry.endsWith
 for (const file of [...jsFiles, ...toolFiles]) {
   const check = spawnSync(process.execPath, ['--check', path.join(ROOT, file)], { encoding: 'utf8' });
   if (check.status !== 0) errors.push(`${file}: синтаксическая ошибка JavaScript: ${check.stderr.trim()}`);
+}
+
+for (const file of jsFiles) {
+  const source = read(file);
+  if (/cache\s*:\s*['"]no-store['"]/i.test(source)) errors.push(`${file}: запрещён cache: no-store.`);
+  if (/fetch\(\s*['"]\/data\/pages\.json/i.test(source)) errors.push(`${file}: клиент не должен загружать data/pages.json.`);
 }
 
 if (warnings.length) console.warn(`${warnings.length} предупреждений (не блокируют публикацию):\n${warnings.map(item => `• ${item}`).join('\n')}`);

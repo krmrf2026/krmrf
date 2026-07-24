@@ -1,71 +1,34 @@
 (() => {
+  'use strict';
+
+  const listRoot = document.getElementById('archive-list');
+  if (!listRoot) return;
+
   const controls = [...document.querySelectorAll('[data-filter-group][data-filter-value]')];
   const input = document.getElementById('archive-search');
   const status = document.getElementById('archive-status');
   const reset = document.getElementById('archive-reset');
-  const listRoot = document.getElementById('archive-list');
-  if (!listRoot) return;
-
-  const SECTION_LABELS = {
-    kremennaya: 'Кременная',
-    svo: 'СВО',
-    law: 'Справочник',
-    lnr: 'ЛНР',
-    'civilian-impact': 'Гражданские последствия',
-    politics: 'Политика',
-    warcrimes: 'Досье',
-    assessment: 'Оценки фронта'
-  };
-
-  const TYPE_LABELS = {
-    article: 'Материал',
-    guide: 'Практическая памятка',
-    assessment: 'Оценка фронта',
-    dossier: 'Досье'
-  };
+  const rows = [...listRoot.querySelectorAll('.archive-list li')];
+  const state = { type: '', section: '', location: '' };
+  let fullTextEngine = null;
+  let fullTextUrls = null;
+  let searchIndexPromise = null;
 
   const normalize = value => String(value || '')
     .toLocaleLowerCase('ru-RU')
     .replace(/ё/g, 'е')
     .replace(/[–—-]/g, ' ')
+    .replace(/[^a-zа-я0-9\s]/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-
-  const escapeHtml = value => String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-
-  const formatDate = value => {
-    const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (!match) return String(value || '');
-    const [, year, month, day] = match;
-    const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-    return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
-  };
-
-  const monthTitle = value => {
-    const match = String(value || '').match(/^(\d{4})-(\d{2})/);
-    if (!match) return 'Без даты';
-    const [, year, month] = match;
-    const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-      'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-    return `${months[Number(month) - 1]} ${year}`;
-  };
-
-  const state = { type: '', section: '', location: '' };
-  let rows = [];
-  let extraSearchByUrl = new Map();
-  let hydrated = false;
 
   const readUrl = () => {
     const params = new URLSearchParams(window.location.search);
     for (const group of Object.keys(state)) {
       const value = params.get(group) || '';
-      const allowed = controls.some(control => control.dataset.filterGroup === group && control.dataset.filterValue === value);
+      const allowed = controls.some(control => (
+        control.dataset.filterGroup === group && control.dataset.filterValue === value
+      ));
       state[group] = allowed ? value : '';
     }
     if (input) input.value = params.get('q') || '';
@@ -76,9 +39,8 @@
     for (const [group, value] of Object.entries(state)) if (value) params.set(group, value);
     const query = input?.value.trim() || '';
     if (query) params.set('q', query);
-    const url = params.toString() ? `${window.location.pathname}?${params}` : window.location.pathname;
-    const method = push ? 'pushState' : 'replaceState';
-    history[method]({ ...state, q: query }, '', url);
+    const next = params.size ? `${window.location.pathname}?${params}` : window.location.pathname;
+    history[push ? 'pushState' : 'replaceState']({ ...state, q: query }, '', next);
   };
 
   const matchesCategory = (row, candidate = state) => {
@@ -86,17 +48,17 @@
     if (candidate.section && row.dataset.section !== candidate.section) return false;
     if (candidate.location) {
       const locations = String(row.dataset.locations || '').split('|').map(normalize).filter(Boolean);
-      const target = normalize(candidate.location);
-      if (!locations.includes(target)) return false;
+      if (!locations.includes(normalize(candidate.location))) return false;
     }
     return true;
   };
 
   const matchesText = row => {
-    const words = normalize(input?.value).split(' ').filter(Boolean);
-    if (!words.length) return true;
-    const haystack = normalize(`${row.dataset.search || row.textContent} ${extraSearchByUrl.get(row.dataset.url) || ''}`);
-    return words.every(word => haystack.includes(word));
+    const terms = normalize(input?.value).split(' ').filter(Boolean);
+    if (!terms.length) return true;
+    const haystack = normalize(row.dataset.search || row.textContent);
+    if (terms.every(term => haystack.includes(term))) return true;
+    return fullTextUrls ? fullTextUrls.has(row.dataset.url) : false;
   };
 
   const updateCounts = () => {
@@ -112,9 +74,7 @@
   };
 
   const apply = ({ updateHistory = false, push = false } = {}) => {
-    rows = [...listRoot.querySelectorAll('.archive-list li')];
     let visible = 0;
-
     rows.forEach(row => {
       row.hidden = !(matchesCategory(row) && matchesText(row));
       if (!row.hidden) visible += 1;
@@ -131,7 +91,7 @@
 
     const activeLabels = controls
       .filter(control => control.getAttribute('aria-pressed') === 'true')
-      .map(control => control.dataset.filterLabel || control.childNodes[0]?.textContent?.trim() || control.textContent.trim());
+      .map(control => control.dataset.filterLabel || control.textContent.trim());
 
     if (status) {
       status.textContent = visible
@@ -144,35 +104,26 @@
     if (updateHistory) writeUrl({ push });
   };
 
-  const renderArchive = (pages, searchByUrl) => {
-    const sorted = [...pages]
-      .filter(item => item && item.url && item.title && item.datePublished)
-      .sort((a, b) => String(b.datePublished).localeCompare(String(a.datePublished)) || String(a.title).localeCompare(String(b.title), 'ru'));
+  const ensureFullTextIndex = () => {
+    if (searchIndexPromise) return searchIndexPromise;
+    searchIndexPromise = fetch('/data/search-index.json', { credentials: 'same-origin' })
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(payload => {
+        if (!window.KRMSearchIndex) throw new Error('Поисковый модуль не загружен');
+        fullTextEngine = window.KRMSearchIndex.create(payload);
+        fullTextUrls = fullTextEngine.urls(input?.value || '');
+      })
+      .catch(error => {
+        console.warn('Полнотекстовый индекс архива недоступен:', error);
+      });
+    return searchIndexPromise;
+  };
 
-    const groups = new Map();
-    sorted.forEach(item => {
-      const key = String(item.datePublished).slice(0, 7);
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(item);
-    });
-
-    listRoot.innerHTML = [...groups.entries()].map(([, items]) => {
-      const rowsHtml = items.map(item => {
-        const searchItem = searchByUrl.get(item.url) || {};
-        const topics = Array.isArray(item.topics) ? item.topics.join(' ') : '';
-        const locations = Array.isArray(item.locations) ? item.locations.join('|') : '';
-        const searchText = [item.title, item.excerpt, item.period, topics, Array.isArray(item.locations) ? item.locations.join(' ') : '',
-          SECTION_LABELS[item.section], TYPE_LABELS[item.type], searchItem.description, searchItem.text]
-          .filter(Boolean).join(' ');
-        return `<li data-id="${escapeHtml(item.id)}" data-url="${escapeHtml(item.url)}" data-section="${escapeHtml(item.section)}" data-type="${escapeHtml(item.type)}" data-year="${escapeHtml(String(item.datePublished).slice(0, 4))}" data-topics="${escapeHtml(topics)}" data-locations="${escapeHtml(locations)}" data-search="${escapeHtml(searchText)}">
-          <time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time>
-          <span>${escapeHtml(TYPE_LABELS[item.type] || 'Материал')}</span>
-          <a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a>
-        </li>`;
-      }).join('');
-      return `<section class="archive-group"><h2>${escapeHtml(monthTitle(items[0].datePublished))}</h2><ol class="archive-list">${rowsHtml}</ol></section>`;
-    }).join('');
-    hydrated = true;
+  const refreshFullTextMatches = () => {
+    fullTextUrls = fullTextEngine ? fullTextEngine.urls(input?.value || '') : null;
   };
 
   controls.forEach(control => control.addEventListener('click', () => {
@@ -185,7 +136,14 @@
   let inputTimer;
   input?.addEventListener('input', () => {
     clearTimeout(inputTimer);
-    inputTimer = setTimeout(() => apply({ updateHistory: true }), 120);
+    inputTimer = setTimeout(async () => {
+      apply({ updateHistory: true });
+      if (normalize(input.value).length >= 2) {
+        await ensureFullTextIndex();
+        refreshFullTextMatches();
+        apply();
+      }
+    }, 120);
   });
 
   reset?.addEventListener('click', () => {
@@ -195,34 +153,21 @@
     input?.focus();
   });
 
-  window.addEventListener('popstate', () => {
+  window.addEventListener('popstate', async () => {
     readUrl();
+    if (normalize(input?.value).length >= 2) {
+      await ensureFullTextIndex();
+      refreshFullTextMatches();
+    } else {
+      fullTextUrls = null;
+    }
     apply();
   });
 
   readUrl();
-
-  Promise.allSettled([
-    fetch('/data/pages.json', { credentials: 'same-origin', cache: 'no-store' }).then(response => {
-      if (!response.ok) throw new Error(`pages.json: HTTP ${response.status}`);
-      return response.json();
-    }),
-    fetch('/data/search-index.json', { credentials: 'same-origin', cache: 'no-store' }).then(response => {
-      if (!response.ok) throw new Error(`search-index.json: HTTP ${response.status}`);
-      return response.json();
-    })
-  ]).then(([pagesResult, searchResult]) => {
-    if (pagesResult.status === 'fulfilled' && Array.isArray(pagesResult.value)) {
-      const searchByUrl = new Map(
-        searchResult.status === 'fulfilled' && Array.isArray(searchResult.value)
-          ? searchResult.value.map(item => [item.url, item])
-          : []
-      );
-      extraSearchByUrl = new Map([...searchByUrl.entries()].map(([url, item]) => [url, `${item.description || ''} ${item.text || ''}`]));
-      renderArchive(pagesResult.value, searchByUrl);
-    }
+  apply();
+  if (normalize(input?.value).length >= 2) ensureFullTextIndex().then(() => {
+    refreshFullTextMatches();
     apply();
-  }).catch(() => apply());
-
-  if (!hydrated) apply();
+  });
 })();

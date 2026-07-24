@@ -1,22 +1,32 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.7.22-r1",
+  "version": "2026.7.24-r10",
   "type": "module",
   "scripts": {
     "build": "node tools/build.mjs",
+    "images": "node tools/images.mjs",
     "validate": "node tools/validate.mjs",
     "test:smoke": "node tools/smoke.mjs",
-    "check": "npm run images && npm run build && npm run validate && npm run test:smoke",
-    "serve": "node tools/serve.mjs",
-    "release": "npm run check && npm run test:negative && node tools/release.mjs && node tools/fixity.mjs",
-    "fixity": "node tools/fixity.mjs",
     "test:negative": "node tools/negative-tests.mjs",
-    "images": "node tools/images.mjs",
+    "test:performance": "node tools/performance.mjs",
+    "test:idempotence": "node tools/idempotence.mjs",
+    "content:lock": "node tools/content-integrity.mjs --write",
+    "content:check": "node tools/content-integrity.mjs",
+    "export:public": "node tools/export-public.mjs",
+    "validate:public": "node tools/public-validate.mjs",
+    "qa": "npm run images && npm run build && npm run validate && npm run test:smoke && npm run test:performance && npm run content:check && npm run test:idempotence && npm run export:public && npm run validate:public && npm run test:runtime",
+    "check": "npm run qa",
+    "serve": "node tools/serve.mjs",
+    "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
+    "fixity": "node tools/fixity.mjs",
+    "verify:release": "node tools/verify-release.mjs",
+    "release": "npm run qa && npm run test:negative && node tools/release.mjs && npm run fixity && npm run verify:release",
     "redirects": "node tools/redirect-aliases.mjs",
-    "redirect-pages": "node tools/redirect-pages.mjs"
+    "redirect-pages": "node tools/redirect-pages.mjs",
+    "test:runtime": "node tools/runtime-smoke.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22 <23"
   }
 }

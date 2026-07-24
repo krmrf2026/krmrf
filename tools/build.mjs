@@ -1,29 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { SITE_URL, SECTION_LABELS, TYPE_LABELS } from './lib/project.mjs';
 
 const ROOT = path.resolve(process.cwd());
 const DATA_DIR = path.join(ROOT, 'data');
-const SITE_URL = 'https://krmrf.ru';
-
-const SECTION_LABELS = {
-  kremennaya: 'Кременная',
-  svo: 'СВО',
-  law: 'Справочник',
-  lnr: 'ЛНР',
-  'civilian-impact': 'Гражданские последствия',
-  politics: 'Политика',
-  warcrimes: 'Досье',
-  assessment: 'Оценки фронта'
-};
-
-const TYPE_LABELS = {
-  article: 'Материал',
-  guide: 'Практическая памятка',
-  assessment: 'Оценка фронта',
-  dossier: 'CASE FILE'
-};
-
 const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
 
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -31,11 +12,13 @@ const write = (file, content) => fs.writeFileSync(path.join(ROOT, file), content
 const exists = file => fs.existsSync(path.join(ROOT, file));
 const readJson = file => JSON.parse(read(file));
 const writeJson = (file, value) => write(file, `${JSON.stringify(value, null, 2)}\n`);
+const writeCompactJson = (file, value) => write(file, `${JSON.stringify(value)}\n`);
 
 const PUBLIC_HTML_SKIP_DIRS = new Set([
   '.git',
   'node_modules',
-  'releases'
+  'releases',
+  'dist'
 ]);
 
 const listHtmlFiles = dir => {
@@ -61,10 +44,12 @@ const listHtmlFiles = dir => {
   return files;
 };
 
-const syncAssetVersions = (html, version) => html.replace(
-  /((?:href|src)=["']\/assets\/(?:css|js)\/[^"'?]+)(?:\?v=[^"']*)?(["'])/gi,
-  (_whole, prefix, quote) => `${prefix}?v=${version}${quote}`
-);
+const syncAssetVersions = (html, version) => html
+  .replace(
+    /((?:href|src)=["']\/assets\/(?:css|js)\/[^"'?]+)(?:\?v=[^"']*)?(["'])/gi,
+    (_whole, prefix, quote) => `${prefix}?v=${version}${quote}`
+  )
+  .replace(/\sdefer=(['"])(?:true)?\1/gi, ' defer');
 
 const syncFooterMeta = (html, version, buildDate) => html
   .replace(/Версия архива:\s*[^<]*/g, `Версия архива: ${version}`)
@@ -128,6 +113,46 @@ const canonicalHref = html => {
   const tags = html.match(/<link\b[^>]*>/gi) || [];
   const tag = tags.find(item => attr(item, 'rel').toLowerCase() === 'canonical');
   return tag ? attr(tag, 'href') : '';
+};
+
+const smartTrim = (value, limit = 155) => {
+  const text = String(value || '').replace(/\s+/g, ' ').trim();
+  if (text.length <= limit) return text;
+  const candidate = text.slice(0, limit + 1);
+  const sentenceEnds = [...candidate.matchAll(/[.!?](?:\s|$)/g)].map(match => match.index + 1);
+  if (sentenceEnds.length && sentenceEnds.at(-1) >= Math.floor(limit * 0.65)) {
+    return candidate.slice(0, sentenceEnds.at(-1)).trim();
+  }
+  const clipped = candidate.slice(0, limit - 1)
+    .replace(/\s+\S*$/, '')
+    .replace(/[ ,;:–—-]+$/, '');
+  return `${clipped}…`;
+};
+
+const replaceMeta = (html, attribute, key, value) => {
+  const tags = html.match(/<meta\b[^>]*>/gi) || [];
+  const current = tags.find(tag => attr(tag, attribute).toLowerCase() === key.toLowerCase());
+  const next = `<meta content="${escapeHtml(value)}" ${attribute}="${escapeHtml(key)}"/>`;
+  if (current) return html.replace(current, next);
+  return html.replace(/<\/title>/i, `</title>\n${next}`);
+};
+
+const replaceTitle = (html, value) => html.replace(
+  /<title\b[^>]*>[\s\S]*?<\/title>/i,
+  `<title>${escapeHtml(value)}</title>`
+);
+
+const searchTokens = value => {
+  const tokens = String(value || '')
+    .toLocaleLowerCase('ru-RU')
+    .replace(/ё/g, 'е')
+    .replace(/[–—-]/g, ' ')
+    .replace(/[^a-zа-я0-9\s]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .filter(token => token.length > 1 || /^\d+$/.test(token));
+  return [...new Set(tokens)].join(' ');
 };
 
 const formatDate = value => {
@@ -254,20 +279,73 @@ const syncKremennayaIntro = (html, latestState) => {
 };
 
 const syncPublicationMetadata = (html, item, buildDate) => {
-  let updated = html.replace(
+  const seoTitle = item.seoTitle || item.title;
+  const currentDescription = metaContent(html, 'description') || item.excerpt;
+  const seoDescription = smartTrim(item.seoDescription || currentDescription || item.excerpt, 155);
+  const pageTitle = `${seoTitle} — KRM РФ`;
+  const absoluteUrl = `${SITE_URL}${item.url}`;
+  const absoluteImage = `${SITE_URL}${item.image}`;
+
+  let updated = replaceTitle(html, pageTitle);
+  for (const [attribute, key, value] of [
+    ['name', 'description', seoDescription],
+    ['name', 'author', 'KRM РФ'],
+    ['property', 'og:site_name', 'KRM РФ'],
+    ['property', 'og:title', seoTitle],
+    ['property', 'og:description', seoDescription],
+    ['property', 'og:url', absoluteUrl],
+    ['property', 'og:image', absoluteImage],
+    ['property', 'og:image:alt', item.imageAlt || item.title],
+    ['property', 'article:published_time', `${item.datePublished}T12:00:00+03:00`],
+    ['property', 'article:modified_time', `${item.dateModified}T12:00:00+03:00`],
+    ['name', 'twitter:title', seoTitle],
+    ['name', 'twitter:description', seoDescription],
+    ['name', 'twitter:image', absoluteImage],
+    ['name', 'twitter:image:alt', item.imageAlt || item.title]
+  ]) updated = replaceMeta(updated, attribute, key, value);
+
+  updated = updated.replace(
     /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g,
     (whole, jsonText) => {
       let data;
       try { data = JSON.parse(jsonText); } catch { return whole; }
       const nodes = Array.isArray(data?.['@graph']) ? data['@graph'] : [data];
+      const organization = nodes.find(node => node && node['@type'] === 'Organization');
+      if (organization) {
+        organization.logo ||= { '@type': 'ImageObject', url: `${SITE_URL}/assets/img/favicon.webp` };
+        organization.sameAs ||= ['https://t.me/xykrm', 'https://max.ru/xykrm'];
+      }
+      const website = nodes.find(node => node && node['@type'] === 'WebSite');
+      if (website) {
+        website.inLanguage = 'ru-RU';
+        website.potentialAction ||= {
+          '@type': 'SearchAction',
+          target: `${SITE_URL}/search/?q={search_term_string}`,
+          'query-input': 'required name=search_term_string'
+        };
+      }
       const article = nodes.find(node => node && ['Article', 'NewsArticle', 'Report'].includes(node['@type']));
       if (!article) return whole;
+      article['@type'] = item.type === 'assessment' || item.type === 'dossier' ? 'Report'
+        : item.type === 'article' ? 'NewsArticle' : 'Article';
       article.headline = item.title;
+      article.alternativeHeadline = seoTitle;
+      article.description = seoDescription;
       article.datePublished = item.datePublished;
       article.dateModified = item.dateModified;
-      article.url = `${SITE_URL}${item.url}`;
-      article.mainEntityOfPage = `${SITE_URL}${item.url}`;
-      article.image = `${SITE_URL}${item.image}`;
+      article.url = absoluteUrl;
+      article.mainEntityOfPage = absoluteUrl;
+      article.image = absoluteImage;
+      article.inLanguage = 'ru-RU';
+      article.articleSection = SECTION_LABELS[item.section] || item.section;
+      article.isAccessibleForFree = true;
+      article.author = { '@id': `${SITE_URL}/#organization` };
+      article.publisher = { '@id': `${SITE_URL}/#organization` };
+      const keywords = [
+        ...(Array.isArray(item.topics) ? item.topics : []),
+        ...(Array.isArray(item.locations) ? item.locations : [])
+      ];
+      if (keywords.length) article.keywords = [...new Set(keywords)].join(', ');
       return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
     }
   );
@@ -287,7 +365,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
   }
 
   if (item.type === 'guide') {
-    const due = item.reviewAfter < buildDate;
+    const due = item.reviewStatus === 'review-due' || item.reviewAfter < buildDate;
     const statusClass = due ? 'guide-status--review' : 'guide-status--current';
     const statusText = due
       ? `Срок плановой проверки наступил ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте нормы с официальным органом.`
@@ -306,7 +384,6 @@ const syncPublicationMetadata = (html, item, buildDate) => {
 };
 
 
-
 const formatDateTime = value => {
   const raw = String(value || '').trim();
   const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
@@ -315,6 +392,20 @@ const formatDateTime = value => {
   const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
     'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
   return `${Number(day)} ${months[Number(month) - 1]} ${year} года, ${hour}:${minute}`;
+};
+
+const mapChangesHtml = (payload, zonesUpdated) => {
+  const latest = Array.isArray(payload?.changes) ? payload.changes[0] : null;
+  if (!latest) {
+    return '<section aria-live="polite" id="mapChanges"><h2>Что изменилось на карте</h2><p>Описание последнего обновления карты пока не заполнено.</p></section>';
+  }
+  const details = Array.isArray(latest.details) && latest.details.length
+    ? `<ul>${latest.details.slice(0, 4).map(detail => `<li>${escapeHtml(detail)}</li>`).join('')}</ul>`
+    : '';
+  const link = latest.relatedUrl && latest.relatedTitle
+    ? `<p><a href="${escapeHtml(latest.relatedUrl)}">${escapeHtml(latest.relatedTitle)}</a></p>`
+    : '';
+  return `<section aria-live="polite" id="mapChanges"><h2>Что изменилось на карте</h2><p class="eyebrow">${escapeHtml(formatMapDateTime(latest.zonesUpdated || payload.updated || zonesUpdated))}</p><h3>${escapeHtml(latest.title || 'Последнее изменение карты')}</h3><p>${escapeHtml(latest.summary || 'Краткое описание изменения не заполнено.')}</p>${details}${link}</section>`;
 };
 
 const updateItemList = (html, items) => html.replace(
@@ -371,32 +462,43 @@ const parseSitemap = xml => {
   return map;
 };
 
-const sitemapXml = (pages, oldMap, buildDate, redirectedPaths = new Set()) => {
+const latestDate = (items, fallback) => items
+  .flatMap(item => [item.dateModified, item.datePublished])
+  .filter(value => /^\d{4}-\d{2}-\d{2}$/.test(String(value)))
+  .sort()
+  .at(-1) || fallback;
+
+const sitemapXml = (pages, oldMap, buildDate, mapDate, redirectedPaths = new Set()) => {
   const publicationUrls = new Set(pages.map(item => `${SITE_URL}${item.url}`));
-  const requiredStaticPaths = [
-    '/', '/about/', '/archive/', '/assessment/', '/kremennaya/', '/map/',
-    '/methodology/', '/news/', '/news/civilian-impact/', '/news/lnr/', '/news/politics/',
-    '/news/svo/', '/privacy/', '/reference/', '/war-crimes/'
-  ];
-  const staticMap = new Map(oldMap);
-  for (const pathname of requiredStaticPaths) {
-    const url = `${SITE_URL}${pathname}`;
-    if (!staticMap.has(url)) staticMap.set(url, buildDate);
-  }
-  const fixed = [...staticMap.entries()]
-    .filter(([url]) => {
-      const pathname = new URL(url).pathname;
-      return !publicationUrls.has(url)
-        && !url.endsWith('/404.html')
-        && pathname !== '/search/'
-        && !redirectedPaths.has(pathname);
-    })
-    .map(([url, lastmod]) => ({ url, lastmod: lastmod || buildDate }));
+  const allLatest = latestDate(pages, buildDate);
+  const previous = pathname => oldMap.get(`${SITE_URL}${pathname}`) || buildDate;
+  const staticDates = new Map([
+    ['/', allLatest],
+    ['/about/', previous('/about/')],
+    ['/archive/', allLatest],
+    ['/assessment/', latestDate(pages.filter(item => item.type === 'assessment'), allLatest)],
+    ['/kremennaya/', latestDate(pages.filter(item => item.section === 'kremennaya'), allLatest)],
+    ['/map/', /^\d{4}-\d{2}-\d{2}/.test(String(mapDate || '')) ? String(mapDate).slice(0, 10) : allLatest],
+    ['/methodology/', previous('/methodology/')],
+    ['/news/', latestDate(pages.filter(item => item.type === 'article' || item.type === 'guide'), allLatest)],
+    ['/news/civilian-impact/', latestDate(pages.filter(item => item.section === 'civilian-impact'), allLatest)],
+    ['/news/lnr/', latestDate(pages.filter(item => item.section === 'lnr'), allLatest)],
+    ['/news/politics/', latestDate(pages.filter(item => item.section === 'politics'), allLatest)],
+    ['/news/svo/', latestDate(pages.filter(item => item.section === 'svo'), allLatest)],
+    ['/privacy/', previous('/privacy/')],
+    ['/reference/', latestDate(pages.filter(item => item.type === 'guide'), allLatest)],
+    ['/war-crimes/', latestDate(pages.filter(item => item.type === 'dossier'), allLatest)]
+  ]);
+  const fixed = [...staticDates.entries()]
+    .filter(([pathname]) => !redirectedPaths.has(pathname))
+    .map(([pathname, lastmod]) => ({ url: `${SITE_URL}${pathname}`, lastmod }));
   const pubs = pages.map(item => ({
     url: `${SITE_URL}${item.url}`,
     lastmod: item.dateModified || item.datePublished
   }));
-  const all = [...fixed, ...pubs].sort((a, b) => a.url.localeCompare(b.url));
+  const all = [...fixed, ...pubs]
+    .filter(item => !publicationUrls.has(item.url) || pages.some(page => `${SITE_URL}${page.url}` === item.url))
+    .sort((a, b) => a.url.localeCompare(b.url));
   const body = all.map(item => `  <url>\n    <loc>${escapeXml(item.url)}</loc>\n    <lastmod>${escapeXml(item.lastmod)}</lastmod>\n  </url>`).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 };
@@ -477,19 +579,33 @@ const enriched = pages.map(item => {
   };
 });
 
-const searchIndex = enriched.map(item => ({
+const searchDocuments = enriched.map(item => ({
   title: item.title,
   url: item.url,
   section: SECTION_LABELS[item.section] || item.section,
   type: TYPE_LABELS[item.type] || item.type,
   date: item.datePublished,
   description: item.excerpt || item.htmlDescription,
-  text: item.searchText,
   topics: Array.isArray(item.topics) ? item.topics.join(' ') : '',
   locations: Array.isArray(item.locations) ? item.locations.join(' ') : '',
-  period: item.period || ''
+  period: item.period || '',
+  _text: item.searchText
 })).sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const searchByUrl = new Map(searchIndex.map(item => [item.url, item]));
+
+const searchTerms = new Map();
+searchDocuments.forEach((item, documentId) => {
+  for (const term of searchTokens(item._text).split(' ').filter(Boolean)) {
+    if (!searchTerms.has(term)) searchTerms.set(term, []);
+    searchTerms.get(term).push(documentId);
+  }
+});
+const searchIndex = {
+  version: 2,
+  generatedAt: site.buildDate,
+  documents: searchDocuments.map(({ _text, ...item }) => item),
+  terms: Object.fromEntries([...searchTerms.entries()].sort(([a], [b]) => a.localeCompare(b, 'ru')))
+};
+const searchByUrl = new Map(searchDocuments.map(item => [item.url, item]));
 
 const pageJobs = [
   ['news/index.html', 'news'],
@@ -527,18 +643,23 @@ write('index.html', home);
 
 let mapPage = read('map/index.html');
 const zones = readJson('data/zones.geojson');
+const mapChanges = readJson('data/map-changes.json');
 const mapUpdated = formatMapDateTime(zones.updated);
 if (mapUpdated) {
   mapPage = mapPage.replace(/<dd([^>]*\bid="mapUpdated"[^>]*)>[^<]*<\/dd>/, (_whole, attrs) => {
-    const syncedAttrs = /data-fallback="[^"]*"/.test(attrs)
+    let syncedAttrs = /data-fallback="[^"]*"/.test(attrs)
       ? attrs.replace(/data-fallback="[^"]*"/, `data-fallback="${escapeHtml(mapUpdated)}"`)
       : `${attrs} data-fallback="${escapeHtml(mapUpdated)}"`;
+    syncedAttrs = /data-updated-iso="[^"]*"/.test(syncedAttrs)
+      ? syncedAttrs.replace(/data-updated-iso="[^"]*"/, `data-updated-iso="${escapeHtml(zones.updated)}"`)
+      : `${syncedAttrs} data-updated-iso="${escapeHtml(zones.updated)}"`;
     return `<dd${syncedAttrs}>${escapeHtml(mapUpdated)}</dd>`;
   });
 }
 if (latestAssessment) {
   mapPage = mapPage.replace(/<a href="\/assessment\/[^"]*">Последняя оценка фронта<\/a>/, `<a href="${escapeHtml(latestAssessment.url)}">Последняя оценка фронта</a>`);
 }
+mapPage = mapPage.replace(/<section\b[^>]*id="mapChanges"[^>]*>[\s\S]*?<\/section>/, mapChangesHtml(mapChanges, zones.updated));
 write('map/index.html', mapPage);
 
 let archive = read('archive/index.html');
@@ -546,7 +667,7 @@ archive = replaceCatalog(archive, 'archive', enriched, archiveInner(enriched, se
 archive = updateItemList(archive, [...enriched].sort(sortNewest));
 write('archive/index.html', archive);
 
-writeJson('data/search-index.json', searchIndex);
+writeCompactJson('data/search-index.json', searchIndex);
 
 const previousNews = exists('data/news.json') ? readJson('data/news.json') : [];
 const previousAssessments = exists('data/assessment.json') ? readJson('data/assessment.json') : [];
@@ -606,7 +727,7 @@ const oldSitemap = parseSitemap(read('sitemap.xml'));
 const redirectedPaths = new Set(read('_redirects').split(/\r?\n/)
   .map(line => line.trim()).filter(line => line && !line.startsWith('#'))
   .map(line => line.split(/\s+/)[0]));
-write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate, redirectedPaths));
+write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate, zones.updated, redirectedPaths));
 
 console.log(`Сборка завершена: ${enriched.length} публикаций.`);
 console.log('Обновлены главная, индексы, архив, поиск, JSON, sitemap и Atom-ленты.');
