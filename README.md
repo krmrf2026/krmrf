@@ -179,7 +179,7 @@ git status
 git add -A
 git commit -m "Добавлена статья: краткое название"
 git push
-```
+```git push
 
 Пока нет merge, обновляется только `noviy-sait`.
 
