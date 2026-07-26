@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-07-22T12:00:00+03:00</updated>
+  <updated>2026-07-26T12:00:00+03:00</updated>
+  <entry>
+    <title>Оценка боевых действий СВО: Восточный ТВД, 20–26 июля 2026</title>
+    <link href="https://krmrf.ru/assessment/2026-07-26/" />
+    <id>https://krmrf.ru/assessment/2026-07-26/</id>
+    <updated>2026-07-26T12:00:00+03:00</updated>
+    <summary>Российские подразделения расширяли присутствие на нескольких участках Восточного ТВД, однако характер недели определяли встречные бои, сложная логистика и высокая активность беспилотников.</summary>
+  </entry>
   <entry>
     <title>Как оформить недвижимость в ЛНР из другого региона</title>
     <link href="https://krmrf.ru/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/svo/kartasvo-2026-05-19/</id>
     <updated>2026-05-19T12:00:00+03:00</updated>
     <summary>Карта СВО показывает не точную границу на земле, а аналитическую оценку обстановки. Разбираем простым языком, чем отличаются заход, продвижение, закрепление, серая зона и устойчивый контроль.</summary>
-  </entry>
-  <entry>
-    <title>Оценка боевых действий СВО: Восточный ТВД, 11–17 мая 2026</title>
-    <link href="https://krmrf.ru/assessment/2026-05-17/" />
-    <id>https://krmrf.ru/assessment/2026-05-17/</id>
-    <updated>2026-05-17T12:00:00+03:00</updated>
-    <summary>Славянское направление стало главным участком недели. Купянское, Краснолиманское и Боровское направления сохраняют давление без резкого перелома.</summary>
   </entry>
 </feed>
