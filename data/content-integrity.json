@@ -1,6 +1,7 @@
 {
   "schema": "krmrf-content-integrity-v1",
   "pages": {
+    "/news/kremennaya/krm-2026-07-28/": "0ee8f2bbad7d56258aeac473c16627a58d7887ee97f245c62d40bcbe9e062e40",
     "/assessment/2026-07-26/": "d7cfc914fde3da9c18ed7dad6eb4a08058a1fb77af298a9f3fc263f4f5392563",
     "/assessment/2026-07-19/": "6ebbfbd63300e3a063579e46e40803afb3be324a17b332ae62d65a36a6c36cf1",
     "/news/svo/svo-2026-07-17/": "0589f142f5baf9271bb19108cf2b3a70a0bc72fdee1cfdf8a3ac7cc04c5eee50",
