@@ -4,7 +4,14 @@
   <link href="https://krmrf.ru/feed.xml" rel="self" />
   <link href="https://krmrf.ru/" />
   <id>https://krmrf.ru/</id>
-  <updated>2026-07-26T12:00:00+03:00</updated>
+  <updated>2026-07-28T12:00:00+03:00</updated>
+  <entry>
+    <title>Кременная к 28 июля: дроны, магазины, банк и обычная жизнь</title>
+    <link href="https://krmrf.ru/news/kremennaya/krm-2026-07-28/" />
+    <id>https://krmrf.ru/news/kremennaya/krm-2026-07-28/</id>
+    <updated>2026-07-28T12:00:00+03:00</updated>
+    <summary>После 10 июля опасные дороги остались главной угрозой, но последствия атак стали сильнее влиять на жизнь внутри Кременной: магазины, банк, коммунальные службы, снабжение и обычные дела жителей.</summary>
+  </entry>
   <entry>
     <title>Оценка боевых действий СВО: Восточный ТВД, 20–26 июля 2026</title>
     <link href="https://krmrf.ru/assessment/2026-07-26/" />
@@ -207,12 +214,5 @@
     <id>https://krmrf.ru/news/svo/svo-2026-05-21/</id>
     <updated>2026-05-21T12:00:00+03:00</updated>
     <summary>К 21 мая фронт не изменился одной большой стрелкой. Главное - серые зоны, БПЛА и давление сразу на нескольких участках.</summary>
-  </entry>
-  <entry>
-    <title>Как читать карту СВО: почему продвижение не всегда означает контроль</title>
-    <link href="https://krmrf.ru/news/svo/kartasvo-2026-05-19/" />
-    <id>https://krmrf.ru/news/svo/kartasvo-2026-05-19/</id>
-    <updated>2026-05-19T12:00:00+03:00</updated>
-    <summary>Карта СВО показывает не точную границу на земле, а аналитическую оценку обстановки. Разбираем простым языком, чем отличаются заход, продвижение, закрепление, серая зона и устойчивый контроль.</summary>
   </entry>
 </feed>
