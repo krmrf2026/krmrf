@@ -1,7 +1,12 @@
 node_modules/
 dist/
+playwright-report/
+test-results/
 releases/
 krmrf-releases/
+release-output/
+coverage/
+.cache/
 .DS_Store
 *.log
 *.tmp

@@ -9,24 +9,24 @@
 
   let engine = null;
 
-  const createResult = ({ document, suggestion = false }) => {
+  const createResult = ({ document: documentData, suggestion = false }) => {
     const article = document.createElement('article');
     article.className = `search-result${suggestion ? ' search-result--suggestion' : ''}`;
 
     const meta = document.createElement('p');
     meta.className = 'eyebrow';
     meta.textContent = suggestion
-      ? `Возможное совпадение · ${document.type} · ${document.section}`
-      : `${document.type} · ${document.section} · ${document.date}`;
+      ? `Возможное совпадение · ${documentData.type} · ${documentData.section}`
+      : `${documentData.type} · ${documentData.section} · ${documentData.date}`;
 
     const heading = document.createElement('h2');
     const link = document.createElement('a');
-    link.href = document.url;
-    link.textContent = document.title;
+    link.href = documentData.url;
+    link.textContent = documentData.title;
     heading.append(link);
 
     const description = document.createElement('p');
-    description.textContent = document.description || '';
+    description.textContent = documentData.description || '';
     article.append(meta, heading, description);
     return article;
   };

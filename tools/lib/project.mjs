@@ -27,7 +27,12 @@ export const SOURCE_EXCLUDED_DIRS = new Set([
   'node_modules',
   'dist',
   'releases',
-  'krmrf-releases'
+  'krmrf-releases',
+  'release-output',
+  'test-results',
+  'playwright-report',
+  'coverage',
+  '.cache'
 ]);
 
 export const SOURCE_EXCLUDED_FILES = new Set([
@@ -38,9 +43,6 @@ export const SOURCE_EXCLUDED_FILES = new Set([
 export const PUBLIC_ROOT_FILES = new Set([
   '404.html',
   'CNAME',
-  '_headers',
-  '_redirects',
-  'feed.xml',
   'google3409616a5ee877bf.html',
   'index.html',
   'robots.txt',

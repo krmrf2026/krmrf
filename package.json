@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.7.24-r10",
+  "version": "2026.7.29-r12",
   "type": "module",
   "scripts": {
     "build": "node tools/build.mjs",
@@ -11,11 +11,13 @@
     "test:negative": "node tools/negative-tests.mjs",
     "test:performance": "node tools/performance.mjs",
     "test:idempotence": "node tools/idempotence.mjs",
+    "test:export-clean": "node tools/export-clean-test.mjs",
+    "test:search-e2e": "playwright test",
     "content:lock": "node tools/content-integrity.mjs --write",
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run images && npm run build && npm run validate && npm run test:smoke && npm run test:performance && npm run content:check && npm run test:idempotence && npm run export:public && npm run validate:public && npm run test:runtime",
+    "qa": "npm run images && npm run build && npm run validate && npm run test:smoke && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run test:runtime && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
@@ -23,10 +25,12 @@
     "verify:release": "node tools/verify-release.mjs",
     "release": "npm run qa && npm run test:negative && node tools/release.mjs && npm run fixity && npm run verify:release",
     "redirects": "node tools/redirect-aliases.mjs",
-    "redirect-pages": "node tools/redirect-pages.mjs",
     "test:runtime": "node tools/runtime-smoke.mjs"
   },
+  "devDependencies": {
+    "@playwright/test": "1.62.0"
+  },
   "engines": {
-    "node": ">=22 <23"
+    "node": ">=24 <25"
   }
 }

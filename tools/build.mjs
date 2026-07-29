@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { SITE_URL, SECTION_LABELS, TYPE_LABELS } from './lib/project.mjs';
+import { syncHostingMeta } from './lib/hosting.mjs';
 
 const ROOT = path.resolve(process.cwd());
-const DATA_DIR = path.join(ROOT, 'data');
 const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
 
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -18,7 +18,10 @@ const PUBLIC_HTML_SKIP_DIRS = new Set([
   '.git',
   'node_modules',
   'releases',
-  'dist'
+  'dist',
+  'krmrf-releases',
+  'test-results',
+  'playwright-report'
 ]);
 
 const listHtmlFiles = dir => {
@@ -54,6 +57,15 @@ const syncAssetVersions = (html, version) => html
 const syncFooterMeta = (html, version, buildDate) => html
   .replace(/Версия архива:\s*[^<]*/g, `Версия архива: ${version}`)
   .replace(/Техническая сборка:\s*[^<]*/g, `Техническая сборка: ${buildDate}`);
+
+const syncAnalyticsMarkup = html => {
+  const pixel = html.match(
+    /<noscript><div><img\b(?=[^>]*\banalytics-noscript-pixel\b)[^>]*\/?><\/div><\/noscript>/i
+  )?.[0];
+  if (!pixel) return html;
+  const withoutPixel = html.replace(pixel, '');
+  return withoutPixel.replace(/(<body\b[^>]*>)/i, `$1${pixel}`);
+};
 
 const formatMapDateTime = value => {
   const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/);
@@ -93,11 +105,6 @@ const stripTags = html => decodeEntities(String(html || '')
   .replace(/\s+/g, ' ')
   .trim());
 
-const extractParagraphs = html => [...String(html || '').matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
-  .map(match => stripTags(match[1]))
-  .filter(text => text.length >= 20)
-  .slice(0, 30);
-
 const attr = (tag, name) => {
   const match = tag.match(new RegExp(`\\b${escapeRegExp(name)}\\s*=\\s*(["'])([\\s\\S]*?)\\1`, 'i'));
   return match ? decodeEntities(match[2]) : '';
@@ -107,12 +114,6 @@ const metaContent = (html, name) => {
   const tags = html.match(/<meta\b[^>]*>/gi) || [];
   const tag = tags.find(item => attr(item, 'name').toLowerCase() === name.toLowerCase());
   return tag ? attr(tag, 'content') : '';
-};
-
-const canonicalHref = html => {
-  const tags = html.match(/<link\b[^>]*>/gi) || [];
-  const tag = tags.find(item => attr(item, 'rel').toLowerCase() === 'canonical');
-  return tag ? attr(tag, 'href') : '';
 };
 
 const smartTrim = (value, limit = 155) => {
@@ -183,23 +184,33 @@ const urlToHtmlFile = url => {
   return clean ? `${clean}/index.html` : 'index.html';
 };
 
-const derivedImageCandidates = image => {
+const derivedImageCandidates = (image, originalWidth) => {
   if (!image?.startsWith('/assets/img/')) return [];
   const rel = image.slice('/assets/img/'.length);
   const parsed = path.posix.parse(rel);
   return [480, 960].map(width => ({
     width,
     url: `/assets/img/derived/${parsed.dir ? `${parsed.dir}/` : ''}${parsed.name}-${width}.webp`
-  })).filter(item => exists(item.url.replace(/^\//, '')));
+  })).filter(item => (
+    (!originalWidth || item.width < originalWidth)
+    && exists(item.url.replace(/^\//, ''))
+  ));
 };
 
 const imageMarkup = item => {
   if (!item.image) return '';
-  const candidates = derivedImageCandidates(item.image);
+  const candidates = derivedImageCandidates(item.image, item.imageWidth);
+  const srcsetItems = candidates.map(entry => `${escapeHtml(entry.url)} ${entry.width}w`);
+  if (candidates.length && item.imageWidth) {
+    srcsetItems.push(`${escapeHtml(item.image)} ${item.imageWidth}w`);
+  }
   const srcset = candidates.length
-    ? ` srcset="${candidates.map(entry => `${escapeHtml(entry.url)} ${entry.width}w`).join(', ')}"`
+    ? ` srcset="${srcsetItems.join(', ')}"`
     : '';
-  return `<img alt="${escapeHtml(item.imageAlt || '')}" decoding="async" height="360" loading="lazy" sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 900px) calc(50vw - 2rem), 370px" src="${escapeHtml(item.image)}"${srcset} width="640"/>`;
+  const sizes = candidates.length
+    ? ' sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 900px) calc(50vw - 2rem), 370px"'
+    : '';
+  return `<img alt="${escapeHtml(item.imageAlt || '')}" decoding="async" height="360" loading="lazy"${sizes} src="${escapeHtml(item.image)}"${srcset} width="640"/>`;
 };
 
 const cardHtml = (item, catalogKey = '') => {
@@ -212,18 +223,26 @@ const cardHtml = (item, catalogKey = '') => {
   return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time></p></div></article>`;
 };
 
-const selectHome = (pages, group) => {
-  if (group === 'assessment') return pages.filter(item => item.type === 'assessment').sort(sortNewest).slice(0, 1);
+const homeFallback = (pages, group) => {
+  if (group === 'assessment') return pages.filter(item => item.type === 'assessment');
+  if (group === 'kremennaya') return pages.filter(item => item.section === 'kremennaya');
+  if (group === 'guide') return pages.filter(item => item.type === 'guide');
+  if (group === 'dossier') return pages.filter(item => item.type === 'dossier');
+  if (group === 'important') return pages.filter(item => item.type === 'article' && item.section !== 'politics');
+  return [];
+};
+
+const selectHome = (pages, group, excludedUrls = new Set()) => {
   const explicit = pages
     .filter(item => item.home && Number.isFinite(Number(item.home[group])))
     .sort((a, b) => Number(a.home[group]) - Number(b.home[group]));
-  if (explicit.length) return explicit.slice(0, HOME_LIMITS[group] || explicit.length);
-  let fallback = pages;
-  if (group === 'kremennaya') fallback = pages.filter(item => item.section === 'kremennaya');
-  if (group === 'guide') fallback = pages.filter(item => item.type === 'guide');
-  if (group === 'dossier') fallback = pages.filter(item => item.type === 'dossier');
-  if (group === 'important') fallback = pages.filter(item => item.type === 'article' && item.section !== 'politics');
-  return [...fallback].sort(sortNewest).slice(0, HOME_LIMITS[group] || 3);
+  const fallback = homeFallback(pages, group).sort(sortNewest);
+  const seen = new Set(excludedUrls);
+  return [...explicit, ...fallback].filter(item => {
+    if (seen.has(item.url)) return false;
+    seen.add(item.url);
+    return true;
+  }).slice(0, HOME_LIMITS[group] || 3);
 };
 
 const selectItems = (pages, key) => {
@@ -231,7 +250,6 @@ const selectItems = (pages, key) => {
   if (key.startsWith('section:')) return pages.filter(item => item.section === key.slice(8)).sort(sortNewest);
   if (key.startsWith('type:')) return pages.filter(item => item.type === key.slice(5)).sort(sortNewest);
   if (key.startsWith('chronicle:')) return pages.filter(item => item.section === key.slice(10)).sort(sortNewest);
-  if (key.startsWith('home:')) return selectHome(pages, key.slice(5));
   return [];
 };
 
@@ -318,11 +336,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
       const website = nodes.find(node => node && node['@type'] === 'WebSite');
       if (website) {
         website.inLanguage = 'ru-RU';
-        website.potentialAction ||= {
-          '@type': 'SearchAction',
-          target: `${SITE_URL}/search/?q={search_term_string}`,
-          'query-input': 'required name=search_term_string'
-        };
+        delete website.potentialAction;
       }
       const article = nodes.find(node => node && ['Article', 'NewsArticle', 'Report'].includes(node['@type']));
       if (!article) return whole;
@@ -447,13 +461,6 @@ const archiveInner = (pages, searchByUrl) => {
   }).join('');
 };
 
-const feedXml = (title, selfPath, homePath, items, limit = 30) => {
-  const sorted = [...items].sort(sortNewest).slice(0, limit);
-  const updated = sorted[0]?.dateModified || sorted[0]?.datePublished || '2026-01-01';
-  const entries = sorted.map(item => `  <entry>\n    <title>${escapeXml(item.title)}</title>\n    <link href="${SITE_URL}${escapeXml(item.url)}" />\n    <id>${SITE_URL}${escapeXml(item.url)}</id>\n    <updated>${escapeXml(item.dateModified || item.datePublished)}T12:00:00+03:00</updated>\n    <summary>${escapeXml(item.excerpt || '')}</summary>\n  </entry>`).join('\n');
-  return `<?xml version='1.0' encoding='utf-8'?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <title>${escapeXml(title)}</title>\n  <link href="${SITE_URL}${selfPath}" rel="self" />\n  <link href="${SITE_URL}${homePath}" />\n  <id>${SITE_URL}${homePath}</id>\n  <updated>${updated}T12:00:00+03:00</updated>\n${entries}\n</feed>\n`;
-};
-
 const parseSitemap = xml => {
   const map = new Map();
   for (const match of xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?[\s\S]*?<\/url>/g)) {
@@ -558,7 +565,7 @@ site.buildDate = [versionDate, latestContentDate]
   .at(-1) || new Date().toISOString().slice(0, 10);
 
 for (const file of listHtmlFiles(ROOT)) {
-  const html = syncAssetVersions(read(file), site.version);
+  const html = syncAnalyticsMarkup(syncAssetVersions(read(file), site.version));
   write(file, syncFooterMeta(html, site.version, site.buildDate));
 }
 
@@ -570,12 +577,15 @@ for (const item of pages) {
 const enriched = pages.map(item => {
   const html = read(urlToHtmlFile(item.url));
   const main = html.match(/<main\b[\s\S]*?<\/main>/i)?.[0] || html;
+  const imageTag = (main.match(/<img\b[^>]*>/gi) || []).find(tag => {
+    const source = attr(tag, 'src').replace(SITE_URL, '');
+    return source === item.image;
+  });
   return {
     ...item,
-    htmlDescription: metaContent(html, 'description') || item.excerpt,
-    canonical: canonicalHref(html),
     searchText: stripTags(main),
-    paragraphs: extractParagraphs(main)
+    imageWidth: Number(attr(imageTag || '', 'width')) || null,
+    imageHeight: Number(attr(imageTag || '', 'height')) || null
   };
 });
 
@@ -585,7 +595,7 @@ const searchDocuments = enriched.map(item => ({
   section: SECTION_LABELS[item.section] || item.section,
   type: TYPE_LABELS[item.type] || item.type,
   date: item.datePublished,
-  description: item.excerpt || item.htmlDescription,
+  description: item.excerpt,
   topics: Array.isArray(item.topics) ? item.topics.join(' ') : '',
   locations: Array.isArray(item.locations) ? item.locations.join(' ') : '',
   period: item.period || '',
@@ -631,9 +641,12 @@ for (const [file, key] of pageJobs) {
 }
 
 let home = read('index.html');
+const usedHomeUrls = new Set();
 for (const group of ['important', 'assessment', 'kremennaya', 'guide', 'dossier']) {
   const key = `home:${group}`;
-  home = replaceCatalog(home, key, selectItems(enriched, key));
+  const items = selectHome(enriched, group, usedHomeUrls);
+  home = replaceCatalog(home, key, items);
+  items.forEach(item => usedHomeUrls.add(item.url));
 }
 const latestAssessment = enriched.filter(item => item.type === 'assessment').sort(sortNewest)[0];
 if (latestAssessment) {
@@ -669,59 +682,8 @@ write('archive/index.html', archive);
 
 writeCompactJson('data/search-index.json', searchIndex);
 
-const previousNews = exists('data/news.json') ? readJson('data/news.json') : [];
-const previousAssessments = exists('data/assessment.json') ? readJson('data/assessment.json') : [];
-const previousDossiers = exists('data/war-crimes.json') ? readJson('data/war-crimes.json') : [];
-const previousNewsById = new Map(previousNews.map(item => [item.id, item]));
-const previousAssessmentById = new Map(previousAssessments.map(item => [item.id, item]));
-const previousDossierById = new Map(previousDossiers.map(item => [item.id, item]));
-
-writeJson('data/assessment.json', enriched.filter(item => item.type === 'assessment').sort(sortNewest).map(item => ({
-  ...(previousAssessmentById.get(item.id) || {}),
-  id: item.id,
-  section: 'assessment',
-  title: item.title,
-  updated: item.dateModified,
-  period: item.period || previousAssessmentById.get(item.id)?.period || '',
-  image: item.image,
-  excerpt: item.excerpt,
-  summary: previousAssessmentById.get(item.id)?.summary || item.excerpt,
-  url: item.url
-})));
-writeJson('data/war-crimes.json', enriched.filter(item => item.type === 'dossier').sort(sortNewest).map(item => ({
-  ...(previousDossierById.get(item.id) || {}),
-  id: item.id,
-  type: item.type,
-  title: item.title,
-  url: item.url,
-  section: item.section,
-  datePublished: item.datePublished,
-  dateModified: item.dateModified,
-  status: item.status ?? previousDossierById.get(item.id)?.status ?? null,
-  excerpt: item.excerpt,
-  image: item.image,
-  imageAlt: item.imageAlt
-})));
-writeJson('data/news.json', enriched.filter(item => ['article', 'guide', 'dossier'].includes(item.type)).sort(sortNewest).map(item => ({
-  ...(previousNewsById.get(item.id) || {}),
-  id: item.id,
-  section: item.section,
-  title: item.title,
-  updated: item.dateModified,
-  image: item.image,
-  excerpt: item.excerpt,
-  paragraphs: previousNewsById.get(item.id)?.paragraphs?.length
-    ? previousNewsById.get(item.id).paragraphs
-    : item.paragraphs,
-  url: item.url
-})));
-
 site.contentCount = enriched.length;
 writeJson('data/site.json', site);
-
-write('feed.xml', feedXml('KRM РФ — материалы', '/feed.xml', '/', enriched, 30));
-write('assessment/feed.xml', feedXml('KRM РФ — оценки фронта', '/assessment/feed.xml', '/assessment/', enriched.filter(item => item.type === 'assessment'), 20));
-write('kremennaya/feed.xml', feedXml('KRM РФ — Кременная', '/kremennaya/feed.xml', '/kremennaya/', enriched.filter(item => item.section === 'kremennaya'), 20));
 
 const oldSitemap = parseSitemap(read('sitemap.xml'));
 const redirectedPaths = new Set(read('_redirects').split(/\r?\n/)
@@ -729,5 +691,12 @@ const redirectedPaths = new Set(read('_redirects').split(/\r?\n/)
   .map(line => line.split(/\s+/)[0]));
 write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate, zones.updated, redirectedPaths));
 
+// Hosting meta must be the final HTML transformation. Publication metadata and
+// generated catalogs can otherwise move surrounding whitespace after this pass,
+// making the next build differ from the first one.
+for (const file of listHtmlFiles(ROOT)) {
+  write(file, syncHostingMeta(read(file)));
+}
+
 console.log(`Сборка завершена: ${enriched.length} публикаций.`);
-console.log('Обновлены главная, индексы, архив, поиск, JSON, sitemap и Atom-ленты.');
+console.log('Обновлены главная, разделы, архив, поиск, sitemap и данные версии.');
