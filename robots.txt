@@ -1,27 +1,5 @@
 User-agent: *
 
 Disallow: /search/
-Disallow: /tools/
-Disallow: /node_modules/
-Disallow: /dist/
-Disallow: /package.json
-Disallow: /package-lock.json
-Disallow: /README.md
-Disallow: /PUBLISHING.md
-Disallow: /RECOVERY.md
-Disallow: /QUALITY.md
-Disallow: /data/pages.json
-Disallow: /data/pages.schema.json
-Disallow: /data/site.json
-Disallow: /data/taxonomy.json
-Disallow: /data/news.json
-Disallow: /data/assessment.json
-Disallow: /data/war-crimes.json
-Disallow: /data/content-integrity.json
-
-Allow: /data/search-index.json
-Allow: /data/zones.geojson
-Allow: /data/rf_regions.json
-Allow: /data/map-changes.json
 
 Sitemap: https://krmrf.ru/sitemap.xml

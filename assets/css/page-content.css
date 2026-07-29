@@ -2,7 +2,7 @@
 .content-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: clamp(1.25rem,4vw,3.35rem); box-shadow: var(--shadow-sm); }
 .article { font-family: var(--font-sans); }
 .article > .eyebrow:first-child { margin-bottom: .6rem; }
-.article-title, .article > h1 { margin: 0 0 1rem; font-size: var(--text-3xl); line-height: 1.1; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.article-title, .article h1 { margin: 0 0 1rem; font-size: var(--text-3xl); line-height: 1.1; letter-spacing: -.035em; overflow-wrap: anywhere; }
 .article-meta { margin: 0 0 var(--space-6); padding: var(--space-4) 0; border-block: 1px solid var(--color-border); color: var(--color-text-muted); font-size: var(--text-sm); }
 dl.article-meta { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; }
 dl.article-meta div { display: grid; }

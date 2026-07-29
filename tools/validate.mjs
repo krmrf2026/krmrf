@@ -3,6 +3,14 @@ import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import { SITE_URL, TYPE_LABELS, SECTION_LABELS } from './lib/project.mjs';
+import { META_CSP, REFERRER_POLICY } from './lib/hosting.mjs';
+import {
+  REDIRECT_REGISTRY,
+  normalizeRedirectRoute,
+  readRedirectRules,
+  redirectPages,
+  redirectRouteToFile
+} from './lib/redirects.mjs';
 
 const ROOT = path.resolve(process.cwd());
 const errors = [];
@@ -77,14 +85,26 @@ let search;
 let sitemap;
 let schema;
 let taxonomy;
+let packageMeta;
+let siteMeta;
 try { pages = readJson('data/pages.json'); } catch (error) { errors.push(`data/pages.json: ${error.message}`); pages = []; }
 try { search = readJson('data/search-index.json'); } catch (error) { errors.push(`data/search-index.json: ${error.message}`); search = []; }
 try { schema = readJson('data/pages.schema.json'); } catch (error) { errors.push(`data/pages.schema.json: ${error.message}`); schema = {}; }
 try { taxonomy = readJson('data/taxonomy.json'); } catch (error) { errors.push(`data/taxonomy.json: ${error.message}`); taxonomy = { topics: {}, locations: {} }; }
+try { packageMeta = readJson('package.json'); } catch (error) { errors.push(`package.json: ${error.message}`); packageMeta = {}; }
+try { siteMeta = readJson('data/site.json'); } catch (error) { errors.push(`data/site.json: ${error.message}`); siteMeta = {}; }
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
 if (search?.version !== 2 || !Array.isArray(search?.documents) || !search?.terms || typeof search.terms !== 'object') errors.push('data/search-index.json должен соответствовать формату v2.');
+if (!packageMeta.version) errors.push('package.json: отсутствует version.');
+if (siteMeta.version !== packageMeta.version) errors.push('data/site.json: version не совпадает с package.json.');
+if (!validDate(siteMeta.buildDate)) errors.push('data/site.json: buildDate должен быть корректной датой.');
+if (read('.nvmrc').trim() !== '24') errors.push('.nvmrc должен фиксировать Node.js 24 LTS.');
+if (packageMeta?.engines?.node !== '>=24 <25') errors.push('package.json: engines.node должен быть ">=24 <25".');
+if (!String(packageMeta?.scripts?.qa || '').includes('test:export-clean')) {
+  errors.push('package.json: QA должна проверять полную очистку dist через test:export-clean.');
+}
 const knownTopics = new Set(Object.keys(taxonomy?.topics || {}));
 const knownLocations = new Set(Object.keys(taxonomy?.locations || {}));
 
@@ -151,21 +171,13 @@ for (const [index, item] of pages.entries()) {
   }
   const image = String(item.image || '').replace(/^\//, '');
   if (!exists(image)) errors.push(`${prefix}: отсутствует изображение ${item.image}`);
-  if (item.image?.startsWith('/assets/img/')) {
-    const rel = item.image.slice('/assets/img/'.length);
-    const parsed = path.posix.parse(rel);
-    for (const width of [480, 960]) {
-      const derived = `assets/img/derived/${parsed.dir ? `${parsed.dir}/` : ''}${parsed.name}-${width}.webp`;
-      if (!exists(derived)) errors.push(`${prefix}: отсутствует производное изображение ${derived}`);
-    }
-  }
 
   const html = read(file);
   const expectedBodyClass = `page page-content page--${item.type === 'guide' ? 'guide' : item.type === 'dossier' ? 'dossier' : item.type === 'assessment' ? 'assessment' : 'article'}`;
   const bodyTag = html.match(/<body\b[^>]*>/i)?.[0] || '';
   const bodyClass = attr(bodyTag, 'class');
   if (bodyClass !== expectedBodyClass) errors.push(`${file}: body class должен быть "${expectedBodyClass}", сейчас "${bodyClass || 'нет'}".`);
-  if (!/<main\b[^>]*id=["']main-content["'][^>]*>/i.test(html) && !/<main\b[^>]*id=["']main-content["'][^>]*>/i.test(html)) errors.push(`${file}: main должен иметь id="main-content".`);
+  if (!/<main\b[^>]*id=["']main-content["'][^>]*>/i.test(html)) errors.push(`${file}: main должен иметь id="main-content".`);
   if (!html.includes('class="nav-toggle"') && !html.includes("class='nav-toggle'")) errors.push(`${file}: нет общей мобильной кнопки nav-toggle.`);
   if (!html.includes('id="site-navigation"') && !html.includes("id='site-navigation'")) errors.push(`${file}: нет общей навигации id="site-navigation".`);
   for (const asset of [...html.matchAll(/(?:href|src)=["'](\/assets\/(?:css|js)\/[^"']+)["']/gi)].map(match => match[1])) {
@@ -175,6 +187,48 @@ for (const [index, item] of pages.entries()) {
   if (h1Matches.length !== 1) errors.push(`${file}: H1 = ${h1Matches.length}, должен быть один.`);
   else if (normalizeText(h1Matches[0][1]) !== normalizeText(item.title)) errors.push(`${file}: H1 не совпадает с pages.json title.`);
   if (!/<html\b[^>]*\blang=["']ru["']/i.test(html)) errors.push(`${file}: отсутствует lang="ru".`);
+  const mainHtml = html.match(/<main\b[\s\S]*?<\/main>/i)?.[0] || '';
+  for (const tag of mainHtml.matchAll(/<img\b[^>]*>/gi)) {
+    const source = attr(tag[0], 'src');
+    const width = Number(attr(tag[0], 'width'));
+    const height = Number(attr(tag[0], 'height'));
+    if (/^https:\/\/krmrf\.ru\/assets\/img\//i.test(source) || /^(?:\.\.\/)+assets\/img\//i.test(source)) {
+      errors.push(`${file}: внутреннее изображение должно иметь корневой URL: ${source}`);
+    }
+    if (!Number.isInteger(width) || width < 1 || !Number.isInteger(height) || height < 1) {
+      errors.push(`${file}: изображение ${source || '?'} требует точных width и height.`);
+    }
+    const srcset = attr(tag[0], 'srcset');
+    const sizes = attr(tag[0], 'sizes');
+    if (srcset && !sizes) errors.push(`${file}: изображение ${source || '?'} имеет srcset без sizes.`);
+    if (!srcset && sizes) errors.push(`${file}: изображение ${source || '?'} имеет sizes без srcset.`);
+    if (srcset) {
+      const descriptors = srcset.split(',').map(candidate => candidate.trim()).filter(Boolean);
+      const candidateWidths = [];
+      for (const candidate of descriptors) {
+        const match = candidate.match(/^(\S+)\s+(\d+)w$/);
+        if (!match) {
+          errors.push(`${file}: некорректный srcset-кандидат «${candidate}».`);
+          continue;
+        }
+        const [, candidateUrl, candidateWidthRaw] = match;
+        const candidateWidth = Number(candidateWidthRaw);
+        candidateWidths.push(candidateWidth);
+        const candidateFile = urlToFile(candidateUrl);
+        if (!candidateFile || !exists(candidateFile)) errors.push(`${file}: отсутствует srcset-файл ${candidateUrl}.`);
+        const namedWidth = candidateUrl.match(/-(480|960)\.webp$/)?.[1];
+        if (namedWidth && Number(namedWidth) !== candidateWidth) {
+          errors.push(`${file}: ${candidateUrl} ошибочно размечен как ${candidateWidth}w.`);
+        }
+      }
+      if (new Set(candidateWidths).size !== candidateWidths.length) {
+        errors.push(`${file}: srcset изображения ${source || '?'} содержит повторяющиеся ширины.`);
+      }
+      if (candidateWidths.some(candidateWidth => candidateWidth > width)) {
+        errors.push(`${file}: srcset изображения ${source || '?'} заявляет ширину больше оригинала.`);
+      }
+    }
+  }
 
   const title = normalizeText(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
   const expectedTitle = `${item.seoTitle} — KRM РФ`;
@@ -263,33 +317,93 @@ for (const item of pages) {
   else if (block[1] !== item.dateModified) errors.push(`sitemap.xml: lastmod ${item.url} не совпадает с dateModified.`);
 }
 
-const headersFile = read('_headers');
-const requiredSecurityHeaders = [
-  'Strict-Transport-Security: max-age=31536000; includeSubDomains',
-  'X-Content-Type-Options: nosniff',
-  'X-Frame-Options: DENY',
-  'X-Permitted-Cross-Domain-Policies: none',
-  'Referrer-Policy: strict-origin-when-cross-origin',
-  'Origin-Agent-Cluster: ?1',
-  'Cross-Origin-Opener-Policy: same-origin-allow-popups',
-  "style-src-elem 'self'",
-  "style-src-attr 'unsafe-inline'",
-  "frame-ancestors 'none'",
-  'block-all-mixed-content'
-];
-for (const header of requiredSecurityHeaders) {
-  if (!headersFile.includes(header)) errors.push(`_headers: отсутствует обязательная политика «${header}».`);
+let redirects = [];
+let redirectPageSpecs = [];
+try {
+  redirects = readRedirectRules(ROOT);
+  redirectPageSpecs = redirectPages(ROOT);
+} catch (error) {
+  errors.push(`${REDIRECT_REGISTRY}: ${error.message}`);
 }
-if (headersFile.includes('mc.webvisor.org')) errors.push('_headers: разрешён неиспользуемый домен mc.webvisor.org.');
-const styleDirective = headersFile.match(/(?:^|;\s*)style-src\s+([^;]+)/m)?.[1] || '';
-if (!styleDirective) errors.push('_headers: отсутствует основная директива style-src.');
-else if (styleDirective.includes("'unsafe-inline'")) errors.push("_headers: style-src не должен разрешать 'unsafe-inline'.");
-
-const redirects = read('_redirects').split(/\r?\n/).map(line => line.trim()).filter(line => line && !line.startsWith('#'));
-for (const line of redirects) {
-  const [from, to, status] = line.split(/\s+/);
-  if (!from || !to || !/^30[18]$/.test(status || '')) errors.push(`_redirects: неверная строка «${line}»`);
+const redirectRegistryText = exists(REDIRECT_REGISTRY) ? read(REDIRECT_REGISTRY) : '';
+if (!redirectRegistryText.includes('GitHub Pages does not execute this file')) {
+  errors.push(`${REDIRECT_REGISTRY}: отсутствует явное предупреждение, что файл является внутренним реестром.`);
+}
+const redirectSources = new Set();
+const checkedRedirectHtml = new Set();
+for (const rule of redirects) {
+  const { from, to } = rule;
+  if (from !== normalizeRedirectRoute(from)) {
+    errors.push(`${REDIRECT_REGISTRY}: источник ${from} должен храниться в нормализованном виде со слешем.`);
+  }
+  redirectSources.add(from);
+  const targetFile = redirectRouteToFile(to);
+  if (!exists(targetFile)) errors.push(`${REDIRECT_REGISTRY}: цель ${to} не существует.`);
+  const sourceFile = redirectRouteToFile(from);
+  if (sourceFile && !checkedRedirectHtml.has(sourceFile)) {
+    checkedRedirectHtml.add(sourceFile);
+    if (exists(sourceFile)) errors.push(`${REDIRECT_REGISTRY}: для ${from} остался дублирующий исходный HTML ${sourceFile}.`);
+  }
   if (sitemap.includes(`<loc>${SITE_URL}${from}</loc>`)) errors.push(`sitemap.xml содержит redirect-source ${from}`);
+}
+if (redirects.length !== redirectPageSpecs.length) {
+  errors.push(`${REDIRECT_REGISTRY}: один старый маршрут должен соответствовать ровно одной строке реестра.`);
+}
+if (!redirectPageSpecs.some(item => item.route === '/map/archive/' && item.to === '/map/')) {
+  errors.push(`${REDIRECT_REGISTRY}: исторический /map/archive/ должен вести на /map/.`);
+}
+
+const pagesWorkflowFile = '.github/workflows/pages.yml';
+if (!exists(pagesWorkflowFile)) {
+  errors.push(`${pagesWorkflowFile}: отсутствует workflow публикации GitHub Pages.`);
+} else {
+  const workflow = read(pagesWorkflowFile);
+  for (const required of [
+    'runs-on: ubuntu-24.04',
+    'branches:',
+    '- main',
+    'actions/checkout@v6',
+    'actions/setup-node@v6',
+    'node-version-file: .nvmrc',
+    'npm run qa',
+    'actions/configure-pages@v5',
+    'actions/upload-pages-artifact@v4',
+    'path: dist',
+    'actions/deploy-pages@v4',
+    'pages: write',
+    'id-token: write',
+    'name: github-pages'
+  ]) {
+    if (!workflow.includes(required)) errors.push(`${pagesWorkflowFile}: отсутствует «${required}».`);
+  }
+  if (/upload-pages-artifact@v4[\s\S]{0,250}path:\s*['"]?\.['"]?\s*$/m.test(workflow)) {
+    errors.push(`${pagesWorkflowFile}: Pages должен получать dist, а не корень репозитория.`);
+  }
+  const qaStep = workflow.indexOf('npm run qa');
+  const uploadStep = workflow.indexOf('actions/upload-pages-artifact@v4');
+  const deployStep = workflow.indexOf('actions/deploy-pages@v4');
+  if (!(qaStep >= 0 && qaStep < uploadStep && uploadStep < deployStep)) {
+    errors.push(`${pagesWorkflowFile}: порядок должен быть QA → upload dist → deploy.`);
+  }
+}
+
+for (const workflowFile of ['.github/workflows/quality.yml', '.github/workflows/release.yml']) {
+  if (!exists(workflowFile)) {
+    errors.push(`${workflowFile}: отсутствует.`);
+    continue;
+  }
+  const workflow = read(workflowFile);
+  for (const required of [
+    'runs-on: ubuntu-24.04',
+    'actions/checkout@v6',
+    'actions/setup-node@v6',
+    'node-version-file: .nvmrc'
+  ]) {
+    if (!workflow.includes(required)) errors.push(`${workflowFile}: отсутствует «${required}».`);
+  }
+  if (workflow.includes('actions/deploy-pages@')) {
+    errors.push(`${workflowFile}: публиковать Pages должен только ${pagesWorkflowFile}.`);
+  }
 }
 
 const requiredCatalogs = {
@@ -312,8 +426,29 @@ for (const [file, keys] of Object.entries(requiredCatalogs)) {
   });
 }
 
+const expectedHomeCounts = new Map([
+  ['home:important', 3],
+  ['home:assessment', 1],
+  ['home:kremennaya', 3],
+  ['home:guide', 3],
+  ['home:dossier', 2]
+]);
+const homeHtml = read('index.html');
+const seenHomeUrls = new Set();
+for (const [key, expectedCount] of expectedHomeCounts) {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const block = homeHtml.match(new RegExp(`KRM CATALOG ${escapedKey} START -->([\\s\\S]*?)<!-- KRM CATALOG ${escapedKey} END`))?.[1] || '';
+  const cardUrls = [...block.matchAll(/<article\b[^>]*class=["'][^"']*\bmaterial-card\b[^"']*["'][^>]*>[\s\S]*?<h2\b[^>]*>\s*<a\b[^>]*href=["']([^"']+)/gi)]
+    .map(match => match[1]);
+  if (cardUrls.length !== expectedCount) errors.push(`index.html: блок ${key} должен содержать ${expectedCount} карточек, сейчас ${cardUrls.length}.`);
+  for (const url of cardUrls) {
+    if (seenHomeUrls.has(url)) errors.push(`index.html: материал ${url} повторяется в нескольких блоках главной.`);
+    seenHomeUrls.add(url);
+  }
+}
+
 const archive = read('archive/index.html');
-for (const technical of ['/feed.xml', '/data/pages.json', '/sitemap.xml']) {
+for (const technical of ['/data/pages.json', '/sitemap.xml']) {
   const intro = archive.match(/<header class="page-intro">([\s\S]*?)<\/header>/)?.[1] || '';
   if (intro.includes(technical)) errors.push(`archive/index.html: техническая ссылка ${technical} осталась во вводном блоке.`);
 }
@@ -353,7 +488,7 @@ try {
 const htmlFiles = [];
 const walk = directory => {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    if (['.git', 'node_modules', 'dist', 'releases', 'krmrf-releases'].includes(entry.name)) continue;
+    if (['.git', 'node_modules', 'dist', 'releases', 'krmrf-releases', 'test-results', 'playwright-report'].includes(entry.name)) continue;
     const full = path.join(directory, entry.name);
     if (entry.isDirectory()) walk(full);
     else if (entry.name.endsWith('.html')) htmlFiles.push(full);
@@ -363,6 +498,33 @@ walk(ROOT);
 for (const full of htmlFiles) {
   const rel = path.relative(ROOT, full).replace(/\\/g, '/');
   const html = fs.readFileSync(full, 'utf8');
+  if (html.includes('KRM GENERATED HTML REDIRECT')) errors.push(`${rel}: остался дублирующий HTML-псевдоредирект.`);
+  if (html.includes('KRM GITHUB PAGES REDIRECT')) errors.push(`${rel}: сгенерированная страница старого адреса не должна храниться в исходниках.`);
+  if (/"@type"\s*:\s*"SearchAction"/.test(html)) errors.push(`${rel}: остался неиспользуемый SearchAction.`);
+  const headHtml = html.match(/<head\b[\s\S]*?<\/head>/i)?.[0] || '';
+  if (headHtml.includes('analytics-noscript-pixel')) errors.push(`${rel}: noscript-пиксель аналитики недопустим внутри <head>.`);
+  const verificationFile = /^(?:google|yandex_)[a-z0-9]+\.html$/i.test(path.basename(rel));
+  if (/<html\b/i.test(html) && !verificationFile) {
+    const metaTags = headHtml.match(/<meta\b[^>]*>/gi) || [];
+    const cspTag = metaTags.find(tag => attr(tag, 'http-equiv').toLowerCase() === 'content-security-policy');
+    const referrerTag = metaTags.find(tag => attr(tag, 'name').toLowerCase() === 'referrer');
+    if (!cspTag || attr(cspTag, 'content').replace(/\s+/g, ' ').trim() !== META_CSP) {
+      errors.push(`${rel}: meta CSP отсутствует или не совпадает с политикой GitHub Pages.`);
+    }
+    if (!referrerTag || attr(referrerTag, 'content') !== REFERRER_POLICY) {
+      errors.push(`${rel}: meta referrer policy отсутствует или неверна.`);
+    }
+    if (cspTag && /frame-ancestors/i.test(attr(cspTag, 'content'))) {
+      errors.push(`${rel}: frame-ancestors не действует в meta CSP и не должен создавать ложную гарантию.`);
+    }
+    for (const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+      const openTag = `<script${script[1]}>`;
+      if (attr(openTag, 'src')) continue;
+      if (attr(openTag, 'type').toLowerCase() === 'application/ld+json') continue;
+      if (script[2].trim()) errors.push(`${rel}: исполняемый inline-script запрещён meta CSP.`);
+    }
+    if (/<[a-z][^>]*\son[a-z]+\s*=/i.test(html)) errors.push(`${rel}: inline event-handler запрещён meta CSP.`);
+  }
   for (const link of html.matchAll(/<a\b[^>]*>/gi)) {
     const tag = link[0];
     if (/target=["']_blank["']/i.test(tag) && !/rel=["'][^"']*noopener/i.test(tag)) errors.push(`${rel}: target="_blank" без rel="noopener".`);
@@ -378,10 +540,36 @@ for (const full of htmlFiles) {
   }
 }
 
+for (const obsolete of [
+  'feed.xml',
+  'assessment/feed.xml',
+  'kremennaya/feed.xml',
+  'data/news.json',
+  'data/assessment.json',
+  'data/war-crimes.json',
+  'tools/redirect-pages.mjs',
+  'README_APPLY.txt',
+  '_headers'
+]) {
+  if (exists(obsolete)) errors.push(`Остался удалённый технический файл: ${obsolete}`);
+}
+
 for (const full of htmlFiles) {
   const rel = path.relative(ROOT, full).replace(/\\/g, '/');
   const html = fs.readFileSync(full, 'utf8');
   if (/^(?:google|yandex_)[a-z0-9]+\.html$/i.test(path.basename(rel))) continue;
+  for (const match of html.matchAll(/\b(?:href|src)=["'](\/assets\/(?:css|js)\/[^"']+)["']/gi)) {
+    const version = new URL(match[1], SITE_URL).searchParams.get('v');
+    if (version !== packageMeta.version) {
+      errors.push(`${rel}: версия ассета ${match[1]} не совпадает с ${packageMeta.version}.`);
+    }
+  }
+  if (html.includes('Версия архива:') && !html.includes(`Версия архива: ${packageMeta.version}`)) {
+    errors.push(`${rel}: версия в футере не совпадает с package.json.`);
+  }
+  if (html.includes('Техническая сборка:') && !html.includes(`Техническая сборка: ${siteMeta.buildDate}`)) {
+    errors.push(`${rel}: дата сборки в футере не совпадает с data/site.json.`);
+  }
   const robotsTag = (html.match(/<meta\b[^>]*name=["']robots["'][^>]*>/i) || [])[0] || '';
   const indexable = !/noindex/i.test(attr(robotsTag, 'content')) && !/<meta\s+http-equiv=["']refresh["']/i.test(html);
   if (indexable) {
