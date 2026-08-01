@@ -54,9 +54,10 @@ const syncAssetVersions = (html, version) => html
   )
   .replace(/\sdefer=(['"])(?:true)?\1/gi, ' defer');
 
-const syncFooterMeta = (html, version, buildDate) => html
-  .replace(/Версия архива:\s*[^<]*/g, `Версия архива: ${version}`)
-  .replace(/Техническая сборка:\s*[^<]*/g, `Техническая сборка: ${buildDate}`);
+const removeVisibleBuildMeta = html => html.replace(
+  /<div\b[^>]*class=(["'])[^"']*\bsite-footer__meta\b[^"']*\1[^>]*>[\s\S]*?<\/div>/gi,
+  ''
+);
 
 const syncAnalyticsMarkup = html => {
   const pixel = html.match(
@@ -566,7 +567,7 @@ site.buildDate = [versionDate, latestContentDate]
 
 for (const file of listHtmlFiles(ROOT)) {
   const html = syncAnalyticsMarkup(syncAssetVersions(read(file), site.version));
-  write(file, syncFooterMeta(html, site.version, site.buildDate));
+  write(file, removeVisibleBuildMeta(html));
 }
 
 for (const item of pages) {

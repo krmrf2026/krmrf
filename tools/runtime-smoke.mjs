@@ -56,8 +56,11 @@ try {
       errors.push(`${requestPath}: HTTP ${response.status}, пустой ответ.`);
       continue;
     }
-    if (!response.body.includes(`Версия архива: ${expectedVersion}`)) {
-      errors.push(`${requestPath}: HTML не содержит согласованную версию ${expectedVersion}.`);
+    if (!response.body.includes(`?v=${expectedVersion}`)) {
+      errors.push(`${requestPath}: HTML не содержит согласованную версию ассетов ${expectedVersion}.`);
+    }
+    if (/site-footer__meta|Версия архива:|Техническая сборка:/i.test(response.body)) {
+      errors.push(`${requestPath}: внутренняя версия или дата сборки видна читателю.`);
     }
     if (!response.body.includes(`<meta content="${META_CSP}" http-equiv="Content-Security-Policy"/>`)) {
       errors.push(`${requestPath}: отсутствует точная meta CSP для GitHub Pages.`);

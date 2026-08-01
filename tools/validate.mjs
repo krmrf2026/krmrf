@@ -86,18 +86,26 @@ let sitemap;
 let schema;
 let taxonomy;
 let packageMeta;
+let packageLockMeta;
 let siteMeta;
 try { pages = readJson('data/pages.json'); } catch (error) { errors.push(`data/pages.json: ${error.message}`); pages = []; }
 try { search = readJson('data/search-index.json'); } catch (error) { errors.push(`data/search-index.json: ${error.message}`); search = []; }
 try { schema = readJson('data/pages.schema.json'); } catch (error) { errors.push(`data/pages.schema.json: ${error.message}`); schema = {}; }
 try { taxonomy = readJson('data/taxonomy.json'); } catch (error) { errors.push(`data/taxonomy.json: ${error.message}`); taxonomy = { topics: {}, locations: {} }; }
 try { packageMeta = readJson('package.json'); } catch (error) { errors.push(`package.json: ${error.message}`); packageMeta = {}; }
+try { packageLockMeta = readJson('package-lock.json'); } catch (error) { errors.push(`package-lock.json: ${error.message}`); packageLockMeta = {}; }
 try { siteMeta = readJson('data/site.json'); } catch (error) { errors.push(`data/site.json: ${error.message}`); siteMeta = {}; }
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
 if (search?.version !== 2 || !Array.isArray(search?.documents) || !search?.terms || typeof search.terms !== 'object') errors.push('data/search-index.json должен соответствовать формату v2.');
 if (!packageMeta.version) errors.push('package.json: отсутствует version.');
+if (packageLockMeta.version !== packageMeta.version || packageLockMeta?.packages?.['']?.version !== packageMeta.version) {
+  errors.push('package-lock.json: version не совпадает с package.json.');
+}
+if (packageLockMeta.name !== packageMeta.name || packageLockMeta?.packages?.['']?.name !== packageMeta.name) {
+  errors.push('package-lock.json: name не совпадает с package.json.');
+}
 if (siteMeta.version !== packageMeta.version) errors.push('data/site.json: version не совпадает с package.json.');
 if (!validDate(siteMeta.buildDate)) errors.push('data/site.json: buildDate должен быть корректной датой.');
 if (read('.nvmrc').trim() !== '24') errors.push('.nvmrc должен фиксировать Node.js 24 LTS.');
@@ -564,11 +572,8 @@ for (const full of htmlFiles) {
       errors.push(`${rel}: версия ассета ${match[1]} не совпадает с ${packageMeta.version}.`);
     }
   }
-  if (html.includes('Версия архива:') && !html.includes(`Версия архива: ${packageMeta.version}`)) {
-    errors.push(`${rel}: версия в футере не совпадает с package.json.`);
-  }
-  if (html.includes('Техническая сборка:') && !html.includes(`Техническая сборка: ${siteMeta.buildDate}`)) {
-    errors.push(`${rel}: дата сборки в футере не совпадает с data/site.json.`);
+  if (/site-footer__meta|Версия архива:|Техническая сборка:/i.test(html)) {
+    errors.push(`${rel}: внутренняя версия или дата сборки не должны отображаться читателю.`);
   }
   const robotsTag = (html.match(/<meta\b[^>]*name=["']robots["'][^>]*>/i) || [])[0] || '';
   const indexable = !/noindex/i.test(attr(robotsTag, 'content')) && !/<meta\s+http-equiv=["']refresh["']/i.test(html);
