@@ -294,7 +294,7 @@
     "url": "/news/svo/svo-2026-07-02/",
     "section": "svo",
     "datePublished": "2026-07-02",
-    "dateModified": "2026-07-02",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Обзор KRM РФ к 2 июля: Красный Лиман, Купянск, Славянское направление, Покровск, Константиновка, БПЛА, логистика, спорные зоны контроля и гражданская обстановка в ЛНР.",
     "image": "/assets/img/news/svo/svo-2026-07-02/cover.webp",
@@ -448,7 +448,7 @@
     "url": "/news/reference/lnr-vyplaty-terakt-118-26/",
     "section": "law",
     "datePublished": "2026-06-17",
-    "dateModified": "2026-06-17",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Кому положены выплаты по постановлению ЛНР № 118/26, какие документы нужны, куда обращаться и чем новый порядок отличается от помощи по режиму ЧС.",
     "image": "/assets/img/news/reference/lnr-vyplaty-terakt-118-26/cover.webp",
@@ -456,9 +456,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-06-17",
-    "reviewAfter": "2026-07-17",
-    "reviewStatus": "review-due",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-09-01",
+    "reviewStatus": "current",
     "seoTitle": "Выплаты пострадавшим в ЛНР: порядок № 118/26",
     "seoDescription": "Краткая памятка KRM РФ: кому положены выплаты по постановлению ЛНР № 118/26, какие документы нужны, куда обращаться и чем порядок отличается от помощи по…"
   },
@@ -628,7 +628,7 @@
     "url": "/news/reference/vuplatylnr-2026-05-25/",
     "section": "law",
     "datePublished": "2026-05-25",
-    "dateModified": "2026-05-25",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Практическая памятка для пострадавших после введения режима ЧС в ЛНР: какие выплаты предусмотрены, кто может обратиться, какие документы нужны и почему деньги не назначаются автоматически.",
     "image": "/assets/img/news/reference/vuplatylnr-2026-05-25/cover.webp",
@@ -636,9 +636,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-05-25",
-    "reviewAfter": "2026-07-25",
-    "reviewStatus": "review-due",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-09-01",
+    "reviewStatus": "current",
     "seoTitle": "Выплаты пострадавшим в Старобельске: порядок",
     "seoDescription": "Практическая памятка KRM РФ: какие выплаты предусмотрены для пострадавших после введения режима ЧС в ЛНР, куда обращаться, какие документы нужны и какие…"
   },
@@ -669,7 +669,7 @@
     "url": "/war-crimes/starobelsk-2026-05-22/",
     "section": "warcrimes",
     "datePublished": "2026-05-22",
-    "dateModified": "2026-05-23",
+    "dateModified": "2026-08-01",
     "status": "open",
     "excerpt": "Обвинительное досье KRM РФ: удар по учебному корпусу и общежитию Старобельского профессионального колледжа, дети внутри здания, погибшие, пострадавшие и ответственность Украины.",
     "image": "/assets/img/war-crimes/starobelsk-2026-05-22/cover.webp",
@@ -689,6 +689,10 @@
       {
         "date": "2026-05-23",
         "summary": "Добавлены новые данные о погибших, пострадавших, заявлениях сторон и завершении поисковых работ."
+      },
+      {
+        "date": "2026-08-01",
+        "summary": "Добавлено датированное примечание об отмене режима ЧС и действующем порядке выплат № 118/26; исходный текст досье не изменён."
       }
     ],
     "home": {
@@ -783,7 +787,7 @@
     "url": "/news/reference/egrn-2026-05-15/",
     "section": "law",
     "datePublished": "2026-05-15",
-    "dateModified": "2026-05-15",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Регистрация права в ЕГРН становится ключевым фактором защиты недвижимости в ЛНР. Разбираем сроки, украинские документы и риски бесхозяйного жилья.",
     "image": "/assets/img/news/reference/egrn-2026-05-15/cover.webp",
@@ -791,8 +795,8 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-05-15",
-    "reviewAfter": "2026-08-15",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-09-01",
     "reviewStatus": "current",
     "seoTitle": "Регистрация недвижимости в ЛНР в 2026 году",
     "seoDescription": "Полное объяснение регистрации недвижимости в ЛНР: сроки, украинские документы, комиссии и риски."
@@ -822,7 +826,7 @@
     "url": "/news/reference/powrlnr-2026-05-13/",
     "section": "law",
     "datePublished": "2026-05-13",
-    "dateModified": "2026-05-13",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Практическая памятка для собственников жилья в ЛНР: компенсация за поврежденное и утраченное жилье, ЕГРН, наследство, доли, документы, акт обследования и риски отказа.",
     "image": "/assets/img/news/reference/powrlnr-2026-05-13/cover.webp",
@@ -830,8 +834,8 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-05-13",
-    "reviewAfter": "2026-08-13",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-09-01",
     "reviewStatus": "current",
     "seoTitle": "Компенсация за повреждённое жильё в ЛНР",
     "seoDescription": "Практическая памятка для собственников жилья в ЛНР: компенсация за поврежденное и утраченное жилье, выплаты за имущество первой необходимости, ЕГРН…"
@@ -921,7 +925,7 @@
     "url": "/news/reference/zemlyalnr-2026-05-04/",
     "section": "law",
     "datePublished": "2026-05-04",
-    "dateModified": "2026-05-04",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Владельцам домов в ЛНР стоит проверить статус дома, земли, ЕГРН, долей и наследства до подачи заявления на бесплатное оформление участка.",
     "image": "/assets/img/news/reference/zemlyalnr-2026-05-04/cover.webp",
@@ -929,8 +933,8 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-05-04",
-    "reviewAfter": "2026-08-04",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-08-08",
     "reviewStatus": "current",
     "seoTitle": "Бесплатное оформление земли в ЛНР",
     "seoDescription": "Короткий разбор для жителей ЛНР: кто может оформить землю под домом бесплатно, какие документы проверить, куда обращаться, какие сроки действуют и где…"
@@ -1038,7 +1042,7 @@
     "url": "/news/reference/beshoz-2026-04-21/",
     "section": "law",
     "datePublished": "2026-04-21",
-    "dateModified": "2026-07-21",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Новый закон вводит процедуру выявления и учета заброшенного жилья. Ключевой момент — переход в муниципальную собственность после включения в реестр.",
     "image": "/assets/img/news/reference/beshoz-2026-04-21/cover.webp",
@@ -1046,13 +1050,17 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-04-21",
-    "reviewAfter": "2026-07-20",
-    "reviewStatus": "review-due",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-09-01",
+    "reviewStatus": "current",
     "revisionHistory": [
       {
         "date": "2026-07-21",
         "summary": "Статус изменён на «требует проверки» после наступления даты планового пересмотра; содержание памятки не обновлялось."
+      },
+      {
+        "date": "2026-08-01",
+        "summary": "Добавлено датированное примечание о постановлении № 123/26 и Законе № 250-I; исходный текст памятки не изменён."
       }
     ],
     "seoTitle": "Бесхозное жильё в ЛНР: порядок оформления",
@@ -1108,7 +1116,7 @@
     "url": "/news/politics/hungary-2026-04-13/",
     "section": "politics",
     "datePublished": "2026-04-13",
-    "dateModified": "2026-04-13",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Смена власти в Венгрии может изменить баланс внутри ЕС, но экономические связи с Россией сохраняют инерцию.",
     "image": "/assets/img/news/politics/hungary-2026-04-13/cover.webp",
@@ -1143,7 +1151,7 @@
     "url": "/news/politics/iranoil-2026-04-09/",
     "section": "politics",
     "datePublished": "2026-04-09",
-    "dateModified": "2026-04-09",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Конфликт США и Ирана влияет на нефть, усиливает позиции России и создаёт риски для поддержки Украины.",
     "image": "/assets/img/news/politics/iranoil-2026-04-09/cover.webp",
@@ -1298,7 +1306,7 @@
     "url": "/news/politics/iran-2026-03-02/",
     "section": "politics",
     "datePublished": "2026-03-02",
-    "dateModified": "2026-03-02",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "Гибель Хаменеи должна была стать началом конца Ирана. Вместо этого страна наносит удары по базам США, а новый лидер обещает отомстить.",
     "image": "/assets/img/news/politics/iran-2026-03-02/iran-01.webp",
@@ -1313,7 +1321,7 @@
     "url": "/news/reference/beshoz-2026-07-01/",
     "section": "law",
     "datePublished": "2026-02-26",
-    "dateModified": "2026-02-26",
+    "dateModified": "2026-08-01",
     "status": null,
     "excerpt": "До 1 июля 2026 года собственникам необходимо подтвердить права на жильё. Отсутствие записи в ЕГРН повышает риск включения объекта в реестр бесхозяйного имущества.",
     "image": "/assets/img/news/reference/beshoz-2026-07-01/beshoz-2026-07-01.webp",
@@ -1321,8 +1329,8 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-07-04",
-    "reviewAfter": "2026-08-04",
+    "reviewedAt": "2026-08-01",
+    "reviewAfter": "2026-09-01",
     "reviewStatus": "current",
     "seoTitle": "Бесхозное жильё и срок 1 июля 2026 года",
     "seoDescription": "Два режима бесхозяйного имущества в РФ, статья 21.1 для новых субъектов, закон 193-ФЗ и что нужно сделать собственнику до 1 июля 2026."
