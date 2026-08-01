@@ -27,6 +27,7 @@ const htmlFile = path.join(project, firstPage.url.replace(/^\//, ''), 'index.htm
 const redirectsFile = path.join(project, '_redirects');
 const workflowFile = path.join(project, '.github/workflows/pages.yml');
 const nvmrcFile = path.join(project, '.nvmrc');
+const packageLockFile = path.join(project, 'package-lock.json');
 const headersFile = path.join(project, '_headers');
 const generatedAliasDir = path.join(project, 'map/archive');
 
@@ -35,7 +36,8 @@ const originals = new Map([
   [htmlFile, fs.readFileSync(htmlFile, 'utf8')],
   [redirectsFile, fs.readFileSync(redirectsFile, 'utf8')],
   [workflowFile, fs.readFileSync(workflowFile, 'utf8')],
-  [nvmrcFile, fs.readFileSync(nvmrcFile, 'utf8')]
+  [nvmrcFile, fs.readFileSync(nvmrcFile, 'utf8')],
+  [packageLockFile, fs.readFileSync(packageLockFile, 'utf8')]
 ]);
 const originalPages = originals.get(pagesFile);
 const originalHtml = originals.get(htmlFile);
@@ -151,6 +153,22 @@ test('generated alias committed to source', () => {
     '<!doctype html><html lang="ru"><head></head><body><!-- KRM GITHUB PAGES REDIRECT --></body></html>\n'
   );
 }, 'остался дублирующий исходный HTML');
+
+
+test('package lock version mismatch', () => {
+  const lock = JSON.parse(originals.get(packageLockFile));
+  lock.version = '0.0.0-test';
+  lock.packages[''].version = '0.0.0-test';
+  fs.writeFileSync(packageLockFile, `${JSON.stringify(lock, null, 2)}
+`);
+}, 'package-lock.json: version не совпадает');
+
+test('visible build metadata restored', () => {
+  fs.writeFileSync(
+    htmlFile,
+    originalHtml.replace('</footer>', '<div class="site-footer__meta">Версия архива: test</div></footer>')
+  );
+}, 'внутренняя версия или дата сборки не должны отображаться читателю');
 
 test('executable inline script restored', () => {
   fs.writeFileSync(htmlFile, originalHtml.replace('</body>', '<script>alert(1)</script></body>'));
