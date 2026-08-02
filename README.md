@@ -25,7 +25,7 @@ git pull --ff-only
 nvm use
 npm ci
 sudo apt-get update && sudo apt-get install -y imagemagick
-npx playwright install --with-deps chromium
+npx playwright install --with-deps chrсдуфкomium
 ```
 
 Проект работает на Node.js 24 LTS. Если эта версия ещё не установлена:
