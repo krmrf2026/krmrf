@@ -1,5 +1,3 @@
 User-agent: *
 
-Disallow: /search/
-
 Sitemap: https://krmrf.ru/sitemap.xml
