@@ -3,8 +3,8 @@
 
   const STYLE_URL = 'https://tiles.openfreemap.org/styles/bright';
   const OSM_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-  const DEFAULT_CENTER = [38.15, 48.95]; // [lng, lat]
-  const DEFAULT_ZOOM = 6;
+  const DEFAULT_CENTER = [34.84915, 49.43933]; // [lng, lat]
+  const DEFAULT_ZOOM = 5.03;
   const MAPLIBRE_TIMEOUT = 9000;
 
   const el = id => document.getElementById(id);
@@ -126,6 +126,8 @@
         // supplied by the local KRM place layer below.
         map.setLayoutProperty(layer.id, 'text-field', [
           'case',
+          ['==', ['coalesce', ['get', 'name:ru'], ['get', 'name_ru'], ''], 'Луганская область'], 'ЛНР',
+          ['==', ['coalesce', ['get', 'name:ru'], ['get', 'name_ru'], ''], 'Донецкая область'], 'ДНР',
           ['has', 'name:ru'], ['get', 'name:ru'],
           ['has', 'name_ru'], ['get', 'name_ru'],
           ''
@@ -439,7 +441,7 @@
       if (updatedEl && state.currentUpdated) updatedEl.textContent = formatDate(state.currentUpdated);
       setupPlaces(places); setupHistory(history);
       state.initialCamera = cameraFromUrl();
-      state.singleMap = await createMap('map', zones, { camera: state.initialCamera, fit: !state.initialCamera });
+      state.singleMap = await createMap('map', zones, { camera: state.initialCamera, fit: false });
       state.engine = state.singleMap.kind; state.singleMap.onMove(updateUrl);
       if (state.engine === 'maplibre') setStatus('Русскоязычная векторная подложка загружена. Подписи без русской версии скрываются; ключевые ориентиры добавлены слоем KRM РФ.', 'success');
 
