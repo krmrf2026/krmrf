@@ -17,3 +17,6 @@ SHA256SUMS
 /node
 /npm
 /krmrf-static-archive@*
+
+# Производный кэш истории карты: восстанавливается из Git командой npm run build/qa
+/data/map-history/

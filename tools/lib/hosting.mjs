@@ -20,8 +20,33 @@ export const META_CSP = [
   'upgrade-insecure-requests'
 ].join('; ');
 
-export const hostingMetaTags = () => [
-  `<meta content="${META_CSP}" http-equiv="Content-Security-Policy"/>`,
+// Only /map/ needs the vector-map provider and MapLibre CDN. Keeping this policy
+// map-specific means the other HTML pages preserve the exact existing security contract.
+export const MAP_META_CSP = [
+  "default-src 'self'",
+  "script-src 'self' https://mc.yandex.ru https://yastatic.net https://unpkg.com",
+  "script-src-attr 'none'",
+  "style-src 'self' https://unpkg.com",
+  "style-src-elem 'self' https://unpkg.com",
+  "style-src-attr 'unsafe-inline'",
+  "img-src 'self' data: blob: https://tiles.openfreemap.org https://*.openfreemap.org https://*.tile.openstreetmap.org https://mc.yandex.ru",
+  "connect-src 'self' https://tiles.openfreemap.org https://*.openfreemap.org https://*.tile.openstreetmap.org https://mc.yandex.ru https://*.mc.yandex.ru",
+  "font-src 'self'",
+  "media-src 'self'",
+  "manifest-src 'self'",
+  "worker-src 'self' blob:",
+  "child-src blob:",
+  "frame-src 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  'upgrade-insecure-requests'
+].join('; ');
+
+export const cspForFile = rel => String(rel || '').replace(/\\/g, '/') === 'map/index.html' ? MAP_META_CSP : META_CSP;
+
+export const hostingMetaTags = (csp = META_CSP) => [
+  `<meta content="${csp}" http-equiv="Content-Security-Policy"/>`,
   `<meta content="${REFERRER_POLICY}" name="referrer"/>`
 ].join('\n');
 
@@ -30,13 +55,13 @@ const isHostingMeta = tag => (
   || /\bname\s*=\s*["']referrer["']/i.test(tag)
 );
 
-export const syncHostingMeta = html => {
+export const syncHostingMeta = (html, csp = META_CSP) => {
   if (!/<head\b/i.test(html)) return html;
 
   const cleaned = html.replace(/<meta\b[^>]*>\s*/gi, tag => (
     isHostingMeta(tag) ? '' : tag
   ));
-  const tags = hostingMetaTags();
+  const tags = hostingMetaTags(csp);
   const charset = cleaned.match(/<meta\b[^>]*\bcharset\s*=\s*["'][^"']+["'][^>]*>/i)?.[0];
 
   if (charset) return cleaned.replace(charset, `${charset}\n${tags}`);

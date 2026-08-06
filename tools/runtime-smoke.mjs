@@ -4,7 +4,7 @@ import process from 'node:process';
 import http from 'node:http';
 import vm from 'node:vm';
 import { spawn } from 'node:child_process';
-import { META_CSP, REFERRER_POLICY } from './lib/hosting.mjs';
+import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
 import { REDIRECT_MARKER, redirectPages } from './lib/redirects.mjs';
 
 const ROOT = path.resolve(process.cwd());
@@ -62,7 +62,8 @@ try {
     if (/site-footer__meta|Версия архива:|Техническая сборка:/i.test(response.body)) {
       errors.push(`${requestPath}: внутренняя версия или дата сборки видна читателю.`);
     }
-    if (!response.body.includes(`<meta content="${META_CSP}" http-equiv="Content-Security-Policy"/>`)) {
+    const rel = requestPath === '/' ? 'index.html' : `${requestPath.replace(/^\//, '')}index.html`;
+    if (!response.body.includes(`<meta content="${cspForFile(rel)}" http-equiv="Content-Security-Policy"/>`)) {
       errors.push(`${requestPath}: отсутствует точная meta CSP для GitHub Pages.`);
     }
     if (!response.body.includes(`<meta content="${REFERRER_POLICY}" name="referrer"/>`)) {

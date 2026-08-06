@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { SITE_URL, SECTION_LABELS, TYPE_LABELS } from './lib/project.mjs';
-import { syncHostingMeta } from './lib/hosting.mjs';
+import { cspForFile, syncHostingMeta } from './lib/hosting.mjs';
 
 const ROOT = path.resolve(process.cwd());
 const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
@@ -696,7 +696,7 @@ write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate, zones.upda
 // generated catalogs can otherwise move surrounding whitespace after this pass,
 // making the next build differ from the first one.
 for (const file of listHtmlFiles(ROOT)) {
-  write(file, syncHostingMeta(read(file)));
+  write(file, syncHostingMeta(read(file), cspForFile(file)));
 }
 
 console.log(`Сборка завершена: ${enriched.length} публикаций.`);
