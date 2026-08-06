@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://krmrf.ru/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/about/</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://krmrf.ru/archive/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/assessment/</loc>
@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>https://krmrf.ru/news/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/civilian-impact/</loc>
@@ -246,7 +246,7 @@
   </url>
   <url>
     <loc>https://krmrf.ru/news/svo/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/svo/geo-2026-03-16/</loc>
@@ -291,6 +291,10 @@
   <url>
     <loc>https://krmrf.ru/news/svo/svo-2026-07-17/</loc>
     <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://krmrf.ru/news/svo/svo-2026-08-06/</loc>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/svo/vsy-2026-03-31/</loc>
