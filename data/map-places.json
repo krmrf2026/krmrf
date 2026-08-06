@@ -1,0 +1,227 @@
+{
+  "schema": "krmrf-map-places-v2",
+  "updated": "2026-08-06",
+  "note": "Редакционный русскоязычный справочник KRM РФ для поиска и приоритетных подписей. Не требует обновления при каждом срезе карты.",
+  "places": [
+    {
+      "name": "Сумы",
+      "lat": 50.9077,
+      "lng": 34.7981,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Харьков",
+      "lat": 49.9935,
+      "lng": 36.2304,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Белгород",
+      "lat": 50.5954,
+      "lng": 36.5873,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Луганск",
+      "lat": 48.574,
+      "lng": 39.3078,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Донецк",
+      "lat": 48.0159,
+      "lng": 37.8029,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Запорожье",
+      "lat": 47.8388,
+      "lng": 35.1396,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Херсон",
+      "lat": 46.6354,
+      "lng": 32.6169,
+      "minZoom": 5,
+      "rank": "major"
+    },
+    {
+      "name": "Купянск",
+      "lat": 49.7106,
+      "lng": 37.6152,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Изюм",
+      "lat": 49.2121,
+      "lng": 37.2569,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Кременная",
+      "lat": 49.0492,
+      "lng": 38.217,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Красный Лиман",
+      "lat": 48.9864,
+      "lng": 37.8111,
+      "minZoom": 6,
+      "rank": "city",
+      "aliases": [
+        "Лиман"
+      ]
+    },
+    {
+      "name": "Славянск",
+      "lat": 48.8532,
+      "lng": 37.6053,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Краматорск",
+      "lat": 48.7384,
+      "lng": 37.5844,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Константиновка",
+      "lat": 48.5277,
+      "lng": 37.7062,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Покровск",
+      "lat": 48.2822,
+      "lng": 37.1758,
+      "minZoom": 6,
+      "rank": "city"
+    },
+    {
+      "name": "Доброполье",
+      "lat": 48.4615,
+      "lng": 37.0852,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Северск",
+      "lat": 48.8669,
+      "lng": 38.1,
+      "minZoom": 7,
+      "rank": "town"
+    },
+    {
+      "name": "Артёмовск",
+      "lat": 48.5956,
+      "lng": 38.0,
+      "minZoom": 7,
+      "rank": "city",
+      "aliases": [
+        "Артемовск",
+        "Бахмут"
+      ]
+    },
+    {
+      "name": "Часов Яр",
+      "lat": 48.588,
+      "lng": 37.833,
+      "minZoom": 8,
+      "rank": "town"
+    },
+    {
+      "name": "Дзержинск",
+      "lat": 48.3987,
+      "lng": 37.8479,
+      "minZoom": 7,
+      "rank": "city",
+      "aliases": [
+        "Торецк"
+      ]
+    },
+    {
+      "name": "Боровая",
+      "lat": 49.3777,
+      "lng": 37.6216,
+      "minZoom": 8,
+      "rank": "town"
+    },
+    {
+      "name": "Волчанск",
+      "lat": 50.29,
+      "lng": 36.941,
+      "minZoom": 7,
+      "rank": "town"
+    },
+    {
+      "name": "Орехов",
+      "lat": 47.5673,
+      "lng": 35.7858,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Гуляйполе",
+      "lat": 47.6632,
+      "lng": 36.2564,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Рубежное",
+      "lat": 49.0127,
+      "lng": 38.3797,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Северодонецк",
+      "lat": 48.9482,
+      "lng": 38.4917,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Лисичанск",
+      "lat": 48.9049,
+      "lng": 38.4421,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Сватово",
+      "lat": 49.4103,
+      "lng": 38.1504,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Старобельск",
+      "lat": 49.2783,
+      "lng": 38.9107,
+      "minZoom": 7,
+      "rank": "city"
+    },
+    {
+      "name": "Великий Бурлук",
+      "lat": 50.0617,
+      "lng": 37.383,
+      "minZoom": 8,
+      "rank": "town"
+    }
+  ]
+}

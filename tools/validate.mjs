@@ -3,7 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import { SITE_URL, TYPE_LABELS, SECTION_LABELS } from './lib/project.mjs';
-import { META_CSP, REFERRER_POLICY } from './lib/hosting.mjs';
+import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
 import {
   REDIRECT_REGISTRY,
   normalizeRedirectRoute,
@@ -487,7 +487,7 @@ try {
     const mapHtml = read('map/index.html');
     if (!mapHtml.includes(`data-updated-iso=\"${zones.updated}\"`) && !mapHtml.includes(`data-updated-iso='${zones.updated}'`)) errors.push('map/index.html: статичная дата не совпадает с zones.updated.');
     if (!normalizeText(mapHtml).includes(normalizeText(latestChange.title))) errors.push('map/index.html: нет последнего заголовка из map-changes.json.');
-    if (/mapSnapshot/.test(mapHtml)) errors.push('map/index.html: остался устаревший элемент mapSnapshot.');
+    if (/id=["']mapSnapshot["']/.test(mapHtml)) errors.push('map/index.html: остался устаревший элемент mapSnapshot.');
   }
 } catch (error) {
   errors.push(`Карта: ${error.message}`);
@@ -516,7 +516,7 @@ for (const full of htmlFiles) {
     const metaTags = headHtml.match(/<meta\b[^>]*>/gi) || [];
     const cspTag = metaTags.find(tag => attr(tag, 'http-equiv').toLowerCase() === 'content-security-policy');
     const referrerTag = metaTags.find(tag => attr(tag, 'name').toLowerCase() === 'referrer');
-    if (!cspTag || attr(cspTag, 'content').replace(/\s+/g, ' ').trim() !== META_CSP) {
+    if (!cspTag || attr(cspTag, 'content').replace(/\s+/g, ' ').trim() !== cspForFile(rel)) {
       errors.push(`${rel}: meta CSP отсутствует или не совпадает с политикой GitHub Pages.`);
     }
     if (!referrerTag || attr(referrerTag, 'content') !== REFERRER_POLICY) {
