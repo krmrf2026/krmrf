@@ -258,10 +258,20 @@
     return createLeaflet(containerId, zones, options);
   };
 
+  const MAP_STATE_PARAMS = ['lat', 'lng', 'z', 'snapshot', 'compare'];
   const cameraFromUrl = () => {
     const params = new URLSearchParams(location.search);
-    const lng = Number(params.get('lng')), lat = Number(params.get('lat')), zoom = Number(params.get('z'));
+    const rawLng = params.get('lng');
+    const rawLat = params.get('lat');
+    const rawZoom = params.get('z');
+    if ([rawLng, rawLat, rawZoom].some(value => value === null || value.trim() === '')) return null;
+
+    const lng = Number(rawLng);
+    const lat = Number(rawLat);
+    const zoom = Number(rawZoom);
     if (!Number.isFinite(lng) || !Number.isFinite(lat) || !Number.isFinite(zoom)) return null;
+    if (lng < -180 || lng > 180 || lat < -90 || lat > 90) return null;
+
     return { center: [lng, lat], zoom: Math.max(3, Math.min(17, zoom)), bearing: 0, pitch: 0 };
   };
   let urlTimer = 0;
@@ -271,7 +281,8 @@
       const active = state.comparing ? state.compareMaps[0] : state.singleMap;
       if (!active) return;
       const camera = active.camera();
-      const params = new URLSearchParams();
+      const params = new URLSearchParams(location.search);
+      for (const key of MAP_STATE_PARAMS) params.delete(key);
       params.set('lat', camera.center[1].toFixed(5)); params.set('lng', camera.center[0].toFixed(5)); params.set('z', camera.zoom.toFixed(2));
       if (state.selected !== 'current') params.set('snapshot', state.selected);
       if (state.comparing) params.set('compare', '1');
@@ -403,15 +414,20 @@
     exitBtn?.setAttribute('aria-expanded', String(value)); exitBtn?.setAttribute('aria-pressed', String(value));
     setTimeout(() => { state.singleMap?.resize(); state.compareMaps.forEach(map => map.resize()); }, 120);
   };
+  const restoreFullscreenUi = () => {
+    syncFullscreen(false);
+    openBtn?.focus();
+  };
   const enterFullscreen = async () => {
     if (!wrapper || state.fullscreen) return;
     try { if (wrapper.requestFullscreen) await wrapper.requestFullscreen(); } catch {}
     syncFullscreen(true);
+    exitBtn?.focus();
   };
   const exitFullscreen = async () => {
     if (!wrapper || !state.fullscreen) return;
     try { if (document.fullscreenElement) await document.exitFullscreen(); } catch {}
-    syncFullscreen(false); openBtn?.focus();
+    if (state.fullscreen) restoreFullscreenUi();
   };
 
   snapshotSelect?.addEventListener('change', () => selectSnapshot(snapshotSelect.value));
@@ -425,7 +441,7 @@
     setStatus(`Показан населённый пункт: ${place.name}.`, 'success');
   });
   openBtn?.addEventListener('click', enterFullscreen); exitBtn?.addEventListener('click', exitFullscreen);
-  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && state.fullscreen) syncFullscreen(false); });
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && state.fullscreen) restoreFullscreenUi(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && state.fullscreen && !document.fullscreenElement) exitFullscreen(); });
 
   const init = async () => {

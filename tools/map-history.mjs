@@ -125,7 +125,7 @@ if (headZonesText) {
 
 const records = [];
 const seenKey = new Set();
-const addRecord = ({ zonesText, changesText = '', commit = '', source = '' }) => {
+const addRecord = ({ zonesText, changesText = '', commit = '', source = '', metadata = null }) => {
   let zones;
   try {
     zones = parse(zonesText, `${source || 'history'}:${ZONES_REL}`);
@@ -151,11 +151,11 @@ const addRecord = ({ zonesText, changesText = '', commit = '', source = '' }) =>
     sha256: sha256(serialized),
     geometrySha256: geomSha,
     featureCount: zones.features.length,
-    title: change?.title || '',
-    summary: change?.summary || '',
-    details: Array.isArray(change?.details) ? change.details.slice(0, 8) : [],
-    relatedUrl: change?.relatedUrl || '',
-    relatedTitle: change?.relatedTitle || '',
+    title: metadata?.title || change?.title || '',
+    summary: metadata?.summary || change?.summary || '',
+    details: Array.isArray(metadata?.details) ? metadata.details.slice(0, 8) : (Array.isArray(change?.details) ? change.details.slice(0, 8) : []),
+    relatedUrl: metadata?.relatedUrl || change?.relatedUrl || '',
+    relatedTitle: metadata?.relatedTitle || change?.relatedTitle || '',
     commit: commit ? commit.slice(0, 12) : '',
     serialized
   });
@@ -163,12 +163,37 @@ const addRecord = ({ zonesText, changesText = '', commit = '', source = '' }) =>
 
 addRecord({ zonesText: currentZonesText, changesText: currentChangesText, source: 'working' });
 const commits = git(['log', '--format=%H', '--', ZONES_REL]).split(/\r?\n/).map(value => value.trim()).filter(Boolean);
-for (const commit of commits.slice(0, LIMIT * 12)) {
-  if (records.length >= LIMIT) break;
-  const zonesText = git(['show', `${commit}:${ZONES_REL}`]);
-  if (!zonesText) continue;
-  const changesText = git(['show', `${commit}:${CHANGES_REL}`]);
-  addRecord({ zonesText, changesText, commit, source: commit });
+let reusedCachedHistory = false;
+if (commits.length) {
+  for (const commit of commits.slice(0, LIMIT * 12)) {
+    if (records.length >= LIMIT) break;
+    const zonesText = git(['show', `${commit}:${ZONES_REL}`]);
+    if (!zonesText) continue;
+    const changesText = git(['show', `${commit}:${CHANGES_REL}`]);
+    addRecord({ zonesText, changesText, commit, source: commit });
+  }
+} else {
+  // A source release contains the generated map-history cache but no .git directory.
+  // Reuse it only when it belongs to exactly the same current editorial slice.
+  const cachedManifestFile = path.join(OUT_DIR, 'manifest.json');
+  if (fs.existsSync(cachedManifestFile)) {
+    try {
+      const cached = parse(fs.readFileSync(cachedManifestFile, 'utf8'), `${OUT_REL}/manifest.json`);
+      if (cached?.schema === 'krmrf-map-history-v3' && normalizeUpdated(cached.current) === currentUpdated && Array.isArray(cached.versions)) {
+        for (const item of cached.versions) {
+          if (records.length >= LIMIT) break;
+          const rel = String(item?.snapshot || '').replace(/^\//, '');
+          if (!rel.startsWith(`${OUT_REL}/`)) continue;
+          const snapshotFile = path.join(ROOT, rel);
+          if (!fs.existsSync(snapshotFile)) continue;
+          addRecord({ zonesText: fs.readFileSync(snapshotFile, 'utf8'), source: 'cached', metadata: item });
+        }
+        reusedCachedHistory = records.length > 1;
+      }
+    } catch {
+      // Invalid/stale generated cache is ignored; the valid current map still builds.
+    }
+  }
 }
 
 records.sort((a, b) => timeValue(b.updated) - timeValue(a.updated) || b.updated.localeCompare(a.updated));
@@ -189,7 +214,7 @@ for (const entry of fs.readdirSync(OUT_DIR, { withFileTypes: true })) {
 }
 const manifest = {
   schema: 'krmrf-map-history-v3',
-  generatedFrom: commits.length ? 'git' : 'current-only',
+  generatedFrom: commits.length ? 'git' : (reusedCachedHistory ? 'cached' : 'current-only'),
   current: currentUpdated,
   limit: LIMIT,
   versions: selected
@@ -197,5 +222,6 @@ const manifest = {
 fs.writeFileSync(path.join(OUT_DIR, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
 
 console.log(`История карты: ${selected.length} геометрически разных редакционных срезов; текущий — ${currentUpdated}.`);
-if (!commits.length) console.log('Git-история недоступна: создан только текущий срез. В рабочей ветке история восстановится автоматически.');
+if (!commits.length && reusedCachedHistory) console.log('Git-история недоступна: сохранены проверенные редакционные срезы из исходного архива.');
+else if (!commits.length) console.log('Git-история недоступна: создан только текущий срез. В рабочей ветке история восстановится автоматически.');
 console.log(`Ручные файлы остаются прежними: ${ZONES_REL} + ${CHANGES_REL}.`);

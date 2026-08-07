@@ -480,20 +480,24 @@ const sitemapXml = (pages, oldMap, buildDate, mapDate, redirectedPaths = new Set
   const publicationUrls = new Set(pages.map(item => `${SITE_URL}${item.url}`));
   const allLatest = latestDate(pages, buildDate);
   const previous = pathname => oldMap.get(`${SITE_URL}${pathname}`) || buildDate;
+  const staticPageLastmod = (pathname, file) => {
+    const value = exists(file) ? metaContent(read(file), 'date-modified') : '';
+    return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : previous(pathname);
+  };
   const staticDates = new Map([
     ['/', allLatest],
-    ['/about/', previous('/about/')],
+    ['/about/', staticPageLastmod('/about/', 'about/index.html')],
     ['/archive/', allLatest],
     ['/assessment/', latestDate(pages.filter(item => item.type === 'assessment'), allLatest)],
     ['/kremennaya/', latestDate(pages.filter(item => item.section === 'kremennaya'), allLatest)],
     ['/map/', /^\d{4}-\d{2}-\d{2}/.test(String(mapDate || '')) ? String(mapDate).slice(0, 10) : allLatest],
-    ['/methodology/', previous('/methodology/')],
+    ['/methodology/', staticPageLastmod('/methodology/', 'methodology/index.html')],
     ['/news/', latestDate(pages.filter(item => item.type === 'article' || item.type === 'guide'), allLatest)],
     ['/news/civilian-impact/', latestDate(pages.filter(item => item.section === 'civilian-impact'), allLatest)],
     ['/news/lnr/', latestDate(pages.filter(item => item.section === 'lnr'), allLatest)],
     ['/news/politics/', latestDate(pages.filter(item => item.section === 'politics'), allLatest)],
     ['/news/svo/', latestDate(pages.filter(item => item.section === 'svo'), allLatest)],
-    ['/privacy/', previous('/privacy/')],
+    ['/privacy/', staticPageLastmod('/privacy/', 'privacy/index.html')],
     ['/reference/', latestDate(pages.filter(item => item.type === 'guide'), allLatest)],
     ['/war-crimes/', latestDate(pages.filter(item => item.type === 'dossier'), allLatest)]
   ]);

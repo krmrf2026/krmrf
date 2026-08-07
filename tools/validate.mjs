@@ -325,6 +325,23 @@ for (const item of pages) {
   else if (block[1] !== item.dateModified) errors.push(`sitemap.xml: lastmod ${item.url} не совпадает с dateModified.`);
 }
 
+for (const [route, file] of [
+  ['/about/', 'about/index.html'],
+  ['/methodology/', 'methodology/index.html'],
+  ['/privacy/', 'privacy/index.html']
+]) {
+  const html = read(file);
+  const dateTag = (html.match(/<meta\b[^>]*name=["']date-modified["'][^>]*>/i) || html.match(/<meta\b[^>]*content=["'][^"']+["'][^>]*name=["']date-modified["'][^>]*>/i))?.[0] || '';
+  const date = attr(dateTag, 'content');
+  if (!validDate(date)) {
+    errors.push(`${file}: нужен корректный meta date-modified.`);
+    continue;
+  }
+  const block = sitemap.match(new RegExp(`<url>\\s*<loc>${SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}<\\/loc>\\s*<lastmod>([^<]+)<\\/lastmod>`));
+  if (!block) errors.push(`sitemap.xml не содержит ${route}`);
+  else if (block[1] !== date) errors.push(`sitemap.xml: lastmod ${route} не совпадает с meta date-modified.`);
+}
+
 let redirects = [];
 let redirectPageSpecs = [];
 try {
@@ -371,6 +388,7 @@ if (!exists(pagesWorkflowFile)) {
     'branches:',
     '- main',
     'actions/checkout@v6',
+    'fetch-depth: 0',
     'actions/setup-node@v6',
     'node-version-file: .nvmrc',
     'npm run qa',
@@ -404,6 +422,7 @@ for (const workflowFile of ['.github/workflows/quality.yml', '.github/workflows/
   for (const required of [
     'runs-on: ubuntu-24.04',
     'actions/checkout@v6',
+    'fetch-depth: 0',
     'actions/setup-node@v6',
     'node-version-file: .nvmrc'
   ]) {

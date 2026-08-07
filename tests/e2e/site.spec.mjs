@@ -114,19 +114,36 @@ test('архив фильтрует материалы, сохраняет па�
   await expect(page.locator('#archive-list li:not([hidden])')).toHaveCount(pages.length);
 });
 
-test('карта запускается и корректно входит в полноэкранный режим', async ({ page }) => {
+test('карта использует стартовую камеру, сохраняет UTM и корректно управляет fullscreen', async ({ page }) => {
   await blockExternalRequests(page);
-  await page.goto('/map/');
+  await page.goto('/map/?utm_source=e2e&utm_medium=test');
 
   await expect(page.locator('#map.leaflet-container')).toBeVisible();
   await expect(page.locator('#map .leaflet-map-pane')).toHaveCount(1);
   await expect(page.locator('#mapUpdated')).not.toHaveText('');
+  await expect.poll(() => new URL(page.url()).searchParams.get('utm_source')).toBe('e2e');
+  await expect.poll(() => Number(new URL(page.url()).searchParams.get('lat'))).toBeCloseTo(49.43933, 2);
+  await expect.poll(() => Number(new URL(page.url()).searchParams.get('lng'))).toBeCloseTo(34.84915, 2);
+  await expect.poll(() => Number(new URL(page.url()).searchParams.get('z'))).toBeGreaterThanOrEqual(5);
 
   await page.getByRole('button', { name: 'Развернуть карту' }).click();
   await expect(page.locator('#mapWrapper')).toHaveClass(/fullscreen/);
+  await expect(page.getByRole('button', { name: 'Свернуть карту' })).toBeFocused();
   await page.getByRole('button', { name: 'Свернуть карту' }).click();
   await expect(page.locator('#mapWrapper')).not.toHaveClass(/fullscreen/);
   await expect(page.getByRole('button', { name: 'Развернуть карту' })).toBeFocused();
+});
+
+test('прямая ссылка карты сохраняет заданную камеру и сторонние query-параметры', async ({ page }) => {
+  await blockExternalRequests(page);
+  await page.goto('/map/?lat=48.574&lng=39.3078&z=9&utm_source=e2e#direct');
+
+  await expect(page.locator('#map.leaflet-container')).toBeVisible();
+  await expect.poll(() => Number(new URL(page.url()).searchParams.get('lat'))).toBeCloseTo(48.574, 2);
+  await expect.poll(() => Number(new URL(page.url()).searchParams.get('lng'))).toBeCloseTo(39.3078, 2);
+  await expect.poll(() => Number(new URL(page.url()).searchParams.get('z'))).toBeCloseTo(9, 1);
+  await expect.poll(() => new URL(page.url()).searchParams.get('utm_source')).toBe('e2e');
+  await expect.poll(() => new URL(page.url()).hash).toBe('#direct');
 });
 
 test('главная не повторяет публикации между продуктовыми блоками', async ({ page }) => {
