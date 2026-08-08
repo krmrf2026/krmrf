@@ -1,6 +1,7 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/reference/pamyatka-seme-pered-dolgim-otezdom-2026/": "2a5a9027042776041b06fe1ce6f7869062a10fb772a568f184464f6b68d3ce5b",
     "/assessment/2026-08-02/": "519b057932982610738669a5bd80525b7e85a18063d80df935505b412d3e8e0c",
     "/news/reference/telefony-sluzhb-kremennaya-2026/": "a3f6e5f26ebc90950c4ef2c8d2d445f3e8348bb8b700ac9278473d584e231188",
     "/news/kremennaya/krm-2026-07-28/": "64bde766b2f460b9df882adc29d7731dd76b1bca53417f13fd9f213ffffdbcb1",
@@ -60,7 +61,7 @@
     "/news/svo/geo-2026-03-16/": "9f9dd440f7fbab8866f637c23012cef9d0d9e46a8e9e07b51fef9ffc9e586e04",
     "/news/reference/evak-2026-03-10/": "ea6088fd9efb64944141795ff7c45ccf367a1c2e31f9fdec812761b8405061cf",
     "/news/svo/svo-2026-03-06/": "b85e3aa003dea071bee20ec77596c64a382647cd826ddfbd666c6886bf39a316",
-    "/news/reference/bobp-2026-03-04/": "3b220f69ec49312126a50fdda70f6efb9e65e6224724c194fdf4ce543d6a7099",
+    "/news/reference/bobp-2026-03-04/": "88dd54740ed44438b2ecc2aa16f065619b228098a5b2ecd12ab39805118ec989",
     "/news/politics/iran-2026-03-02/": "dcc4d70492571d4c120f485d0a9a019500eb9dfe508ee84a47cc305845157bc2",
     "/news/reference/beshoz-2026-07-01/": "5381038f378aa3d1b321a1a18a078aed9865167a6b70ef1585a61e4fdd4ee4c9",
     "/news/svo/liman-slavyansk-2026-02-22/": "ea4c75b3bfc97087f1376abad4afa0f8c78203d84fd3dff890498aa012134719",
