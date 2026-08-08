@@ -1,5 +1,32 @@
 [
   {
+    "id": "kogda-zakonchitsya-svo",
+    "type": "article",
+    "title": "Когда закончится война: почему окончание боёв ещё не означает мир",
+    "url": "/news/civilian-impact/kogda-zakonchitsya-svo/",
+    "section": "civilian-impact",
+    "datePublished": "2026-08-08",
+    "dateModified": "2026-08-08",
+    "status": null,
+    "excerpt": "Точную дату окончания СВО не знает никто. Автор объясняет, чем отличаются прекращение боёв, победа и настоящий мир — и почему война может продолжаться в семьях даже после тишины на фронте.",
+    "image": "/assets/img/news/civilian-impact/kogda-zakonchitsya-svo/cover.webp",
+    "imageAlt": "Пётр I с русскими солдатами и моряками после победы в Северной войне — художественная иллюстрация",
+    "topics": [
+      "civilian-impact",
+      "history",
+      "daily"
+    ],
+    "locations": [
+      "Донбасс",
+      "ЛНР"
+    ],
+    "home": {
+      "important": 1
+    },
+    "seoTitle": "Когда закончится СВО и наступит мир",
+    "seoDescription": "Честный ответ без выдуманной даты: чем отличаются окончание боёв, победа и настоящий мир — и почему война может продолжаться внутри семей."
+  },
+  {
     "id": "pamyatka-seme-pered-dolgim-otezdom-2026",
     "type": "guide",
     "title": "Что подготовить семье перед СВО или долгим отъездом: документы, доверенность, связь и деньги",
