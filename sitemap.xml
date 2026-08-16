@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://krmrf.ru/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2026-08-16</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/about/</loc>
@@ -10,11 +10,11 @@
   </url>
   <url>
     <loc>https://krmrf.ru/archive/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <lastmod>2026-08-16</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/assessment/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-16</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/assessment/2026-04-05/</loc>
@@ -87,6 +87,10 @@
   <url>
     <loc>https://krmrf.ru/assessment/2026-08-02/</loc>
     <lastmod>2026-08-02</lastmod>
+  </url>
+  <url>
+    <loc>https://krmrf.ru/assessment/2026-08-16/</loc>
+    <lastmod>2026-08-16</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/kremennaya/</loc>
