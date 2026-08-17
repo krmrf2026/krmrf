@@ -4,9 +4,9 @@
     "/assessment/2026-08-16/": "21f384dbe5ea0e4c2cb1b3033828b7cc6f1cf2764d8b8a0f14ef93c50c05a497",
     "/news/kremennaya/krm-2026-08-14/": "7e9b2f8c4673ee9cdb2808dc2355734d4fb405ecc051810e601b89c6a328c784",
     "/news/civilian-impact/kogda-zakonchitsya-svo/": "be9c32826ce45f636304440cdb59b4399b0089a5012dbc5b0d422b3639dbeaf8",
-    "/news/reference/pamyatka-seme-pered-dolgim-otezdom-2026/": "2a5a9027042776041b06fe1ce6f7869062a10fb772a568f184464f6b68d3ce5b",
+    "/news/reference/pamyatka-seme-pered-dolgim-otezdom-2026/": "0a2aa213c5d674654d7b5b7f02b1e7747290fc5fc64663f19c7daaabe52f8bfd",
     "/assessment/2026-08-02/": "519b057932982610738669a5bd80525b7e85a18063d80df935505b412d3e8e0c",
-    "/news/reference/telefony-sluzhb-kremennaya-2026/": "a3f6e5f26ebc90950c4ef2c8d2d445f3e8348bb8b700ac9278473d584e231188",
+    "/news/reference/telefony-sluzhb-kremennaya-2026/": "d73d56a34cb633b507d216c22dc12cbb2c0266f475b1b4f5b70130bce15eb5bf",
     "/news/kremennaya/krm-2026-07-28/": "64bde766b2f460b9df882adc29d7731dd76b1bca53417f13fd9f213ffffdbcb1",
     "/assessment/2026-07-26/": "bad313eb26488cf88fb675822c705c2607036ea7a4e463e1230c87407ad1d897",
     "/assessment/2026-07-19/": "8f7b8357657d276dc66307add875be0d9ce2754ed9e076d6c3199559d176cd24",
@@ -62,15 +62,16 @@
     "/news/svo/vsy-2026-03-31/": "4dd6cd27aa9467b95da179cfce904008d2a45c5177e0c6f8db41f18fbbae51ae",
     "/news/kremennaya/krm-23-03-2026/": "6c7e0449e38b0f3dd2edb470e40e9995a378f7d1a3f8190a6e16ba42c62430ed",
     "/news/svo/geo-2026-03-16/": "9f9dd440f7fbab8866f637c23012cef9d0d9e46a8e9e07b51fef9ffc9e586e04",
-    "/news/reference/evak-2026-03-10/": "ea6088fd9efb64944141795ff7c45ccf367a1c2e31f9fdec812761b8405061cf",
+    "/news/reference/evak-2026-03-10/": "ca0fede768fc629a008c375326fb843a43a56fcc9b99069dd347812ef2f45924",
     "/news/svo/svo-2026-03-06/": "b85e3aa003dea071bee20ec77596c64a382647cd826ddfbd666c6886bf39a316",
-    "/news/reference/bobp-2026-03-04/": "88dd54740ed44438b2ecc2aa16f065619b228098a5b2ecd12ab39805118ec989",
+    "/news/reference/bobp-2026-03-04/": "47d33dec48012b18e2628fd82d77b311ed4711e6d8cc1a018ca123c860cd5968",
     "/news/politics/iran-2026-03-02/": "dcc4d70492571d4c120f485d0a9a019500eb9dfe508ee84a47cc305845157bc2",
     "/news/reference/beshoz-2026-07-01/": "5381038f378aa3d1b321a1a18a078aed9865167a6b70ef1585a61e4fdd4ee4c9",
     "/news/svo/liman-slavyansk-2026-02-22/": "ea4c75b3bfc97087f1376abad4afa0f8c78203d84fd3dff890498aa012134719",
     "/news/kremennaya/kremennaya-2026-02-18/": "6808b944a6d435bf783c977fee083aea133e93b49299a3049293cfaceb500e45",
     "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/": "cfeac502f3467894c7f1741bf36bc7accfa83e7ab572c7dbcefaf10c226c53a6",
     "/news/svo/svo-2026-08-06/": "011dca03cdcbf2c41ff3f1d71ba32dd5a3993200da2c1a43e98c62144dba2dd3",
-    "/news/reference/rosreestr-lnr-kontakty-2026/": "cc79da7f3876459a2734b61abcb257fcf0bf664d48639a51b0eeb47cf4c030eb"
+    "/news/reference/rosreestr-lnr-kontakty-2026/": "cc79da7f3876459a2734b61abcb257fcf0bf664d48639a51b0eeb47cf4c030eb",
+    "/news/reference/poisk-evakuirovannogo-grazhdanskogo/": "f510cd1df21c02ccca32fac88bce6752363a718d108ecf66292bb8260e3aa17d"
   }
 }
