@@ -1,5 +1,33 @@
 [
   {
+    "id": "budushchee-donbassa-posle-svo",
+    "type": "article",
+    "title": "Вернутся ли люди домой? Что будет с Донбассом",
+    "url": "/news/civilian-impact/budushchee-donbassa-posle-svo/",
+    "section": "civilian-impact",
+    "datePublished": "2026-08-25",
+    "dateModified": "2026-08-25",
+    "status": null,
+    "excerpt": "В Донбассе восстанавливаются дома, дороги и сети. Как эта работа возвращает людям возможность выбирать дом и снова строить жизнь на годы вперёд.",
+    "image": "/assets/img/news/civilian-impact/budushchee-donbassa-posle-svo/cover.webp",
+    "imageAlt": "Жители идут через благоустроенное общественное пространство в центре Мариуполя",
+    "topics": [
+      "civilian-impact",
+      "daily",
+      "infrastructure"
+    ],
+    "locations": [
+      "Донбасс",
+      "Кременная",
+      "ЛНР"
+    ],
+    "home": {
+      "important": 1
+    },
+    "seoTitle": "Вернутся ли люди домой? Что будет с Донбассом",
+    "seoDescription": "В Донбассе восстанавливаются дома, дороги и сети. Почему возвращение людей зависит также от работы, медицины, школы, связи и времени."
+  },
+  {
     "id": "assessment-2026-08-23",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 17–23 августа 2026",
