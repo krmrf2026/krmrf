@@ -1569,7 +1569,7 @@
     "url": "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/",
     "section": "law",
     "datePublished": "2026-07-22",
-    "dateModified": "2026-08-04",
+    "dateModified": "2026-08-25",
     "status": null,
     "excerpt": "Как собственнику квартиры, дома или земли в ЛНР подать документы из другого региона через Госуслуги, Госключ, экстерриториальный МФЦ или представителя — и где дистанционная подача не решает юридическую проблему.",
     "image": "/assets/img/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/cover.webp",
@@ -1580,9 +1580,9 @@
     "home": {
       "important": 3
     },
-    "reviewedAt": "2026-08-04",
-    "reviewAfter": "2026-08-22",
-    "reviewStatus": "review-due",
+    "reviewedAt": "2026-08-25",
+    "reviewAfter": "2026-09-25",
+    "reviewStatus": "current",
     "seoTitle": "Как оформить недвижимость в ЛНР из другого региона",
     "seoDescription": "Как собственнику квартиры, дома или земли в ЛНР подать документы из другого региона через Госуслуги, Госключ, экстерриториальный МФЦ или представителя."
   },
@@ -1622,7 +1622,7 @@
     "url": "/news/reference/rosreestr-lnr-kontakty-2026/",
     "section": "law",
     "datePublished": "2026-08-11",
-    "dateModified": "2026-08-11",
+    "dateModified": "2026-08-25",
     "status": null,
     "excerpt": "Официальный сайт Росреестра ЛНР, актуальные телефоны и простой маршрут: куда подавать документы, как проверить статус, получить выписку, исправить ошибку или обжаловать приостановление.",
     "image": "/assets/img/news/reference/rosreestr-lnr-kontakty-2026/cover.webp",
@@ -1634,8 +1634,8 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-08-11",
-    "reviewAfter": "2026-08-25",
+    "reviewedAt": "2026-08-25",
+    "reviewAfter": "2026-09-08",
     "reviewStatus": "current",
     "seoTitle": "Росреестр ЛНР: официальный сайт и телефоны",
     "seoDescription": "Официальный сайт Росреестра ЛНР, актуальные телефоны, график и понятный маршрут: МФЦ, Роскадастр, статус заявления, ошибки и приостановление."
@@ -1677,7 +1677,7 @@
     "url": "/news/reference/nasledstvo-nedvizhimost-lnr/",
     "section": "law",
     "datePublished": "2026-08-22",
-    "dateModified": "2026-08-22",
+    "dateModified": "2026-08-25",
     "status": null,
     "excerpt": "Практический маршрут для наследников недвижимости в ЛНР: с чего начать у нотариуса, что делать со старыми украинскими документами, ЕГРН, МФЦ, архивами, расходами и пропущенным сроком.",
     "image": "/assets/img/news/reference/nasledstvo-nedvizhimost-lnr/cover.webp",

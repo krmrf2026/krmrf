@@ -525,6 +525,9 @@ walk(ROOT);
 for (const full of htmlFiles) {
   const rel = path.relative(ROOT, full).replace(/\\/g, '/');
   const html = fs.readFileSync(full, 'utf8');
+  if (/<[a-z][^>]*\/\s+[a-z_:][\w:.-]*\s*=/i.test(html)) {
+    errors.push(`${rel}: атрибут расположен после закрывающего слеша тега.`);
+  }
   if (html.includes('KRM GENERATED HTML REDIRECT')) errors.push(`${rel}: остался дублирующий HTML-псевдоредирект.`);
   if (html.includes('KRM GITHUB PAGES REDIRECT')) errors.push(`${rel}: сгенерированная страница старого адреса не должна храниться в исходниках.`);
   if (/"@type"\s*:\s*"SearchAction"/.test(html)) errors.push(`${rel}: остался неиспользуемый SearchAction.`);

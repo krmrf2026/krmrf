@@ -174,6 +174,16 @@ test('executable inline script restored', () => {
   fs.writeFileSync(htmlFile, originalHtml.replace('</body>', '<script>alert(1)</script></body>'));
 }, 'исполняемый inline-script запрещён meta CSP');
 
+test('attribute after self-closing slash', () => {
+  fs.writeFileSync(
+    htmlFile,
+    originalHtml.replace(
+      '</body>',
+      '<img alt="" height="1" src="https://example.com/pixel"/ class="broken" width="1"></body>'
+    )
+  );
+}, 'атрибут расположен после закрывающего слеша тега');
+
 restore();
 fs.rmSync(temp, { recursive: true, force: true });
 
