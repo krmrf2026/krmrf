@@ -10,6 +10,9 @@ coverage/
 .DS_Store
 *.log
 *.tmp
+/*.patch
+/*.rej
+/*.orig
 
 # Локальные релизные артефакты и случайные вставки терминала
 SHA256SUMS
