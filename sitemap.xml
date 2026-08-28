@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://krmrf.ru/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/about/</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://krmrf.ru/archive/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/assessment/</loc>
@@ -346,11 +346,15 @@
   </url>
   <url>
     <loc>https://krmrf.ru/war-crimes/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/war-crimes/kremenskoy-okrug-civilians-2024-2026/</loc>
     <lastmod>2026-06-30</lastmod>
+  </url>
+  <url>
+    <loc>https://krmrf.ru/war-crimes/lisichansk-stahanov-2026-08-26/</loc>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/war-crimes/lugansk-2014-06-02/</loc>

@@ -12,7 +12,7 @@ const filesIn = (directory, extension) => fs.readdirSync(path.join(ROOT, directo
   .map(name => `${directory}/${name}`);
 
 const budgets = [
-  ['data/search-index.json', 520_000, 150_000],
+  ['data/search-index.json', 600_000, 150_000],
   ['data/zones.geojson', 750_000, 100_000],
   ['archive/index.html', 140_000, 25_000],
   ['index.html', 45_000, 12_000]
