@@ -3,6 +3,8 @@ import path from 'node:path';
 import process from 'node:process';
 import { SITE_URL, SECTION_LABELS, TYPE_LABELS } from './lib/project.mjs';
 import { cspForFile, syncHostingMeta } from './lib/hosting.mjs';
+import { syncPublicationLayout } from './lib/publication-layout.mjs';
+import { cardImageSizes } from './lib/image-sizes.mjs';
 
 const ROOT = path.resolve(process.cwd());
 const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
@@ -198,7 +200,7 @@ const derivedImageCandidates = (image, originalWidth) => {
   ));
 };
 
-const imageMarkup = item => {
+const imageMarkup = (item, layout) => {
   if (!item.image) return '';
   const candidates = derivedImageCandidates(item.image, item.imageWidth);
   const srcsetItems = candidates.map(entry => `${escapeHtml(entry.url)} ${entry.width}w`);
@@ -209,19 +211,19 @@ const imageMarkup = item => {
     ? ` srcset="${srcsetItems.join(', ')}"`
     : '';
   const sizes = candidates.length
-    ? ' sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 900px) calc(50vw - 2rem), 370px"'
+    ? ` sizes="${cardImageSizes(layout)}"`
     : '';
   return `<img alt="${escapeHtml(item.imageAlt || '')}" decoding="async" height="360" loading="lazy"${sizes} src="${escapeHtml(item.image)}"${srcset} width="640"/>`;
 };
 
-const cardHtml = (item, catalogKey = '') => {
+const cardHtml = (item, catalogKey = '', layout = 'two') => {
   const section = SECTION_LABELS[item.section] || item.section || 'Материалы';
   const type = TYPE_LABELS[item.type] || item.type || 'Материал';
   const topics = Array.isArray(item.topics) && item.topics.length
     ? ` data-topics="${escapeHtml(item.topics.join(' '))}"`
     : '';
   const catalog = catalogKey ? ` data-catalog="${escapeHtml(catalogKey)}"` : '';
-  return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time></p></div></article>`;
+  return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item, layout)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time></p></div></article>`;
 };
 
 const homeFallback = (pages, group) => {
@@ -236,7 +238,7 @@ const homeFallback = (pages, group) => {
 const selectHome = (pages, group, excludedUrls = new Set()) => {
   const explicit = pages
     .filter(item => item.home && Number.isFinite(Number(item.home[group])))
-    .sort((a, b) => Number(a.home[group]) - Number(b.home[group]));
+    .sort((a, b) => Number(a.home[group]) - Number(b.home[group]) || sortNewest(a, b));
   const fallback = homeFallback(pages, group).sort(sortNewest);
   const seen = new Set(excludedUrls);
   return [...explicit, ...fallback].filter(item => {
@@ -262,12 +264,13 @@ const replaceCatalog = (html, key, items, innerOverride = null) => {
   const segment = match[1].trim();
   let replacement;
   if (key === 'home:assessment') {
-    replacement = items.length ? cardHtml(items[0], key) : segment;
+    replacement = items.length ? cardHtml(items[0], key, 'feature') : segment;
   } else {
     const rootMatch = segment.match(/^<([a-z0-9-]+)([^>]*)>[\s\S]*<\/\1>$/i);
     if (!rootMatch) throw new Error(`Не удалось разобрать контейнер «${key}»`);
     const [, tag, attrs] = rootMatch;
-    const inner = innerOverride ?? items.map(item => cardHtml(item)).join('');
+    const layout = /\bmaterial-grid--three\b/.test(attrs) ? 'three' : 'two';
+    const inner = innerOverride ?? items.map(item => cardHtml(item, '', layout)).join('');
     replacement = `<${tag}${attrs}>${inner}</${tag}>`;
   }
   return html.replace(pattern, `<!-- KRM CATALOG ${key} START -->${replacement}<!-- KRM CATALOG ${key} END -->`);
@@ -374,7 +377,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
   if (/<!-- KRM REVISION META START -->[\s\S]*?<!-- KRM REVISION META END -->/.test(updated)) {
     updated = updated.replace(/<!-- KRM REVISION META START -->[\s\S]*?<!-- KRM REVISION META END -->/, revisionMarker);
   } else if (item.dateModified > item.datePublished) {
-    const metaMatch = updated.match(/<p\b[^>]*class="[^"]*(?:article-meta|meta)[^"]*"[^>]*>[\s\S]*?<\/p>/i);
+    const metaMatch = updated.match(/<(p|dl)\b[^>]*class="[^"]*\barticle-meta\b[^"]*"[^>]*>[\s\S]*?<\/\1>/i);
     if (metaMatch) updated = updated.replace(metaMatch[0], `${metaMatch[0]}${revisionMarker}`);
     else updated = updated.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, `$1${revisionMarker}`);
   }
@@ -390,7 +393,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
     if (/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/.test(updated)) {
       updated = updated.replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/, block);
     } else {
-      const metaMatch = updated.match(/<p\b[^>]*class="[^"]*(?:article-meta|meta)[^"]*"[^>]*>[\s\S]*?<\/p>/i);
+      const metaMatch = updated.match(/<(p|dl)\b[^>]*class="[^"]*\barticle-meta\b[^"]*"[^>]*>[\s\S]*?<\/\1>/i);
       if (metaMatch) updated = updated.replace(metaMatch[0], `${metaMatch[0]}${block}`);
       else updated = updated.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, `$1${block}`);
     }
@@ -576,7 +579,8 @@ for (const file of listHtmlFiles(ROOT)) {
 
 for (const item of pages) {
   const file = urlToHtmlFile(item.url);
-  write(file, syncPublicationMetadata(read(file), item, site.buildDate));
+  const html = syncPublicationMetadata(read(file), item, site.buildDate);
+  write(file, syncPublicationLayout(html, item, pages));
 }
 
 const enriched = pages.map(item => {

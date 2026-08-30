@@ -4,6 +4,7 @@ import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import { SITE_URL, TYPE_LABELS, SECTION_LABELS } from './lib/project.mjs';
 import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
+import { checkUniformity } from './lib/check-uniformity.mjs';
 import {
   REDIRECT_REGISTRY,
   normalizeRedirectRoute,
@@ -660,6 +661,8 @@ for (const file of jsFiles) {
   if (/cache\s*:\s*['"]no-store['"]/i.test(source)) errors.push(`${file}: запрещён cache: no-store.`);
   if (/fetch\(\s*['"]\/data\/pages\.json/i.test(source)) errors.push(`${file}: клиент не должен загружать data/pages.json.`);
 }
+
+errors.push(...checkUniformity(ROOT, pages, htmlFiles));
 
 if (warnings.length) console.warn(`${warnings.length} предупреждений (не блокируют публикацию):\n${warnings.map(item => `• ${item}`).join('\n')}`);
 if (errors.length) {

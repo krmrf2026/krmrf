@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { ARTICLE_IMAGE_SIZES } from './lib/image-sizes.mjs';
 import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
@@ -210,6 +211,7 @@ const responsiveTag = (tag, htmlFile) => {
   let updated = setAttr(tag, 'src', imageUrl);
   updated = setAttr(updated, 'width', info.width);
   updated = setAttr(updated, 'height', info.height);
+  updated = setAttr(updated, 'decoding', 'async');
 
   if (candidates.length) {
     candidates.push(`${imageUrl} ${info.width}w`);
@@ -217,7 +219,7 @@ const responsiveTag = (tag, htmlFile) => {
     updated = setAttr(
       updated,
       'sizes',
-      attr(updated, 'sizes') || '(max-width: 760px) calc(100vw - 2.5rem), 760px'
+      ARTICLE_IMAGE_SIZES
     );
   } else {
     updated = removeAttr(updated, 'srcset');

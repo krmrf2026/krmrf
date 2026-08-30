@@ -9,15 +9,27 @@
 
   let engine = null;
 
+  const formatDate = value => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    const date = new Date(`${value}T00:00:00Z`);
+    if (Number.isNaN(date.getTime())) return value;
+    return new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+      .format(date).replace(/\s*г\.$/u, ' года');
+  };
+
   const createResult = ({ document: documentData, suggestion = false }) => {
     const article = document.createElement('article');
     article.className = `search-result${suggestion ? ' search-result--suggestion' : ''}`;
 
     const meta = document.createElement('p');
     meta.className = 'eyebrow';
-    meta.textContent = suggestion
-      ? `Возможное совпадение · ${documentData.type} · ${documentData.section}`
-      : `${documentData.type} · ${documentData.section} · ${documentData.date}`;
+    meta.textContent = `${suggestion ? 'Возможное совпадение · ' : ''}${documentData.type} · ${documentData.section}`;
+    if (documentData.date) {
+      const time = document.createElement('time');
+      time.dateTime = documentData.date;
+      time.textContent = formatDate(documentData.date);
+      meta.append(' · ', time);
+    }
 
     const heading = document.createElement('h2');
     const link = document.createElement('a');
@@ -40,7 +52,7 @@
       return;
     }
 
-    const matches = engine.find(query, { fuzzy: true, limit: 50 });
+    const matches = engine.find(query, { fuzzy: true, limit: engine.documents.length });
     if (!matches.length) {
       status.textContent = 'Ничего не найдено. Проверьте написание, сократите запрос или откройте полный архив.';
       results.replaceChildren();
@@ -56,7 +68,10 @@
 
   const setQuery = (query, { push = false } = {}) => {
     const clean = String(query || '').trim().slice(0, 100);
-    const next = clean ? `?q=${encodeURIComponent(clean)}` : location.pathname;
+    const params = new URLSearchParams(location.search);
+    if (clean) params.set('q', clean);
+    else params.delete('q');
+    const next = `${location.pathname}${params.size ? `?${params}` : ''}${location.hash}`;
     history[push ? 'pushState' : 'replaceState']({ q: clean }, '', next);
     render(clean);
   };

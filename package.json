@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.8.7-r17",
+  "version": "2026.8.30-r18",
   "type": "module",
   "scripts": {
     "build": "node tools/map-history.mjs && node tools/build.mjs",
@@ -17,7 +17,7 @@
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run images && npm run build && npm run validate && npm run map:verify && npm run test:smoke && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run test:runtime && npm run test:search-e2e",
+    "qa": "npm run images && npm run build && npm run validate && npm run map:verify && npm run test:smoke && npm run test:uniformity && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run test:runtime && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
@@ -27,7 +27,8 @@
     "redirects": "node tools/redirect-aliases.mjs",
     "test:runtime": "node tools/runtime-smoke.mjs",
     "map:history": "node tools/map-history.mjs",
-    "map:verify": "node tools/map-verify.mjs"
+    "map:verify": "node tools/map-verify.mjs",
+    "test:uniformity": "node tools/uniformity-tests.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"

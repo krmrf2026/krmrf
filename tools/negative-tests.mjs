@@ -52,6 +52,14 @@ const run = () => spawnSync(process.execPath, ['tools/validate.mjs'], {
   encoding: 'utf8'
 });
 const results = [];
+const baseline = run();
+if (baseline.status !== 0) {
+  fs.rmSync(temp, { recursive: true, force: true });
+  console.error('Негативные тесты требуют исходно успешной валидации.');
+  process.stdout.write(baseline.stdout || '');
+  process.stderr.write(baseline.stderr || '');
+  process.exit(1);
+}
 const test = (name, mutate, expectedText) => {
   restore();
   mutate();
@@ -183,6 +191,36 @@ test('attribute after self-closing slash', () => {
     )
   );
 }, 'атрибут расположен после закрывающего слеша тега');
+
+test('duplicate publication breadcrumbs', () => {
+  const crumbs = originalHtml.match(/<nav\b[^>]*class="breadcrumbs container"[^>]*>[\s\S]*?<\/nav>/)?.[0];
+  if (!crumbs) throw new Error('Fixture has no breadcrumbs');
+  fs.writeFileSync(htmlFile, originalHtml.replace(/(<article\b[^>]*>)/, `$1${crumbs}`));
+}, 'одна внешняя цепочка хлебных крошек');
+
+test('unstyled last-assessment navigation', () => {
+  fs.writeFileSync(htmlFile, originalHtml.replace('class="series-nav"', 'class="article-nav"'));
+}, 'series-nav должна быть единственным последним блоком');
+
+test('missing neighbouring publication', () => {
+  fs.writeFileSync(htmlFile, originalHtml.replace(/<a\b[^>]*data-series-kind="previous"[^>]*>[\s\S]*?<\/a>/, ''));
+}, 'пропущен или неверен переход previous');
+
+test('incomplete table of contents', () => {
+  fs.writeFileSync(htmlFile, originalHtml.replace(/(<nav\b[^>]*class="article-toc"[^>]*>[\s\S]*?<ol>)<li>[\s\S]*?<\/li>/, '$1'));
+}, 'оглавление пропускает раздел');
+
+test('lost article width modifier', () => {
+  fs.writeFileSync(htmlFile, originalHtml.replace('container container--content', 'container'));
+}, 'потерян container--content');
+
+test('local footer variant', () => {
+  fs.writeFileSync(htmlFile, originalHtml.replace('class="site-footer__title"', 'class="site-footer__local-title"'));
+}, 'несогласованный site-footer');
+
+test('incorrect article image size hint', () => {
+  fs.writeFileSync(htmlFile, originalHtml.replace(/sizes="[^"]*"/, 'sizes="760px"'));
+}, 'неверный sizes изображения статьи');
 
 restore();
 fs.rmSync(temp, { recursive: true, force: true });

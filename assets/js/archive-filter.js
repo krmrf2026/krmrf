@@ -13,6 +13,7 @@
   let fullTextEngine = null;
   let fullTextUrls = null;
   let searchIndexPromise = null;
+  let searchIndexFailed = false;
 
   const normalize = value => String(value || '')
     .toLocaleLowerCase('ru-RU')
@@ -35,11 +36,15 @@
   };
 
   const writeUrl = ({ push = false } = {}) => {
-    const params = new URLSearchParams();
-    for (const [group, value] of Object.entries(state)) if (value) params.set(group, value);
+    const params = new URLSearchParams(window.location.search);
+    for (const [group, value] of Object.entries(state)) {
+      if (value) params.set(group, value);
+      else params.delete(group);
+    }
     const query = input?.value.trim() || '';
     if (query) params.set('q', query);
-    const next = params.size ? `${window.location.pathname}?${params}` : window.location.pathname;
+    else params.delete('q');
+    const next = `${window.location.pathname}${params.size ? `?${params}` : ''}${window.location.hash}`;
     history[push ? 'pushState' : 'replaceState']({ ...state, q: query }, '', next);
   };
 
@@ -97,6 +102,9 @@
       status.textContent = visible
         ? `Показано материалов: ${visible} из ${rows.length}${activeLabels.length ? ` · ${activeLabels.join(' · ')}` : ''}`
         : 'По выбранным условиям материалы не найдены. Измените запрос или сбросьте фильтры.';
+      if (searchIndexFailed && normalize(input?.value).length >= 2) {
+        status.textContent += ' Полнотекстовый поиск недоступен; поиск выполнен только по заголовкам и описаниям.';
+      }
     }
 
     if (reset) reset.hidden = !Object.values(state).some(Boolean) && !(input?.value.trim());
@@ -114,16 +122,18 @@
       .then(payload => {
         if (!window.KRMSearchIndex) throw new Error('Поисковый модуль не загружен');
         fullTextEngine = window.KRMSearchIndex.create(payload);
-        fullTextUrls = fullTextEngine.urls(input?.value || '');
+        searchIndexFailed = false;
       })
       .catch(error => {
+        searchIndexFailed = true;
         console.warn('Полнотекстовый индекс архива недоступен:', error);
       });
     return searchIndexPromise;
   };
 
   const refreshFullTextMatches = () => {
-    fullTextUrls = fullTextEngine ? fullTextEngine.urls(input?.value || '') : null;
+    const query = input?.value || '';
+    fullTextUrls = fullTextEngine && normalize(query).length >= 2 ? fullTextEngine.urls(query) : null;
   };
 
   controls.forEach(control => control.addEventListener('click', () => {
@@ -137,6 +147,7 @@
   input?.addEventListener('input', () => {
     clearTimeout(inputTimer);
     inputTimer = setTimeout(async () => {
+      refreshFullTextMatches();
       apply({ updateHistory: true });
       if (normalize(input.value).length >= 2) {
         await ensureFullTextIndex();
@@ -149,6 +160,7 @@
   reset?.addEventListener('click', () => {
     Object.keys(state).forEach(key => { state[key] = ''; });
     if (input) input.value = '';
+    refreshFullTextMatches();
     apply({ updateHistory: true, push: true });
     input?.focus();
   });
