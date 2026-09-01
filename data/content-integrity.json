@@ -1,6 +1,7 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/svo/itogi-letney-kampanii-2026/": "a97d57ccf3ac994162afa36be72084b22beb0e5b318ad0d6de97ee03333f3d25",
     "/assessment/2026-08-30/": "fea1b04a744b9ef58dce8a68ea04d70fccee3570a4db9a0d14c61f08564927eb",
     "/war-crimes/lisichansk-stahanov-2026-08-26/": "6a333f309edaf9e27c5447cb8032e79e62f5960036ff932798a30fad8261b763",
     "/news/civilian-impact/budushchee-donbassa-posle-svo/": "fa4da2883c87ebf010973fa69a8f6ea2ad544593070fdcc8ad1984d1229bff7f",
@@ -74,7 +75,7 @@
     "/news/svo/liman-slavyansk-2026-02-22/": "3106329f688a2a5b539e299a396ceaffe6b9f6f204d12185dc498c7318a45024",
     "/news/kremennaya/kremennaya-2026-02-18/": "1546f9f49323126584a25a9a02b8b2c73b7d41d970d8267ed604566916a210c6",
     "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/": "3aa53a76764ae66c4749e79e5a9bb5bcc300b6382dcaf8004dac98af8ebb9a05",
-    "/news/svo/svo-2026-08-06/": "a0249fc3fee20c63b96e9a1670c3f1627a3cc08d7d2f10c2053f78901254e8c4",
+    "/news/svo/svo-2026-08-06/": "284c536cba4bc556d06f538d2d1037ec1d11ce041e41c137e47a4c0c4a8b5384",
     "/news/reference/rosreestr-lnr-kontakty-2026/": "f009680a51271231a7a8379b79cefb8446f9a02c7f12f7e128a0412a2c0abfa8",
     "/news/reference/poisk-evakuirovannogo-grazhdanskogo/": "31b9911c9ad73ecc57fb4f2b656ff303403f3806b75725a316b8222934b91d17",
     "/news/reference/nasledstvo-nedvizhimost-lnr/": "ab964d138f8e84273461e62a257e24a5d58f35b35c7736392453a1319324bb03"
