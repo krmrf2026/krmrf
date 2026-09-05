@@ -1,9 +1,10 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/assessment/2026-09-06/": "5132a79d35c687ba86e913fb4e1756437e58796deab586464f0c2ee0929b7fa3",
     "/news/kremennaya/krm-2026-09-04/": "8409b40752044a7b4d0f2bfcb53e562c5b837466032ad5bbf3f64284a0681a8d",
     "/news/svo/itogi-letney-kampanii-2026/": "4901c2a65ba784490311605bb32472da63ac028d0cc4f06d500cb03d0743e76c",
-    "/assessment/2026-08-30/": "fea1b04a744b9ef58dce8a68ea04d70fccee3570a4db9a0d14c61f08564927eb",
+    "/assessment/2026-08-30/": "8b95b8273bd1d22ce72f5f84fe549b1bf4d8627da4f4b80d25506dfe2264374b",
     "/war-crimes/lisichansk-stahanov-2026-08-26/": "6a333f309edaf9e27c5447cb8032e79e62f5960036ff932798a30fad8261b763",
     "/news/civilian-impact/budushchee-donbassa-posle-svo/": "fa4da2883c87ebf010973fa69a8f6ea2ad544593070fdcc8ad1984d1229bff7f",
     "/assessment/2026-08-23/": "cbc2ea32549d647a03fafd8a9172c6472fcc098ed4674b7b4888e6d65bf93372",
