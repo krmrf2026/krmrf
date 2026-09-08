@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">БПЛА в публикациях, июнь — август 2026</title>
+  <desc id="desc">Июнь: 97 сообщений, 39,3 процента всей ленты, всего около 247 публикаций. Июль: 103 сообщения, 40,2 процента, около 256 публикаций. Август: 85 сообщений, 39,2 процента, около 217 публикаций.</desc>
+
+  <rect width="1000" height="620" rx="18" fill="#f5f2eb"/>
+
+  <g font-family="Arial, Helvetica, sans-serif" fill="#202522">
+    <text x="54" y="50" font-size="31" font-weight="700">БПЛА в публикациях, июнь — август 2026</text>
+    <text x="54" y="79" font-size="16" fill="#626a65">Число сообщений с упоминанием БПЛА и доля темы во всей месячной ленте</text>
+
+    <g font-size="13" fill="#626a65">
+      <text x="76" y="145" text-anchor="end">120</text>
+      <text x="76" y="190" text-anchor="end">100</text>
+      <text x="76" y="235" text-anchor="end">80</text>
+      <text x="76" y="280" text-anchor="end">60</text>
+      <text x="76" y="325" text-anchor="end">40</text>
+      <text x="76" y="370" text-anchor="end">20</text>
+      <text x="76" y="415" text-anchor="end">0</text>
+
+      <text x="908" y="145">50%</text>
+      <text x="908" y="199">40%</text>
+      <text x="908" y="253">30%</text>
+      <text x="908" y="307">20%</text>
+      <text x="908" y="361">10%</text>
+      <text x="908" y="415">0%</text>
+    </g>
+
+    <g stroke="#d9d3c8" stroke-width="1">
+      <line x1="90" y1="140" x2="892" y2="140"/>
+      <line x1="90" y1="185" x2="892" y2="185"/>
+      <line x1="90" y1="230" x2="892" y2="230"/>
+      <line x1="90" y1="275" x2="892" y2="275"/>
+      <line x1="90" y1="320" x2="892" y2="320"/>
+      <line x1="90" y1="365" x2="892" y2="365"/>
+    </g>
+
+    <g stroke="#aaa397" stroke-width="1.3">
+      <line x1="90" y1="410" x2="892" y2="410"/>
+      <line x1="90" y1="122" x2="90" y2="410"/>
+    </g>
+
+    <text x="36" y="272" font-size="13" fill="#626a65" transform="rotate(-90 36 272)">сообщения</text>
+    <text x="908" y="116" font-size="13" fill="#626a65">доля темы</text>
+
+    <g>
+      <rect x="176" y="192" width="118" height="218" rx="6" fill="#849a92"/>
+      <rect x="410" y="178" width="118" height="232" rx="6" fill="#214f43"/>
+      <rect x="644" y="219" width="118" height="191" rx="6" fill="#9aada7"/>
+
+      <text x="235" y="228" text-anchor="middle" font-size="28" font-weight="700" fill="#ffffff">97</text>
+      <text x="469" y="214" text-anchor="middle" font-size="28" font-weight="700" fill="#ffffff">103</text>
+      <text x="703" y="255" text-anchor="middle" font-size="28" font-weight="700" fill="#ffffff">85</text>
+
+      <text x="235" y="443" text-anchor="middle" font-size="19" font-weight="700">Июнь</text>
+      <text x="469" y="443" text-anchor="middle" font-size="19" font-weight="700">Июль</text>
+      <text x="703" y="443" text-anchor="middle" font-size="19" font-weight="700">Август</text>
+    </g>
+
+    <polyline points="235,198 469,193 703,198" fill="none" stroke="#9b3d2b" stroke-width="3.2"/>
+    <g fill="#9b3d2b">
+      <circle cx="235" cy="198" r="5.5"/>
+      <circle cx="469" cy="193" r="5.5"/>
+      <circle cx="703" cy="198" r="5.5"/>
+    </g>
+
+    <g font-size="14" font-weight="700" fill="#9b3d2b">
+      <text x="235" y="174" text-anchor="middle">39,3%</text>
+      <text x="469" y="169" text-anchor="middle">40,2%</text>
+      <text x="703" y="174" text-anchor="middle">39,2%</text>
+    </g>
+
+    <text x="54" y="488" font-size="16" font-weight="700">Июль — максимум по числу сообщений; в августе их стало меньше, но доля темы почти не изменилась.</text>
+
+    <g transform="translate(54 514)">
+      <rect x="0" y="0" width="892" height="78" rx="10" fill="#fbf9f4" stroke="#d9d3c8"/>
+      <line x1="297" y1="0" x2="297" y2="78" stroke="#e2ddd4"/>
+      <line x1="594" y1="0" x2="594" y2="78" stroke="#e2ddd4"/>
+
+      <text x="22" y="25" font-size="13" fill="#626a65">Июнь</text>
+      <text x="22" y="53" font-size="17" font-weight="700">97 <tspan font-size="14" font-weight="400" fill="#626a65">· 39,3% · всего ≈247</tspan></text>
+
+      <text x="319" y="25" font-size="13" fill="#626a65">Июль</text>
+      <text x="319" y="53" font-size="17" font-weight="700">103 <tspan font-size="14" font-weight="400" fill="#626a65">· 40,2% · всего ≈256</tspan></text>
+
+      <text x="616" y="25" font-size="13" fill="#626a65">Август</text>
+      <text x="616" y="53" font-size="17" font-weight="700">85 <tspan font-size="14" font-weight="400" fill="#626a65">· 39,2% · всего ≈217</tspan></text>
+    </g>
+  </g>
+</svg>
