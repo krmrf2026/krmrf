@@ -1,5 +1,35 @@
 [
   {
+    "id": "chto-delat-pri-atake-bpla-lnr",
+    "type": "guide",
+    "title": "Что делать при атаке БПЛА в ЛНР: памятка для дома, улицы и машины",
+    "url": "/news/reference/chto-delat-pri-atake-bpla-lnr/",
+    "section": "law",
+    "datePublished": "2026-09-15",
+    "dateModified": "2026-09-15",
+    "status": null,
+    "excerpt": "Пошаговая памятка при атаке БПЛА: куда перейти дома, где укрыться на улице, как действовать в машине, что сообщить по номеру 112 и почему нельзя трогать обломки.",
+    "image": "/assets/img/news/civilian-impact/bpla-lnr-2026-07-08/cover2.webp",
+    "imageAlt": "Сотрудник МЧС тушит повреждённый гражданский автомобиль на дороге",
+    "topics": [
+      "safety",
+      "daily",
+      "infrastructure"
+    ],
+    "locations": [
+      "ЛНР",
+      "Кременная"
+    ],
+    "reviewedAt": "2026-09-15",
+    "reviewAfter": "2026-10-15",
+    "reviewStatus": "current",
+    "home": {
+      "guide": 1
+    },
+    "seoTitle": "Атака БПЛА: что делать дома, на улице и в машине",
+    "seoDescription": "Пошаговая памятка при атаке БПЛА в ЛНР: безопасное место дома, укрытие на улице, действия в машине, после удара и при находке обломков."
+  },
+  {
     "id": "assessment-2026-09-13",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 7–13 сентября 2026",

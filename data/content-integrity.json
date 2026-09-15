@@ -1,10 +1,11 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/reference/chto-delat-pri-atake-bpla-lnr/": "26768955f597a113d88e1f55ae11cc1f14de16d9cabb5bf15e4d030772ee14dc",
     "/assessment/2026-09-13/": "dabe7e7507ae477bab9b0dd308aa9c12ec3a4a408009ab33670f2ca97156b71a",
-    "/news/civilian-impact/bpla-lnr-2026-09-08/": "1cd39fa505f2fb645be00bfcd0838999883134881e47ec8fd63a6a99888d3f77",
+    "/news/civilian-impact/bpla-lnr-2026-09-08/": "a034dca3b4167bb3d8c7281a7bd60f5fdd90ac703f7f7f5eff775795c9a15d20",
     "/assessment/2026-09-06/": "7f7bfa711b9f946fd996551d5226faaadfbc47de950b624b9154c9baaa2add84",
-    "/news/kremennaya/krm-2026-09-04/": "8409b40752044a7b4d0f2bfcb53e562c5b837466032ad5bbf3f64284a0681a8d",
+    "/news/kremennaya/krm-2026-09-04/": "8a92b0f74d12bec3c0c448790121977668f26648d8daffd7282c89387baf0737",
     "/news/svo/itogi-letney-kampanii-2026/": "4901c2a65ba784490311605bb32472da63ac028d0cc4f06d500cb03d0743e76c",
     "/assessment/2026-08-30/": "8b95b8273bd1d22ce72f5f84fe549b1bf4d8627da4f4b80d25506dfe2264374b",
     "/war-crimes/lisichansk-stahanov-2026-08-26/": "6a333f309edaf9e27c5447cb8032e79e62f5960036ff932798a30fad8261b763",
@@ -19,7 +20,7 @@
     "/news/reference/pamyatka-seme-pered-dolgim-otezdom-2026/": "fe6c6fdb0672eb56d9379cee979551e92dad8509a4fe0275c612f95e5705e239",
     "/news/svo/svo-2026-08-06/": "284c536cba4bc556d06f538d2d1037ec1d11ce041e41c137e47a4c0c4a8b5384",
     "/assessment/2026-08-02/": "e8cba3caef4711c772885f8422c69af4a4347f20bdf7f5e88f77325925b3489c",
-    "/news/reference/telefony-sluzhb-kremennaya-2026/": "6205bbe5beb50ab592b109d8ce2836dd4e60c797ba9ad5b82bcb76a5ff267070",
+    "/news/reference/telefony-sluzhb-kremennaya-2026/": "3774c2250bb71bc3d0a6f18cd11bdb1536ceb14a263134bd6e0258be33c306db",
     "/news/kremennaya/krm-2026-07-28/": "cebdf689d91f5c8f2d1b0817d84553e21e2f5f21f5ca987124c17b38ed29001b",
     "/assessment/2026-07-26/": "2a013f88286a273e561b45f0ca492b0ed6cae135839c7faab45eb17e973c779b",
     "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/": "3aa53a76764ae66c4749e79e5a9bb5bcc300b6382dcaf8004dac98af8ebb9a05",
