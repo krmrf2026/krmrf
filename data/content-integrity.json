@@ -1,11 +1,12 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/kremennaya/krm-2026-09-18/": "db2d67f178a413c4446752d73bfd8890410bae6730cadd4063001c7cd97817be",
     "/news/reference/chto-delat-pri-atake-bpla-lnr/": "37c4d64ceabcd1bfab6161ab89cffe5cdd2607223b3f1df70d65f80ffd40863c",
     "/assessment/2026-09-13/": "dabe7e7507ae477bab9b0dd308aa9c12ec3a4a408009ab33670f2ca97156b71a",
     "/news/civilian-impact/bpla-lnr-2026-09-08/": "a034dca3b4167bb3d8c7281a7bd60f5fdd90ac703f7f7f5eff775795c9a15d20",
     "/assessment/2026-09-06/": "7f7bfa711b9f946fd996551d5226faaadfbc47de950b624b9154c9baaa2add84",
-    "/news/kremennaya/krm-2026-09-04/": "8a92b0f74d12bec3c0c448790121977668f26648d8daffd7282c89387baf0737",
+    "/news/kremennaya/krm-2026-09-04/": "81ef427aec16388efbc119f3e31aaee11ce9ceed93de0bc4360207e1ca67df88",
     "/news/svo/itogi-letney-kampanii-2026/": "4901c2a65ba784490311605bb32472da63ac028d0cc4f06d500cb03d0743e76c",
     "/assessment/2026-08-30/": "8b95b8273bd1d22ce72f5f84fe549b1bf4d8627da4f4b80d25506dfe2264374b",
     "/war-crimes/lisichansk-stahanov-2026-08-26/": "6a333f309edaf9e27c5447cb8032e79e62f5960036ff932798a30fad8261b763",

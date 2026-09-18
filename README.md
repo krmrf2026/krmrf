@@ -109,7 +109,7 @@ PORT=8080 npm run serve:dist
 ```bash
 npm run images
 npm run build
-npm run content:lock
+clear
 ```
 
 5. Выполните:
