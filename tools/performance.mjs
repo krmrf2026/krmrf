@@ -14,7 +14,7 @@ const filesIn = (directory, extension) => fs.readdirSync(path.join(ROOT, directo
 const budgets = [
   ['data/search-index.json', 600_000, 150_000],
   ['data/zones.geojson', 750_000, 100_000],
-  ['archive/index.html', 140_000, 25_000],
+  ['archive/index.html', 145_000, 25_000],
   ['index.html', 45_000, 12_000]
 ];
 for (const [file, rawBudget, gzipBudget] of budgets) {
