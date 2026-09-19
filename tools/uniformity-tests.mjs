@@ -5,6 +5,7 @@ import { test } from 'node:test';
 import { setImmediate } from 'node:timers/promises';
 import { ancestors, attribute, hasClass, rawElement, scanElements, textContent } from './lib/html-fragments.mjs';
 import { syncPublicationLayout } from './lib/publication-layout.mjs';
+import { decodeSearchTerms, encodeSearchTerms } from './lib/search-index.mjs';
 
 const read = file => fs.readFileSync(file, 'utf8');
 const pages = JSON.parse(read('data/pages.json'));
@@ -84,6 +85,15 @@ const searchRuntime = (query, options = {}) => {
     submit(value) { input.value = value; form.events.submit({ preventDefault() {} }); }
   };
 };
+
+
+test('search index v3 codec round-trips postings and remains backward compatible with v2', () => {
+  const source = new Map([['кременная', [0, 2, 83]], ['кременной', [1, 4]], ['лнр', [0, 1, 2, 3]]]);
+  const encoded = encodeSearchTerms(source, 84);
+  const decoded = decodeSearchTerms({ version: 3, postingWidth: encoded.postingWidth, terms: encoded.terms });
+  assert.deepEqual(decoded, [...source.entries()]);
+  assert.deepEqual(decodeSearchTerms({ version: 2, terms: Object.fromEntries(source) }), [...source.entries()]);
+});
 
 test('one-letter archive query does not inherit full-text matches', async () => {
   const runtime = archiveRuntime();

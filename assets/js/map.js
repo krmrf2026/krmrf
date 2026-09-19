@@ -39,6 +39,9 @@
     compareMaps: [],
     engine: '',
     comparing: false,
+    compareOpening: false,
+    compareRequestId: 0,
+    snapshotRequestId: 0,
     fullscreen: false,
     initialCamera: null
   };
@@ -49,6 +52,7 @@
     statusEl.dataset.level = level;
     statusEl.hidden = !message;
   };
+  const track = (name, params = {}) => window.KRMAnalytics?.goal(name, params);
   const formatDate = value => {
     if (!value) return 'дата не указана';
     const date = new Date(String(value).trim().replace(' ', 'T'));
@@ -303,11 +307,13 @@
   };
 
   const closeCompare = () => {
+    state.compareRequestId += 1;
+    state.compareOpening = false;
     state.compareMaps.forEach(map => { try { map.remove(); } catch {} });
     state.compareMaps = []; state.comparing = false;
     if (comparePanel) comparePanel.hidden = true;
     if (singlePanel) singlePanel.hidden = false;
-    if (compareBtn) compareBtn.textContent = 'Сравнить с текущей';
+    if (compareBtn) { compareBtn.textContent = 'Сравнить с текущей'; compareBtn.disabled = false; }
     setTimeout(() => state.singleMap?.resize(), 40);
     updateUrl();
   };
@@ -321,46 +327,72 @@
     a.onContinuousMove(() => sync(a, b)); b.onContinuousMove(() => sync(b, a));
   };
   const openCompare = async () => {
-    if (state.selected === 'current' || !state.selectedZones) return;
+    if (state.selected === 'current' || !state.selectedZones || state.compareOpening) return;
     if (state.comparing) { closeCompare(); return; }
+    const requestId = ++state.compareRequestId;
+    const selected = state.selected;
+    const selectedZones = state.selectedZones;
+    state.compareOpening = true;
+    if (compareBtn) compareBtn.disabled = true;
     const camera = state.singleMap?.camera() || state.initialCamera;
     if (singlePanel) singlePanel.hidden = true;
     if (comparePanel) comparePanel.hidden = false;
-    const record = recordByUpdated(state.selected);
-    if (compareOldLabel) compareOldLabel.textContent = `Было — ${formatDate(record?.updated || state.selected)}`;
+    const record = recordByUpdated(selected);
+    if (compareOldLabel) compareOldLabel.textContent = `Было — ${formatDate(record?.updated || selected)}`;
     if (compareCurrentLabel) compareCurrentLabel.textContent = `Сейчас — ${formatDate(state.currentUpdated)}`;
+    let oldMap = null;
+    let currentMap = null;
     try {
-      const oldMap = await createMap('mapCompareOld', state.selectedZones, { camera, fit: false });
-      const currentMap = await createMap('mapCompareCurrent', state.currentZones, { camera, fit: false });
+      oldMap = await createMap('mapCompareOld', selectedZones, { camera, fit: false });
+      if (requestId !== state.compareRequestId || state.selected !== selected) { oldMap.remove(); return; }
+      currentMap = await createMap('mapCompareCurrent', state.currentZones, { camera, fit: false });
+      if (requestId !== state.compareRequestId || state.selected !== selected) { oldMap.remove(); currentMap.remove(); return; }
       state.compareMaps = [oldMap, currentMap]; state.comparing = true;
       syncMaps(oldMap, currentMap);
       oldMap.onMove(updateUrl); currentMap.onMove(updateUrl);
       if (compareBtn) compareBtn.textContent = 'Закрыть сравнение';
       setStatus('Сравнение открыто: слева выбранный редакционный срез, справа текущее состояние. Масштаб и перемещение синхронизированы.', 'success');
+      track('map_action', { action: 'compare_open', snapshot: selected });
       updateUrl();
     } catch (error) {
-      console.error(error); closeCompare(); setStatus('Не удалось открыть режим сравнения.', 'error');
+      console.error(error);
+      try { oldMap?.remove(); } catch {}
+      try { currentMap?.remove(); } catch {}
+      if (requestId === state.compareRequestId) {
+        closeCompare();
+        setStatus('Не удалось открыть режим сравнения.', 'error');
+      }
+    } finally {
+      if (requestId === state.compareRequestId) {
+        state.compareOpening = false;
+        if (compareBtn) compareBtn.disabled = false;
+      }
     }
   };
 
   const selectSnapshot = async value => {
-    if (state.comparing) closeCompare();
-    state.selected = value || 'current';
-    if (state.selected === 'current') {
+    const requestId = ++state.snapshotRequestId;
+    if (state.comparing || state.compareOpening) closeCompare();
+    const selected = value || 'current';
+    state.selected = selected;
+    if (selected === 'current') {
       state.selectedZones = state.currentZones; state.singleMap?.setZones(state.currentZones);
       if (viewNote) viewNote.textContent = historyNote(null);
       if (compareBtn) compareBtn.hidden = true;
-      setStatus('', 'info'); updateUrl(); return;
+      setStatus('', 'info'); track('map_action', { action: 'snapshot_current' }); updateUrl(); return;
     }
-    const record = recordByUpdated(state.selected);
+    const record = recordByUpdated(selected);
     try {
-      const data = await loadSnapshot(state.selected);
+      const data = await loadSnapshot(selected);
+      if (requestId !== state.snapshotRequestId || state.selected !== selected) return;
       state.selectedZones = data; state.singleMap?.setZones(data);
       if (viewNote) viewNote.textContent = historyNote(record);
       if (compareBtn) compareBtn.hidden = false;
-      setStatus(`Показано состояние карты на ${formatDate(record?.updated || state.selected)}. Для наглядного сравнения нажмите «Сравнить с текущей».`, 'success');
+      setStatus(`Показано состояние карты на ${formatDate(record?.updated || selected)}. Для наглядного сравнения нажмите «Сравнить с текущей».`, 'success');
+      track('map_action', { action: 'snapshot_select', snapshot: selected });
       updateUrl();
     } catch (error) {
+      if (requestId !== state.snapshotRequestId || state.selected !== selected) return;
       console.error(error); state.selected = 'current'; if (snapshotSelect) snapshotSelect.value = 'current';
       state.selectedZones = state.currentZones; state.singleMap?.setZones(state.currentZones); if (compareBtn) compareBtn.hidden = true;
       setStatus('Исторический срез не загрузился; показано текущее состояние.', 'error');
@@ -432,15 +464,16 @@
 
   snapshotSelect?.addEventListener('change', () => selectSnapshot(snapshotSelect.value));
   compareBtn?.addEventListener('click', openCompare);
-  resetBtn?.addEventListener('click', fitActive);
-  copyBtn?.addEventListener('click', copyLink);
+  resetBtn?.addEventListener('click', () => { fitActive(); track('map_action', { action: 'fit_all' }); });
+  copyBtn?.addEventListener('click', async () => { await copyLink(); track('map_action', { action: 'copy_link' }); });
   searchForm?.addEventListener('submit', event => {
     event.preventDefault(); const place = findPlace(searchInput?.value);
     if (!place) { setStatus('Населённый пункт не найден в локальном справочнике KRM РФ.', 'warning'); return; }
     const activeMaps = state.comparing ? state.compareMaps : [state.singleMap]; activeMaps.filter(Boolean).forEach(map => map.flyTo(place));
     setStatus(`Показан населённый пункт: ${place.name}.`, 'success');
+    track('map_action', { action: 'place_search' });
   });
-  openBtn?.addEventListener('click', enterFullscreen); exitBtn?.addEventListener('click', exitFullscreen);
+  openBtn?.addEventListener('click', async () => { await enterFullscreen(); track('map_action', { action: 'fullscreen_open' }); }); exitBtn?.addEventListener('click', exitFullscreen);
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && state.fullscreen) restoreFullscreenUi(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && state.fullscreen && !document.fullscreenElement) exitFullscreen(); });
 

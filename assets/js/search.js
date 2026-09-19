@@ -95,7 +95,20 @@
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    setQuery(input.value, { push: true });
+    const clean = String(input.value || '').trim();
+    window.KRMAnalytics?.goal('search_submit', {
+      length: Math.min(100, clean.length),
+      words: clean ? Math.min(8, clean.split(/\s+/).filter(Boolean).length) : 0
+    });
+    setQuery(clean, { push: true });
+  });
+
+  results.addEventListener('click', event => {
+    const link = event.target?.closest?.('a[href]');
+    if (!link) return;
+    let target = '';
+    try { target = new URL(link.href, location.href).pathname; } catch {}
+    window.KRMAnalytics?.goal('search_result_click', { target });
   });
 
   window.addEventListener('popstate', () => {
