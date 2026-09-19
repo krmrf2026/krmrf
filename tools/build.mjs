@@ -5,6 +5,7 @@ import { SITE_URL, SECTION_LABELS, TYPE_LABELS } from './lib/project.mjs';
 import { cspForFile, syncHostingMeta } from './lib/hosting.mjs';
 import { syncPublicationLayout } from './lib/publication-layout.mjs';
 import { cardImageSizes } from './lib/image-sizes.mjs';
+import { encodeSearchTerms } from './lib/search-index.mjs';
 
 const ROOT = path.resolve(process.cwd());
 const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
@@ -618,11 +619,13 @@ searchDocuments.forEach((item, documentId) => {
     searchTerms.get(term).push(documentId);
   }
 });
+const encodedSearch = encodeSearchTerms(searchTerms, searchDocuments.length);
 const searchIndex = {
-  version: 2,
+  version: 3,
   generatedAt: site.buildDate,
+  postingWidth: encodedSearch.postingWidth,
   documents: searchDocuments.map(({ _text, ...item }) => item),
-  terms: Object.fromEntries([...searchTerms.entries()].sort(([a], [b]) => a.localeCompare(b, 'ru')))
+  terms: encodedSearch.terms
 };
 const searchByUrl = new Map(searchDocuments.map(item => [item.url, item]));
 

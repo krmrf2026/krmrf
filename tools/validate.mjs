@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { SITE_URL, TYPE_LABELS, SECTION_LABELS } from './lib/project.mjs';
 import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
 import { checkUniformity } from './lib/check-uniformity.mjs';
+import { decodeSearchTerms } from './lib/search-index.mjs';
 import {
   REDIRECT_REGISTRY,
   normalizeRedirectRoute,
@@ -99,7 +100,7 @@ try { siteMeta = readJson('data/site.json'); } catch (error) { errors.push(`data
 try { sitemap = read('sitemap.xml'); } catch (error) { errors.push(`sitemap.xml: ${error.message}`); sitemap = ''; }
 
 if (!Array.isArray(pages)) errors.push('data/pages.json должен содержать массив.');
-if (search?.version !== 2 || !Array.isArray(search?.documents) || !search?.terms || typeof search.terms !== 'object') errors.push('data/search-index.json должен соответствовать формату v2.');
+if (![2, 3].includes(search?.version) || !Array.isArray(search?.documents) || !search?.terms) errors.push('data/search-index.json должен соответствовать формату v2/v3.');
 if (!packageMeta.version) errors.push('package.json: отсутствует version.');
 if (packageLockMeta.version !== packageMeta.version || packageLockMeta?.packages?.['']?.version !== packageMeta.version) {
   errors.push('package-lock.json: version не совпадает с package.json.');
@@ -315,7 +316,9 @@ for (const item of searchDocuments) {
   if (!item.title || !item.url || !item.description) errors.push(`search-index.json ${item.url || '?'}: неполная запись.`);
   for (const field of ['topics', 'locations', 'period']) if (item[field] === undefined) errors.push(`search-index.json ${item.url}: отсутствует поле ${field}.`);
 }
-for (const [term, postings] of Object.entries(search?.terms || {})) {
+let decodedSearchTerms = [];
+try { decodedSearchTerms = decodeSearchTerms(search); } catch (error) { errors.push(`search-index.json: ${error.message}`); }
+for (const [term, postings] of decodedSearchTerms) {
   if (!term || !Array.isArray(postings) || !postings.length) errors.push(`search-index.json: некорректный термин «${term}».`);
   else if (postings.some(id => !Number.isInteger(id) || id < 0 || id >= searchDocuments.length)) errors.push(`search-index.json: термин «${term}» ссылается на неизвестный документ.`);
 }

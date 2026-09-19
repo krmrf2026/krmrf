@@ -36,11 +36,34 @@
     return new Set([...smallest].filter(value => rest.every(set => set.has(value))));
   };
 
-  const create = payload => {
-    if (payload?.version !== 2 || !Array.isArray(payload.documents) || !payload.terms || typeof payload.terms !== 'object') {
-      throw new Error('Некорректный формат поискового индекса');
+  const decodeEntries = payload => {
+    if (payload?.version === 2 && payload.terms && typeof payload.terms === 'object' && !Array.isArray(payload.terms)) return Object.entries(payload.terms);
+    if (payload?.version !== 3 || !Array.isArray(payload.terms)) throw new Error('Некорректный формат поискового индекса');
+    const width = Number(payload.postingWidth);
+    if (!Number.isInteger(width) || width < 1 || width > 6 || payload.terms.length % 3) throw new Error('Некорректные параметры поискового индекса');
+    const entries = [];
+    let previous = '';
+    for (let index = 0; index < payload.terms.length; index += 3) {
+      const prefix = Number(payload.terms[index]);
+      const suffix = String(payload.terms[index + 1] ?? '');
+      const encoded = String(payload.terms[index + 2] ?? '');
+      if (!Number.isInteger(prefix) || prefix < 0 || prefix > previous.length || encoded.length % width) throw new Error('Повреждённая таблица терминов');
+      const term = previous.slice(0, prefix) + suffix;
+      const ids = [];
+      for (let offset = 0; offset < encoded.length; offset += width) {
+        const id = Number.parseInt(encoded.slice(offset, offset + width), 36);
+        if (!Number.isInteger(id)) throw new Error('Повреждённая таблица postings');
+        ids.push(id);
+      }
+      entries.push([term, ids]);
+      previous = term;
     }
+    return entries;
+  };
 
+  const create = payload => {
+    if (!Array.isArray(payload?.documents)) throw new Error('Некорректный формат поискового индекса');
+    const entries = decodeEntries(payload);
     const documents = payload.documents.map((document, id) => {
       const metadata = normalize([
         document.title, document.description, document.section, document.type,
@@ -51,12 +74,15 @@
         id,
         _title: normalize(document.title),
         _description: normalize(document.description),
-        _metadata: metadata,
-        _metadataWords: metadata.split(' ').filter(Boolean)
+        _metadata: metadata
       };
     });
-    const entries = Object.entries(payload.terms);
-    const exact = new Map(entries.map(([term, ids]) => [term, ids]));
+    for (const [term, ids] of entries) {
+      if (!term || !Array.isArray(ids) || !ids.length || ids.some(id => id < 0 || id >= documents.length)) {
+        throw new Error('Повреждённая таблица терминов');
+      }
+    }
+    const exact = new Map(entries);
     const matchCache = new Map();
 
     const relatedTerms = (term, allowFuzzy = false) => {
