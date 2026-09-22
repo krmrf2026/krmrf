@@ -1,5 +1,33 @@
 [
   {
+    "id": "nedvizhimost-lnr-gid",
+    "type": "guide",
+    "title": "Дом есть. А что с правом? Как устроена недвижимость в ЛНР и где искать свой маршрут",
+    "url": "/news/reference/nedvizhimost-lnr-gid/",
+    "section": "law",
+    "datePublished": "2026-09-22",
+    "dateModified": "2026-09-22",
+    "status": null,
+    "excerpt": "Не ещё одна инструкция, а карта по теме недвижимости в ЛНР: где заканчивается один вопрос и начинается другой — ЕГРН, земля, наследство, бесхозяйное жильё и компенсации.",
+    "image": "/assets/img/news/reference/nedvizhimost-lnr-gid/cover.webp",
+    "imageAlt": "Ключи, документы и модели домов как символ оформления недвижимости",
+    "topics": [
+      "daily",
+      "infrastructure"
+    ],
+    "locations": [
+      "ЛНР"
+    ],
+    "reviewedAt": "2026-09-22",
+    "reviewAfter": "2026-12-22",
+    "reviewStatus": "current",
+    "home": {
+      "guide": 1
+    },
+    "seoTitle": "Недвижимость в ЛНР: ЕГРН, земля и наследство",
+    "seoDescription": "Общий гид по недвижимости в ЛНР: как связаны ЕГРН, земля, наследство, бесхозяйное жильё, оформление из другого региона и компенсации."
+  },
+  {
     "id": "assessment-2026-09-20",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 14–20 сентября 2026",
