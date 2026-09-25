@@ -1,0 +1,19 @@
+.feature-rodnye .article-header{margin:0 auto 1.3rem;max-width:63ch}
+.feature-rodnye .article-title{max-width:16ch;font:700 clamp(2.05rem,4.4vw,3.2rem)/1.13 var(--font-serif);letter-spacing:-.025em}
+.feature-rodnye .feature-deck{font:400 clamp(1.07rem,1.6vw,1.25rem)/1.53 var(--font-sans);color:#4a514b;max-width:49ch;margin:1.2rem 0 1rem}
+.feature-rodnye .article-meta{border:0;padding:0;margin:1rem 0;color:#68716b}
+.feature-rodnye>p:not(.feature-deck),.feature-rodnye>h2,.feature-rodnye>.feature-related{max-width:61ch;margin-left:auto;margin-right:auto}
+.feature-rodnye>p:not(.feature-deck){font:400 clamp(1.055rem,1.15vw,1.12rem)/1.75 var(--font-sans);margin-top:0;margin-bottom:1.22rem;hyphens:auto}
+.feature-rodnye>h2{font:700 clamp(1.5rem,2.4vw,2rem)/1.22 var(--font-serif);margin:3rem auto 1.3rem;padding:0;scroll-margin-top:5rem}
+.feature-rodnye>figure{margin:2.35rem auto 2.65rem;max-width:68ch}
+.feature-rodnye>figure img{width:100%;height:auto;display:block;border-radius:.55rem;background:#ede8e0}
+.feature-rodnye>figure.feature-photo--portrait{max-width:540px}
+.feature-rodnye>figure.feature-photo--portrait img{max-height:560px;object-fit:cover;object-position:50% 35%}
+.feature-rodnye>figure figcaption{margin:.5rem 0 0;font-size:.79rem;color:#657169}
+.feature-rodnye>.feature-rodnye__pivot{max-width:49ch!important;margin:2rem auto!important;padding:1.2rem 0;border-top:1px solid #cfcabf;border-bottom:1px solid #cfcabf;font:italic 1.36rem/1.45 var(--font-serif)!important;color:#2d473c}
+.feature-rodnye .feature-related{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--color-border)}
+.feature-rodnye .feature-related a{display:block;margin:.65rem 0}
+.feature-rodnye .feature-credits{max-width:61ch;margin:1.6rem auto 0;font-size:.85rem}
+.feature-rodnye .feature-credits summary{cursor:pointer;min-height:44px;padding:.6rem 0}
+.feature-rodnye .feature-credits li{margin:.65rem 0;line-height:1.5}
+@media(max-width:520px){.feature-rodnye .article-title{max-width:100%}.feature-rodnye>p:not(.feature-deck){line-height:1.68;margin-bottom:1.05rem}.feature-rodnye>h2{margin-top:2.5rem}.feature-rodnye>figure{margin:1.8rem -.2rem 2rem}.feature-rodnye>figure.feature-photo--portrait img{max-height:440px}}
