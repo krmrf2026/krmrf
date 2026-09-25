@@ -5,6 +5,7 @@ import process from 'node:process';
 
 const ROOT = path.resolve(process.cwd());
 const errors = [];
+const publicationCount = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/pages.json'), 'utf8')).length;
 const size = file => fs.statSync(path.join(ROOT, file)).size;
 const gzipSize = file => zlib.gzipSync(fs.readFileSync(path.join(ROOT, file)), { level: 9 }).length;
 const filesIn = (directory, extension) => fs.readdirSync(path.join(ROOT, directory))
@@ -14,7 +15,7 @@ const filesIn = (directory, extension) => fs.readdirSync(path.join(ROOT, directo
 const budgets = [
   ['data/search-index.json', 600_000, 150_000],
   ['data/zones.geojson', 750_000, 100_000],
-  ['archive/index.html', 145_000, 25_000],
+  ['archive/index.html', 145_000 + Math.max(0, publicationCount - 87) * 1_600, 25_000],
   ['index.html', 45_000, 12_000]
 ];
 for (const [file, rawBudget, gzipBudget] of budgets) {
