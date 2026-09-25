@@ -105,6 +105,11 @@
         "type": "string",
         "format": "date"
       },
+      "reviewCadenceDays": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 90
+      },
       "reviewStatus": {
         "enum": [
           "current",
@@ -184,6 +189,7 @@
           "required": [
             "reviewedAt",
             "reviewAfter",
+            "reviewCadenceDays",
             "reviewStatus"
           ]
         }

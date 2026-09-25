@@ -18,8 +18,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-22",
-    "reviewAfter": "2026-12-22",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "home": {
       "guide": 1
@@ -119,7 +120,7 @@
     "url": "/news/reference/chto-delat-pri-atake-bpla-lnr/",
     "section": "law",
     "datePublished": "2026-09-15",
-    "dateModified": "2026-09-15",
+    "dateModified": "2026-09-24",
     "status": null,
     "excerpt": "Пошаговая памятка при атаке БПЛА: куда перейти дома, где укрыться на улице, как действовать в машине, что сообщить по номеру 112 и почему нельзя трогать обломки.",
     "image": "/assets/img/news/reference/chto-delat-pri-atake-bpla-lnr/cover.webp",
@@ -133,9 +134,16 @@
       "ЛНР",
       "Кременная"
     ],
-    "reviewedAt": "2026-09-15",
-    "reviewAfter": "2026-10-15",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-09-24",
+        "summary": "Повторно проверены официальные рекомендации МЧС, экстренные номера и порядок первой помощи."
+      }
+    ],
     "home": {
       "guide": 1
     },
@@ -413,9 +421,10 @@
     "home": {
       "guide": 1
     },
-    "reviewedAt": "2026-08-22",
-    "reviewAfter": "2026-09-22",
-    "reviewStatus": "review-due",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
+    "reviewStatus": "current",
     "seoTitle": "Наследство в ЛНР: квартира, дом, земля и документы",
     "seoDescription": "Как оформить наследство на квартиру, дом или землю в ЛНР: нотариус, 6 месяцев, старые украинские документы, МФЦ, Росреестр, ЕГРН и расходы."
   },
@@ -426,7 +435,7 @@
     "url": "/news/reference/poisk-evakuirovannogo-grazhdanskogo/",
     "section": "law",
     "datePublished": "2026-08-17",
-    "dateModified": "2026-08-17",
+    "dateModified": "2026-09-24",
     "status": null,
     "excerpt": "Пошаговый поиск гражданского после ранения или эвакуации: больницы и Минздрав ЛНР, полиция, ПВР, Российский Красный Крест и отдельный маршрут для задержанных гражданских.",
     "image": "/assets/img/news/reference/poisk-evakuirovannogo-grazhdanskogo/cover.webp",
@@ -443,9 +452,16 @@
     "home": {
       "guide": 2
     },
-    "reviewedAt": "2026-08-17",
-    "reviewAfter": "2026-09-17",
-    "reviewStatus": "review-due",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
+    "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-09-24",
+        "summary": "Повторно проверены контакты РКК, Минздрава ЛНР, Кременской больницы и МЧС России по ЛНР."
+      }
+    ],
     "seoTitle": "Как найти эвакуированного или раненого гражданского",
     "seoDescription": "Что делать, если мирного жителя ранили, эвакуировали и связь пропала: больницы ЛНР, полиция, Российский Красный Крест, ПВР и МККК."
   },
@@ -510,7 +526,7 @@
     "url": "/news/reference/rosreestr-lnr-kontakty-2026/",
     "section": "law",
     "datePublished": "2026-08-11",
-    "dateModified": "2026-08-25",
+    "dateModified": "2026-09-24",
     "status": null,
     "excerpt": "Официальный сайт Росреестра ЛНР, актуальные телефоны и простой маршрут: куда подавать документы, как проверить статус, получить выписку, исправить ошибку или обжаловать приостановление.",
     "image": "/assets/img/news/reference/rosreestr-lnr-kontakty-2026/cover.webp",
@@ -522,9 +538,16 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-10",
-    "reviewAfter": "2026-10-10",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-09-24",
+        "summary": "Повторно проверены официальный сайт, телефоны и маршруты обращения в Росреестр и МФЦ."
+      }
+    ],
     "seoTitle": "Росреестр ЛНР: официальный сайт и телефоны",
     "seoDescription": "Официальный сайт Росреестра ЛНР, актуальные телефоны, график и понятный маршрут: МФЦ, Роскадастр, статус заявления, ошибки и приостановление."
   },
@@ -574,8 +597,9 @@
     "home": {
       "guide": 4
     },
-    "reviewedAt": "2026-08-07",
-    "reviewAfter": "2026-10-07",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Перед СВО или долгим отъездом: памятка семье",
     "seoDescription": "Что подготовить семье перед СВО, вахтой, командировкой или долгим отъездом: документы, доверенность, здоровье, деньги, связь и защита от мошенников."
@@ -641,7 +665,7 @@
     "url": "/news/reference/telefony-sluzhb-kremennaya-2026/",
     "section": "law",
     "datePublished": "2026-07-31",
-    "dateModified": "2026-07-31",
+    "dateModified": "2026-09-24",
     "status": null,
     "excerpt": "Проверяемый справочник телефонов Кременной: экстренные службы, больница, администрация, МФЦ, соцслужбы, коммунальные организации, почта и полиция — с прямым первоисточником у каждого номера.",
     "image": "/assets/img/news/reference/telefony-sluzhb-kremennaya-2026/cover.webp",
@@ -661,9 +685,16 @@
     },
     "seoTitle": "Телефоны Кременной: службы, больница, МФЦ и ЖКХ",
     "seoDescription": "Телефоны Кременной: службы, больница, администрация, МФЦ, соцподдержка, свет, вода, газ, почта и полиция — источник у каждого номера.",
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
-    "reviewStatus": "current"
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
+    "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-09-24",
+        "summary": "Уточнена единая 30-дневная периодичность обязательной проверки контактного справочника."
+      }
+    ]
   },
   {
     "id": "krm-2026-07-28",
@@ -726,7 +757,7 @@
     "url": "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/",
     "section": "law",
     "datePublished": "2026-07-22",
-    "dateModified": "2026-08-25",
+    "dateModified": "2026-09-24",
     "status": null,
     "excerpt": "Как собственнику квартиры, дома или земли в ЛНР подать документы из другого региона через Госуслуги, Госключ, экстерриториальный МФЦ или представителя — и где дистанционная подача не решает юридическую проблему.",
     "image": "/assets/img/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/cover.webp",
@@ -737,9 +768,16 @@
     "home": {
       "important": 3
     },
-    "reviewedAt": "2026-08-25",
-    "reviewAfter": "2026-09-25",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-09-24",
+        "summary": "Повторно проверены дистанционные сервисы, переходные сроки и предупреждение об изменяемых условиях подачи."
+      }
+    ],
     "seoTitle": "Как оформить недвижимость в ЛНР из другого региона",
     "seoDescription": "Как собственнику квартиры, дома или земли в ЛНР подать документы из другого региона через Госуслуги, Госключ, экстерриториальный МФЦ или представителя."
   },
@@ -813,8 +851,9 @@
     "home": {
       "important": 5
     },
-    "reviewedAt": "2026-09-10",
-    "reviewAfter": "2026-10-10",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Срок регистрации недвижимости в ЛНР продлён до 2027 года",
     "seoDescription": "Срок представления старых документов для регистрации недвижимости в ЛНР продлён до 1 января 2027 года. Кого касается закон и что делать после 1 июля."
@@ -940,8 +979,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Бесхозное жильё в ЛНР: постановление № 123/26",
     "seoDescription": "Разбираем, что именно добавило постановление ЛНР № 123/26: реестр, решения уполномоченного органа, состав сведений и что делать собственнику после 1 июля…"
@@ -1119,8 +1159,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Выплаты пострадавшим в ЛНР: порядок № 118/26",
     "seoDescription": "Краткая памятка KRM РФ: кому положены выплаты по постановлению ЛНР № 118/26, какие документы нужны, куда обращаться и чем порядок отличается от помощи по…"
@@ -1291,7 +1332,7 @@
     "url": "/news/reference/vuplatylnr-2026-05-25/",
     "section": "law",
     "datePublished": "2026-05-25",
-    "dateModified": "2026-09-03",
+    "dateModified": "2026-09-24",
     "status": null,
     "excerpt": "Практическая памятка для пострадавших после введения режима ЧС в ЛНР: какие выплаты предусмотрены, кто может обратиться, какие документы нужны и почему деньги не назначаются автоматически.",
     "image": "/assets/img/news/reference/vuplatylnr-2026-05-25/cover.webp",
@@ -1299,9 +1340,16 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-09-24",
+        "summary": "Устранена устаревшая пометка первоначальной редакции; текущая актуальность вынесена в единый проверяемый статус."
+      }
+    ],
     "seoTitle": "Выплаты пострадавшим в Старобельске: порядок",
     "seoDescription": "Практическая памятка KRM РФ: какие выплаты предусмотрены для пострадавших после введения режима ЧС в ЛНР, куда обращаться, какие документы нужны и какие…"
   },
@@ -1476,8 +1524,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Регистрация недвижимости в ЛНР в 2026 году",
     "seoDescription": "Полное объяснение регистрации недвижимости в ЛНР: сроки, украинские документы, комиссии и риски."
@@ -1497,8 +1546,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Компенсация за повреждённое жильё в ЛНР",
     "seoDescription": "Практическая памятка для собственников жилья в ЛНР: компенсация за поврежденное и утраченное жилье, выплаты за имущество первой необходимости, ЕГРН…"
@@ -1596,8 +1646,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-10",
-    "reviewAfter": "2026-10-10",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Бесплатное оформление земли в ЛНР",
     "seoDescription": "Короткий разбор для жителей ЛНР: кто может оформить землю под домом бесплатно, какие документы проверить, куда обращаться, какие сроки действуют и где…"
@@ -1713,8 +1764,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "revisionHistory": [
       {
@@ -1921,8 +1973,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-07-11",
-    "reviewAfter": "2026-11-11",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Эвакуация тел погибших военнослужащих: порядок",
     "seoDescription": "Как проводится эвакуация тел погибших военнослужащих, кто отвечает за вывоз, как проходит идентификация и почему не существует «списков эвакуации»."
@@ -1960,8 +2013,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-07-11",
-    "reviewAfter": "2026-10-11",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "БО, БП и БВП на СВО: разница статусов и действия семьи",
     "seoDescription": "БО, БП и БВП на СВО простыми словами: различия статусов, сроки 6 и 3 месяца, розыск, справка, суд, ДНК, выплаты и алгоритм действий семьи."
@@ -1996,8 +2050,9 @@
     "locations": [
       "ЛНР"
     ],
-    "reviewedAt": "2026-09-03",
-    "reviewAfter": "2026-10-03",
+    "reviewedAt": "2026-09-24",
+    "reviewAfter": "2026-10-24",
+    "reviewCadenceDays": 30,
     "reviewStatus": "current",
     "seoTitle": "Бесхозное жильё в ЛНР: регистрация до 2027 года",
     "seoDescription": "Срок по соответствующим старым документам продлён до 1 января 2027 года. Как это влияет на риск бесхозяйного жилья в ЛНР и что делать собственнику."

@@ -26,7 +26,7 @@ git switch noviy-sait
 git pull --ff-only origin noviy-sait
 nvm use
 npm ci
-sudo apt-get update && sudo apt-get install -y imagemagick
+sudo apt-get update && sudo apt-get install -y imagemagick librsvg2-bin
 npx playwright install --with-deps chromium
 ```
 
@@ -114,6 +114,20 @@ PORT=8080 npm run serve:dist
 
 Существующие правила каркаса, оглавлений, метаданных и соседних переходов описаны в `PUBLICATION_LAYOUT.md`. Служебные блоки нормализуются командой `npm run build`; `npm run validate` проверяет их согласованность. Содержание статей сборка не переписывает.
 
+## Актуальность практических памяток
+
+Исторические статьи сохраняют дату публикации и не получают вводящую в заблуждение пометку «актуально сегодня». Для действующих памяток используются отдельные поля `reviewedAt`, `reviewAfter`, `reviewCadenceDays` и `reviewStatus` в `data/pages.json`.
+
+После фактической проверки всех ссылок, контактов, сумм, сроков и нормативных оснований зафиксируйте её датой:
+
+```bash
+npm run guides:review -- --date=YYYY-MM-DD
+npm run build
+npm run test:freshness
+```
+
+Команда назначает следующую проверку через 30 дней. QA и ежедневный GitHub Actions-контроль останавливаются за 7 дней до срока, чтобы памятка не успела стать просроченной. `reviewedAt` не заменяет `dateModified`: дату изменения материала повышайте только при реальной редакционной правке.
+
 ## Как добавить публикацию
 
 1. Создайте новую папку и `index.html` в подходящем разделе.
@@ -124,7 +138,7 @@ PORT=8080 npm run serve:dist
 ```bash
 npm run images
 npm run build
-clear
+npm run content:lock
 ```
 
 5. Выполните:

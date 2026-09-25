@@ -7,6 +7,12 @@ import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
 import { checkUniformity } from './lib/check-uniformity.mjs';
 import { decodeSearchTerms } from './lib/search-index.mjs';
 import {
+  MAX_REVIEW_CADENCE_DAYS,
+  addUtcDays,
+  expectedReviewStatus,
+  todayIso
+} from './lib/guide-freshness.mjs';
+import {
   REDIRECT_REGISTRY,
   normalizeRedirectRoute,
   readRedirectRules,
@@ -23,7 +29,7 @@ const readJson = file => JSON.parse(read(file));
 
 const TYPES = new Set(Object.keys(TYPE_LABELS));
 const SECTIONS = new Set(Object.keys(SECTION_LABELS));
-const TODAY = new Date().toISOString().slice(0, 10);
+const TODAY = todayIso();
 const GUIDE_STATUSES = new Set(['current', 'review-due', 'superseded', 'archived']);
 
 const decodeEntities = value => String(value || '')
@@ -154,10 +160,22 @@ for (const [index, item] of pages.entries()) {
 
   if (item.type === 'guide') {
     if (!validDate(item.reviewAfter)) errors.push(`${prefix}: для памятки нужен корректный reviewAfter.`);
-    if (!validDate(item.reviewedAt || item.dateModified)) errors.push(`${prefix}: для памятки нужен корректный reviewedAt/dateModified.`);
+    if (!validDate(item.reviewedAt)) errors.push(`${prefix}: для памятки нужен корректный reviewedAt.`);
     if (!GUIDE_STATUSES.has(item.reviewStatus)) errors.push(`${prefix}: неизвестный reviewStatus=${item.reviewStatus}.`);
     if (validDate(item.reviewAfter) && item.reviewAfter < item.datePublished) errors.push(`${prefix}: reviewAfter раньше публикации.`);
-    if (validDate(item.reviewAfter) && item.reviewAfter < TODAY && item.reviewStatus === 'current') errors.push(`${prefix}: срок reviewAfter наступил; памятку нужно проверить и изменить reviewStatus.`);
+    if (validDate(item.reviewedAt) && validDate(item.dateModified) && item.reviewedAt < item.dateModified) errors.push(`${prefix}: reviewedAt раньше dateModified; новая редакция ещё не проверена.`);
+    if (validDate(item.reviewedAt) && item.reviewedAt > TODAY) errors.push(`${prefix}: reviewedAt находится в будущем.`);
+    if (!Number.isInteger(item.reviewCadenceDays) || item.reviewCadenceDays < 1 || item.reviewCadenceDays > MAX_REVIEW_CADENCE_DAYS) {
+      errors.push(`${prefix}: reviewCadenceDays должен быть целым числом от 1 до ${MAX_REVIEW_CADENCE_DAYS}.`);
+    }
+    if (validDate(item.reviewedAt) && Number.isInteger(item.reviewCadenceDays)) {
+      const expectedAfter = addUtcDays(item.reviewedAt, item.reviewCadenceDays);
+      if (item.reviewAfter !== expectedAfter) errors.push(`${prefix}: reviewAfter должен быть ${expectedAfter} по заданной периодичности.`);
+    }
+    if (!['superseded', 'archived'].includes(item.reviewStatus) && validDate(item.reviewAfter)) {
+      const expectedStatus = expectedReviewStatus(item, TODAY);
+      if (item.reviewStatus !== expectedStatus) errors.push(`${prefix}: reviewStatus должен быть ${expectedStatus}.`);
+    }
     if (item.reviewStatus === 'superseded' && !item.supersededBy) errors.push(`${prefix}: для superseded нужен supersededBy.`);
   }
 

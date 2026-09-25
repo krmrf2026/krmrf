@@ -22,8 +22,16 @@ const filter = source => !source.includes(`${path.sep}.git${path.sep}`)
 fs.cpSync(ROOT, project, { recursive: true, filter });
 
 const pagesFile = path.join(project, 'data/pages.json');
-const firstPage = JSON.parse(fs.readFileSync(pagesFile, 'utf8'))[0];
+const catalog = JSON.parse(fs.readFileSync(pagesFile, 'utf8'));
+const firstPage = catalog[0];
 const htmlFile = path.join(project, firstPage.url.replace(/^\//, ''), 'index.html');
+const neighbourPage = catalog.find(item => {
+  if (item.type === 'guide') return false;
+  const file = path.join(project, item.url.replace(/^\//, ''), 'index.html');
+  return fs.readFileSync(file, 'utf8').includes('data-series-kind="previous"');
+});
+if (!neighbourPage) throw new Error('Fixture has no publication with a previous link');
+const neighbourHtmlFile = path.join(project, neighbourPage.url.replace(/^\//, ''), 'index.html');
 const redirectsFile = path.join(project, '_redirects');
 const workflowFile = path.join(project, '.github/workflows/pages.yml');
 const nvmrcFile = path.join(project, '.nvmrc');
@@ -34,6 +42,7 @@ const generatedAliasDir = path.join(project, 'map/archive');
 const originals = new Map([
   [pagesFile, fs.readFileSync(pagesFile, 'utf8')],
   [htmlFile, fs.readFileSync(htmlFile, 'utf8')],
+  [neighbourHtmlFile, fs.readFileSync(neighbourHtmlFile, 'utf8')],
   [redirectsFile, fs.readFileSync(redirectsFile, 'utf8')],
   [workflowFile, fs.readFileSync(workflowFile, 'utf8')],
   [nvmrcFile, fs.readFileSync(nvmrcFile, 'utf8')],
@@ -41,6 +50,7 @@ const originals = new Map([
 ]);
 const originalPages = originals.get(pagesFile);
 const originalHtml = originals.get(htmlFile);
+const originalNeighbourHtml = originals.get(neighbourHtmlFile);
 
 const restore = () => {
   for (const [file, content] of originals) fs.writeFileSync(file, content);
@@ -91,6 +101,25 @@ test('modified before published', () => {
   pages[0].dateModified = '2020-01-01';
   fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
 }, 'dateModified раньше datePublished');
+
+test('guide review before latest edit', () => {
+  const pages = JSON.parse(originalPages);
+  pages[0].reviewedAt = '2026-09-20';
+  pages[0].reviewAfter = '2026-10-20';
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
+}, 'reviewedAt раньше dateModified');
+
+test('guide review cadence mismatch', () => {
+  const pages = JSON.parse(originalPages);
+  pages[0].reviewAfter = '2026-10-25';
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
+}, 'reviewAfter должен быть 2026-10-24');
+
+test('guide status mismatch', () => {
+  const pages = JSON.parse(originalPages);
+  pages[0].reviewStatus = 'review-due';
+  fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
+}, 'reviewStatus должен быть current');
 
 test('title and H1 mismatch', () => {
   fs.writeFileSync(
@@ -203,7 +232,10 @@ test('unstyled last-assessment navigation', () => {
 }, 'series-nav должна быть единственным последним блоком');
 
 test('missing neighbouring publication', () => {
-  fs.writeFileSync(htmlFile, originalHtml.replace(/<a\b[^>]*data-series-kind="previous"[^>]*>[\s\S]*?<\/a>/, ''));
+  fs.writeFileSync(
+    neighbourHtmlFile,
+    originalNeighbourHtml.replace(/<a\b[^>]*data-series-kind="previous"[^>]*>[\s\S]*?<\/a>/, '')
+  );
 }, 'пропущен или неверен переход previous');
 
 test('incomplete table of contents', () => {
