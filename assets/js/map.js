@@ -382,6 +382,9 @@
       setStatus('', 'info'); track('map_action', { action: 'snapshot_current' }); updateUrl(); return;
     }
     const record = recordByUpdated(selected);
+    state.selectedZones = null;
+    if (compareBtn) compareBtn.hidden = true;
+    setStatus('Загружается выбранный редакционный срез…', 'info');
     try {
       const data = await loadSnapshot(selected);
       if (requestId !== state.snapshotRequestId || state.selected !== selected) return;
@@ -395,7 +398,9 @@
       if (requestId !== state.snapshotRequestId || state.selected !== selected) return;
       console.error(error); state.selected = 'current'; if (snapshotSelect) snapshotSelect.value = 'current';
       state.selectedZones = state.currentZones; state.singleMap?.setZones(state.currentZones); if (compareBtn) compareBtn.hidden = true;
+      if (viewNote) viewNote.textContent = historyNote(null);
       setStatus('Исторический срез не загрузился; показано текущее состояние.', 'error');
+      updateUrl();
     }
   };
 
