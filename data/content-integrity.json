@@ -1,6 +1,7 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/svo/svo-2026-09-30/": "d8ed4a1551bbbc37d3812345361e443c0f1c6030c1c6304dd785bf4d2b23cf8c",
     "/news/reference/nedvizhimost-lnr-gid/": "b66bc3b73c50fe2733146f6d1da6a162b8d3eae0c6743b952b1c93c977e5e025",
     "/news/civilian-impact/semi-razdelennye-voynoy/": "b21f746c39ff9a72ced48bc9836f3e2ea1c1ace835a1fadd96e852d542eba30a",
     "/assessment/2026-09-27/": "48f1ce037ce5f47c9aab81684339bba6c51d574cf67f1ec482b6e3c7da229680",
@@ -12,7 +13,7 @@
     "/news/civilian-impact/bpla-lnr-2026-09-08/": "0fbb487e916017c789f8ba5a2a19ebfbb4686039a2fa500fc0bbc9861014b047",
     "/assessment/2026-09-06/": "7f7bfa711b9f946fd996551d5226faaadfbc47de950b624b9154c9baaa2add84",
     "/news/kremennaya/krm-2026-09-04/": "81ef427aec16388efbc119f3e31aaee11ce9ceed93de0bc4360207e1ca67df88",
-    "/news/svo/itogi-letney-kampanii-2026/": "4901c2a65ba784490311605bb32472da63ac028d0cc4f06d500cb03d0743e76c",
+    "/news/svo/itogi-letney-kampanii-2026/": "5df0a2af9663e5b43237a9934c5c2d0340c947707e35524e7529eadc88665aa4",
     "/assessment/2026-08-30/": "8b95b8273bd1d22ce72f5f84fe549b1bf4d8627da4f4b80d25506dfe2264374b",
     "/war-crimes/lisichansk-stahanov-2026-08-26/": "6a333f309edaf9e27c5447cb8032e79e62f5960036ff932798a30fad8261b763",
     "/news/civilian-impact/budushchee-donbassa-posle-svo/": "d83fe0f7a5e202d28b70d3fe0172a278df9f03e93762a7133a9a8059f5ad8f31",
