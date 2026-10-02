@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
-<title id="title">БПЛА в ленте KRM РФ: июнь — сентябрь 2026 года</title>
-<desc id="desc">В июне 97 публикаций с упоминанием БПЛА, в июле 103, в августе 85, в сентябре 75. Доля во всей экспортированной ленте составила 39,3, 40,2, 39,2 и 35,4 процента соответственно. Это статистика публикаций, а не число атак.</desc>
+<title id="title">БПЛА: июнь — сентябрь 2026 года</title>
+<desc id="desc">В июне зафиксировано 97 сообщений по теме БПЛА, в июле 103, в августе 85, в сентябре 75. Доля в сопоставимом информационном массиве составила 39,3, 40,2, 39,2 и 35,4 процента соответственно. Это частота сообщений, а не число атак.</desc>
 <rect width="1000" height="650" rx="28" fill="#f5f1e8"/>
-<text x="70" y="72" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#20201d">БПЛА в ленте KRM РФ: июнь — сентябрь</text>
-<text x="70" y="108" font-family="Arial, sans-serif" font-size="19" fill="#5a5954">Сообщения с «БПЛА / дрон / беспилотник» и доля во всей экспортированной ленте</text>
+<text x="70" y="72" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#20201d">Частота сообщений о БПЛА: июнь — сентябрь</text>
+<text x="70" y="108" font-family="Arial, sans-serif" font-size="19" fill="#5a5954">Количество сообщений по теме и доля в сопоставимом информационном массиве</text>
 <!-- grid -->
 <line x1="105" y1="470" x2="905" y2="470" stroke="#b9b4aa" stroke-width="2"/>
 <line x1="105" y1="390" x2="905" y2="390" stroke="#d7d1c6" stroke-width="1"/>
@@ -36,6 +36,6 @@
 <text x="810" y="510" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#34332f">Сентябрь</text>
 <rect x="82" y="548" width="836" height="68" rx="15" fill="#ebe4d7"/>
 <text x="105" y="576" font-family="Arial" font-size="17" font-weight="700" fill="#34332f">Важно:</text>
-<text x="175" y="576" font-family="Arial" font-size="17" fill="#4c4a45">это число публикаций, а не число атак или беспилотников.</text>
+<text x="175" y="576" font-family="Arial" font-size="17" fill="#4c4a45">это число сообщений, а не число атак или беспилотников.</text>
 <text x="105" y="602" font-family="Arial" font-size="16" fill="#4c4a45">Снижение частоты сообщений само по себе не доказывает такое же снижение гражданского риска.</text>
 </svg>
