@@ -1,9 +1,10 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/civilian-impact/bpla-lnr-2026-10-02/": "b5a581bae2c8d366ed18e83e2e14c6e8697b1d6da9dea416b706f3893721132b",
     "/news/svo/svo-2026-09-30/": "d868d6dd6a4bd3b513ffecd0751557bac114b5242bfbac045d2c93250b59123e",
     "/news/reference/nedvizhimost-lnr-gid/": "b66bc3b73c50fe2733146f6d1da6a162b8d3eae0c6743b952b1c93c977e5e025",
-    "/news/civilian-impact/semi-razdelennye-voynoy/": "b21f746c39ff9a72ced48bc9836f3e2ea1c1ace835a1fadd96e852d542eba30a",
+    "/news/civilian-impact/semi-razdelennye-voynoy/": "51c7ee8b98e82a45083c8ca877bb4dd9a408909db98e6aa044bd60ec01090cd9",
     "/assessment/2026-09-27/": "48f1ce037ce5f47c9aab81684339bba6c51d574cf67f1ec482b6e3c7da229680",
     "/assessment/2026-09-20/": "f727d30f7536f49f8d3387732ffae377c743f183f57c0ece01063bad5517fc4b",
     "/news/kremennaya/kremenskie-lesa-2022-2025/": "0e8c36bd05c730dab510f311507379cc4ba075cfaa8ffd59b0b89984a28aee8f",

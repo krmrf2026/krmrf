@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">БПЛА в ленте KRM РФ: июнь — сентябрь 2026 года</title>
+<desc id="desc">В июне 97 публикаций с упоминанием БПЛА, в июле 103, в августе 85, в сентябре 75. Доля во всей экспортированной ленте составила 39,3, 40,2, 39,2 и 35,4 процента соответственно. Это статистика публикаций, а не число атак.</desc>
+<rect width="1000" height="650" rx="28" fill="#f5f1e8"/>
+<text x="70" y="72" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#20201d">БПЛА в ленте KRM РФ: июнь — сентябрь</text>
+<text x="70" y="108" font-family="Arial, sans-serif" font-size="19" fill="#5a5954">Сообщения с «БПЛА / дрон / беспилотник» и доля во всей экспортированной ленте</text>
+<!-- grid -->
+<line x1="105" y1="470" x2="905" y2="470" stroke="#b9b4aa" stroke-width="2"/>
+<line x1="105" y1="390" x2="905" y2="390" stroke="#d7d1c6" stroke-width="1"/>
+<line x1="105" y1="310" x2="905" y2="310" stroke="#d7d1c6" stroke-width="1"/>
+<line x1="105" y1="230" x2="905" y2="230" stroke="#d7d1c6" stroke-width="1"/>
+<line x1="105" y1="150" x2="905" y2="150" stroke="#d7d1c6" stroke-width="1"/>
+<text x="62" y="476" font-family="Arial" font-size="17" fill="#6a675f">60</text>
+<text x="62" y="396" font-family="Arial" font-size="17" fill="#6a675f">75</text>
+<text x="62" y="316" font-family="Arial" font-size="17" fill="#6a675f">90</text>
+<text x="52" y="236" font-family="Arial" font-size="17" fill="#6a675f">105</text>
+<!-- bars -->
+<rect x="150" y="273" width="120" height="197" rx="9" fill="#4e6f62"/>
+<rect x="350" y="241" width="120" height="229" rx="9" fill="#4e6f62"/>
+<rect x="550" y="337" width="120" height="133" rx="9" fill="#4e6f62"/>
+<rect x="750" y="390" width="120" height="80" rx="9" fill="#4e6f62"/>
+<text x="210" y="256" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#20201d">97</text>
+<text x="410" y="224" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#20201d">103</text>
+<text x="610" y="320" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#20201d">85</text>
+<text x="810" y="373" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#20201d">75</text>
+<!-- share line, scaled visually within chart; labels carry exact values -->
+<polyline points="210,205 410,190 610,207 810,265" fill="none" stroke="#a54836" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="210" cy="205" r="9" fill="#a54836"/><circle cx="410" cy="190" r="9" fill="#a54836"/><circle cx="610" cy="207" r="9" fill="#a54836"/><circle cx="810" cy="265" r="9" fill="#a54836"/>
+<text x="210" y="181" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#a54836">39,3%</text>
+<text x="410" y="166" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#a54836">40,2%</text>
+<text x="610" y="183" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#a54836">39,2%</text>
+<text x="810" y="241" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#a54836">35,4%</text>
+<text x="210" y="510" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#34332f">Июнь</text>
+<text x="410" y="510" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#34332f">Июль</text>
+<text x="610" y="510" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#34332f">Август</text>
+<text x="810" y="510" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#34332f">Сентябрь</text>
+<rect x="82" y="548" width="836" height="68" rx="15" fill="#ebe4d7"/>
+<text x="105" y="576" font-family="Arial" font-size="17" font-weight="700" fill="#34332f">Важно:</text>
+<text x="175" y="576" font-family="Arial" font-size="17" fill="#4c4a45">это число публикаций, а не число атак или беспилотников.</text>
+<text x="105" y="602" font-family="Arial" font-size="16" fill="#4c4a45">Снижение частоты сообщений само по себе не доказывает такое же снижение гражданского риска.</text>
+</svg>
