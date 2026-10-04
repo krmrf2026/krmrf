@@ -4,9 +4,9 @@ import { SITE_URL } from './lib/project.mjs';
 const args = process.argv.slice(2);
 const value = flag => { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : ''; };
 const has = flag => args.includes(flag);
-const CONTENT = new Set(['post', 'previous', 'repeat', 'pinned', 'comment', 'profile', 'digest']);
+const CONTENT = new Set(['post', 'repeat', 'pinned', 'comment', 'profile', 'digest']);
 
-const usage = () => console.log(`KRM РФ UTM generator\n\nUsage:\n  npm run utm -- --url /news/... --source telegram --content post\n  npm run utm -- --url /news/... --source max --content post\n  npm run utm -- --url /news/... --both --content post\n\nOptions:\n  --url        Absolute krmrf.ru URL or site-relative path (required)\n  --source     telegram | max\n  --both       Print Telegram and MAX links\n  --campaign   Override campaign; default is the URL slug\n  --content    post | previous | repeat | pinned | comment | profile | digest\n`);
+const usage = () => console.log(`KRM РФ UTM generator\n\nUsage:\n  npm run utm -- --url /news/... --source telegram --content post\n  npm run utm -- --url /news/... --source max --content post\n  npm run utm -- --url /news/... --both --content post\n\nOptions:\n  --url        Absolute krmrf.ru URL or site-relative path (required)\n  --source     telegram | max\n  --both       Print Telegram and MAX links\n  --campaign   Override campaign; default is the URL slug\n  --content    post | repeat | pinned | comment | profile | digest\n`);
 
 const slug = input => String(input || '').toLowerCase().trim()
   .replace(/[^a-z0-9_-]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 80);
@@ -35,12 +35,7 @@ if (has('--self-test')) {
     && sample.searchParams.get('utm_source') === 'telegram' && sample.searchParams.get('utm_medium') === 'messenger'
     && sample.searchParams.get('utm_campaign') === 'example' && sample.searchParams.get('utm_content') === 'post'
     && sample.hash === '#part';
-  const previous = new URL(build({ rawUrl: '/assessment/2026-09-27/', source: 'max', campaign: '2026-10-04', content: 'previous' }));
-  const previousOk = previous.searchParams.get('utm_source') === 'max'
-    && previous.searchParams.get('utm_medium') === 'messenger'
-    && previous.searchParams.get('utm_campaign') === '2026-10-04'
-    && previous.searchParams.get('utm_content') === 'previous';
-  if (!ok || !previousOk) throw new Error(`UTM self-test failed: ${sample.href} | ${previous.href}`);
+  if (!ok) throw new Error(`UTM self-test failed: ${sample.href}`);
   console.log('UTM self-test passed.'); process.exit(0);
 }
 
