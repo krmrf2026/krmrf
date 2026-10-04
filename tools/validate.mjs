@@ -569,6 +569,10 @@ for (const full of htmlFiles) {
     if (cspTag && /frame-ancestors/i.test(attr(cspTag, 'content'))) {
       errors.push(`${rel}: frame-ancestors не действует в meta CSP и не должен создавать ложную гарантию.`);
     }
+    const metrikaScripts = html.match(/<script\b[^>]*\bsrc=["']\/assets\/js\/metrika\.js(?:\?[^"']*)?["'][^>]*>/gi) || [];
+    const analyticsPixels = html.match(/\banalytics-noscript-pixel\b/gi) || [];
+    if (metrikaScripts.length !== 1) errors.push(`${rel}: ожидается ровно один /assets/js/metrika.js, найдено ${metrikaScripts.length}.`);
+    if (analyticsPixels.length !== 1) errors.push(`${rel}: ожидается ровно один noscript-пиксель аналитики, найдено ${analyticsPixels.length}.`);
     for (const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
       const openTag = `<script${script[1]}>`;
       if (attr(openTag, 'src')) continue;
