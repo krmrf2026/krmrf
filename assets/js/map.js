@@ -2,6 +2,7 @@
   'use strict';
 
   const STYLE_URL = 'https://tiles.openfreemap.org/styles/bright';
+  const MAPLIBRE_MODULE_URL = 'https://unpkg.com/maplibre-gl@6.4.1/dist/maplibre-gl.mjs';
   const OSM_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   const DEFAULT_CENTER = [34.84915, 49.43933]; // [lng, lat]
   const DEFAULT_ZOOM = 5.03;
@@ -251,6 +252,12 @@
     };
   };
 
+  const loadMapLibre = async () => {
+    if (window.maplibregl) return;
+    try { window.maplibregl = await import(MAPLIBRE_MODULE_URL); }
+    catch (error) { console.warn('MapLibre не загрузился, будет использован резервный OSM:', error); }
+  };
+
   const createMap = async (containerId, zones, options = {}) => {
     if (window.maplibregl) {
       try { return await createMapLibre(containerId, zones, options); }
@@ -495,6 +502,7 @@
       if (updatedEl && state.currentUpdated) updatedEl.textContent = formatDate(state.currentUpdated);
       setupPlaces(places); setupHistory(history);
       state.initialCamera = cameraFromUrl();
+      await loadMapLibre();
       state.singleMap = await createMap('map', zones, { camera: state.initialCamera, fit: false });
       state.engine = state.singleMap.kind; state.singleMap.onMove(updateUrl);
       if (state.engine === 'maplibre') setStatus('Русскоязычная векторная подложка загружена. Подписи без русской версии скрываются; ключевые ориентиры добавлены слоем KRM РФ.', 'success');

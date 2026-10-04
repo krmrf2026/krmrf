@@ -24,7 +24,9 @@ try {
   if (new Set(history.versions.map(item => item.geometrySha256)).size !== history.versions.length) errors.push('map-history: одинаковая геометрия попала в интерфейс как разные срезы.');
   for (const item of history.versions) if (!item.snapshot || !exists(item.snapshot.replace(/^\//, ''))) errors.push(`map-history: отсутствует ${item.snapshot || 'snapshot'}.`);
 
-  if (!html.includes('maplibre-gl@5.24.0')) errors.push('map/index.html: MapLibre 5.24.0 не подключён.');
+  if (!html.includes('maplibre-gl@6.4.1/dist/maplibre-gl.css')) errors.push('map/index.html: CSS MapLibre 6.4.1 не подключён.');
+  if (html.includes('maplibre-gl@6.4.1/dist/maplibre-gl.js')) errors.push('map/index.html: v6 ошибочно подключён как удалённый UMD bundle.');
+  if (!js.includes('maplibre-gl@6.4.1/dist/maplibre-gl.mjs') || !js.includes('loadMapLibre')) errors.push('map.js: MapLibre 6.4.1 должен загружаться как ES module с Leaflet-fallback.');
   if (!html.includes('/assets/vendor/leaflet/leaflet.js')) errors.push('map/index.html: локальный Leaflet fallback удалён.');
   if (/Нейтральная KRM|нейтральная схема|Подложка/i.test(html)) errors.push('map/index.html: вернулся отклонённый интерфейс нейтральной подложки.');
   if (!html.includes('mapPlaceSearch') || !html.includes('mapSnapshotSelect') || !html.includes('mapComparePanel')) errors.push('map/index.html: нет поиска, истории или явного сравнения.');
