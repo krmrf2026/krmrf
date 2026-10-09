@@ -1,9 +1,10 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/news/civilian-impact/chuzhaya-smert-ne-razvlechenie/": "248bc10b46eae819ee6652a381d9bbc5591392414268292d710aa3cbc41f96c2",
     "/news/kremennaya/krm-2026-10-07/": "3c9ba06ac40913dbefa41a3dfa7219f0cad472d3cf1a037dcbabb361c6dd9f99",
     "/assessment/2026-10-04/": "2f7f6a60f0d649e42e5fbc1820a4048ecefa2ee1b74bd9aff044929e9c1c1bb6",
-    "/news/civilian-impact/bpla-lnr-2026-10-02/": "180c3bb25eeb5b5ce8a4dba9776d48c4cd6839071e9f629095bf3900fcca23a7",
+    "/news/civilian-impact/bpla-lnr-2026-10-02/": "fd12b68fc204148e7ec35f9f7d3cb299a6e520f7fbdcee9fd0a624a6303dfe60",
     "/news/svo/svo-2026-09-30/": "d868d6dd6a4bd3b513ffecd0751557bac114b5242bfbac045d2c93250b59123e",
     "/news/reference/nedvizhimost-lnr-gid/": "b66bc3b73c50fe2733146f6d1da6a162b8d3eae0c6743b952b1c93c977e5e025",
     "/news/civilian-impact/semi-razdelennye-voynoy/": "51c7ee8b98e82a45083c8ca877bb4dd9a408909db98e6aa044bd60ec01090cd9",
