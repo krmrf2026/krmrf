@@ -1,5 +1,32 @@
 [
   {
+    "id": "chuzhaya-smert-ne-razvlechenie",
+    "type": "article",
+    "title": "Чужая смерть - не развлечение",
+    "seoTitle": "Чужая смерть - не развлечение: о злорадстве на войне",
+    "seoDescription": "Почему чужая смерть не должна становиться шуткой. О злорадстве на войне, гражданских, детях и границе, которую не отменяют флаги и убеждения.",
+    "url": "/news/civilian-impact/chuzhaya-smert-ne-razvlechenie/",
+    "section": "civilian-impact",
+    "datePublished": "2026-10-09",
+    "dateModified": "2026-10-09",
+    "status": null,
+    "excerpt": "Необязательно публично демонстрировать скорбь. Но нельзя превращать чужую смерть в праздник. О гражданских, бойцах и ответственности за собственные слова.",
+    "image": "/assets/img/news/civilian-impact/chuzhaya-smert-ne-razvlechenie/cover.webp",
+    "imageAlt": "Разрушенное здание пекарни и разбор завалов в Лисичанске после удара 3 февраля 2024 года",
+    "period": "Авторский материал",
+    "topics": [
+      "civilian-impact",
+      "daily"
+    ],
+    "locations": [
+      "Донбасс",
+      "ЛНР"
+    ],
+    "home": {
+      "important": 1
+    }
+  },
+  {
     "id": "krm-2026-10-07",
     "type": "article",
     "title": "Кременная к 7 октября: тишина, перебои и обычная жизнь",
