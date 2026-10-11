@@ -146,6 +146,6 @@ fs.writeFileSync(path.join(root,'data/map-archive/journal.json'),JSON.stringify(
 const page=fs.readFileSync(path.join(root,'map/index.html'),'utf8'),d=json(root,'data/map-statistics.json');
 assert.equal(d.warnings.length,164);assert.equal(d.history.skippedRevisions.length,54);assert.equal(d.snapshots.length,2);
 assert.doesNotMatch(page,/Служебная причина импорта|Полнота истории|journal\.json|CSV|mapStatsCustom|mapStatsFrom|mapStatsTo/);
-assert.equal((page.match(/<details\b/g)||[]).length,3);assert.match(page,/mapStatsCopy[\s\S]*mapStatsPostPreview/);assert.ok(page.length<8000);okay(run(root,'tools/map-statistics.mjs',['--check']));
+assert.equal((page.match(/<details\b/g)||[]).length,4);assert.match(page,/<details id="mapStatsSectors" hidden>/);assert.match(page,/mapStatsCopy[\s\S]*mapStatsPostPreview/);assert.ok(page.length<8000);okay(run(root,'tools/map-statistics.mjs',['--check']));
 }finally{fs.rmSync(root,{recursive:true,force:true});}
 });

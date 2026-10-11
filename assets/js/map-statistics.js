@@ -1,4 +1,3 @@
-/* Areas are calculated and verified at build time, never in the browser. */
 (function () {
   'use strict';
   const root = document.getElementById('mapStatistics'), core = globalThis.KRMMapStatistics;
@@ -17,6 +16,17 @@
     el('mapStatsRange').textContent = core.range(selected);
     ['addedKm2', 'removedKm2', 'netKm2'].forEach((key, i) => { el(`mapStatsValue${i}`).textContent = core.area(selected.status === 'ok' ? selected[key] : null, i === 2); });
     const coverage = el('mapStatsCoverage'); coverage.textContent = core.notes(selected); coverage.hidden = !coverage.textContent;
+    const rows = core.sectorRows(selected);
+    el('mapStatsSectors').hidden = !rows.length;
+    el('mapStatsSectorsBody').replaceChildren(...rows.map(row => {
+      const tr = document.createElement('tr'), th = document.createElement('th');
+      tr.dataset.sector = row.id; th.scope = 'row'; th.textContent = row.label; tr.append(th);
+      ['addedKm2', 'removedKm2', 'netKm2'].forEach((key, i) => {
+        const td = document.createElement('td'); td.dataset.label = ['Добавлено', 'Исключено', 'Изменение'][i];
+        td.textContent = core.area(row[key], i === 2).replace(' км²', ''); tr.append(td);
+      });
+      return tr;
+    }));
     const label = period.value === 'month' ? `обновления за ${core.monthName(month.value)}`
       : period.value === 'day' ? `обновления за ${core.shortDate(day.value + 'T12:00:00Z')}` : 'последнее обновление';
     post.value = core.post(selected, label); message('');
@@ -35,8 +45,7 @@
   fetch('/data/map-statistics.json?v=' + root.dataset.statisticsKey, { signal: AbortSignal.timeout(12000) }).then(response => {
     if (!response.ok) throw new Error(); return response.json();
   }).then(payload => {
-    if (payload.schema !== 'krmrf-map-statistics-v1' || payload.current !== root.dataset.current || payload.fingerprint !== root.dataset.statisticsKey
-      || !payload.snapshots?.length || !Array.isArray(payload.intervals) || !Array.isArray(payload.daily) || !Array.isArray(payload.monthly) || !payload.periods?.latest) throw new Error();
+    if (payload.current !== root.dataset.current || payload.fingerprint !== root.dataset.statisticsKey || !core.validData(payload)) throw new Error();
     data = payload; period.disabled = false; render();
   }).catch(() => { controls.forEach(c => { c.disabled = true; }); message('Выбор периода недоступен. Сохранённая сводка доступна для копирования.'); });
 })();

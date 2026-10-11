@@ -98,9 +98,18 @@ const averageSin = (e, x0, x1) => {
 };
 // Integrating every arrangement cell rather than subtracting two total areas
 // preserves simultaneous additions/removals and counts overlaps exactly once.
-export function measureLayers(before, after = { edges: [], polygons: [] }) {
-  const edges = before.edges.map(e => ({ ...e, layer: 0 })).concat(after.edges.map(e => ({ ...e, layer: 1 })));
-  const cuts = new Set(edges.flatMap(e => [e.minX, e.maxX]));
+export function measureLayers(before, after = { edges: [], polygons: [] }, mask = null) {
+  if (mask && !mask.edges?.length) throw new Error('Пустая область локального расчёта.');
+  const west = mask ? Math.min(...mask.edges.map(e => e.minX)) : -Infinity;
+  const east = mask ? Math.max(...mask.edges.map(e => e.maxX)) : Infinity;
+  const sources = mask ? [before, after, mask] : [before, after];
+  // Restrict sweep cuts to the mask's longitude range. Keep all crossings at
+  // those longitudes, including rings north/south of the mask: they determine
+  // whether a containing polygon is inside, even when its boundary is far away.
+  const edges = sources.flatMap((source, layer) => source.edges
+    .filter(e => e.maxX > west && e.minX < east).map(e => ({ ...e, layer })));
+  const cuts = new Set(mask ? [west, east] : []);
+  for (const e of edges) for (const x of [e.minX, e.maxX]) if (x >= west && x <= east) cuts.add(x);
   candidates(edges, (a, b) => {
     if (orient(a.a, a.b, b.a) * orient(a.a, a.b, b.b) >= 0 || orient(b.a, b.b, a.a) * orient(b.a, b.b, a.b) >= 0) return;
     const ax = a.b[0] - a.a[0], ay = a.b[1] - a.a[1], bx = b.b[0] - b.a[0], by = b.b[1] - b.a[1];
@@ -108,7 +117,8 @@ export function measureLayers(before, after = { edges: [], polygons: [] }) {
     const t = ((b.a[0] - a.a[0]) * by - (b.a[1] - a.a[1]) * bx) / denominator;
     const x = a.a[0] + t * ax;
     if (!Number.isFinite(x)) throw new Error('Не удалось вычислить пересечение границ.');
-    cuts.add(Math.min(a.maxX, b.maxX, Math.max(a.minX, b.minX, x)));
+    const cut = Math.min(a.maxX, b.maxX, Math.max(a.minX, b.minX, x));
+    if (cut >= west && cut <= east) cuts.add(cut);
   });
   const xs = [...cuts].sort((a, b) => a - b), sums = [0, 0, 0], corrections = [0, 0, 0];
   const sorted = [...edges].sort((a, b) => a.minX - b.minX);
@@ -119,7 +129,7 @@ export function measureLayers(before, after = { edges: [], polygons: [] }) {
     while (cursor < sorted.length && sorted[cursor].minX < mid) active.push(sorted[cursor++]);
     active = active.filter(e => e.maxX > mid);
     const crossings = active.map(e => ({ e, y: yAt(e, mid) })).sort((a, b) => a.y - b.y);
-    const inside = [new Set(), new Set()];
+    const inside = sources.map(() => new Set());
     for (let j = 0; j < crossings.length;) {
       const lower = crossings[j];
       let k = j;
@@ -127,7 +137,7 @@ export function measureLayers(before, after = { edges: [], polygons: [] }) {
         const { e } = crossings[k++], set = inside[e.layer];
         if (set.has(e.poly)) set.delete(e.poly); else set.add(e.poly);
       }
-      if (k < crossings.length && (inside[0].size || inside[1].size)) {
+      if (k < crossings.length && (inside[0].size || inside[1].size) && (!mask || inside[2].size)) {
         const category = inside[0].size ? (inside[1].size ? 2 : 0) : 1;
         const value = (averageSin(crossings[k].e, x0, x1) - averageSin(lower.e, x0, x1)) * (x1 - x0) * RAD * EARTH_RADIUS ** 2 / 1e6;
         if (!Number.isFinite(value) || value < -1e-6) throw new Error('Некорректная площадь ячейки разбиения.');
@@ -136,7 +146,7 @@ export function measureLayers(before, after = { edges: [], polygons: [] }) {
       }
       j = k;
     }
-    if (inside[0].size || inside[1].size) throw new Error('Незамкнутая область при расчёте площади.');
+    if (inside.some(set => set.size)) throw new Error('Незамкнутая область при расчёте площади.');
   }
   return { beforeKm2: sums[0] + sums[2], afterKm2: sums[1] + sums[2], addedKm2: sums[1], removedKm2: sums[0], netKm2: sums[1] - sums[0] };
 }

@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.10.11-r23",
+  "version": "2026.10.11-r24",
   "type": "module",
   "scripts": {
     "build": "node tools/map-history.mjs && node tools/map-statistics.mjs && node tools/build.mjs",
@@ -36,7 +36,7 @@
     "test:map-state": "node --test tests/unit/map-state.test.mjs",
     "map:statistics": "node tools/map-history.mjs && node tools/map-statistics.mjs",
     "map:post": "node tools/map-post.mjs",
-    "test:map-statistics": "node --test tests/unit/map-statistics.test.mjs tests/unit/map-statistics-client.test.mjs",
+    "test:map-statistics": "node --test tests/unit/map-statistics.test.mjs tests/unit/map-statistics-client.test.mjs tests/unit/map-sectors.test.mjs",
     "test:map-history": "node --test tests/unit/map-history.test.mjs"
   },
   "devDependencies": {

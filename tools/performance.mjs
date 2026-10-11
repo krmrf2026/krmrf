@@ -34,7 +34,9 @@ const cssTotal = cssFiles.filter(file => !statisticsCss.includes(file)).reduce((
 if (jsTotal > 55_000) errors.push(`assets/js: общий размер ${jsTotal}, бюджет 55000`);
 if (cssTotal > 35_000) errors.push(`assets/css: общий размер ${cssTotal}, бюджет 35000`);
 
-if (statisticsJs.reduce((s, file) => s + size(file), 0) > 12000) errors.push('Статистика карты: JS превысил 12000 байт.');
+// Full chain validation and the regional view remain a small transfer on phones.
+if (statisticsJs.reduce((s, file) => s + size(file), 0) > 20000) errors.push('Статистика карты: JS превысил 20000 байт.');
+if (statisticsJs.reduce((s, file) => s + gzipSize(file), 0) > 6000) errors.push('Статистика карты: JS gzip превысил 6000 байт.');
 if (statisticsCss.reduce((s, file) => s + size(file), 0) > 3000) errors.push('Статистика карты: CSS превысил 3000 байт.');
 if (size('data/map-statistics.json') > 5000000) errors.push('Статистика карты: JSON превысил 5 МБ.');
 

@@ -6,6 +6,21 @@ export function validateConfig(config) {
   if (config?.schema !== 'krmrf-map-statistics-config-v1' || config.timezone !== 'Europe/Moscow'
       || config.legacyOffset !== '+03:00' || typeof config.scopeVersion !== 'string' || !config.scopeVersion.trim()
       || typeof config.scopeLabel !== 'string' || !config.scopeLabel.trim() || config.displayDecimals !== 1) throw new Error('Неподдерживаемая конфигурация статистики карты.');
+  const sectors = config.sectors ?? [];
+  if (!Array.isArray(sectors) || sectors.length > 12) throw new Error('Районы карты должны быть массивом не более 12 окон.');
+  const ids = new Set();
+  for (const sector of sectors) {
+    if (!sector || !/^[a-z][a-z0-9-]{0,39}$/.test(sector.id) || sector.id === 'other' || ids.has(sector.id)
+        || typeof sector.label !== 'string' || !sector.label.trim() || sector.label.length > 80
+        || !Array.isArray(sector.bounds) || sector.bounds.length !== 4 || !sector.bounds.every(Number.isFinite)) throw new Error('Некорректный район карты.');
+    const [west, south, east, north] = sector.bounds;
+    if (!(west < east && south < north) || west < -180 || east > 180 || east - west >= 180 || south <= -85 || north >= 85) throw new Error('Некорректные границы района карты.');
+    ids.add(sector.id);
+  }
+  for (let i = 0; i < sectors.length; i++) for (let j = i + 1; j < sectors.length; j++) {
+    const a = sectors[i].bounds, b = sectors[j].bounds;
+    if (Math.max(a[0], b[0]) < Math.min(a[2], b[2]) && Math.max(a[1], b[1]) < Math.min(a[3], b[3])) throw new Error('Районы карты пересекаются: возможен повторный счёт.');
+  }
   return config;
 }
 export function publishedAt(value, offset = '+03:00') {

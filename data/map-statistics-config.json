@@ -4,5 +4,10 @@
   "legacyOffset": "+03:00",
   "scopeVersion": "rf-layer-full-v1",
   "scopeLabel": "Весь российский контур на карте KRM РФ; без маски территории Украины",
-  "displayDecimals": 1
+  "displayDecimals": 1,
+  "sectors": [
+    { "id": "krasnyi-lyman", "label": "Красный Лиман и окрестности", "bounds": [37.65, 48.76, 38.15, 49.30] },
+    { "id": "vovchansk", "label": "Волчанск и восточные окрестности", "bounds": [36.85, 50.15, 37.40, 50.42] },
+    { "id": "orikhiv", "label": "Орехов и восточные окрестности", "bounds": [35.70, 47.43, 36.12, 47.70] }
+  ]
 }

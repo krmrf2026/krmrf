@@ -68,12 +68,36 @@ for (const failure of ['http', 'version']) {
     await expect(page.locator('#mapStatsStatus')).toHaveText('Текст скопирован.'); expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(expected);
   });
 }
+test('потерянное обновление при совпадающем ключе сохраняет проверенные статичные данные', async ({ page }) => {
+  await blockExternal(page);
+  const incomplete = structuredClone(data); incomplete.intervals.splice(1, 1);
+  await page.route('**/data/map-statistics.json*', route => route.fulfill({ contentType: 'application/json', body: JSON.stringify(incomplete) }));
+  await page.goto('/map/'); await figures(page, data.periods.latest);
+  await expect(page.locator('#mapStatsPeriod')).toBeDisabled(); await expect(page.locator('#mapStatsStatus')).toContainText('Сохранённая сводка');
+});
+test('сентябрь: весь месяц и ранние дни доступны; отрицательный район сохранён в посте', async ({ page }) => {
+  const september = data.monthly.find(m => m.month === '2026-09');
+  test.skip(!september?.sectors?.length, 'В этом архиве нет сентябрьской региональной сводки.');
+  await ready(page); await page.locator('#mapStatsPeriod').selectOption('month'); await page.locator('#mapStatsMonth').selectOption('2026-09');
+  await figures(page, september); await expect(page.locator('#mapStatsSectors')).toBeVisible();
+  await page.locator('#mapStatsSectors summary').click();
+  for (const row of september.sectors.filter(r => r.addedKm2 > 1e-7 || r.removedKm2 > 1e-7)) {
+    await expect(page.locator(`#mapStatsSectorsBody tr[data-sector="${row.id}"] td`).last()).toHaveText(area(row.netKm2, true).replace(' км²', ''));
+    await expect(page.locator('#mapStatsPost')).toHaveValue(new RegExp(row.label));
+  }
+  await page.locator('#mapStatsPeriod').selectOption('day'); await page.locator('#mapStatsDay').selectOption('2026-09-03');
+  await figures(page, data.daily.find(d => d.date === '2026-09-03'));
+});
 for (const width of [320, 360, 390, 430]) {
   test(`мобильная статистика ${width} px: все режимы и раскрытые таблицы помещаются`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 844 }); await ready(page);
     for (const id of ['mapStatsPostPreview', 'mapStatsDays', 'mapStatsMonths']) await page.locator('#' + id + ' summary').click();
     for (const mode of ['latest', 'day', 'month']) {
       await page.locator('#mapStatsPeriod').selectOption(mode);
+      if (mode === 'month' && data.monthly.some(m => m.month === '2026-09' && m.sectors?.length)) {
+        await page.locator('#mapStatsMonth').selectOption('2026-09');
+        if (await page.locator('#mapStatsSectors').isVisible()) await page.locator('#mapStatsSectors summary').click();
+      }
       const sizes = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
       expect(sizes.scroll - sizes.client).toBeLessThanOrEqual(1);
       const overflow = await page.locator('#mapStatistics').evaluate(root => {

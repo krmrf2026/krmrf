@@ -13,9 +13,11 @@ class Element {
   focus() { this.focused = true; }
   select() { this.selected = true; }
   setSelectionRange(start, end) { this.selection = [start, end]; }
+  append(...children) { this.children.push(...children); }
+  replaceChildren(...children) { this.children = children; }
 }
-async function harness({ ok = true, mismatch = false, malformed = false, clipboard = null, pending = false } = {}) {
-  const ids = ['mapStatistics','mapStatsPeriod','mapStatsMonth','mapStatsDay','mapStatsDayControl','mapStatsMonthControl','mapStatsPost','mapStatsPostPreview','mapStatsStatus','mapStatsRange','mapStatsValue0','mapStatsValue1','mapStatsValue2','mapStatsCoverage','mapStatsCopy','mapStatsDaily'];
+async function harness({ ok = true, mismatch = false, malformed = false, clipboard = null, pending = false, corrupt = null } = {}) {
+  const ids = ['mapStatistics','mapStatsPeriod','mapStatsMonth','mapStatsDay','mapStatsDayControl','mapStatsMonthControl','mapStatsPost','mapStatsPostPreview','mapStatsStatus','mapStatsRange','mapStatsValue0','mapStatsValue1','mapStatsValue2','mapStatsCoverage','mapStatsCopy','mapStatsDaily','mapStatsSectors','mapStatsSectorsBody'];
   const els = Object.fromEntries(ids.map(id => [id, new Element()]));
   els.mapStatistics.dataset = { current: payload.current, statisticsKey: payload.fingerprint };
   els.mapStatsPeriod.value = 'latest'; els.mapStatsMonth.value = payload.monthly.at(-1).month;
@@ -24,9 +26,9 @@ async function harness({ ok = true, mismatch = false, malformed = false, clipboa
   for (let i = 0; i < 3; i++) els['mapStatsValue' + i].textContent = 'Проверенная статичная сводка';
   els.mapStatsDaily.children = payload.daily.slice(-30).filter(d => d.status !== 'no_snapshot').reverse();
   let resolveFetch;
-  const response = { ok, json: async () => ({ ...structuredClone(payload), ...(mismatch ? { fingerprint: 'different-version' } : {}), ...(malformed ? { daily: null } : {}) }) };
+  const response = { ok, json: async () => { const data = { ...structuredClone(payload), ...(mismatch ? { fingerprint: 'different-version' } : {}), ...(malformed ? { daily: null } : {}) }; corrupt?.(data); return data; } };
   const sandbox = { Intl, Date, Number, Math, String, Object, Array, Set, Map, AbortSignal, navigator: { ...(clipboard ? { clipboard } : {}) },
-    document: { getElementById: id => els[id] },
+    document: { getElementById: id => els[id], createElement: () => new Element() },
     fetch: async url => { sandbox.requestUrl = url; return pending ? await new Promise(resolve => { resolveFetch = resolve; }) : response; } };
   vm.runInNewContext(coreScript, sandbox); vm.runInNewContext(clientScript, sandbox); await tick(); await tick();
   return { els, core: sandbox.KRMMapStatistics, requestUrl: sandbox.requestUrl, settle: async () => { resolveFetch(response); await tick(); await tick(); } };
@@ -81,4 +83,44 @@ test('клиент: копирование до загрузки JSON испол
   const rows = JSON.stringify(els.mapStatsDaily.children);
   assert.equal(els.mapStatsPeriod.disabled, true); await els.mapStatsCopy.fire('click'); assert.equal(copied, 'Проверенный статичный текст');
   await settle(); assert.equal(els.mapStatsPeriod.disabled, false); assert.equal(JSON.stringify(els.mapStatsDaily.children), rows);
+});
+
+test('клиент: сентябрь показывает снятия у Лимана и добавления на других участках', async () => {
+  const september = payload.monthly.find(m => m.month === '2026-09');
+  if (!september?.sectors?.length) return;
+  const { els, core } = await harness();
+  els.mapStatsPeriod.value = 'month'; els.mapStatsMonth.value = '2026-09'; await els.mapStatsPeriod.fire('change');
+  assert.equal(els.mapStatsSectors.hidden, false);
+  const expected = core.sectorRows(september);
+  assert.equal(els.mapStatsSectorsBody.children.length, expected.length);
+  for (const [n, r] of expected.entries()) {
+    const row = els.mapStatsSectorsBody.children[n];
+    assert.equal(row.dataset.sector, r.id);
+    assert.equal(row.children[3].textContent, core.area(r.netKm2, true).replace(' км²', ''));
+    assert.match(els.mapStatsPost.value, new RegExp(r.label));
+  }
+  assert.equal(els.mapStatsValue2.textContent, core.area(september.netKm2, true));
+});
+
+for (const [label, corrupt] of [
+  ['потерянное обновление', d => d.intervals.splice(1, 1)],
+  ['нарушенный порядок', d => [d.intervals[0], d.intervals[1]] = [d.intervals[1], d.intervals[0]]],
+  ['обнулённые снятия месяца', d => d.monthly.find(m => m.status === 'ok').removedKm2 += 1],
+  ['подмена регионального знака', d => { const i = d.intervals.find(i => i.status === 'ok'); i.sectors[0].netKm2 += 1; }],
+  ['потерянный день обновления', d => d.daily.find(d => d.status === 'updated').status = 'no_snapshot'],
+]) {
+  test('клиент: ' + label + ' при прежнем ключе не заменяет проверенную сводку', async () => {
+    const { els } = await harness({ corrupt });
+    assert.equal(els.mapStatsPeriod.disabled, true);
+    assert.equal(els.mapStatsValue2.textContent, 'Проверенная статичная сводка');
+    assert.equal(els.mapStatsPost.value, 'Проверенный статичный текст');
+    assert.match(els.mapStatsStatus.textContent, /Сохранённая сводка/);
+  });
+}
+test('день и месяц не зависят от строкового формата дат мобильного браузера', () => {
+  const AlternateFormat = class extends Intl.DateTimeFormat { get format() { return () => '10/01/2026'; } };
+  const sandbox = { Intl: { DateTimeFormat: AlternateFormat }, Date, Number, Math, String, Object, Array, Set, Map };
+  vm.runInNewContext(coreScript, sandbox);
+  assert.equal(sandbox.KRMMapStatistics.day('2026-09-30T21:00:00.000Z'), '2026-10-01');
+  assert.equal(sandbox.KRMMapStatistics.day('2026-09-30T20:59:59.999Z'), '2026-09-30');
 });
