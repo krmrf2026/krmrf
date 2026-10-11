@@ -68,6 +68,8 @@ export const PUBLIC_DIRS = new Set([
 export const PUBLIC_DATA_FILES = new Set([
   'map-changes.json',
   'map-places.json',
+  'map-statistics.json',
+  'map-statistics.csv',
   'rf_regions.json',
   'search-index.json',
   'zones.geojson'
@@ -105,8 +107,8 @@ export const listPublicFiles = root => {
       result.push(file);
       continue;
     }
-    if (parts[0] === 'data' && parts[1] === 'map-history' && parts.length === 3
-        && (parts[2] === 'manifest.json' || parts[2].endsWith('.geojson'))) {
+    if (parts[0] === 'data' && ['map-history', 'map-archive'].includes(parts[1]) && parts.length === 3
+        && (['manifest.json', 'journal.json'].includes(parts[2]) || parts[2].endsWith('.geojson'))) {
       result.push(file);
       continue;
     }

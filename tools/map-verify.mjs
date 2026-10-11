@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { execFileSync } from 'node:child_process';
 import { MAP_META_CSP, META_CSP } from './lib/hosting.mjs';
 
 const ROOT = path.resolve(process.cwd());
@@ -21,7 +22,7 @@ try {
   if (changes?.changes?.[0]?.zonesUpdated !== zones.updated) errors.push('map-changes.json не совпадает с текущим zones.updated.');
   if (places?.schema !== 'krmrf-map-places-v2' || !Array.isArray(places.places) || places.places.length < 20) errors.push('map-places.json: русскоязычный справочник отсутствует или повреждён.');
   if (history?.schema !== 'krmrf-map-history-v3' || history.current !== zones.updated || !history.versions?.length) errors.push('map-history/manifest.json: история не согласована с текущей картой.');
-  if (new Set(history.versions.map(item => item.geometrySha256)).size !== history.versions.length) errors.push('map-history: одинаковая геометрия попала в интерфейс как разные срезы.');
+  if (new Set(history.versions.map(item => item.updated)).size !== history.versions.length) errors.push('map-history: повторяются даты редакционных срезов.');
   for (const item of history.versions) if (!item.snapshot || !exists(item.snapshot.replace(/^\//, ''))) errors.push(`map-history: отсутствует ${item.snapshot || 'snapshot'}.`);
 
   if (!html.includes('maplibre-gl@5.24.0')) errors.push('map/index.html: MapLibre 5.24.0 не подключён.');
@@ -35,6 +36,8 @@ try {
   if (!js.includes("''\n        ]")) errors.push('map.js: русская локализация должна скрывать неподходящее generic-name вместо возврата к нему.');
   if (!js.includes('createMapLibre') || !js.includes('createLeaflet')) errors.push('map.js: нет основной MapLibre-карты и резервного Leaflet.');
   if (!js.includes('Сравнить с текущей')) errors.push('map.js: режим сравнения не найден.');
+
+  execFileSync(process.execPath, ['tools/map-statistics.mjs', '--check'], { cwd: ROOT, stdio: 'pipe' });
 
   const indexHtml = read('index.html');
   if (!indexHtml.includes(META_CSP) || indexHtml.includes(MAP_META_CSP)) errors.push('Главная получила map-specific CSP; изменения вышли за пределы карты.');

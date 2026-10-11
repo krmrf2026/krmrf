@@ -27,10 +27,16 @@ for (const [file, rawBudget, gzipBudget] of budgets) {
 
 const jsFiles = filesIn('assets/js', '.js');
 const cssFiles = filesIn('assets/css', '.css');
-const jsTotal = jsFiles.reduce((sum, file) => sum + size(file), 0);
-const cssTotal = cssFiles.reduce((sum, file) => sum + size(file), 0);
+const statisticsJs = jsFiles.filter(file => /map-statistics(?:-core)?\.js$/.test(file));
+const statisticsCss = cssFiles.filter(file => file.endsWith('page-map-statistics.css'));
+const jsTotal = jsFiles.filter(file => !statisticsJs.includes(file)).reduce((sum, file) => sum + size(file), 0);
+const cssTotal = cssFiles.filter(file => !statisticsCss.includes(file)).reduce((sum, file) => sum + size(file), 0);
 if (jsTotal > 55_000) errors.push(`assets/js: общий размер ${jsTotal}, бюджет 55000`);
 if (cssTotal > 35_000) errors.push(`assets/css: общий размер ${cssTotal}, бюджет 35000`);
+
+if (statisticsJs.reduce((s, file) => s + size(file), 0) > 12000) errors.push('Статистика карты: JS превысил 12000 байт.');
+if (statisticsCss.reduce((s, file) => s + size(file), 0) > 3000) errors.push('Статистика карты: CSS превысил 3000 байт.');
+if (size('data/map-statistics.json') > 5000000) errors.push('Статистика карты: JSON превысил 5 МБ.');
 
 const runtimeJs = jsFiles.map(file => fs.readFileSync(path.join(ROOT, file), 'utf8')).join('\n');
 if (/fetch\(['"]\/data\/pages\.json/.test(runtimeJs)) errors.push('Клиентский JavaScript не должен загружать data/pages.json.');

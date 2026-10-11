@@ -1,0 +1,8 @@
+{
+  "schema": "krmrf-map-statistics-config-v1",
+  "timezone": "Europe/Moscow",
+  "legacyOffset": "+03:00",
+  "scopeVersion": "rf-layer-full-v1",
+  "scopeLabel": "Весь российский контур на карте KRM РФ; без маски территории Украины",
+  "displayDecimals": 1
+}

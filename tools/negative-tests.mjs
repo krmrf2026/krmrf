@@ -104,20 +104,20 @@ test('modified before published', () => {
 
 test('guide review before latest edit', () => {
   const pages = JSON.parse(originalPages);
-  pages[0].reviewedAt = '2026-09-20';
-  pages[0].reviewAfter = '2026-10-20';
+  pages.find(item => item.type === 'guide').reviewedAt = '2026-09-20';
+  pages.find(item => item.type === 'guide').reviewAfter = '2026-10-20';
   fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
 }, 'reviewedAt раньше dateModified');
 
 test('guide review cadence mismatch', () => {
   const pages = JSON.parse(originalPages);
-  pages[0].reviewAfter = '2026-10-25';
+  pages.find(item => item.type === 'guide').reviewAfter = '2026-10-25';
   fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
 }, 'reviewAfter должен быть 2026-10-24');
 
 test('guide status mismatch', () => {
   const pages = JSON.parse(originalPages);
-  pages[0].reviewStatus = 'review-due';
+  pages.find(item => item.type === 'guide').reviewStatus = 'review-due';
   fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
 }, 'reviewStatus должен быть current');
 

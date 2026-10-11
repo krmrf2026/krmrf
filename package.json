@@ -1,10 +1,10 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.10.4-r21",
+  "version": "2026.10.11-r23",
   "type": "module",
   "scripts": {
-    "build": "node tools/map-history.mjs && node tools/build.mjs",
+    "build": "node tools/map-history.mjs && node tools/map-statistics.mjs && node tools/build.mjs",
     "utm": "node tools/utm.mjs",
     "test:utm": "node tools/utm.mjs --self-test",
     "images": "node tools/images.mjs",
@@ -21,7 +21,7 @@
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run map:verify && npm run test:smoke && npm run test:uniformity && npm run test:map-state && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run test:runtime && npm run test:search-e2e",
+    "qa": "npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run map:verify && npm run test:smoke && npm run test:uniformity && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run test:runtime && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
@@ -33,7 +33,11 @@
     "map:history": "node tools/map-history.mjs",
     "map:verify": "node tools/map-verify.mjs",
     "test:uniformity": "node tools/uniformity-tests.mjs",
-    "test:map-state": "node --test tests/unit/map-state.test.mjs"
+    "test:map-state": "node --test tests/unit/map-state.test.mjs",
+    "map:statistics": "node tools/map-history.mjs && node tools/map-statistics.mjs",
+    "map:post": "node tools/map-post.mjs",
+    "test:map-statistics": "node --test tests/unit/map-statistics.test.mjs tests/unit/map-statistics-client.test.mjs",
+    "test:map-history": "node --test tests/unit/map-history.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"
