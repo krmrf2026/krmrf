@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://krmrf.ru/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/about/</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://krmrf.ru/archive/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/assessment/</loc>
@@ -138,11 +138,11 @@
   </url>
   <url>
     <loc>https://krmrf.ru/news/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/civilian-impact/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/civilian-impact/bpla-lnr-2026-05-27/</loc>
@@ -171,6 +171,10 @@
   <url>
     <loc>https://krmrf.ru/news/civilian-impact/kogda-zakonchitsya-svo/</loc>
     <lastmod>2026-08-08</lastmod>
+  </url>
+  <url>
+    <loc>https://krmrf.ru/news/civilian-impact/propavshie-na-svo/</loc>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://krmrf.ru/news/civilian-impact/semi-razdelennye-voynoy/</loc>
