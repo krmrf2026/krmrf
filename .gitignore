@@ -26,3 +26,16 @@ SHA256SUMS
 
 # Локальные архивы исходных материалов
 *.zip
+
+# Не допускать случайного включения секретов в Git и локальные снимки
+.env
+.env.*
+!.env.example
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+*.token
+credentials.json

@@ -1,18 +1,18 @@
 # Восстановление проекта
 
-## Проверка скачанного исходного архива
+## Проверка вручную созданного исходного снимка (необязательный)
 
 ```bash
-sha256sum -c krmrf-source-<version>.zip.sha256
-unzip -t krmrf-source-<version>.zip
-unzip krmrf-source-<version>.zip
+sha256sum -c krmrf-source.zip.sha256
+unzip -t krmrf-source.zip
+unzip krmrf-source.zip
 cd krmrf-main
 sha256sum -c SHA256SUMS
 ```
 
 На Windows используйте `Get-FileHash -Algorithm SHA256` для внешнего ZIP и проверку `SHA256SUMS` из Git Bash или WSL.
 
-## Восстановление рабочей среды
+## Основной способ восстановления: исходники из Git и рабочая среда
 
 ```bash
 nvm install 24
@@ -25,12 +25,12 @@ npm run qa
 
 Если все проверки проходят, исходное состояние пригодно для продолжения работы. После восстановления репозитория merge в `main` запускает штатный Pages workflow.
 
-## Проверка публичного архива
+## Проверка вручную созданного публичного снимка (необязательный)
 
 ```bash
-sha256sum -c krmrf-public-<version>.zip.sha256
-unzip -t krmrf-public-<version>.zip
-unzip krmrf-public-<version>.zip
+sha256sum -c krmrf-public.zip.sha256
+unzip -t krmrf-public.zip
+unzip krmrf-public.zip
 cd krmrf-public
 sha256sum -c SHA256SUMS
 ```
@@ -47,5 +47,7 @@ sha256sum -c SHA256SUMS
 4. разрешение GitHub Actions, если оно отключено политикой репозитория.
 
 ## Что не существует в текущей архитектуре
+
+Для обычного восстановления сперва используйте Git / GitHub: `git clone`, `nvm use`, `npm ci`, `npm run qa`. ZIP нужны только когда их сознательно создали вручную.
 
 В проекте нет Atom/RSS, `_headers`, публичного `_redirects`, `data/map/manifest.json`, `data/map/snapshots/`, `tools/sources.mjs` и команды `npm run sources`. Восстановление выполняется из исходного ZIP и встроенных SHA-256, а не из отдельной системы снимков.

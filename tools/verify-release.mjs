@@ -5,11 +5,10 @@ import { spawnSync } from 'node:child_process';
 import { sha256 } from './lib/project.mjs';
 
 const ROOT = path.resolve(process.cwd());
-const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
 const releaseDir = path.resolve(process.env.KRM_RELEASE_DIR || path.join(ROOT, '..', 'krmrf-releases'));
 const archives = [
-  [`krmrf-source-${pkg.version}.zip`, 'krmrf-main/'],
-  [`krmrf-public-${pkg.version}.zip`, 'krmrf-public/']
+  ['krmrf-source.zip', 'krmrf-main/'],
+  ['krmrf-public.zip', 'krmrf-public/']
 ];
 const errors = [];
 for (const [name, prefix] of archives) {

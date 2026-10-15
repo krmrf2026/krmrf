@@ -32,7 +32,11 @@ export const SOURCE_EXCLUDED_DIRS = new Set([
   'test-results',
   'playwright-report',
   'coverage',
-  '.cache'
+  '.cache',
+  '.venv',
+  '__pycache__',
+  'tmp',
+  'temp'
 ]);
 
 export const SOURCE_EXCLUDED_FILES = new Set([
@@ -75,6 +79,9 @@ export const PUBLIC_DATA_FILES = new Set([
   'zones.geojson'
 ]);
 
+const sensitiveSourceFile = name => /^(?:\.env(?:\..*)?|\.npmrc|credentials\.json)$/i.test(name)
+  || /\.(?:pem|key|p12|pfx|kdbx|token|zip|tar|tgz|7z)$/i.test(name);
+
 export const normalizeRel = value => value.replace(/\\/g, '/');
 
 export const listFiles = (root, {
@@ -85,7 +92,7 @@ export const listFiles = (root, {
   const walk = directory => {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
       if (entry.isDirectory() && excludedDirs.has(entry.name)) continue;
-      if (entry.isFile() && excludedFiles.has(entry.name)) continue;
+      if (entry.isFile() && (excludedFiles.has(entry.name) || sensitiveSourceFile(entry.name))) continue;
       const absolute = path.join(directory, entry.name);
       if (entry.isDirectory()) walk(absolute);
       else if (entry.isFile()) files.push(normalizeRel(path.relative(root, absolute)));

@@ -2,9 +2,6 @@ name: Release archives
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - 'v*'
 
 permissions:
   contents: read
@@ -32,3 +29,4 @@ jobs:
           name: krmrf-release
           path: ${{ runner.temp }}/krmrf-release-output/
           if-no-files-found: error
+          retention-days: 1
