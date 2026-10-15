@@ -82,17 +82,20 @@ const publicEntries = publicFiles.map(name => ({ name, data: fs.readFileSync(pat
 publicEntries.push({ name: 'SHA256SUMS', data: Buffer.from(publicSums) });
 
 const outputs = [
-  [`krmrf-source-${version}.zip`, createZip(sourceEntries, 'krmrf-main')],
-  [`krmrf-public-${version}.zip`, createZip(publicEntries, 'krmrf-public')]
+  ['krmrf-source.zip', createZip(sourceEntries, 'krmrf-main')],
+  ['krmrf-public.zip', createZip(publicEntries, 'krmrf-public')]
 ];
 const releaseManifest = { schema: 'krmrf-release-v1', version, buildDate: site.buildDate, files: [] };
 for (const [name, archive] of outputs) {
   const target = path.join(releaseDir, name);
-  fs.writeFileSync(target, archive);
+  // Записываем во временный файл и атомарно заменяем прежний комплект.
+  const pending = `${target}.pending`;
+  fs.writeFileSync(pending, archive);
+  fs.renameSync(pending, target);
   const hash = sha256(archive);
   fs.writeFileSync(`${target}.sha256`, `${hash}  ${name}\n`);
   releaseManifest.files.push({ name, sha256: hash, bytes: archive.length });
   console.log(`Создан: ${target}`);
 }
-fs.writeFileSync(path.join(releaseDir, `krmrf-release-${version}.json`), `${JSON.stringify(releaseManifest, null, 2)}\n`);
-console.log(`Релиз ${version} создан: исходный и публичный архивы.`);
+fs.writeFileSync(path.join(releaseDir, 'krmrf-release.json'), `${JSON.stringify(releaseManifest, null, 2)}\n`);
+console.log(`Ручной снимок ${version} создан: текущий комплект перезаписан, версии не накапливаются.`);

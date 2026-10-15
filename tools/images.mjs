@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { ARTICLE_IMAGE_SIZES } from './lib/image-sizes.mjs';
+import { sha256 } from './lib/project.mjs';
 import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
@@ -165,13 +166,39 @@ for (const file of currentDerived) {
   removed += 1;
 }
 
+// Исходный WebP и его адаптивные копии связаны криптографическими хешами.
+// При изменении любого из файлов пересоздаётся только затронутая копия.
+const MANIFEST_FILE = path.join(ROOT, 'data/image-derivatives.json');
+const MANIFEST_SCHEMA = 'krmrf-image-derivatives-v1';
+let previous = { schema: MANIFEST_SCHEMA, entries: {} };
+if (fs.existsSync(MANIFEST_FILE)) {
+  previous = JSON.parse(fs.readFileSync(MANIFEST_FILE, 'utf8'));
+  if (previous.schema !== MANIFEST_SCHEMA || !previous.entries || Array.isArray(previous.entries)) {
+    throw new Error('data/image-derivatives.json: неизвестный формат, проверка актуальности отменена.');
+  }
+}
+const hashCache = new Map();
+const hashOf = rel => {
+  if (!hashCache.has(rel)) hashCache.set(rel, sha256(fs.readFileSync(path.join(ROOT, rel))));
+  return hashCache.get(rel);
+};
+const manifestEntries = {};
+
 let created = 0;
 let repaired = 0;
 for (const item of [...required.values()].sort((a, b) => a.output.localeCompare(b.output))) {
   const output = path.join(ROOT, item.output);
   const exists = fs.existsSync(output);
-  const valid = exists && identify(item.output).width === item.width;
-  if (valid) continue;
+  const earlier = previous.entries[item.output];
+  const sourceHash = hashOf(item.source);
+  const valid = exists && identify(item.output).width === item.width
+    && earlier?.source === item.source
+    && earlier?.sourceSha256 === sourceHash
+    && earlier?.derivedSha256 === hashOf(item.output);
+  if (valid) {
+    manifestEntries[item.output] = earlier;
+    continue;
+  }
 
   fs.mkdirSync(path.dirname(output), { recursive: true });
   const args = [
@@ -191,11 +218,17 @@ for (const item of [...required.values()].sort((a, b) => a.output.localeCompare(
     process.exit(1);
   }
   imageInfoCache.delete(item.output);
+  hashCache.delete(item.output);
   const generated = identify(item.output);
   if (generated.width !== item.width) {
     console.error(`Неверная ширина ${item.output}: ${generated.width}, ожидалось ${item.width}.`);
     process.exit(1);
   }
+  manifestEntries[item.output] = {
+    source: item.source,
+    sourceSha256: sourceHash,
+    derivedSha256: hashOf(item.output)
+  };
   if (exists) repaired += 1;
   else created += 1;
 }
@@ -241,6 +274,9 @@ for (const [file] of pageSources) {
     updatedPages += 1;
   }
 }
+
+fs.writeFileSync(MANIFEST_FILE,
+  `${JSON.stringify({ schema: MANIFEST_SCHEMA, entries: manifestEntries }, null, 2)}\n`);
 
 console.log(`Изображения проверены: ${imageInfoCache.size} исходных/производных файлов.`);
 console.log(`Адаптивные варианты: ${required.size}; создано ${created}, исправлено ${repaired}, удалено лишних ${removed}.`);
