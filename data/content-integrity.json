@@ -2,7 +2,7 @@
   "schema": "krmrf-content-integrity-v2",
   "pages": {
     "/news/civilian-impact/propavshie-na-svo/": "c73132751fdf15f8c8a3aeeb513c8b6d5e3cec4edd6ab95b16802211fd725f28",
-    "/assessment/2026-10-11/": "f99f97fb53717bde085ec72f8c633f6572a814def3ad28ed092c35a51fe8d74b",
+    "/assessment/2026-10-11/": "73ce7d74db044a6695a448887a66a35d5412c821d4e9c21165f227b1714eadb1",
     "/news/civilian-impact/chuzhaya-smert-ne-razvlechenie/": "9224dbd5078395d7a994d6b717befc0c94f7c0dc17602a73fe21095eb32cc24b",
     "/news/kremennaya/krm-2026-10-07/": "3c9ba06ac40913dbefa41a3dfa7219f0cad472d3cf1a037dcbabb361c6dd9f99",
     "/assessment/2026-10-04/": "51001d04ab93f4a1ece96050f6caaa91cbd611cdac56dd267dfb36dc0505f2af",
@@ -96,6 +96,7 @@
     "/news/politics/iran-2026-03-02/": "a1cd454375ee6ff2fa126bc9d5427159e65444d0e23a684d6b5d00eea541a225",
     "/news/reference/beshoz-2026-07-01/": "1b395365028b54a91a4b2e1b068bc4454b7c4558b86087bb35315d37c9c30158",
     "/news/svo/liman-slavyansk-2026-02-22/": "3106329f688a2a5b539e299a396ceaffe6b9f6f204d12185dc498c7318a45024",
-    "/news/kremennaya/kremennaya-2026-02-18/": "1546f9f49323126584a25a9a02b8b2c73b7d41d970d8267ed604566916a210c6"
+    "/news/kremennaya/kremennaya-2026-02-18/": "1546f9f49323126584a25a9a02b8b2c73b7d41d970d8267ed604566916a210c6",
+    "/assessment/2026-10-18/": "dc252b813ca72c2115d14dc0affbea59e84b1f29c7c061431457958d477a32c8"
   }
 }

@@ -1336,6 +1336,56 @@
       "sourceSha256": "f5a1a64bc3ceeef7491de87503720192716d7f424c1eb58a69c3483d13ab0c09",
       "derivedSha256": "1716edeb71ee85eca1f333a7443af0716a32191aa21f4543eb92a4b9d8964d43"
     },
+    "assets/img/derived/assessment/2026-10-18/borovaya-480.webp": {
+      "source": "assets/img/assessment/2026-10-18/borovaya.webp",
+      "sourceSha256": "459e0c63eb36ae05165a994c6036b9123828e7033ca7a61d763c27b04efb373c",
+      "derivedSha256": "734aa8197deaaadb8ae45a4ef7bf0054e05785f9c25b2dee07815295a971e82f"
+    },
+    "assets/img/derived/assessment/2026-10-18/borovaya-960.webp": {
+      "source": "assets/img/assessment/2026-10-18/borovaya.webp",
+      "sourceSha256": "459e0c63eb36ae05165a994c6036b9123828e7033ca7a61d763c27b04efb373c",
+      "derivedSha256": "d6230cca430f5947efc1a8c456c671c83c4fc9e22631320b23fec9946dae2da8"
+    },
+    "assets/img/derived/assessment/2026-10-18/cover-480.webp": {
+      "source": "assets/img/assessment/2026-10-18/cover.webp",
+      "sourceSha256": "1d2fe27686101d92f8ce18a73b9e13fa3ed8930a4d46148a9c9d9465d3ed903f",
+      "derivedSha256": "823c4de6496438966f2fa4cd51cdc8ecd09ad08af77a0c2ffb7989d35add2fe9"
+    },
+    "assets/img/derived/assessment/2026-10-18/cover-960.webp": {
+      "source": "assets/img/assessment/2026-10-18/cover.webp",
+      "sourceSha256": "1d2fe27686101d92f8ce18a73b9e13fa3ed8930a4d46148a9c9d9465d3ed903f",
+      "derivedSha256": "64305950e80459313c6cd3dc050fcd8e97d74b49bf4fad9e1eab049ac257f162"
+    },
+    "assets/img/derived/assessment/2026-10-18/krasnyi-liman-480.webp": {
+      "source": "assets/img/assessment/2026-10-18/krasnyi-liman.webp",
+      "sourceSha256": "4b9d88611ffc4bbffdaa83cf26fc51db2be3c64008a513a142c0102ef16d1e64",
+      "derivedSha256": "388fe1fc72f5350313936c2056c2107686469df5ef77090641025b19fd8dde71"
+    },
+    "assets/img/derived/assessment/2026-10-18/krasnyi-liman-960.webp": {
+      "source": "assets/img/assessment/2026-10-18/krasnyi-liman.webp",
+      "sourceSha256": "4b9d88611ffc4bbffdaa83cf26fc51db2be3c64008a513a142c0102ef16d1e64",
+      "derivedSha256": "22c7b5c0b64f7f95e6579f1007f8275091666bb0d62ebb24ed3a6105e79adc8d"
+    },
+    "assets/img/derived/assessment/2026-10-18/kupyansk-480.webp": {
+      "source": "assets/img/assessment/2026-10-18/kupyansk.webp",
+      "sourceSha256": "056bc3acabea1a9bed7fad668ae8ef419010b3a65c3421a4aba8bfb31ce5466d",
+      "derivedSha256": "9b511bc855a5e8f00572555b47eec60ca50a1053b8debff021b5efe3a1e66eb9"
+    },
+    "assets/img/derived/assessment/2026-10-18/kupyansk-960.webp": {
+      "source": "assets/img/assessment/2026-10-18/kupyansk.webp",
+      "sourceSha256": "056bc3acabea1a9bed7fad668ae8ef419010b3a65c3421a4aba8bfb31ce5466d",
+      "derivedSha256": "7332dd91b02547a2f45f4bb0cbc2cc1195b0ef97e80535596df80de41cabd720"
+    },
+    "assets/img/derived/assessment/2026-10-18/slavyansk-480.webp": {
+      "source": "assets/img/assessment/2026-10-18/slavyansk.webp",
+      "sourceSha256": "4f5d0134268f02f5a9a146997b6e8d9c5bc414b4233e06d88c0e85f3670f0094",
+      "derivedSha256": "d0f02e2494c785be2296212e0a3d230f92521d5158c4f9576910a8bca44f1877"
+    },
+    "assets/img/derived/assessment/2026-10-18/slavyansk-960.webp": {
+      "source": "assets/img/assessment/2026-10-18/slavyansk.webp",
+      "sourceSha256": "4f5d0134268f02f5a9a146997b6e8d9c5bc414b4233e06d88c0e85f3670f0094",
+      "derivedSha256": "1a6e690597def9e65e725d653af8fb649257f8557072da3ccce5dd0484700da1"
+    },
     "assets/img/derived/news/civilian-impact/bpla-lnr-2026-05-27/cover-480.webp": {
       "source": "assets/img/news/civilian-impact/bpla-lnr-2026-05-27/cover.webp",
       "sourceSha256": "06b48671dfcb9db79fa565cd5a1658e898422fec7c5ed2d0fcfaa2a00133414d",
