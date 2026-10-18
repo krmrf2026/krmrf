@@ -4,6 +4,12 @@ const blockExternal = page => page.route(/^https?:\/\/(?!127\.0\.0\.1)/, route =
 const calls = page => page.evaluate(() => (window.ym?.a || []).map(args => Array.from(args)));
 const goal = async (page, name) => (await calls(page)).find(call => call[1] === 'reachGoal' && call[2] === name) || null;
 
+test('UTM сохраняются до единственной инициализации правильного счётчика',async({page})=>{
+ await blockExternal(page);await page.goto('/news/reference/egrn-2026-05-15/?utm_source=max&utm_medium=messenger&utm_campaign=e2e_first_view&utm_content=post');
+ const init=(await calls(page)).filter(x=>x[1]==='init');expect(init).toHaveLength(1);expect(init[0][0]).toBe(110383043);expect(init[0][2].defer).not.toBe(true);
+ expect(new URL(page.url()).searchParams.get('utm_campaign')).toBe('e2e_first_view');expect(await page.locator('link[rel="canonical"]').getAttribute('href')).toBe('https://krmrf.ru/news/reference/egrn-2026-05-15/');expect(await page.locator('a[href*="utm_"]').count()).toBe(0);
+});
+
 test('переход с главной фиксирует home_route', async ({ page }) => {
   await blockExternal(page); await page.goto('/?utm_source=telegram&utm_medium=messenger&utm_campaign=e2e');
   const link = page.locator('a[href="/map/"]').first();

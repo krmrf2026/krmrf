@@ -706,6 +706,16 @@ let mapPage = read('map/index.html');
 const zones = readJson('data/zones.geojson');
 const mapChanges = readJson('data/map-changes.json');
 const mapUpdated = formatMapDateTime(zones.updated);
+const mapDay=zones.updated.slice(0,10).split('-').reverse().join('.');
+const mapTitle=`Карта СВО: контроль территорий на ${mapDay}`;
+const mapDescription=`Независимая карта KRM РФ: оценка контроля территорий на ${mapDay}, история срезов и изменения. Дата, источники и ограничения; не официальная карта.`;
+mapPage=replaceTitle(mapPage,`${mapTitle} | KRM РФ`);
+for(const [attribute,key,value] of [['name','description',mapDescription],['property','og:title',mapTitle],['property','og:description',mapDescription],['name','twitter:title',mapTitle],['name','twitter:description',mapDescription]]) mapPage=replaceMeta(mapPage,attribute,key,value);
+mapPage=mapPage.replace(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_whole,text)=>{
+ const data=JSON.parse(text),page=(data['@graph']||[data]).find(n=>n['@type']==='WebPage');
+ if(page){page.name=mapTitle;page.description=mapDescription;page.dateModified=zones.updated.slice(0,10);}
+ return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;
+});
 if (mapUpdated) {
   mapPage = mapPage.replace(/<dd([^>]*\bid="mapUpdated"[^>]*)>[^<]*<\/dd>/, (_whole, attrs) => {
     let syncedAttrs = /data-fallback="[^"]*"/.test(attrs)

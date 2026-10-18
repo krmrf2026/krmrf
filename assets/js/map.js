@@ -202,17 +202,22 @@
           const bounds = bbox(zones);
           if (bounds) map.fitBounds(bounds, { padding: 24, maxZoom: 9, duration: 0 });
         }
-        settled = true; clearTimeout(timer);
-        resolve({
-          kind: 'maplibre', raw: map,
-          setZones(data) { const source = map.getSource('krm-zones'); if (source?.setData) source.setData(data); },
-          fitZones(data) { const bounds = bbox(data); if (bounds) map.fitBounds(bounds, { padding: 24, maxZoom: 9, duration: 0 }); },
-          flyTo(place) { map.flyTo({ center: [place.lng, place.lat], zoom: Math.max(9, map.getZoom()), duration: 700 }); },
-          camera() { const c = map.getCenter(); return { center: [c.lng, c.lat], zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() }; },
-          jump(cameraValue) { if (cameraValue) map.jumpTo({ center: cameraValue.center, zoom: cameraValue.zoom, bearing: cameraValue.bearing || 0, pitch: cameraValue.pitch || 0 }); },
-          resize() { map.resize(); }, remove() { map.remove(); },
-          onMove(handler) { map.on('moveend', handler); }, onContinuousMove(handler) { map.on('move', handler); }
-        });
+        const ready = () => {
+          if (settled || !map.isSourceLoaded('krm-zones')) return;
+          map.off('sourcedata', ready);
+          settled = true; clearTimeout(timer);
+          resolve({
+            kind: 'maplibre', raw: map,
+            setZones(data) { const source = map.getSource('krm-zones'); if (source?.setData) source.setData(data); },
+            fitZones(data) { const bounds = bbox(data); if (bounds) map.fitBounds(bounds, { padding: 24, maxZoom: 9, duration: 0 }); },
+            flyTo(place) { map.flyTo({ center: [place.lng, place.lat], zoom: Math.max(9, map.getZoom()), duration: 700 }); },
+            camera() { const c = map.getCenter(); return { center: [c.lng, c.lat], zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() }; },
+            jump(cameraValue) { if (cameraValue) map.jumpTo({ center: cameraValue.center, zoom: cameraValue.zoom, bearing: cameraValue.bearing || 0, pitch: cameraValue.pitch || 0 }); },
+            resize() { map.resize(); }, remove() { map.remove(); },
+            onMove(handler) { map.on('moveend', handler); }, onContinuousMove(handler) { map.on('move', handler); }
+          });
+        };
+        map.on('sourcedata', ready); ready();
       } catch (error) { settled = true; clearTimeout(timer); try { map.remove(); } catch {}; reject(error); }
     });
   });

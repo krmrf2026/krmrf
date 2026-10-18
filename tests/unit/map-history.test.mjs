@@ -23,6 +23,7 @@ const fixture = () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'krm-history-regression-'));
   fs.mkdirSync(path.join(root, 'data')); fs.mkdirSync(path.join(root, 'map'));
   fs.copyFileSync(path.join(SOURCE, 'data/map-statistics-config.json'), path.join(root, 'data/map-statistics-config.json'));
+  fs.copyFileSync(path.join(SOURCE,'data/utm-campaigns.json'),path.join(root,'data/utm-campaigns.json'));fs.writeFileSync(path.join(root,'data/pages.json'),'[]');
   fs.writeFileSync(path.join(root, 'map/index.html'), '<!-- KRM MAP STATISTICS START --><!-- KRM MAP STATISTICS END -->');
   git(root, ['init', '-q']); return root;
 };
@@ -358,7 +359,7 @@ test('shallow clone и ZIP без Git сохраняют обе спорные �
     put(root, '2026-03-13 08:50', 1); commit(root, 'B');
     put(root, '2026-03-14 08:50', 2); commit(root, 'Current'); okay(history(root));
     const initial = json(root, 'data/map-archive/journal.json');
-    git(root, ['add', 'data/map-archive', 'data/map-statistics-config.json']);
+    git(root, ['add', 'data/map-archive', 'data/map-statistics-config.json', 'data/utm-campaigns.json', 'data/pages.json']);
     git(root, ['-c', 'user.name=Regression Test', '-c', 'user.email=test@example.invalid', 'commit', '-qm', 'Save variants']);
     okay(run(root, 'git', ['clone', '-q', '--depth=1', `file://${root}`, clone]));
     fs.mkdirSync(path.join(clone, 'map')); fs.copyFileSync(path.join(root, 'map/index.html'), path.join(clone, 'map/index.html'));
@@ -495,7 +496,7 @@ test('неполный clone сохраняет гидратированный �
   const root = fixture(); const clone = fs.mkdtempSync(path.join(os.tmpdir(), 'krm-history-shallow-'));
   try {
     for (const [day, shift] of [[1, 0], [2, 1], [3, 2]]) { put(root, `2026-10-0${day} 12:00`, shift); commit(root, `Day ${day}`); }
-    okay(history(root)); git(root, ['add', 'data/map-archive', 'data/map-statistics-config.json']);
+    okay(history(root)); git(root, ['add', 'data/map-archive', 'data/map-statistics-config.json', 'data/utm-campaigns.json', 'data/pages.json']);
     git(root, ['-c', 'user.name=Regression Test', '-c', 'user.email=test@example.invalid', 'commit', '-qm', 'Saved complete archive']);
     okay(run(root, 'git', ['clone', '-q', '--depth=1', `file://${root}`, clone]));
     okay(history(clone)); const journal = json(clone, 'data/map-archive/journal.json');

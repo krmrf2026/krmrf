@@ -25,7 +25,7 @@ try {
   if (new Set(history.versions.map(item => item.updated)).size !== history.versions.length) errors.push('map-history: повторяются даты редакционных срезов.');
   for (const item of history.versions) if (!item.snapshot || !exists(item.snapshot.replace(/^\//, ''))) errors.push(`map-history: отсутствует ${item.snapshot || 'snapshot'}.`);
 
-  if (!html.includes('maplibre-gl@5.24.0')) errors.push('map/index.html: MapLibre 5.24.0 не подключён.');
+  if (!html.includes('maplibre-gl@6.4.1/dist/maplibre-gl.css') || !html.includes('/assets/js/map-loader.js')) errors.push('map/index.html: нет MapLibre 6.4.1 с ESM-загрузчиком.');
   if (!html.includes('/assets/vendor/leaflet/leaflet.js')) errors.push('map/index.html: локальный Leaflet fallback удалён.');
   if (/Нейтральная KRM|нейтральная схема|Подложка/i.test(html)) errors.push('map/index.html: вернулся отклонённый интерфейс нейтральной подложки.');
   if (!html.includes('mapPlaceSearch') || !html.includes('mapSnapshotSelect') || !html.includes('mapComparePanel')) errors.push('map/index.html: нет поиска, истории или явного сравнения.');

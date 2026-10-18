@@ -1,12 +1,12 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.10.11-r24",
+  "version": "2026.10.18-r25",
   "type": "module",
   "scripts": {
-    "build": "node tools/map-history.mjs && node tools/map-statistics.mjs && node tools/build.mjs",
+    "build": "node tools/map-history.mjs && node tools/map-statistics.mjs && node tools/build.mjs && node tools/publish-links.mjs",
     "utm": "node tools/utm.mjs",
-    "test:utm": "node tools/utm.mjs --self-test",
+    "test:utm": "node tools/utm.mjs --self-test && node --test tests/unit/utm.test.mjs && node tools/publish-links.mjs --check",
     "images": "node tools/images.mjs",
     "validate": "node tools/validate.mjs",
     "guides:review": "node tools/review-guides.mjs",
@@ -22,7 +22,7 @@
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run map:verify && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run test:runtime && npm run test:search-e2e",
+    "qa": "npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run test:freshness-policy && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
@@ -39,7 +39,11 @@
     "map:statistics": "node tools/map-history.mjs && node tools/map-statistics.mjs",
     "map:post": "node tools/map-post.mjs",
     "test:map-statistics": "node --test tests/unit/map-statistics.test.mjs tests/unit/map-statistics-client.test.mjs tests/unit/map-sectors.test.mjs",
-    "test:map-history": "node --test tests/unit/map-history.test.mjs"
+    "test:map-history": "node --test tests/unit/map-history.test.mjs",
+    "publish:links": "node tools/publish-links.mjs",
+    "test:map-dependencies": "node tools/check-map-dependencies.mjs && node --test tests/unit/map-dependencies.test.mjs",
+    "test:freshness-policy": "node --test tests/unit/guide-freshness.test.mjs",
+    "test:analytics": "python3 -m unittest discover -s automation/private-analytics -p \"test_*.py\""
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"
