@@ -90,6 +90,7 @@ if (!checkOnly) {
 }
 
 const checkErrors = [];
+const checkWarnings = [];
 for (const item of guides) {
   const prefix = item.id || item.url || 'guide';
   const cadence = item.reviewCadenceDays;
@@ -119,12 +120,17 @@ for (const item of guides) {
     if (freshness.state === 'overdue') {
       checkErrors.push(`${prefix}: проверка просрочена на ${Math.abs(freshness.daysUntilReview)} дн. (${item.reviewAfter}).`);
     } else if (freshness.state === 'due-soon') {
-      checkErrors.push(
+      checkWarnings.push(
         `${prefix}: до обязательной проверки ${item.reviewAfter} осталось ${freshness.daysUntilReview} дн.; `
         + `защитное окно — ${warningDays} дн.`
       );
     }
   }
+}
+
+if (checkWarnings.length) {
+  console.warn(`Предупреждение: ${checkWarnings.length} памяток требуют скорой проверки.`);
+  console.warn(checkWarnings.map(warning => `• ${warning}`).join('\n'));
 }
 
 if (checkErrors.length) {
