@@ -8,6 +8,12 @@ const area = (value, signed = false) => {
 };
 const blockExternal = page => page.route(/^https?:\/\/(?!127\.0\.0\.1)/, route => route.abort());
 const ready = async page => { await blockExternal(page); await page.goto('/map/'); await expect(page.locator('#mapStatsPeriod')).toBeEnabled(); };
+for(const failedData of [false,true])test(`выбор MAX в тексте поста; недоступность JSON: ${failedData}`,async({page})=>{
+ await blockExternal(page);if(failedData)await page.route('**/data/map-statistics.json*',r=>r.fulfill({status:503,body:'{}'}));await page.goto('/map/');
+ const channel=page.locator('#mapStatsChannel');await expect(channel).toBeEnabled();const value=await channel.locator('option').filter({hasText:'MAX'}).getAttribute('value');await channel.selectOption(value);
+ if(!failedData){await expect(page.locator('#mapStatsPeriod')).toBeEnabled();await page.locator('#mapStatsPeriod').selectOption('month');}
+ const u=new URL((await page.locator('#mapStatsPost').inputValue()).split('\n').at(-1));expect(u.searchParams.get('utm_source')).toBe('max');expect(u.searchParams.get('utm_medium')).toBe('messenger');expect(u.searchParams.get('utm_campaign')).toBe('map');expect(u.searchParams.get('utm_content')).toBe('post');expect(await page.locator('a[href*="utm_"]').count()).toBe(0);
+});
 const figures = async (page, summary) => {
   for (const [i, key] of ['addedKm2', 'removedKm2', 'netKm2'].entries()) await expect(page.locator('#mapStatsValue' + i)).toHaveText(area(summary.status === 'ok' || summary.status === 'updated' ? summary[key] : null, i === 2));
 };

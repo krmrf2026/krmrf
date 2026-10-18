@@ -17,6 +17,7 @@ const ROOT = path.resolve(process.cwd());
 const PAGES_FILE = path.join(ROOT, 'data/pages.json');
 const args = process.argv.slice(2);
 const checkOnly = args.includes('--check');
+const strictWarning = args.includes('--strict-warning');
 const valueOf = name => args.find(arg => arg.startsWith(`${name}=`))?.slice(name.length + 1);
 const referenceDate = valueOf('--date') || todayIso();
 const cadenceDays = Number(valueOf('--cadence-days') || DEFAULT_REVIEW_CADENCE_DAYS);
@@ -131,6 +132,7 @@ for (const item of guides) {
 if (checkWarnings.length) {
   console.warn(`Предупреждение: ${checkWarnings.length} памяток требуют скорой проверки.`);
   console.warn(checkWarnings.map(warning => `• ${warning}`).join('\n'));
+  if(strictWarning) checkErrors.push('Ежедневный контроль: наступило окно напоминания о проверке памяток.');
 }
 
 if (checkErrors.length) {

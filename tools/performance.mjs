@@ -62,3 +62,5 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(`Бюджеты соблюдены: search ${size('data/search-index.json')} байт (${gzipSize('data/search-index.json')} gzip), JS ${jsTotal}, CSS ${cssTotal}.`);
+
+console.log(`Весь собственный JS: ${jsFiles.reduce((s,f)=>s+size(f),0)}; весь собственный CSS: ${cssFiles.reduce((s,f)=>s+size(f),0)}. Vendor/CDN/Метрика не входят в эти суммы. Это размеры, не полевые Core Web Vitals.`);

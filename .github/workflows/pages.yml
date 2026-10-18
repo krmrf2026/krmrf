@@ -34,6 +34,8 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run qa
+      - name: Prepared publication links
+        run: node tools/publish-links.mjs --summary >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

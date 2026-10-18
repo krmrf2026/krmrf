@@ -17,9 +17,10 @@ class Element {
   replaceChildren(...children) { this.children = children; }
 }
 async function harness({ ok = true, mismatch = false, malformed = false, clipboard = null, pending = false, corrupt = null } = {}) {
-  const ids = ['mapStatistics','mapStatsPeriod','mapStatsMonth','mapStatsDay','mapStatsDayControl','mapStatsMonthControl','mapStatsPost','mapStatsPostPreview','mapStatsStatus','mapStatsRange','mapStatsValue0','mapStatsValue1','mapStatsValue2','mapStatsCoverage','mapStatsCopy','mapStatsDaily','mapStatsSectors','mapStatsSectorsBody'];
+  const ids = ['mapStatsChannel','mapStatistics','mapStatsPeriod','mapStatsMonth','mapStatsDay','mapStatsDayControl','mapStatsMonthControl','mapStatsPost','mapStatsPostPreview','mapStatsStatus','mapStatsRange','mapStatsValue0','mapStatsValue1','mapStatsValue2','mapStatsCoverage','mapStatsCopy','mapStatsDaily','mapStatsSectors','mapStatsSectorsBody'];
   const els = Object.fromEntries(ids.map(id => [id, new Element()]));
   els.mapStatistics.dataset = { current: payload.current, statisticsKey: payload.fingerprint };
+  els.mapStatsChannel.value='https://krmrf.ru/map/?utm_source=telegram&utm_medium=messenger&utm_campaign=map&utm_content=post';
   els.mapStatsPeriod.value = 'latest'; els.mapStatsMonth.value = payload.monthly.at(-1).month;
   els.mapStatsDay.value = payload.daily.filter(d => d.status !== 'no_snapshot').at(-1).date;
   els.mapStatsPost.value = 'Проверенный статичный текст'; els.mapStatsStatus.hidden = true;
@@ -41,7 +42,7 @@ test('клиент: выбор месяца меняет числа и тот ж
   els.mapStatsPeriod.value = 'month'; await els.mapStatsPeriod.fire('change');
   assert.equal(els.mapStatsMonth.disabled, false); assert.equal(els.mapStatsDay.disabled, true); assert.equal(els.mapStatsMonthControl.hidden, false);
   assert.equal(els.mapStatsValue2.textContent, core.area(payload.periods.month.netKm2, true));
-  assert.equal(els.mapStatsPost.value, core.post(payload.periods.month, 'обновления за ' + core.monthName(els.mapStatsMonth.value)));
+  assert.equal(els.mapStatsPost.value, core.post(payload.periods.month, 'обновления за ' + core.monthName(els.mapStatsMonth.value), els.mapStatsChannel.value));
   if (payload.periods.month.crossesMonthBoundary) assert.match(els.mapStatsPost.value, /разделить его по месяцам нельзя/);
 });
 test('клиент: день публикации согласован с календарными числами, исходный день не получает ноль', async () => {

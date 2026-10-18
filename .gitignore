@@ -39,3 +39,8 @@ SHA256SUMS
 *.kdbx
 *.token
 credentials.json
+
+/ops/posts/
+/ops/publish-links.json
+/ops/publish-links.tsv
+/ops/publication-campaigns.json

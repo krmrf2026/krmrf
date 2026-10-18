@@ -4,7 +4,10 @@ import crypto from 'node:crypto';
 import { prepareLayer, layerArea, measureLayers, AREA_METHOD, EARTH_RADIUS } from './lib/map-area.mjs';
 import { core, publishedAt, safeSnapshot, geometryHash, writeJson, validateConfig } from './lib/map-statistics.mjs';
 import { prepareSectors, measureSectors } from './lib/map-sectors.mjs';
+import {loadProtocol,publicationRecords,buildUtm} from './lib/utm.mjs';
 const ROOT = process.cwd(), read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+const protocol=loadProtocol(ROOT), records=publicationRecords(ROOT);
+const channelLinks=Object.entries(protocol.channels).map(([channel,v])=>({label:v.label||channel,url:buildUtm(protocol,{rawUrl:'/map/',source:channel},records)}));
 const config = validateConfig(JSON.parse(read('data/map-statistics-config.json')));
 const sectorLayers = prepareSectors(config);
 const journal = JSON.parse(read('data/map-archive/journal.json')), current = JSON.parse(read('data/zones.geojson'));
@@ -113,9 +116,10 @@ const html = `<section class="map-statistics" id="mapStatistics" data-current="$
 <p id="mapStatsRange">${esc(core.range(summary))}</p>
 <dl class="map-statistics__metrics">${metrics.map((n, i) => `<div><dt>${titles[i]}</dt><dd id="mapStatsValue${i}">${esc(core.area(n, i === 2))}</dd></div>`).join('')}</dl>
 <p id="mapStatsCoverage"${coverage ? '' : ' hidden'}>${esc(coverage)}</p>
+<div class="map-statistics__controls"><label for="mapStatsChannel">Канал публикации<select id="mapStatsChannel" disabled>${channelLinks.map((c,i)=>`<option value="${esc(c.url)}"${i===0?' selected':''}>${esc(c.label)}</option>`).join('')}</select></label></div>
 <button type="button" class="button button--primary" id="mapStatsCopy">Скопировать для канала</button><p role="status" id="mapStatsStatus" hidden></p>
 <details id="mapStatsSectors"${sectorRows.length ? '' : ' hidden'}><summary>По районам</summary><div class="map-statistics__table" tabindex="0" role="region" aria-label="Изменения по районам"><table role="table"><caption>Выделенные районы карты · границы условные · км²</caption><thead><tr><th scope="col">Район</th>${titles.map(t => `<th scope="col">${t}</th>`).join('')}</tr></thead><tbody id="mapStatsSectorsBody">${sectorsHtml}</tbody></table></div></details>
-<details id="mapStatsPostPreview"><summary>Текст для канала</summary><textarea id="mapStatsPost" aria-label="Текст для канала" rows="8" readonly>${esc(core.post(summary, 'последнее обновление'))}</textarea></details>
+<details id="mapStatsPostPreview"><summary>Текст для канала</summary><textarea id="mapStatsPost" aria-label="Текст для канала" rows="8" readonly>${esc(core.post(summary, 'последнее обновление', channelLinks[0].url))}</textarea></details>
 <details id="mapStatsDays"><summary>По дням</summary><div class="map-statistics__table" tabindex="0" role="region" aria-label="Статистика по дням"><table role="table"><caption>Дни обновлений за последние 30 дней карты · км²</caption><thead>${header}</thead><tbody id="mapStatsDaily">${days.map(row).join('')}</tbody></table></div></details>
 <details id="mapStatsMonths"><summary>По месяцам</summary><div class="map-statistics__table" tabindex="0" role="region" aria-label="Статистика по месяцам"><table role="table"><caption>По датам публикации обновлений · км²</caption><thead>${header}</thead><tbody>${months.map(monthlyRow).join('')}</tbody></table></div></details>
 </section>`;

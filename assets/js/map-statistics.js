@@ -4,6 +4,9 @@
   if (!root || !core) return;
   const el = id => document.getElementById(id), period = el('mapStatsPeriod'), month = el('mapStatsMonth'), day = el('mapStatsDay');
   const post = el('mapStatsPost'), status = el('mapStatsStatus'), controls = [period, month, day];
+  const channel = el('mapStatsChannel');
+  channel.disabled = false;
+  channel.addEventListener('change', () => { post.value = post.value.replace(/https:\S+$/, channel.value); message(''); });
   controls.forEach(c => { c.disabled = true; });
   let data;
   const message = text => { status.textContent = text; status.hidden = !text; };
@@ -29,7 +32,7 @@
     }));
     const label = period.value === 'month' ? `обновления за ${core.monthName(month.value)}`
       : period.value === 'day' ? `обновления за ${core.shortDate(day.value + 'T12:00:00Z')}` : 'последнее обновление';
-    post.value = core.post(selected, label); message('');
+    post.value = core.post(selected, label, channel.value); message('');
   };
   controls.forEach(c => c.addEventListener('change', render));
   el('mapStatsCopy').addEventListener('click', async () => {
