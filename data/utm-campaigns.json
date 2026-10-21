@@ -121,7 +121,8 @@
     "2026-02-18-kremennaya": "kremennaya-2026-02-18",
     "assessment-2026-10-18": "2026-10-18",
     "_home": "home",
-    "_map": "map"
+    "_map": "map",
+    "svo-2026-10-21": "svo-2026-10-21"
   },
   "notes": "Existing campaigns preserve the previous generator URL slug. New publication campaigns use immutable metadata id. Keep old ids and overrides after URL changes."
 }

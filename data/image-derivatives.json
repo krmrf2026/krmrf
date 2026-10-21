@@ -2841,6 +2841,46 @@
       "sourceSha256": "810f7666a1005ff91e247ba453de598af3d5bfb09c7e1bff2ff81fd755e4a2c4",
       "derivedSha256": "f42e65c6e489ab93594eea835de45b60d5d8f9dd77acd81920edf715848bd810"
     },
+    "assets/img/derived/news/svo/svo-2026-10-21/cover-480.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/cover.webp",
+      "sourceSha256": "9bd238d10b33f72fe0f2df08893772c957c636d6d789643a3dada6f740cf8ce8",
+      "derivedSha256": "c949a0a0dee3f6dd8e3ce72038871f6cd9396e945e018368486e5584ca4aea79"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/cover-960.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/cover.webp",
+      "sourceSha256": "9bd238d10b33f72fe0f2df08893772c957c636d6d789643a3dada6f740cf8ce8",
+      "derivedSha256": "12329e5023386fc604a40b15ffcc97a853403d401154b7a4b095962e7b9152d6"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/liman-480.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/liman.webp",
+      "sourceSha256": "fbdfd8a41cc0ca954850902d0036ff174f08ea06b768abf6eb01f19b89047d83",
+      "derivedSha256": "9f0128231c42b5eae8156fc306466e805de7d0222f3f64f4cdcd8010e68162b7"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/liman-960.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/liman.webp",
+      "sourceSha256": "fbdfd8a41cc0ca954850902d0036ff174f08ea06b768abf6eb01f19b89047d83",
+      "derivedSha256": "3e924dc7aab8563cac45b8e2cd5e327d16df3af8a6079ae22f307dd93f509b84"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/territory-stats-480.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/territory-stats.webp",
+      "sourceSha256": "143931df1f35019fe6d5dea99a8b3e5678e34d775563afd36f80191563b9bff5",
+      "derivedSha256": "c9cafc202e8c1bc5b8fa57d7a6540279a9a4efc9f872d080dfbe18e0981b76f9"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/territory-stats-960.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/territory-stats.webp",
+      "sourceSha256": "143931df1f35019fe6d5dea99a8b3e5678e34d775563afd36f80191563b9bff5",
+      "derivedSha256": "e2d7a732c6c4ffb8af6ff8ac036060f70f60d1b77b8ba981326e55f10a5c21a1"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/volchansk-480.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/volchansk.webp",
+      "sourceSha256": "ce062c94bf9be2b82d7b85bfc642bda6cb5508177118ba98794c7e30eb4286bc",
+      "derivedSha256": "32901213f11d3fea4dfa93d4bcb2b4f1349d66392b2d0318622326df6b2f880c"
+    },
+    "assets/img/derived/news/svo/svo-2026-10-21/volchansk-960.webp": {
+      "source": "assets/img/news/svo/svo-2026-10-21/volchansk.webp",
+      "sourceSha256": "ce062c94bf9be2b82d7b85bfc642bda6cb5508177118ba98794c7e30eb4286bc",
+      "derivedSha256": "efd8553cfe3070903df8fc120dfab765e9a04fde0e15aeb318d0d1bff4a40179"
+    },
     "assets/img/derived/news/svo/vsy-2026-03-31/cover-480.webp": {
       "source": "assets/img/news/svo/vsy-2026-03-31/cover.webp",
       "sourceSha256": "eee995c5aee318d6c4a1422ff1154ceaad18fe7e2061bd8f2788990e4d09a3ab",
