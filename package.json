@@ -17,12 +17,12 @@
     "test:idempotence": "node tools/idempotence.mjs",
     "test:export-clean": "node tools/export-clean-test.mjs",
     "test:search-e2e": "playwright test",
-    "test:ops": "node --test tests/unit/ops-maintenance.test.mjs",
+    "test:ops": "node --test tests/unit/ops-maintenance.test.mjs tests/unit/article-preflight.test.mjs tests/unit/qa-visible.test.mjs",
     "content:lock": "node tools/content-integrity.mjs --write",
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run test:freshness-policy && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
+    "qa": "npm run articles:check && npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run test:freshness-policy && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
@@ -43,7 +43,10 @@
     "publish:links": "node tools/publish-links.mjs",
     "test:map-dependencies": "node tools/check-map-dependencies.mjs && node --test tests/unit/map-dependencies.test.mjs",
     "test:freshness-policy": "node --test tests/unit/guide-freshness.test.mjs",
-    "test:analytics": "python3 -B -m unittest discover -s automation/private-analytics -p \"test_*.py\""
+    "test:analytics": "python3 -B -m unittest discover -s automation/private-analytics -p \"test_*.py\"",
+    "articles:check": "node tools/preflight-new-articles.mjs",
+    "articles:prepare": "node tools/preflight-new-articles.mjs --sync-utm && npm run images && npm run build && npm run test:utm && npm run articles:check && npm run validate",
+    "qa:visible": "node tools/qa-visible.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"
