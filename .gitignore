@@ -40,6 +40,10 @@ SHA256SUMS
 *.token
 credentials.json
 
+# Производный Python-кэш не входит в исходники
+__pycache__/
+*.py[cod]
+
 /ops/posts/
 /ops/publish-links.json
 /ops/publish-links.tsv

@@ -18,6 +18,7 @@ const PAGES_FILE = path.join(ROOT, 'data/pages.json');
 const args = process.argv.slice(2);
 const checkOnly = args.includes('--check');
 const strictWarning = args.includes('--strict-warning');
+const selectedIds = args.filter(arg => arg.startsWith('--id=')).map(arg => arg.slice(5));
 const valueOf = name => args.find(arg => arg.startsWith(`${name}=`))?.slice(name.length + 1);
 const referenceDate = valueOf('--date') || todayIso();
 const cadenceDays = Number(valueOf('--cadence-days') || DEFAULT_REVIEW_CADENCE_DAYS);
@@ -31,12 +32,17 @@ if (args.includes('--help')) {
 Опции:
   --check                 только проверить, не изменять data/pages.json
   --date=YYYY-MM-DD       дата проверки; по умолчанию текущая UTC-дата
+  --id=ID                проверить/обновить одну памятку; можно повторить
   --cadence-days=N        период до следующей проверки; по умолчанию 30 дней
   --warning-days=N        защитное окно CI; по умолчанию 7 дней`);
   process.exit(0);
 }
 
 const errors = [];
+for (const arg of args) {
+  if (!['--check', '--strict-warning', '--help'].includes(arg)
+      && !/^--(?:id|date|cadence-days|warning-days)=/.test(arg)) errors.push(`Неизвестная опция: ${arg}. Данные не изменены.`);
+}
 if (!validIsoDate(referenceDate)) errors.push(`Некорректная дата проверки: ${referenceDate}.`);
 if (!Number.isInteger(cadenceDays) || cadenceDays < 1 || cadenceDays > MAX_REVIEW_CADENCE_DAYS) {
   errors.push(`reviewCadenceDays должен быть целым числом от 1 до ${MAX_REVIEW_CADENCE_DAYS}.`);
@@ -55,9 +61,17 @@ if (errors.length) {
 const pages = JSON.parse(fs.readFileSync(PAGES_FILE, 'utf8'));
 const guides = pages.filter(item => item.type === 'guide');
 const activeGuides = guides.filter(item => !INACTIVE_GUIDE_STATUSES.has(item.reviewStatus));
+for (const id of selectedIds) {
+  if (!activeGuides.some(item => item.id === id)) {
+    console.error(`Не найдена действующая памятка: ${id || '(пустой id)'}. Данные не изменены.`);
+    process.exit(1);
+  }
+}
+const selectedGuides = selectedIds.length
+  ? activeGuides.filter(item => selectedIds.includes(item.id)) : activeGuides;
 
 if (!checkOnly) {
-  const tooNew = activeGuides.filter(item => validIsoDate(item.dateModified) && item.dateModified > referenceDate);
+  const tooNew = selectedGuides.filter(item => validIsoDate(item.dateModified) && item.dateModified > referenceDate);
   if (tooNew.length) {
     console.error(tooNew.map(item => (
       `• ${item.id}: dateModified=${item.dateModified} позже даты проверки ${referenceDate}.`
@@ -65,7 +79,7 @@ if (!checkOnly) {
     process.exit(1);
   }
 
-  for (const item of activeGuides) {
+  for (const item of selectedGuides) {
     item.reviewedAt = referenceDate;
     item.reviewAfter = addUtcDays(referenceDate, cadenceDays);
     item.reviewCadenceDays = cadenceDays;
@@ -84,7 +98,7 @@ if (!checkOnly) {
   });
   fs.writeFileSync(PAGES_FILE, `${JSON.stringify(ordered, null, 2)}\n`);
   console.log(
-    `Зафиксирована проверка ${activeGuides.length} действующих памяток на ${referenceDate}; `
+    `Зафиксирована проверка ${selectedGuides.length} действующих памяток на ${referenceDate}; `
     + `следующая обязательная проверка — ${addUtcDays(referenceDate, cadenceDays)}.`
   );
   process.exit(0);
@@ -92,7 +106,7 @@ if (!checkOnly) {
 
 const checkErrors = [];
 const checkWarnings = [];
-for (const item of guides) {
+for (const item of selectedIds.length ? selectedGuides : guides) {
   const prefix = item.id || item.url || 'guide';
   const cadence = item.reviewCadenceDays;
   if (!validIsoDate(item.reviewedAt)) checkErrors.push(`${prefix}: нужен корректный reviewedAt.`);
@@ -140,12 +154,12 @@ if (checkErrors.length) {
   process.exit(1);
 }
 
-const nextReview = activeGuides.map(item => item.reviewAfter).sort()[0] || '—';
-const nextDays = activeGuides.length
-  ? guideFreshnessState(activeGuides.find(item => item.reviewAfter === nextReview), referenceDate, warningDays).daysUntilReview
+const nextReview = selectedGuides.map(item => item.reviewAfter).sort()[0] || '—';
+const nextDays = selectedGuides.length
+  ? guideFreshnessState(selectedGuides.find(item => item.reviewAfter === nextReview), referenceDate, warningDays).daysUntilReview
   : null;
 console.log(
-  `Актуальность подтверждена: ${activeGuides.length} действующих памяток; `
+  `Актуальность подтверждена: ${selectedGuides.length} действующих памяток; `
   + `контрольная дата ${referenceDate}; ближайшая проверка ${nextReview}`
   + `${nextDays === null ? '' : ` (через ${nextDays} дн.)`}; защитное окно ${warningDays} дн.`
 );

@@ -52,3 +52,44 @@ test('клик по источнику фиксирует только host, б�
   expect(call[3]?.host).toBeTruthy();
   expect(call[3]?.url).toBeUndefined();
 });
+
+for (const [id, selector] of [
+  ['chto-delat-pri-atake-bpla-lnr', '#sources + table a[href^="https://71.mchs.gov.ru"]'],
+  ['rosreestr-lnr-kontakty-2026', 'article a[href^="https://rosreestr.gov.ru"]']
+]) test(`источник в таблице или тексте: ${id}`, async ({ page }) => {
+  await blockExternal(page); await page.goto(`/news/reference/${id}/`);
+  const link = page.locator(selector).first();
+  await link.evaluate(node => node.addEventListener('click', event => event.preventDefault(), { once: true }));
+  await link.click();
+  const call = await goal(page, 'source_click');
+  expect(call?.[3]?.host).toBeTruthy(); expect(call?.[3]?.url).toBeUndefined();
+});
+
+test('ведомственный канал — источник; каналы KRM РФ — отдельная цель', async ({ page }) => {
+  await blockExternal(page); await page.goto('/news/reference/rosreestr-lnr-kontakty-2026/');
+  const source = page.locator('article a[href^="https://t.me/r81_rosreestr"]').first();
+  await source.evaluate(node => node.addEventListener('click', event => event.preventDefault(), { once: true }));
+  await source.click();
+  expect(await goal(page, 'channel_click')).toBeNull(); expect(await goal(page, 'source_click')).not.toBeNull();
+  for (const host of ['t.me', 'max.ru']) {
+    await page.goto('/news/reference/rosreestr-lnr-kontakty-2026/');
+    const channel = page.locator(`.site-footer a[href="https://${host}/xykrm"]`);
+    await channel.evaluate(node => { node.dataset.source = ''; node.addEventListener('click', event => event.preventDefault(), { once: true }); });
+    await channel.click();
+    expect((await goal(page, 'channel_click'))?.[3]?.channel).toBe(host === 't.me' ? 'telegram' : 'max');
+    expect(await goal(page, 'source_click')).toBeNull();
+  }
+});
+
+test('кредит фотографии и телефон не считаются источником', async ({ page }) => {
+  await blockExternal(page); await page.goto('/news/reference/nedvizhimost-lnr-gid/');
+  const credit = page.locator('figcaption a[href^="https:"]').first();
+  await expect(credit).toBeVisible();
+  await credit.evaluate(node => node.addEventListener('click', event => event.preventDefault(), { once: true }));
+  await credit.click(); expect(await goal(page, 'source_click')).toBeNull();
+  await page.evaluate(() => {
+    const link = document.createElement('a'); link.href = 'tel:112'; link.dataset.source = '';
+    link.addEventListener('click', e => e.preventDefault()); document.querySelector('article').append(link); link.click();
+  });
+  expect(await goal(page, 'source_click')).toBeNull();
+});

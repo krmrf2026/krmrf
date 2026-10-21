@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.10.18-r25",
+  "version": "2026.10.19-r26",
   "type": "module",
   "scripts": {
     "build": "node tools/map-history.mjs && node tools/map-statistics.mjs && node tools/build.mjs && node tools/publish-links.mjs",
@@ -43,7 +43,7 @@
     "publish:links": "node tools/publish-links.mjs",
     "test:map-dependencies": "node tools/check-map-dependencies.mjs && node --test tests/unit/map-dependencies.test.mjs",
     "test:freshness-policy": "node --test tests/unit/guide-freshness.test.mjs",
-    "test:analytics": "python3 -m unittest discover -s automation/private-analytics -p \"test_*.py\""
+    "test:analytics": "python3 -B -m unittest discover -s automation/private-analytics -p \"test_*.py\""
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"

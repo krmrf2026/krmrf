@@ -18,7 +18,7 @@ sha256sum -c SHA256SUMS
 nvm install 24
 nvm use
 npm ci
-sudo apt-get update && sudo apt-get install -y imagemagick
+sudo apt-get update && sudo apt-get install -y imagemagick librsvg2-bin
 npx playwright install --with-deps chromium
 npm run qa
 ```

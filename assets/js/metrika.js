@@ -27,12 +27,13 @@
     const link = event.target?.closest?.('a[href]');
     if (!link) return;
     let url; try { url = new URL(link.href, location.href); } catch { return; }
+    if (!/^https?:$/.test(url.protocol)) return;
     const place = placement(link);
 
-    if (url.hostname === 't.me' || url.hostname === 'max.ru') {
-      goal('channel_click', { channel: url.hostname === 't.me' ? 'telegram' : 'max', placement: place });
+    if (['t.me', 'max.ru'].includes(url.hostname) && /^\/xykrm\/?$/i.test(url.pathname)) {
+      return goal('channel_click', { channel: url.hostname === 't.me' ? 'telegram' : 'max', placement: place });
     }
-    if (link.closest('.source-list, li[id^="src-"]') && url.origin !== location.origin) {
+    if (link.closest('[data-source], .source-list, li[id^="src-"]') && url.origin !== location.origin) {
       goal('source_click', { host: url.hostname, placement: place });
     }
     if (url.origin !== location.origin || url.pathname === location.pathname) return;
