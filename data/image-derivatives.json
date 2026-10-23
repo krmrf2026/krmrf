@@ -2516,6 +2516,21 @@
       "sourceSha256": "4ab6b23de9d9aa43f233248ba5d4d4b892be9dc366a71edd6b68bd7dd455fd79",
       "derivedSha256": "84086b7044d2c58abd81de4b25033f4724606a98446b4014150d2c6c2c1d2e4c"
     },
+    "assets/img/derived/news/reference/zashchita-prav-lnr/cover-480.webp": {
+      "source": "assets/img/news/reference/zashchita-prav-lnr/cover.webp",
+      "sourceSha256": "16efa1d04c5938bab5afdc4c87bad5aa8f47bbcd23c5ff2cef7a96ea588c338f",
+      "derivedSha256": "3a84cc54e204f0321a2ab6799c24391d07ef372a1253465db410c929a7e612b2"
+    },
+    "assets/img/derived/news/reference/zashchita-prav-lnr/cover-960.webp": {
+      "source": "assets/img/news/reference/zashchita-prav-lnr/cover.webp",
+      "sourceSha256": "16efa1d04c5938bab5afdc4c87bad5aa8f47bbcd23c5ff2cef7a96ea588c338f",
+      "derivedSha256": "f1e5c56d8564bb62f852d5cb1f944afec9cecaf171dc71340160f4c9bef9e7fb"
+    },
+    "assets/img/derived/news/reference/zashchita-prav-lnr/postanovlenie-931-480.webp": {
+      "source": "assets/img/news/reference/zashchita-prav-lnr/postanovlenie-931.png",
+      "sourceSha256": "d1ded60e003959fdaf029eefd273af9207d6dc03c973f9a162a20b07325559ae",
+      "derivedSha256": "45a185bd74495ab927f40f5c7b530fee5227426617beecae6b938bdfa9576cdd"
+    },
     "assets/img/derived/news/reference/zemlyalnr-2026-05-04/cover-480.webp": {
       "source": "assets/img/news/reference/zemlyalnr-2026-05-04/cover.webp",
       "sourceSha256": "0ce13bfa0c9af30adbdb95c6469c9dbe4af6cc0a4d77b093da2278e114373d33",
