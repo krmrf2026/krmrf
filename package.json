@@ -22,7 +22,7 @@
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run articles:check && npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run test:freshness-policy && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
+    "qa": "npm run articles:check && npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness-policy && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
