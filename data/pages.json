@@ -1,5 +1,30 @@
 [
   {
+    "id": "assessment-2026-10-25",
+    "type": "assessment",
+    "title": "Оценка боевых действий СВО: Восточный ТВД, 19–25 октября 2026",
+    "seoTitle": "Восточный ТВД: 19–25 октября 2026",
+    "seoDescription": "Восточный ТВД 19–25 октября: Купянск, Боровая, Красный Лиман, Славянск; итоги недели, подтверждения, Кременная и гражданская обстановка ЛНР.",
+    "url": "/assessment/2026-10-25/",
+    "section": "assessment",
+    "datePublished": "2026-10-25",
+    "dateModified": "2026-10-25",
+    "status": null,
+    "excerpt": "После сентябрьских боёв российские подразделения удерживают позиции и активнее контратакуют под Красным Лиманом. Под Купянском укрепляется присутствие; ЛНР сталкивается с атаками БПЛА и проблемами связи.",
+    "image": "/assets/img/assessment/2026-10-25/cover.webp",
+    "imageAlt": "Еженедельная оценка обстановки на Восточном ТВД за 19–25 октября 2026 года",
+    "period": "19–25 октября 2026 года; срез сообщений 24 октября включительно",
+    "locations": [
+      "Восточный фронт",
+      "Купянск",
+      "Боровая",
+      "Красный Лиман",
+      "Славянское направление",
+      "Кременная",
+      "ЛНР"
+    ]
+  },
+  {
     "id": "zashchita-prav-lnr",
     "type": "guide",
     "title": "Куда жаловаться в ЛНР: свет, вода, жильё и отказы чиновников",
@@ -282,7 +307,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "home": {
       "guide": 1
     },
@@ -736,7 +761,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Наследство в ЛНР: квартира, дом, земля и документы",
     "seoDescription": "Как оформить наследство на квартиру, дом или землю в ЛНР: нотариус, 6 месяцев, старые украинские документы, МФЦ, Росреестр, ЕГРН и расходы."
   },
@@ -767,7 +792,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "revisionHistory": [
       {
         "date": "2026-09-24",
@@ -853,7 +878,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "revisionHistory": [
       {
         "date": "2026-09-24",
@@ -912,7 +937,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Перед СВО или долгим отъездом: памятка семье",
     "seoDescription": "Что подготовить семье перед СВО, вахтой, командировкой или долгим отъездом: документы, доверенность, здоровье, деньги, связь и защита от мошенников."
   },
@@ -1000,7 +1025,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "revisionHistory": [
       {
         "date": "2026-09-24",
@@ -1083,7 +1108,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "revisionHistory": [
       {
         "date": "2026-09-24",
@@ -1166,7 +1191,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Срок регистрации недвижимости в ЛНР продлён до 2027 года",
     "seoDescription": "Срок представления старых документов для регистрации недвижимости в ЛНР продлён до 1 января 2027 года. Кого касается закон и что делать после 1 июля."
   },
@@ -1474,7 +1499,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Выплаты пострадавшим в ЛНР: порядок № 118/26",
     "seoDescription": "Краткая памятка KRM РФ: кому положены выплаты по постановлению ЛНР № 118/26, какие документы нужны, куда обращаться и чем порядок отличается от помощи по…"
   },
@@ -1839,7 +1864,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Регистрация недвижимости в ЛНР в 2026 году",
     "seoDescription": "Полное объяснение регистрации недвижимости в ЛНР: сроки, украинские документы, комиссии и риски."
   },
@@ -1961,7 +1986,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Бесплатное оформление земли в ЛНР",
     "seoDescription": "Короткий разбор для жителей ЛНР: кто может оформить землю под домом бесплатно, какие документы проверить, куда обращаться, какие сроки действуют и где…"
   },
@@ -2328,7 +2353,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "БО, БП и БВП на СВО: разница статусов и действия семьи",
     "seoDescription": "БО, БП и БВП на СВО простыми словами: различия статусов, сроки 6 и 3 месяца, розыск, справка, суд, ДНК, выплаты и алгоритм действий семьи."
   },
@@ -2365,7 +2390,7 @@
     "reviewedAt": "2026-09-24",
     "reviewAfter": "2026-10-24",
     "reviewCadenceDays": 30,
-    "reviewStatus": "current",
+    "reviewStatus": "review-due",
     "seoTitle": "Бесхозное жильё в ЛНР: регистрация до 2027 года",
     "seoDescription": "Срок по соответствующим старым документам продлён до 1 января 2027 года. Как это влияет на риск бесхозяйного жилья в ЛНР и что делать собственнику."
   },
