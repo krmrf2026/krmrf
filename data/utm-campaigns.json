@@ -123,7 +123,8 @@
     "_home": "home",
     "_map": "map",
     "svo-2026-10-21": "svo-2026-10-21",
-    "zashchita-prav-lnr": "zashchita-prav-lnr"
+    "zashchita-prav-lnr": "zashchita-prav-lnr",
+    "assessment-2026-10-25": "assessment-2026-10-25"
   },
   "notes": "Existing campaigns preserve the previous generator URL slug. New publication campaigns use immutable metadata id. Keep old ids and overrides after URL changes."
 }

@@ -1,6 +1,7 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
+    "/assessment/2026-10-25/": "cd691a327f11e1728fc77063a50cd0b522afccb472765fa53baf2087f8490b73",
     "/news/reference/zashchita-prav-lnr/": "7b82d1fa7f08cc1c0ae0066b18eb2484cb2fb6a3b8f964db4cb2289613ec8e74",
     "/news/svo/svo-2026-10-21/": "3d6ce7adcf040268c95be29e7a3e82ef5bf4d8bf115364e8ceb5974296442f37",
     "/news/civilian-impact/propavshie-na-svo/": "c73132751fdf15f8c8a3aeeb513c8b6d5e3cec4edd6ab95b16802211fd725f28",
@@ -99,6 +100,6 @@
     "/news/reference/beshoz-2026-07-01/": "1b395365028b54a91a4b2e1b068bc4454b7c4558b86087bb35315d37c9c30158",
     "/news/svo/liman-slavyansk-2026-02-22/": "3106329f688a2a5b539e299a396ceaffe6b9f6f204d12185dc498c7318a45024",
     "/news/kremennaya/kremennaya-2026-02-18/": "1546f9f49323126584a25a9a02b8b2c73b7d41d970d8267ed604566916a210c6",
-    "/assessment/2026-10-18/": "fd8acf3f70a26c3fd3728dfbdae98e8b71ba853cb11b186f920ac444bc82d351"
+    "/assessment/2026-10-18/": "7bec403bb970025cec83cbe3ca183ba90b3541c553d0f95603cafe4c057cc2c7"
   }
 }
