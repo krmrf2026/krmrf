@@ -148,5 +148,5 @@ if(check){
     console.log('  обновлено:',p);
   }
   for(const p of deletions){fs.unlinkSync(abs(p));console.log('  удалено:',p);}
-  console.log('\nГотово. Следующий шаг: npm run validate. Затем npm run content:lock и npm run qa.');
+  console.log('\nГотово. Следующий шаг: npm run validate. Затем npm run content:lock -- --id=svo-2026-10-21 и npm run qa.');
 }

@@ -116,5 +116,5 @@ fs.writeFileSync(newPage,newHTML,'utf8');
 fs.writeFileSync(pagesPath,newPages,'utf8');
 console.log(`Готово: news/svo/${SLUG}/index.html`);
 console.log('Новая запись добавлена в data/pages.json. Изменения старых материалов не требуются.');
-console.log('Проверить: npm run build && npm run content:lock && npm run qa');
+console.log('Проверить: npm run build && npm run content:lock -- --id=svo-2026-10-21 && npm run qa');
 console.log('Перед публикацией проверить статью и её обложку в браузере Codespaces.');

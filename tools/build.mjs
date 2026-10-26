@@ -6,7 +6,7 @@ import { cspForFile, syncHostingMeta } from './lib/hosting.mjs';
 import { syncPublicationLayout } from './lib/publication-layout.mjs';
 import { cardImageSizes } from './lib/image-sizes.mjs';
 import { encodeSearchTerms } from './lib/search-index.mjs';
-import { guideFreshnessState, todayIso } from './lib/guide-freshness.mjs';
+import { guideFreshnessState, todayIso, requiresReview } from './lib/guide-freshness.mjs';
 
 const ROOT = path.resolve(process.cwd());
 const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
@@ -408,10 +408,10 @@ const syncPublicationMetadata = (html, item, buildDate) => {
     else updated = updated.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, `$1${revisionMarker}`);
   }
 
-  if (item.type === 'guide') {
+  if (requiresReview(item)) {
     updated = syncGuideMetaDates(updated, item);
     const freshness = guideFreshnessState(item, FRESHNESS_DATE);
-    const due = freshness.state === 'overdue' || freshness.state === 'invalid';
+    const due = ['overdue', 'invalid', 'unreviewed', 'blocked'].includes(freshness.state);
     const inactive = freshness.state === 'superseded' || freshness.state === 'archived';
     const statusClass = due || inactive ? 'guide-status--review' : 'guide-status--current';
     const reviewed = item.reviewedAt || item.dateModified;
@@ -424,7 +424,9 @@ const syncPublicationMetadata = (html, item, buildDate) => {
       : freshness.state === 'archived'
         ? 'Материал сохранён для истории и не является действующей инструкцией.'
         : due
-          ? `Срок обязательной проверки истёк ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте сведения с официальным органом.`
+          ? freshness.state === 'overdue'
+            ? `Срок обязательной проверки истёк ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте сведения с официальным органом.`
+            : 'Проверка текущей редакции не завершена. Перед практическим применением сверьте сведения с официальным органом.'
           : `Следующая обязательная проверка — не позднее ${formatDate(item.reviewAfter)}.`;
     const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" aria-label="Статус актуальности памятки"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
     if (/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/.test(updated)) {

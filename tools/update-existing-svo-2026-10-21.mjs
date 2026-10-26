@@ -82,4 +82,4 @@ fs.writeFileSync(pagePath,updatedHTML,'utf8');
 fs.writeFileSync(pagesPath,updatedPages,'utf8');
 console.log(`Обновлено: ${version.name} → компактный редакционный обзор KRM РФ.`);
 console.log('Сохранена действующая обложка; старые статьи не изменены.');
-console.log('Выполни: npm run build && npm run content:lock && npm run qa');
+console.log('Выполни: npm run build && npm run content:lock -- --id=svo-2026-10-21 && npm run qa');

@@ -1,3 +1,4 @@
+import { requiresReview } from './guide-freshness.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { ancestors, attribute, hasClass, rawElement, scanElements, textContent } from './html-fragments.mjs';
@@ -66,7 +67,7 @@ export const checkUniformity = (root, pages, htmlFiles) => {
       if (meta.length !== 1 || meta[0].parent !== header) fail('метаданные должны находиться в article-header.');
       const revisions = inside.filter(node => hasClass(node, 'revision-meta'));
       const statuses = inside.filter(node => hasClass(node, 'guide-status'));
-      if (statuses.length !== (item.type === 'guide' ? 1 : 0)) fail('неверное количество статусов памятки.');
+      if (statuses.length !== (requiresReview(item) ? 1 : 0)) fail('неверное количество статусов памятки.');
       for (const node of [...revisions, ...statuses]) {
         if (node.parent !== header || (meta[0] && node.start < meta[0].end)) fail('служебный блок должен стоять после метаданных.');
       }

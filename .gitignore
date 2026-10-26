@@ -48,3 +48,7 @@ __pycache__/
 /ops/publish-links.json
 /ops/publish-links.tsv
 /ops/publication-campaigns.json
+
+# Derived editorial monitoring reports
+/ops/editorial-review.json
+/ops/editorial-review.md

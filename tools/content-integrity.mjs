@@ -31,6 +31,7 @@ const attr = (tag, name) => {
 
 const stableArticle = html => {
   let article = html.match(/<article\b[^>]*class=["'][^"']*\barticle\b[^"']*["'][^>]*>[\s\S]*?<\/article>/i)?.[0] || '';
+  if (!article) return null;
   article = article
     .replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/g, '')
     .replace(/<!-- KRM REVISION META START -->[\s\S]*?<!-- KRM REVISION META END -->/g, '')
@@ -58,9 +59,26 @@ const current = Object.fromEntries(pages.map(item => {
   return [item.url, sha256(Buffer.from(stable, 'utf8'))];
 }));
 
-if (process.argv.includes('--write')) {
-  fs.writeFileSync(MANIFEST, `${JSON.stringify({ schema: 'krmrf-content-integrity-v2', pages: current }, null, 2)}\n`);
-  console.log(`Зафиксирована целостность текстов: ${Object.keys(current).length} публикаций.`);
+const options = process.argv.slice(2);
+const writing = options.includes('--write');
+const selected = [...new Set(options.filter(arg => arg.startsWith('--id=')).map(arg => arg.slice(5)))];
+const badOptions = options.filter(arg => arg !== '--write' && !arg.startsWith('--id='));
+if (badOptions.length || (!writing && selected.length) || (writing && !selected.length)) {
+  console.error('Запись требует --write --id=ID; полная проверка запускается без опций.');process.exit(1);
+}
+if (writing) {
+  const selectedPages = selected.map(id => pages.find(item => item.id === id));
+  if (selectedPages.some(item => !item) || !fs.existsSync(MANIFEST)) {
+    console.error('Неизвестный ID или отсутствует базовый манифест. Данные не изменены.');process.exit(1);
+  }
+  const saved = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
+  if (saved.schema !== 'krmrf-content-integrity-v2' || !saved.pages) {
+    console.error('Нужна отдельная проверяемая миграция манифеста.');process.exit(1);
+  }
+  for (const item of selectedPages) saved.pages[item.url] = current[item.url];
+  const temp = MANIFEST + `.tmp-${process.pid}`;
+  fs.writeFileSync(temp, `${JSON.stringify(saved, null, 2)}\n`);fs.renameSync(temp, MANIFEST);
+  console.log(`Зафиксированы только: ${selected.join(', ')}. Затем выполните npm run content:check для всех публикаций.`);
   process.exit(0);
 }
 
