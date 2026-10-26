@@ -108,7 +108,7 @@
       "reviewCadenceDays": {
         "type": "integer",
         "minimum": 1,
-        "maximum": 90
+        "maximum": 180
       },
       "reviewStatus": {
         "enum": [
@@ -174,16 +174,47 @@
         "type": "string",
         "minLength": 50,
         "maxLength": 160
+      },
+      "reviewBlocker": {
+        "type": "string",
+        "minLength": 1
       }
     },
     "allOf": [
       {
         "if": {
-          "properties": {
-            "type": {
-              "const": "guide"
+          "anyOf": [
+            {
+              "properties": {
+                "type": {
+                  "const": "guide"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            {
+              "required": [
+                "reviewedAt"
+              ]
+            },
+            {
+              "required": [
+                "reviewAfter"
+              ]
+            },
+            {
+              "required": [
+                "reviewCadenceDays"
+              ]
+            },
+            {
+              "required": [
+                "reviewStatus"
+              ]
             }
-          }
+          ]
         },
         "then": {
           "required": [

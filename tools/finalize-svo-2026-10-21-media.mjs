@@ -97,4 +97,4 @@ for(const r of rules)if(!next.includes(r.uri))throw Error(`Не вставлен
 fs.writeFileSync(articlePath,next,'utf8');
 fs.writeFileSync(pagesPath,nextPages,'utf8');
 console.log('Готово: четыре изображения подключены к статье, обложка — к SEO-метаданным.');
-console.log('Далее: npm run images && npm run build && npm run content:lock && npm run qa');
+console.log('Далее: npm run images && npm run build && npm run content:lock -- --id=svo-2026-10-21 && npm run qa');

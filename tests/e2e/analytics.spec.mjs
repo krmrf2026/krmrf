@@ -83,7 +83,18 @@ test('ведомственный канал — источник; каналы K
 
 test('кредит фотографии и телефон не считаются источником', async ({ page }) => {
   await blockExternal(page); await page.goto('/news/reference/nedvizhimost-lnr-gid/');
-  const credit = page.locator('figcaption a[href^="https:"]').first();
+  expect((await calls(page)).filter(call => call[1] === 'init')).toHaveLength(1);
+  // Контрольный кредит не зависит от наличия внешних ссылок у фотографий статьи.
+  await page.evaluate(() => {
+    const caption = document.querySelector('article.article figcaption');
+    if (!caption) throw new Error('Не найдена подпись фотографии для проверки аналитики');
+    const link = document.createElement('a');
+    link.id = 'e2e-photo-credit';
+    link.href = 'https://example.test/photo-credit';
+    link.textContent = 'Контрольный кредит фотографии';
+    caption.append(link);
+  });
+  const credit = page.locator('#e2e-photo-credit');
   await expect(credit).toBeVisible();
   await credit.evaluate(node => node.addEventListener('click', event => event.preventDefault(), { once: true }));
   await credit.click(); expect(await goal(page, 'source_click')).toBeNull();

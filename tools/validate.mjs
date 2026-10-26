@@ -7,7 +7,7 @@ import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
 import { checkUniformity } from './lib/check-uniformity.mjs';
 import { decodeSearchTerms } from './lib/search-index.mjs';
 import {
-  MAX_REVIEW_CADENCE_DAYS,
+  MAX_REVIEW_CADENCE_DAYS, requiresReview, reviewIssues,
   addUtcDays,
   expectedReviewStatus,
   todayIso
@@ -158,25 +158,8 @@ for (const [index, item] of pages.entries()) {
     else for (const location of item.locations) if (!knownLocations.has(location)) errors.push(`${prefix}: неизвестная территория=${location}; добавьте её в data/taxonomy.json или используйте существующую.`);
   }
 
-  if (item.type === 'guide') {
-    if (!validDate(item.reviewAfter)) errors.push(`${prefix}: для памятки нужен корректный reviewAfter.`);
-    if (!validDate(item.reviewedAt)) errors.push(`${prefix}: для памятки нужен корректный reviewedAt.`);
-    if (!GUIDE_STATUSES.has(item.reviewStatus)) errors.push(`${prefix}: неизвестный reviewStatus=${item.reviewStatus}.`);
-    if (validDate(item.reviewAfter) && item.reviewAfter < item.datePublished) errors.push(`${prefix}: reviewAfter раньше публикации.`);
-    if (validDate(item.reviewedAt) && validDate(item.dateModified) && item.reviewedAt < item.dateModified) errors.push(`${prefix}: reviewedAt раньше dateModified; новая редакция ещё не проверена.`);
-    if (validDate(item.reviewedAt) && item.reviewedAt > TODAY) errors.push(`${prefix}: reviewedAt находится в будущем.`);
-    if (!Number.isInteger(item.reviewCadenceDays) || item.reviewCadenceDays < 1 || item.reviewCadenceDays > MAX_REVIEW_CADENCE_DAYS) {
-      errors.push(`${prefix}: reviewCadenceDays должен быть целым числом от 1 до ${MAX_REVIEW_CADENCE_DAYS}.`);
-    }
-    if (validDate(item.reviewedAt) && Number.isInteger(item.reviewCadenceDays)) {
-      const expectedAfter = addUtcDays(item.reviewedAt, item.reviewCadenceDays);
-      if (item.reviewAfter !== expectedAfter) errors.push(`${prefix}: reviewAfter должен быть ${expectedAfter} по заданной периодичности.`);
-    }
-    if (!['superseded', 'archived'].includes(item.reviewStatus) && validDate(item.reviewAfter)) {
-      const expectedStatus = expectedReviewStatus(item, TODAY);
-      if (item.reviewStatus !== expectedStatus) errors.push(`${prefix}: reviewStatus должен быть ${expectedStatus}.`);
-    }
-    if (item.reviewStatus === 'superseded' && !item.supersededBy) errors.push(`${prefix}: для superseded нужен supersededBy.`);
+  if (requiresReview(item)) {
+    errors.push(...reviewIssues(item, TODAY).map(issue => `${prefix}: ${issue}`));
   }
 
   if (item.revisionHistory !== undefined) {
@@ -313,7 +296,7 @@ for (const [index, item] of pages.entries()) {
 
   const visibleSection = html.match(/<strong>Раздел:<\/strong>\s*([^<•]+)/i)?.[1]?.trim();
   if (visibleSection && normalizeText(visibleSection) !== normalizeText(SECTION_LABELS[item.section])) errors.push(`${file}: видимый раздел «${visibleSection}» не совпадает с ${SECTION_LABELS[item.section]}.`);
-  if (item.type === 'guide' && !html.includes('KRM GUIDE STATUS START')) errors.push(`${file}: отсутствует генерируемый блок актуальности памятки.`);
+  if (requiresReview(item) && !html.includes('KRM GUIDE STATUS START')) errors.push(`${file}: отсутствует генерируемый блок актуальности памятки.`);
 
   const linkedSources = externalLinks(html);
   for (const url of linkedSources) {

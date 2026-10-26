@@ -117,9 +117,9 @@ test('guide review cadence mismatch', () => {
 
 test('guide status mismatch', () => {
   const pages = JSON.parse(originalPages);
-  pages.find(item => item.type === 'guide').reviewStatus = 'review-due';
+  pages.find(item => item.type === 'guide').reviewStatus = 'invalid-status';
   fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
-}, 'reviewStatus должен быть current');
+}, 'неизвестный reviewStatus=invalid-status');
 
 test('title and H1 mismatch', () => {
   fs.writeFileSync(
