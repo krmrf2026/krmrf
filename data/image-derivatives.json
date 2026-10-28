@@ -2036,6 +2036,36 @@
       "sourceSha256": "3fd24e358e8df9c22b2ae21a79b999c58d88e010ddb7953d6955562ecbe4c982",
       "derivedSha256": "ec79cdbb91ad01976b8eeae06ad9341bc1858f4b5f019b942d86ab8ff5d3abd6"
     },
+    "assets/img/derived/news/kremennaya/krm-2026-10-28/cover-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-10-28/cover.jpg",
+      "sourceSha256": "8a95569e88512919de176ef9d7059c59dc82312e93349f76fa3a07e0e08891d1",
+      "derivedSha256": "de8cf1b92d74173e6122950165e3b055a496815ca17848b89164ca40cc65c4d6"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-10-28/cover-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-10-28/cover.jpg",
+      "sourceSha256": "8a95569e88512919de176ef9d7059c59dc82312e93349f76fa3a07e0e08891d1",
+      "derivedSha256": "f48730bdb358818f819fa69e7b8500553a755062d2f72d8c71273c20794d1063"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-10-28/window-frames-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-10-28/window-frames.jpg",
+      "sourceSha256": "6ab4801946f2719847c5e505dd46684481f1a7103cb2f75e2ffee8372c86b7f6",
+      "derivedSha256": "263d6469484a8fa98abc5f3e26e2058185a0ffdedd47b794287f44628a17935b"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-10-28/window-frames-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-10-28/window-frames.jpg",
+      "sourceSha256": "6ab4801946f2719847c5e505dd46684481f1a7103cb2f75e2ffee8372c86b7f6",
+      "derivedSha256": "b39ce8558e6f6266adf33deb171d2046088d659bbf660517b0abd9c4149296ab"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-10-28/window-interior-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-10-28/window-interior.jpg",
+      "sourceSha256": "45bd589254156cdd535d1d6a87e7e3dbda55676c5a9bb3beebb5ec3949fbf25e",
+      "derivedSha256": "32f8de6b6955ec07b0fe951bcc1afa7ffaab27f76b310b13625d9be4b5bc5b8f"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-10-28/window-interior-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-10-28/window-interior.jpg",
+      "sourceSha256": "45bd589254156cdd535d1d6a87e7e3dbda55676c5a9bb3beebb5ec3949fbf25e",
+      "derivedSha256": "b33ae712b19d05932d1347d5a913888aab8950a0d1c7153350bfac5a9a2e7a47"
+    },
     "assets/img/derived/news/kremennaya/krm-23-03-2026/city-480.webp": {
       "source": "assets/img/news/kremennaya/krm-23-03-2026/city.webp",
       "sourceSha256": "f8ad956285f69bc11c1f04b2fafc71440b97debcb29ffeb3746e3bd457102c2d",
