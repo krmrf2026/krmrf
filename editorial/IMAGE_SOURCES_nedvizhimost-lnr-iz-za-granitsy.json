@@ -1,30 +1,28 @@
 {
-  "cover": {
-    "kind": "вложенное изображение KRM РФ",
-    "source": "/news/reference/nedvizhimost-lnr-gid/",
-    "caption": "Архивная фотография из памятки KRM РФ о недвижимости (дата и место первичной съёмки не установлены)",
-    "width": 1200,
-    "height": 800
-  },
-  "proxy": {
-    "kind": "вложенное изображение KRM РФ",
-    "source": "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/",
-    "caption": "Фрагмент иллюстрации KRM РФ об оформлении недвижимости, июль 2026 года",
-    "width": 1536,
-    "height": 1024
-  },
-  "documents": {
-    "kind": "вложенное изображение KRM РФ",
-    "source": "/news/reference/nedvizhimost-lnr-gid/",
-    "caption": "Фотография вывески МФЦ из архива KRM РФ (первичная дата съёмки не установлена)",
-    "width": 1200,
-    "height": 800
-  },
-  "goskey": {
-    "kind": "вложенное изображение KRM РФ",
-    "source": "/news/reference/egrn-2026-05-15/",
-    "caption": "Иллюстрация Росреестра об электронной подаче документов, опубликованная в архиве KRM РФ в мае 2026 года",
-    "width": 1134,
-    "height": 1134
+  "article": "nedvizhimost-lnr-iz-za-granitsy",
+  "updated": "2026-10-29",
+  "type": "editorial-illustrations",
+  "note": "Четыре оригинальные информационные схемы KRM РФ, не фотографии госучреждений. Нормативная основа указана в статье. Старые фотографии не использованы.",
+  "images": {
+    "cover": {
+      "sha256": "a010003c7baf44afe49a2a8a558eabc12928c560131c7393ebbc5b8cad86a8b7",
+      "kind": "original_infographic",
+      "source_document": "https://lug-info.ru/documents/upravlenie-rosreestra-informiruet-o-porjadke-vnesenija-svedenij-o-ranee-uchtennom/"
+    },
+    "proxy": {
+      "sha256": "57cc1565d020e34046f265ae7975593bf7c595214ae4ccfc60fd6a4c9568ab95",
+      "kind": "original_infographic",
+      "source_document": "https://lug-info.ru/documents/upravlenie-rosreestra-informiruet-o-porjadke-vnesenija-svedenij-o-ranee-uchtennom/"
+    },
+    "documents": {
+      "sha256": "562869b862cff2a6efd78e1dedce00761502fd560fcaa471fe7d9fa4626729ad",
+      "kind": "original_infographic",
+      "source_document": "https://lug-info.ru/documents/upravlenie-rosreestra-informiruet-o-porjadke-vnesenija-svedenij-o-ranee-uchtennom/"
+    },
+    "goskey": {
+      "sha256": "41fc34b121f6c87464a5a6ea3393d04f88ac3d703da3bf00d98cec782d0e916f",
+      "kind": "original_infographic",
+      "source_document": "https://lug-info.ru/documents/upravlenie-rosreestra-informiruet-o-porjadke-vnesenija-svedenij-o-ranee-uchtennom/"
+    }
   }
 }

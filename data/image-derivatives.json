@@ -2513,43 +2513,43 @@
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/cover-480.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/cover.webp",
-      "sourceSha256": "5f74062de976e05facff99609c8c491c542cab0e0118f1c758a7af6f788e125a",
-      "derivedSha256": "599cd8afc67a6f296b2bfb95b08fb9c3eba1f2948fc1ce0ba99ac71be7308866"
+      "sourceSha256": "a010003c7baf44afe49a2a8a558eabc12928c560131c7393ebbc5b8cad86a8b7",
+      "derivedSha256": "62295052055f74b458037e21e598bd4cc873722a8328af294ba0fbed7424fc4c"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/cover-960.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/cover.webp",
-      "sourceSha256": "5f74062de976e05facff99609c8c491c542cab0e0118f1c758a7af6f788e125a",
-      "derivedSha256": "5f9f0d4bda4193925b4e404d6a09f46cda6a25240ef6b166577c402132881994"
+      "sourceSha256": "a010003c7baf44afe49a2a8a558eabc12928c560131c7393ebbc5b8cad86a8b7",
+      "derivedSha256": "a75449f28bf3f0374a2c41babeaee18b9096a4ed8f75f9bafacad711cab606e5"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/documents-480.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/documents.webp",
-      "sourceSha256": "09e884a2e38655cbec0785e4c9ae6e49ca572cbb5a878e3c803cf6072230d388",
-      "derivedSha256": "9aa76d0a26c05fe422cfcaffead6fe1415d8c0b1a747bbadba53c72bbb6681c5"
+      "sourceSha256": "562869b862cff2a6efd78e1dedce00761502fd560fcaa471fe7d9fa4626729ad",
+      "derivedSha256": "78056afe4ae0226f1f36ad30d5ede020153a46e5a7f51ddc5bc4188d9a22a6c6"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/documents-960.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/documents.webp",
-      "sourceSha256": "09e884a2e38655cbec0785e4c9ae6e49ca572cbb5a878e3c803cf6072230d388",
-      "derivedSha256": "efa8bbffd3e5dfad4efb47c985412d33a0081fe95504bbff3a3d45ab672ab811"
+      "sourceSha256": "562869b862cff2a6efd78e1dedce00761502fd560fcaa471fe7d9fa4626729ad",
+      "derivedSha256": "5513466be540cb7fd4b0321ebd40eb1bd1ae8ad858f4c20ebd60fb8f28bf5cac"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/goskey-480.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/goskey.webp",
-      "sourceSha256": "e1d0538c57e47105a901e28eefcf25e708b93f51fb29d208f3cb82f7f9c7e60b",
-      "derivedSha256": "1fc27ecc04d0072f429202ccadf172f8537fa7a7e09225eeb274c509de0f8a2e"
+      "sourceSha256": "41fc34b121f6c87464a5a6ea3393d04f88ac3d703da3bf00d98cec782d0e916f",
+      "derivedSha256": "2e7cb08fb49f8c5c0fa2e7478013e8833c62333af57c5f5110a5ca3a3d6f905c"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/goskey-960.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/goskey.webp",
-      "sourceSha256": "e1d0538c57e47105a901e28eefcf25e708b93f51fb29d208f3cb82f7f9c7e60b",
-      "derivedSha256": "c338684e2b879b86212153a84548c049e6c48e35c8aead23a0476fe91d9d143d"
+      "sourceSha256": "41fc34b121f6c87464a5a6ea3393d04f88ac3d703da3bf00d98cec782d0e916f",
+      "derivedSha256": "176b2019112b5f31a8145cb792bd969b16c5a0d3003a5425494e5fd6c861cd33"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/proxy-480.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/proxy.webp",
-      "sourceSha256": "fa6fcd7f85ea4b0405ede5d248b20a0346998a51c5eed38292f4bda2f94ba014",
-      "derivedSha256": "85e83cca470d7f9e6ee866bf4bbde01151de4f1c602921f99b0f73faa07246d8"
+      "sourceSha256": "57cc1565d020e34046f265ae7975593bf7c595214ae4ccfc60fd6a4c9568ab95",
+      "derivedSha256": "5358e579ce9d066977d907414e32684c11928cd818b81936745efcef93409770"
     },
     "assets/img/derived/news/reference/nedvizhimost-lnr-iz-za-granitsy/proxy-960.webp": {
       "source": "assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/proxy.webp",
-      "sourceSha256": "fa6fcd7f85ea4b0405ede5d248b20a0346998a51c5eed38292f4bda2f94ba014",
-      "derivedSha256": "5860b75171b70b0d177c1aad62721dec02742fadfd4f49ffa27ea910f231430c"
+      "sourceSha256": "57cc1565d020e34046f265ae7975593bf7c595214ae4ccfc60fd6a4c9568ab95",
+      "derivedSha256": "b2b77daecb6ef232c3997fd4d3934697f2349c096cfd23dd9a149e6c4afb8210"
     },
     "assets/img/derived/news/reference/pamyatka-seme-pered-dolgim-otezdom-2026/action-tree-480.webp": {
       "source": "assets/img/news/reference/pamyatka-seme-pered-dolgim-otezdom-2026/action-tree.webp",
