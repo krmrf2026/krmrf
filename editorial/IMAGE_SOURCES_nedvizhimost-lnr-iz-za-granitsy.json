@@ -1,0 +1,30 @@
+{
+  "cover": {
+    "kind": "вложенное изображение KRM РФ",
+    "source": "/news/reference/nedvizhimost-lnr-gid/",
+    "caption": "Архивная фотография из памятки KRM РФ о недвижимости (дата и место первичной съёмки не установлены)",
+    "width": 1200,
+    "height": 800
+  },
+  "proxy": {
+    "kind": "вложенное изображение KRM РФ",
+    "source": "/news/reference/egrn-lnr-iz-drugogo-regiona-2026-07-22/",
+    "caption": "Фрагмент иллюстрации KRM РФ об оформлении недвижимости, июль 2026 года",
+    "width": 1536,
+    "height": 1024
+  },
+  "documents": {
+    "kind": "вложенное изображение KRM РФ",
+    "source": "/news/reference/nedvizhimost-lnr-gid/",
+    "caption": "Фотография вывески МФЦ из архива KRM РФ (первичная дата съёмки не установлена)",
+    "width": 1200,
+    "height": 800
+  },
+  "goskey": {
+    "kind": "вложенное изображение KRM РФ",
+    "source": "/news/reference/egrn-2026-05-15/",
+    "caption": "Иллюстрация Росреестра об электронной подаче документов, опубликованная в архиве KRM РФ в мае 2026 года",
+    "width": 1134,
+    "height": 1134
+  }
+}

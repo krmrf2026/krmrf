@@ -25,6 +25,28 @@
     ]
   },
   {
+    "id": "nedvizhimost-lnr-iz-za-granitsy",
+    "type": "guide",
+    "title": "Как зарегистрировать недвижимость в ЛНР из-за границы",
+    "seoTitle": "Недвижимость в ЛНР из-за границы: регистрация прав",
+    "seoDescription": "Как оформить квартиру, дом или землю в ЛНР из-за рубежа: консульская доверенность, Госуслуги, Госключ, старые документы и ограничения для иностранцев.",
+    "url": "/news/reference/nedvizhimost-lnr-iz-za-granitsy/",
+    "section": "law",
+    "datePublished": "2026-10-29",
+    "dateModified": "2026-10-29",
+    "status": null,
+    "excerpt": "Как собственнику из-за границы зарегистрировать квартиру, дом или землю в ЛНР: консульская доверенность, электронная подпись, старые документы и специальные разрешения.",
+    "image": "/assets/img/news/reference/nedvizhimost-lnr-iz-za-granitsy/cover.webp",
+    "imageAlt": "Работа специалиста с заявителями в зале МФЦ",
+    "locations": [
+      "ЛНР"
+    ],
+    "reviewedAt": "2026-10-29",
+    "reviewAfter": "2026-11-28",
+    "reviewCadenceDays": 30,
+    "reviewStatus": "current"
+  },
+  {
     "id": "zashchita-prav-lnr",
     "type": "guide",
     "title": "Куда жаловаться в ЛНР: свет, вода, жильё и отказы чиновников",
