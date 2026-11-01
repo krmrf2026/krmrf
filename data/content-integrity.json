@@ -1,7 +1,7 @@
 {
   "schema": "krmrf-content-integrity-v2",
   "pages": {
-    "/assessment/2026-10-25/": "4017850eb5688b906a65fa3f3bedc1e73b1125326d9dccf8e9b05c3b2bf742fc",
+    "/assessment/2026-10-25/": "442a6243f4cf6932a14aa39d8ec8c85e8da28b1072cf78e255496ec5d6e4c345",
     "/news/reference/zashchita-prav-lnr/": "2ffe98186bbf224ae7186300b3ce40ca66ed925212432f7ba922d27801ed9f99",
     "/news/svo/svo-2026-10-21/": "3d6ce7adcf040268c95be29e7a3e82ef5bf4d8bf115364e8ceb5974296442f37",
     "/news/civilian-impact/propavshie-na-svo/": "35802469bcad8eee3f6445f35ee58cedc0044ef6d1e496bb3d0032ff5f7d80f2",
@@ -102,6 +102,7 @@
     "/news/kremennaya/kremennaya-2026-02-18/": "1546f9f49323126584a25a9a02b8b2c73b7d41d970d8267ed604566916a210c6",
     "/assessment/2026-10-18/": "7bec403bb970025cec83cbe3ca183ba90b3541c553d0f95603cafe4c057cc2c7",
     "/news/kremennaya/krm-2026-10-28/": "dcdbe88c9c4df5788a789651909bdf0ac3f499b1bb0c5c31e63677671a608c49",
-    "/news/reference/nedvizhimost-lnr-iz-za-granitsy/": "e7a40d47ea5517ab766c0a584ca472f31231c88a84f107bab2ca70e8a9d82c87"
+    "/news/reference/nedvizhimost-lnr-iz-za-granitsy/": "e7a40d47ea5517ab766c0a584ca472f31231c88a84f107bab2ca70e8a9d82c87",
+    "/assessment/2026-11-01/": "d66fd2d306d8301cad9491658f4159a2bf0b6acfcd7899d72a6c41a0feb257bd"
   }
 }

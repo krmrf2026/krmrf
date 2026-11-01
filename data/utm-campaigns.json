@@ -126,7 +126,8 @@
     "zashchita-prav-lnr": "zashchita-prav-lnr",
     "assessment-2026-10-25": "assessment-2026-10-25",
     "krm-2026-10-28": "krm-2026-10-28",
-    "nedvizhimost-lnr-iz-za-granitsy": "nedvizhimost-lnr-iz-za-granitsy"
+    "nedvizhimost-lnr-iz-za-granitsy": "nedvizhimost-lnr-iz-za-granitsy",
+    "assessment-2026-11-01": "assessment-2026-11-01"
   },
   "notes": "Existing campaigns preserve the previous generator URL slug. New publication campaigns use immutable metadata id. Keep old ids and overrides after URL changes."
 }
