@@ -85,3 +85,14 @@ dl.article-meta dd { margin: 0; }
   .contact-table td::before{content:attr(data-label);display:block;margin-bottom:.22rem;color:var(--color-text-muted);font-size:var(--text-xs);font-weight:850;text-transform:uppercase;letter-spacing:.035em;}
 }
 /* KRM CONTACT DIRECTORY END */
+
+/* KRM UNITY 1612 EDITORIAL LEAD START */
+.article .article-standfirst {
+  max-width: 72ch;
+  margin: 1.1rem 0 1.6rem;
+  font-size: clamp(1.08rem, 1.7vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--color-text);
+  font-weight: 550;
+}
+/* KRM UNITY 1612 EDITORIAL LEAD END */

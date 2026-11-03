@@ -371,7 +371,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
       const article = nodes.find(node => node && ['Article', 'NewsArticle', 'Report'].includes(node['@type']));
       if (!article) return whole;
       article['@type'] = item.type === 'assessment' || item.type === 'dossier' ? 'Report'
-        : item.type === 'article' ? 'NewsArticle' : 'Article';
+        : item.type === 'article' ? (item.schemaType === 'Article' ? 'Article' : 'NewsArticle') : 'Article';
       article.headline = item.title;
       article.alternativeHeadline = seoTitle;
       article.description = seoDescription;
@@ -385,10 +385,12 @@ const syncPublicationMetadata = (html, item, buildDate) => {
       article.isAccessibleForFree = true;
       article.author = { '@id': `${SITE_URL}/#organization` };
       article.publisher = { '@id': `${SITE_URL}/#organization` };
-      const keywords = [
-        ...(Array.isArray(item.topics) ? item.topics : []),
-        ...(Array.isArray(item.locations) ? item.locations : [])
-      ];
+      const keywords = Array.isArray(item.seoKeywords) && item.seoKeywords.length
+        ? item.seoKeywords
+        : [
+          ...(Array.isArray(item.topics) ? item.topics : []),
+          ...(Array.isArray(item.locations) ? item.locations : [])
+        ];
       if (keywords.length) article.keywords = [...new Set(keywords)].join(', ');
       return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
     }

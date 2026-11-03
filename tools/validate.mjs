@@ -284,7 +284,7 @@ for (const [index, item] of pages.entries()) {
     if (normalizeText(articleNode.headline) !== normalizeText(item.title)) errors.push(`${file}: JSON-LD headline не совпадает с H1/pages.json.`);
     if (normalizeText(articleNode.alternativeHeadline) !== normalizeText(item.seoTitle)) errors.push(`${file}: JSON-LD altHeadline не совпадает с seoTitle.`);
     if (normalizeText(articleNode.description) !== normalizeText(item.seoDescription)) errors.push(`${file}: JSON-LD description не совпадает с seoDescription.`);
-    const expectedSchemaType = item.type === 'assessment' || item.type === 'dossier' ? 'Report' : item.type === 'article' ? 'NewsArticle' : 'Article';
+    const expectedSchemaType = item.type === 'assessment' || item.type === 'dossier' ? 'Report' : item.type === 'article' ? (item.schemaType === 'Article' ? 'Article' : 'NewsArticle') : 'Article';
     if (articleNode['@type'] !== expectedSchemaType) errors.push(`${file}: JSON-LD @type должен быть ${expectedSchemaType}.`);
     if (articleNode.datePublished !== item.datePublished) errors.push(`${file}: JSON-LD datePublished не совпадает с pages.json.`);
     if (articleNode.dateModified !== item.dateModified) errors.push(`${file}: JSON-LD dateModified не совпадает с pages.json.`);
