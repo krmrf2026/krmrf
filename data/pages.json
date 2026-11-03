@@ -1,5 +1,32 @@
 [
   {
+    "id": "minin-pozharsky-narodnoe-edinstvo",
+    "type": "article",
+    "title": "Когда страна собралась всем миром: Минин, Пожарский и люди, которые не бросают друг друга",
+    "seoTitle": "Минин и Пожарский: 1612 год, единство и Кременная",
+    "seoDescription": "Как Минин и Пожарский собрали Второе ополчение, что произошло в 1612 году и почему истории взаимопомощи жителей Кременной продолжают эту тему.",
+    "url": "/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/",
+    "section": "kremennaya",
+    "datePublished": "2026-11-04",
+    "dateModified": "2026-11-04",
+    "status": null,
+    "excerpt": "От Нижнего Новгорода 1611 года и Ярославля до историй жителей Кременной. Зачем людям важно держаться вместе и помогать друг другу.",
+    "image": "/assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/cover.webp",
+    "imageAlt": "К. Маковский. «Воззвание Минина», 1896 год. Историческая живопись о Втором ополчении",
+    "topics": [
+      "history",
+      "daily"
+    ],
+    "locations": [
+      "Кременная",
+      "ЛНР"
+    ],
+    "home": {
+      "important": 1,
+      "kremennaya": 1
+    }
+  },
+  {
     "id": "assessment-2026-11-01",
     "type": "assessment",
     "title": "Оценка боевых действий СВО: Восточный ТВД, 26 октября — 1 ноября 2026",

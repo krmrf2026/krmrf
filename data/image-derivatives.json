@@ -2181,6 +2181,41 @@
       "sourceSha256": "162d26df8b4518521b57c4ecea55dea581e2efd95a901658dafcce9e3982b951",
       "derivedSha256": "53d4e8fd8b62f04fc57f95e0556f0927f2c783481c4937d3bef1c29e330d9cc6"
     },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/autumn-path-480.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/autumn-path.jpg",
+      "sourceSha256": "0eaa2ce3bb06b14b406261388a1e4c167c264a210caf1cfae84063636934f3b4",
+      "derivedSha256": "c0c43736989c16f841856411c3c8192c94269767853876ec492f7808e1d15555"
+    },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/cover-480.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/cover.webp",
+      "sourceSha256": "536ec608a1ae1a4e13d0ce59ca1207185b95fbb8849963e4b43a57215cf07f37",
+      "derivedSha256": "53e142f07864379462efc2ca28e03834a268cfffdd688ec04e2aeb79cceecdd3"
+    },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/cover-960.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/cover.webp",
+      "sourceSha256": "536ec608a1ae1a4e13d0ce59ca1207185b95fbb8849963e4b43a57215cf07f37",
+      "derivedSha256": "51fcc50a2895d82f2a32c98e227919b125401464f9fddb5f8b2d0911ae6ecd35"
+    },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/minin-pozharsky-480.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/minin-pozharsky.webp",
+      "sourceSha256": "fe2255698ff9eefcc7573f863cdb577fd236f8cf92a45fae02c50e5f78a4097c",
+      "derivedSha256": "c05fed5ee8152fc677b8378be93909ab4156fa81176e83d4a8997ea738c46ddb"
+    },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/minin-pozharsky-960.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/minin-pozharsky.webp",
+      "sourceSha256": "fe2255698ff9eefcc7573f863cdb577fd236f8cf92a45fae02c50e5f78a4097c",
+      "derivedSha256": "9b3c5bf94dbf4ea707b27f9ef2023c78a2d5fcfe6bcee80319c0fb450fd04259"
+    },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/park-480.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/park.webp",
+      "sourceSha256": "68b5dc31c9f8e78556194ce217ae13f77db567ed2535d6aaa8d29e37c41d1d37",
+      "derivedSha256": "bf087a7d9efef7b09b94013f4f4fdd0ef3fe92bd4c509ba0ffef37a0613c94c0"
+    },
+    "assets/img/derived/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/river-480.webp": {
+      "source": "assets/img/news/kremennaya/minin-pozharsky-narodnoe-edinstvo/river.webp",
+      "sourceSha256": "afe944decc080c5d23e97e00f6d1684333185ff490e83eb7b97dd95ce92da7a6",
+      "derivedSha256": "6976458ec5c6125074fe7726a7a5a18c4cab8f97ac14ebb4c0ab0ee3b765adc4"
+    },
     "assets/img/derived/news/lnr/lnr-2026-05-12/cover-480.webp": {
       "source": "assets/img/news/lnr/lnr-2026-05-12/cover.webp",
       "sourceSha256": "3d08ef001868a8f3c3f4991e4f4937184ede8acf5576d0d0b67e231aea04c28a",
