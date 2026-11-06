@@ -1,5 +1,46 @@
 [
   {
+    "id": "vozvrashchenie-domoy-ukraina-evropa-sheremetyevo",
+    "type": "guide",
+    "title": "Как вернуться домой в Кременную и ЛНР из Украины и Европы",
+    "seoTitle": "Вернуться в Кременную: Шереметьево, документы, дорога",
+    "seoDescription": "Как вернуться в Кременную из Украины и Европы: документы, Шереметьево, проверки, дети, отказ во въезде и дорога после Москвы. Проверено 06.11.2026.",
+    "url": "/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/",
+    "section": "law",
+    "datePublished": "2026-11-06",
+    "dateModified": "2026-11-06",
+    "reviewedAt": "2026-11-06",
+    "reviewAfter": "2026-11-13",
+    "reviewCadenceDays": 7,
+    "reviewStatus": "current",
+    "status": null,
+    "excerpt": "Большой практический гид: как проверить гражданство, документы, маршрут через Шереметьево, последствия выезда из ЕС и дорогу до Кременной.",
+    "image": "/assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/cover.webp",
+    "imageAlt": "Реальный зал терминалов B и C аэропорта Шереметьево, фотография 2025 года",
+    "topics": [
+      "civilian-impact",
+      "daily"
+    ],
+    "locations": [
+      "Кременная",
+      "ЛНР",
+      "Донбасс"
+    ],
+    "home": {
+      "important": 1
+    },
+    "schemaType": "Article",
+    "seoKeywords": [
+      "вернуться домой",
+      "Кременная",
+      "ЛНР",
+      "Шереметьево",
+      "въезд граждан Украины",
+      "документы для въезда",
+      "проверка в Шереметьево"
+    ]
+  },
+  {
     "id": "minin-pozharsky-narodnoe-edinstvo",
     "type": "article",
     "title": "Когда страна собралась всем миром: Минин, Пожарский и люди, которые не бросают друг друга",

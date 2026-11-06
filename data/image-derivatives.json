@@ -2711,6 +2711,56 @@
       "sourceSha256": "53beeb7aa6bf3b613c7c87a00defbc563ed0467bf772918566e58e4b1864a129",
       "derivedSha256": "573722a60cc216a482b7958a20da392c0ab2fbfa225de0e872b3893d34ccb140"
     },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress-480.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress.webp",
+      "sourceSha256": "8fb712706adb25fe28599b9ab13e75d8877e48a7d5eb48ec6d3556bb5545a1d8",
+      "derivedSha256": "f8ffb4c65da716d92e16fbce8a0fbfd36e21d7d7c8ab36b7264a8ac84717a7f0"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress-960.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress.webp",
+      "sourceSha256": "8fb712706adb25fe28599b9ab13e75d8877e48a7d5eb48ec6d3556bb5545a1d8",
+      "derivedSha256": "4ca1cc7408f44e77ce166bbb02ccd946af65bb341a312e4f769a538590518c1b"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/cover-480.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/cover.webp",
+      "sourceSha256": "e78099d7b60aa0092c756294e05eeebe2afa9d45eac7a1041952a1210464144c",
+      "derivedSha256": "6f025c5a6a0287c28a55e57465e7e3e6e97ff0f3f2433cfc13c4416394827f22"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/cover-960.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/cover.webp",
+      "sourceSha256": "e78099d7b60aa0092c756294e05eeebe2afa9d45eac7a1041952a1210464144c",
+      "derivedSha256": "5c19232759008459553304f818508c130c1917b6bb9a1545706e568d58af59d3"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/exterior-480.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/exterior.webp",
+      "sourceSha256": "82ed9e2f7b3e1f450f83abf0b9520f5f10b0850a76a184ae26f99e71f7a2203b",
+      "derivedSha256": "4307ca2d288bb44fa3d97c58d54d71a111cee9aa247f46d1500f71e27f420454"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/exterior-960.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/exterior.webp",
+      "sourceSha256": "82ed9e2f7b3e1f450f83abf0b9520f5f10b0850a76a184ae26f99e71f7a2203b",
+      "derivedSha256": "d6a5fd485a5d454c648936b4734e24a89f76e85b1d982eb98aee7e7160795396"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/passports-480.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/passports.webp",
+      "sourceSha256": "084522b4edac9c4261d7e0c0d191a0e8acc2f69afdfab1909a03d33ec148b519",
+      "derivedSha256": "2e9ec61656625d7d31b40bd5c9998337456d74d4b7bf5d1d9e34acc055cddbc7"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/passports-960.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/passports.webp",
+      "sourceSha256": "084522b4edac9c4261d7e0c0d191a0e8acc2f69afdfab1909a03d33ec148b519",
+      "derivedSha256": "fa5a8bdac166cbaea4a3200756e6e201a8a80b9af279c8e7bbdabb76cb25b104"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/station-480.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/station.webp",
+      "sourceSha256": "00f1ba031d0db0f564ccaec1cb63fdeb2059bfc75fed907bfec325e303efa105",
+      "derivedSha256": "e50a821415efaed2c5428570430563049182e805c8de0a2ac74a830fc9f72a7c"
+    },
+    "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/station-960.webp": {
+      "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/station.webp",
+      "sourceSha256": "00f1ba031d0db0f564ccaec1cb63fdeb2059bfc75fed907bfec325e303efa105",
+      "derivedSha256": "d1a35da53c209f0c25ad483d30b118da666791e1883a13505a7fe47ab13b1561"
+    },
     "assets/img/derived/news/reference/vuplatylnr-2026-05-25/cover-480.webp": {
       "source": "assets/img/news/reference/vuplatylnr-2026-05-25/cover.webp",
       "sourceSha256": "4ab6b23de9d9aa43f233248ba5d4d4b892be9dc366a71edd6b68bd7dd455fd79",
