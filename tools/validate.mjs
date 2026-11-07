@@ -6,6 +6,10 @@ import { SITE_URL, TYPE_LABELS, SECTION_LABELS } from './lib/project.mjs';
 import { cspForFile, REFERRER_POLICY } from './lib/hosting.mjs';
 import { checkUniformity } from './lib/check-uniformity.mjs';
 import { decodeSearchTerms } from './lib/search-index.mjs';
+import { selectHome, selectItems } from './lib/catalog.mjs';
+import { escapeHtml as escapeHtmlForValidation } from './lib/html-fragments.mjs';
+import { CHRONICLE_SERIES, chronicleStatus } from './lib/chronicle-status.mjs';
+import { dossierEventIssues, renderDossierEvents } from './lib/dossier-events.mjs';
 import {
   MAX_REVIEW_CADENCE_DAYS, requiresReview, reviewIssues,
   addUtcDays,
@@ -473,11 +477,40 @@ for (const [key, expectedCount] of expectedHomeCounts) {
   const cardUrls = [...block.matchAll(/<article\b[^>]*class=["'][^"']*\bmaterial-card\b[^"']*["'][^>]*>[\s\S]*?<h2\b[^>]*>\s*<a\b[^>]*href=["']([^"']+)/gi)]
     .map(match => match[1]);
   if (cardUrls.length !== expectedCount) errors.push(`index.html: блок ${key} должен содержать ${expectedCount} карточек, сейчас ${cardUrls.length}.`);
+  const expectedUrls = selectHome(pages, key.slice(5), seenHomeUrls).map(item => item.url);
+  if (JSON.stringify(cardUrls) !== JSON.stringify(expectedUrls)) errors.push(`index.html: устаревший состав или порядок карточек ${key}. Выполните npm run build.`);
   for (const url of cardUrls) {
     if (seenHomeUrls.has(url)) errors.push(`index.html: материал ${url} повторяется в нескольких блоках главной.`);
     seenHomeUrls.add(url);
   }
 }
+
+const dossiersHtml = read('war-crimes/index.html');
+const dossierBlock = dossiersHtml.match(/KRM CATALOG type:dossier START -->([\s\S]*?)<!-- KRM CATALOG type:dossier END/)?.[1] || '';
+const dossierUrls = [...dossierBlock.matchAll(/<h2\b[^>]*>\s*<a\b[^>]*href="([^"]+)"/g)].map(match => match[1]);
+if (JSON.stringify(dossierUrls) !== JSON.stringify(selectItems(pages, 'type:dossier').map(item => item.url))) errors.push('war-crimes/index.html: досье должны идти по дате содержательного обновления.');
+for (const item of pages.filter(item => item.type === 'dossier' && item.dateModified > item.datePublished)) {
+  for (const [file, html] of [['index.html', homeHtml], ['war-crimes/index.html', dossiersHtml]]) {
+    const card = (html.match(/<article\b[^>]*class="[^"]*material-card\b[\s\S]*?<\/article>/g) || []).find(card => card.includes(`href="${item.url}"`));
+    if (card && (!card.includes(`Обновлено <time datetime="${item.dateModified}"`) || !card.includes(escapeHtmlForValidation(item.excerpt)))) errors.push(`${file}: устарели дата или описание карточки ${item.id}.`);
+  }
+}
+for (const item of pages) {
+  if (item.chronicleSeries && (item.type !== 'article' || !CHRONICLE_SERIES.has(item.chronicleSeries))) errors.push(`${item.id}: неверная chronicleSeries.`);
+  const html = read(urlToFile(item.url));
+  const actual = html.match(/<!-- KRM CHRONICLE STATUS START -->[\s\S]*?<!-- KRM CHRONICLE STATUS END -->/)?.[0] || '';
+  if (actual !== chronicleStatus(item, pages)) errors.push(`${item.id}: устарела ссылка на более позднюю хронику.`);
+}
+try {
+  const data = readJson('data/dossier-events.json');
+  errors.push(...dossierEventIssues(data, pages, TODAY));
+  for (const item of pages.filter(item => item.type === 'dossier')) {
+    const events = data.events.filter(event => event.dossierId === item.id);
+    if (!events.length) continue;
+    const actual = read(urlToFile(item.url)).match(/<!-- KRM DOSSIER EVENTS START -->([\s\S]*?)<!-- KRM DOSSIER EVENTS END -->/)?.[1];
+    if (actual !== renderDossierEvents(events)) errors.push(`${item.id}: HTML не соответствует реестру новых событий.`);
+  }
+} catch (error) { errors.push(`Реестр событий досье: ${error.message}`); }
 
 const archive = read('archive/index.html');
 for (const technical of ['/data/pages.json', '/sitemap.xml']) {

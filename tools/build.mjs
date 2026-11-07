@@ -7,9 +7,11 @@ import { syncPublicationLayout } from './lib/publication-layout.mjs';
 import { cardImageSizes } from './lib/image-sizes.mjs';
 import { encodeSearchTerms } from './lib/search-index.mjs';
 import { guideFreshnessState, todayIso, requiresReview } from './lib/guide-freshness.mjs';
+import { sortNewest, selectHome, selectItems } from './lib/catalog.mjs';
+import { syncChronicleStatus } from './lib/chronicle-status.mjs';
+import { dossierEventIssues, syncDossierEvents } from './lib/dossier-events.mjs';
 
 const ROOT = path.resolve(process.cwd());
-const HOME_LIMITS = { important: 3, assessment: 1, kremennaya: 3, guide: 3, dossier: 2 };
 const FRESHNESS_DATE = process.env.KRM_FRESHNESS_DATE || todayIso();
 
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -205,9 +207,6 @@ const monthTitle = value => {
   return `${months[Number(month) - 1]} ${year}`;
 };
 
-const sortNewest = (a, b) => String(b.datePublished || '').localeCompare(String(a.datePublished || ''))
-  || String(a.title || '').localeCompare(String(b.title || ''), 'ru');
-
 const urlToHtmlFile = url => {
   const clean = String(url || '').replace(/^\//, '').replace(/\/$/, '');
   return clean ? `${clean}/index.html` : 'index.html';
@@ -249,37 +248,10 @@ const cardHtml = (item, catalogKey = '', layout = 'two') => {
     ? ` data-topics="${escapeHtml(item.topics.join(' '))}"`
     : '';
   const catalog = catalogKey ? ` data-catalog="${escapeHtml(catalogKey)}"` : '';
-  return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item, layout)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time></p></div></article>`;
-};
-
-const homeFallback = (pages, group) => {
-  if (group === 'assessment') return pages.filter(item => item.type === 'assessment');
-  if (group === 'kremennaya') return pages.filter(item => item.section === 'kremennaya');
-  if (group === 'guide') return pages.filter(item => item.type === 'guide');
-  if (group === 'dossier') return pages.filter(item => item.type === 'dossier');
-  if (group === 'important') return pages.filter(item => item.type === 'article' && item.section !== 'politics');
-  return [];
-};
-
-const selectHome = (pages, group, excludedUrls = new Set()) => {
-  const explicit = pages
-    .filter(item => item.home && Number.isFinite(Number(item.home[group])))
-    .sort((a, b) => Number(a.home[group]) - Number(b.home[group]) || sortNewest(a, b));
-  const fallback = homeFallback(pages, group).sort(sortNewest);
-  const seen = new Set(excludedUrls);
-  return [...explicit, ...fallback].filter(item => {
-    if (seen.has(item.url)) return false;
-    seen.add(item.url);
-    return true;
-  }).slice(0, HOME_LIMITS[group] || 3);
-};
-
-const selectItems = (pages, key) => {
-  if (key === 'news') return pages.filter(item => item.type === 'article' || item.type === 'guide').sort(sortNewest);
-  if (key.startsWith('section:')) return pages.filter(item => item.section === key.slice(8)).sort(sortNewest);
-  if (key.startsWith('type:')) return pages.filter(item => item.type === key.slice(5)).sort(sortNewest);
-  if (key.startsWith('chronicle:')) return pages.filter(item => item.section === key.slice(10)).sort(sortNewest);
-  return [];
+  const dateLabel = item.type === 'dossier' && item.dateModified > item.datePublished
+    ? `Обновлено <time datetime="${escapeHtml(item.dateModified)}">${escapeHtml(formatDate(item.dateModified))}</time><br/>Опубликовано <time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time>`
+    : `<time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time>`;
+  return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item, layout)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta">${dateLabel}</p></div></article>`;
 };
 
 const replaceCatalog = (html, key, items, innerOverride = null) => {
@@ -420,7 +392,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
     const heading = freshness.state === 'superseded' ? 'Материал заменён'
       : freshness.state === 'archived' ? 'Архивная памятка'
         : due ? 'Требует повторной проверки'
-          : `Проверено и актуально на <time datetime="${escapeHtml(reviewed)}">${escapeHtml(formatDate(reviewed))}</time>`;
+          : `${item.type === 'dossier' ? 'Источники досье сверены на' : 'Проверено и актуально на'} <time datetime="${escapeHtml(reviewed)}">${escapeHtml(formatDate(reviewed))}</time>`;
     const statusText = freshness.state === 'superseded'
       ? 'Не используйте эту версию как действующую инструкцию.'
       : freshness.state === 'archived'
@@ -430,7 +402,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
             ? `Срок обязательной проверки истёк ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте сведения с официальным органом.`
             : 'Проверка текущей редакции не завершена. Перед практическим применением сверьте сведения с официальным органом.'
           : `Следующая обязательная проверка — не позднее ${formatDate(item.reviewAfter)}.`;
-    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" aria-label="Статус актуальности памятки"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
+    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" aria-label="${item.type === 'dossier' ? 'Срок проверки досье' : 'Статус актуальности памятки'}"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
     if (/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/.test(updated)) {
       updated = updated.replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/, block);
     } else {
@@ -618,10 +590,13 @@ for (const file of listHtmlFiles(ROOT)) {
   write(file, removeVisibleBuildMeta(html));
 }
 
+const dossierEvents = readJson('data/dossier-events.json');
+const eventErrors = dossierEventIssues(dossierEvents, pages, FRESHNESS_DATE);
+if (eventErrors.length) throw new Error(eventErrors.join('\n'));
 for (const item of pages) {
   const file = urlToHtmlFile(item.url);
-  const html = syncPublicationMetadata(read(file), item, site.buildDate);
-  write(file, syncPublicationLayout(html, item, pages));
+  const html = syncPublicationMetadata(syncDossierEvents(read(file), item, dossierEvents), item, site.buildDate);
+  write(file, syncChronicleStatus(syncPublicationLayout(html, item, pages), item, pages));
 }
 
 const enriched = pages.map(item => {

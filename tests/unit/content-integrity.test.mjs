@@ -10,3 +10,16 @@ test('bulk, empty and mixed unknown writes cannot modify manifest',t=>{
 test('missing article is an error rather than a valid empty hash',t=>{
  const f=fixture(t);fs.writeFileSync(path.join(f.dir,'b/index.html'),'<main>No article</main>');const before=fs.readFileSync(f.file,'utf8');assert.equal(f.run('--write','--id=a').status,1);assert.equal(fs.readFileSync(f.file,'utf8'),before);
 });
+test('p and dl metadata dates behave alike while article text remains protected',t=>{
+ const f=fixture(t);
+ for(const tag of ['p','dl']){
+  const page=path.join(f.dir,'a/index.html');
+  const markup=date=>`<article class="article"><${tag} class="article-meta">${date}</${tag}><p>Original body</p></article>`;
+  fs.writeFileSync(page,markup('2026-10-26'));
+  assert.equal(f.run('--write','--id=a').status,0);
+  fs.writeFileSync(page,markup('2026-11-07'));
+  assert.equal(f.run().status,0,tag+' metadata should not require an editorial lock');
+  fs.writeFileSync(page,markup('2026-11-07').replace('Original body','Unexpected rewrite'));
+  assert.equal(f.run().status,1,tag+' must not hide a body change');
+ }
+});

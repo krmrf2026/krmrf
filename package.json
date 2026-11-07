@@ -1,7 +1,7 @@
 {
   "name": "krmrf-static-archive",
   "private": true,
-  "version": "2026.10.19-r26",
+  "version": "2026.11.07-r27",
   "type": "module",
   "scripts": {
     "build": "node tools/review-guides.mjs --sync-status && node tools/map-history.mjs && node tools/map-statistics.mjs && node tools/build.mjs && node tools/publish-links.mjs",
@@ -22,7 +22,7 @@
     "content:check": "node tools/content-integrity.mjs",
     "export:public": "node tools/export-public.mjs",
     "validate:public": "node tools/public-validate.mjs",
-    "qa": "npm run articles:check && npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run test:freshness-policy && npm run test:assessment-template && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run test:integrity-policy && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
+    "qa": "npm run articles:check && npm run images && npm run build && npm run test:utm && npm run validate && npm run test:freshness && npm run test:freshness-policy && npm run test:catalog-freshness && npm run test:assessment-template && npm run test:map-dependencies && npm run test:smoke && npm run test:uniformity && npm run test:ops && npm run test:map-state && npm run test:map-statistics && npm run test:map-history && npm run test:performance && npm run test:integrity-policy && npm run content:check && npm run test:idempotence && npm run test:export-clean && npm run export:public && npm run validate:public && npm run map:verify && npm run test:runtime && npm run test:analytics && npm run test:search-e2e",
     "check": "npm run qa",
     "serve": "node tools/serve.mjs",
     "serve:dist": "KRM_SERVE_DIR=dist node tools/serve.mjs",
@@ -49,7 +49,8 @@
     "qa:visible": "node tools/qa-visible.mjs",
     "guides:report": "node tools/review-guides.mjs --check --report=ops/editorial-review",
     "test:integrity-policy": "node --test tests/unit/content-integrity.test.mjs",
-    "test:assessment-template": "node tools/check-assessment-template.mjs && node --test tests/unit/assessment-template.test.mjs"
+    "test:assessment-template": "node tools/check-assessment-template.mjs && node --test tests/unit/assessment-template.test.mjs",
+    "test:catalog-freshness": "node --test tests/unit/catalog-freshness.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"

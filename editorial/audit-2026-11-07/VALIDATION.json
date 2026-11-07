@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-07",
+  "fullQA": {
+    "exitCode": 1,
+    "nonBrowserStages": "passed",
+    "nodeUnitTestsPassed": 144,
+    "browserTests": {
+      "passed": 1,
+      "failedToLaunch": 291,
+      "reason": "Chromium executable missing; default download returned an invalid archive"
+    }
+  },
+  "targetedAfterFinalEdits": {
+    "unitTestsPassed": 9,
+    "validate": "passed",
+    "contentIntegrity": "105/105",
+    "publicExport": "1377files/53aliases",
+    "runtime": "passed",
+    "idempotence": "passed"
+  },
+  "negativeTestsExitCode": 0,
+  "manualBrowser": {
+    "confirmed": [
+      "home dossier order and updated dates",
+      "dossier index order",
+      "Kremen new table:14rows",
+      "old city chronicle links to28Oct"
+    ],
+    "unconfirmed": [
+      "browser search:Failed to fetch in HTTP preview, JSON loads directly",
+      "mobile layout"
+    ]
+  },
+  "publicationOrPushPerformed": false
+}

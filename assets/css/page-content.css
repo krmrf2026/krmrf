@@ -96,3 +96,6 @@ dl.article-meta dd { margin: 0; }
   font-weight: 550;
 }
 /* KRM UNITY 1612 EDITORIAL LEAD END */
+
+.chronicle-status { margin: 1rem 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--color-border); background: var(--color-surface-muted); font-size: var(--text-sm); }
+.article .chronicle-status p { margin: .25rem 0; }

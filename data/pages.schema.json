@@ -83,6 +83,9 @@
       "period": {
         "type": "string"
       },
+      "chronicleSeries": {
+        "enum": ["kremennaya-state", "civilian-impact", "front-summary"]
+      },
       "topics": {
         "type": "array",
         "items": {
@@ -187,7 +190,7 @@
             {
               "properties": {
                 "type": {
-                  "const": "guide"
+                  "enum": ["guide", "dossier"]
                 }
               },
               "required": [

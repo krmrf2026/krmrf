@@ -35,7 +35,8 @@ const stableArticle = html => {
   article = article
     .replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/g, '')
     .replace(/<!-- KRM REVISION META START -->[\s\S]*?<!-- KRM REVISION META END -->/g, '')
-    .replace(/<p\b[^>]*class=["'][^"']*(?:article-meta|revision-meta)[^"']*["'][^>]*>[\s\S]*?<\/p>/gi, '');
+    .replace(/<!-- KRM CHRONICLE STATUS START -->[\s\S]*?<!-- KRM CHRONICLE STATUS END -->/g, '')
+    .replace(/<(p|dl)\b[^>]*class=["'][^"']*(?:article-meta|revision-meta)[^"']*["'][^>]*>[\s\S]*?<\/\1>/gi, '');
 
   const links = [...article.matchAll(/<a\b[^>]*href=(["'])([^"']+)\1[^>]*>([\s\S]*?)<\/a>/gi)]
     .map(match => ({

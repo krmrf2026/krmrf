@@ -13,7 +13,7 @@ export const todayIso = (date = new Date()) => {
 };
 
 export const REVIEW_FIELDS = ['reviewedAt', 'reviewAfter', 'reviewCadenceDays', 'reviewStatus'];
-export const requiresReview = item => item.type === 'guide'
+export const requiresReview = item => item.type === 'guide' || item.type === 'dossier'
   || REVIEW_FIELDS.some(field => Object.hasOwn(item, field));
 
 export const validIsoDate = value => {
