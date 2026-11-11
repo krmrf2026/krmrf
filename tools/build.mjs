@@ -608,7 +608,8 @@ const enriched = pages.map(item => {
   });
   return {
     ...item,
-    searchText: stripTags(main),
+    // Локальный поиск индексирует основной текст, а не фотоподписи или список источников графика.
+    searchText: stripTags(main.replace(/<figcaption\b[\s\S]*?<\/figcaption>/gi, '').replace(/<details\b[^>]*id="chart-sources"[^>]*>[\s\S]*?<\/details>/gi, '')),
     imageWidth: Number(attr(imageTag || '', 'width')) || null,
     imageHeight: Number(attr(imageTag || '', 'height')) || null
   };

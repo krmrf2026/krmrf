@@ -99,3 +99,26 @@ dl.article-meta dd { margin: 0; }
 
 .chronicle-status { margin: 1rem 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--color-border); background: var(--color-surface-muted); font-size: var(--text-sm); }
 .article .chronicle-status p { margin: .25rem 0; }
+
+/* KRM ENERGY CHART V5 CSP HOTFIX START */
+.article figure.kec01{max-width:100%;box-sizing:border-box;margin:1.35rem 0;padding:18px;border:1px solid #dce2e7;border-radius:13px;background:#fafbfd}
+.article .kec02{margin:0 0 17px}
+.article .kec03{font-size:1.08rem}
+.article .kec04{display:block;margin-top:5px;font-size:0.85rem;line-height:1.45;color:#57636f}
+.article .kec05{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.article .kec06{font-size:0.75rem;color:#67727b}
+.article .kec07{margin-top:9px}
+.article .kec08{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:0.86rem}
+.article .kec09{margin-top:4px;height:13px;background:#e6e9ed;border-radius:7px;overflow:hidden}
+.article .kec10{width:28.57%;height:100%;background:#346682;border-radius:7px}
+.article .kec11{width:28.57%;height:100%;background:#be8a36;border-radius:7px}
+.article .kec12{width:57.14%;height:100%;background:#346682;border-radius:7px}
+.article .kec13{width:100.0%;height:100%;background:#be8a36;border-radius:7px}
+.article .kec14{width:42.86%;height:100%;background:#be8a36;border-radius:7px}
+.article .kec15{display:flex;gap:12px;flex-wrap:wrap;font-size:0.78rem;line-height:1.35;color:#49525d}
+.article .kec16{display:inline-block;width:11px;height:11px;margin-right:5px;border-radius:3px;background:#346682}
+.article .kec17{display:inline-block;width:11px;height:11px;margin-right:5px;border-radius:3px;background:#be8a36}
+.article .kec18{font-size:0.78rem;line-height:1.5;margin:13px 0 0;color:#58636f}
+.article .kec19{margin-top:16px;padding:12px 15px;border:1px solid #dce2e7;border-radius:8px}
+.article .kec20{cursor:pointer;font-weight:650}
+/* KRM ENERGY CHART V5 CSP HOTFIX END */
