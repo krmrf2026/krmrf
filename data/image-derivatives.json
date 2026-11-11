@@ -1731,6 +1731,16 @@
       "sourceSha256": "d6ccbbad9b0a605af2a9367dbe3879ffd970b864dee1b1973e536b8d3f8590b3",
       "derivedSha256": "287cfd643dcf8062a5ff3918a959b4bddcfa5a7a1cf17d37dff001dda62eca0d"
     },
+    "assets/img/derived/news/civilian-impact/energetika-lnr-2026-11-11/cover-480.webp": {
+      "source": "assets/img/news/civilian-impact/energetika-lnr-2026-11-11/cover.jpg",
+      "sourceSha256": "7bda7164d2b4940b6f5e6a8567389b668aad85a0a59629fe3c40deca4b88cdb9",
+      "derivedSha256": "fb42b3d4c4ec2955b0ea4cb86bb7f57ed14e35b4f1f9c134b14719f7ec0a79e8"
+    },
+    "assets/img/derived/news/civilian-impact/energetika-lnr-2026-11-11/modernisation-480.webp": {
+      "source": "assets/img/news/civilian-impact/energetika-lnr-2026-11-11/modernisation.jpg",
+      "sourceSha256": "505af87dcc5af1d8b48e303dd08144ffce8b7002c2026960253d5eb580795603",
+      "derivedSha256": "2f68779af10f8b6423626d573dad52e3ade161d23771c11b62ad66c1b33a1ae6"
+    },
     "assets/img/derived/news/civilian-impact/kogda-zakonchitsya-svo/cover-480.webp": {
       "source": "assets/img/news/civilian-impact/kogda-zakonchitsya-svo/cover.webp",
       "sourceSha256": "df411b429e6f868caa3d1fb9ec863b1813dd3b0f3c1d3b1ce38d05a877725176",

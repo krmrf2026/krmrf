@@ -2915,5 +2915,34 @@
       "important": 1
     },
     "chronicleSeries": "kremennaya-state"
+  },
+  {
+    "id": "energetika-lnr-2026-11-11",
+    "type": "article",
+    "title": "Свет вернулся. Надолго ли? Почему в ЛНР повторяются отключения",
+    "url": "/news/civilian-impact/energetika-lnr-2026-11-11/",
+    "section": "civilian-impact",
+    "datePublished": "2026-11-11",
+    "dateModified": "2026-11-11",
+    "status": null,
+    "excerpt": "Почему в ЛНР повторяются отключения, чем возврат света отличается от завершения ремонта и как подготовиться к возможным ограничениям.",
+    "image": "/assets/img/news/civilian-impact/energetika-lnr-2026-11-11/cover.jpg",
+    "imageAlt": "Электромонтёр Краснодонского РЭС работает на опоре с автовышки во время капитального ремонта линии",
+    "period": "28 августа — 10 ноября 2026 года",
+    "topics": [
+      "infrastructure",
+      "daily",
+      "safety",
+      "civilian-impact"
+    ],
+    "locations": [
+      "ЛНР",
+      "Кременная"
+    ],
+    "seoTitle": "Свет в ЛНР: причины отключений и прогноз",
+    "seoDescription": "Почему в ЛНР повторяются отключения света: хронология с августа по ноябрь 2026, разница между ремонтом и устойчивостью, сценарии и полезные советы жителям.",
+    "home": {
+      "important": 1
+    }
   }
 ]

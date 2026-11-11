@@ -130,7 +130,8 @@
     "assessment-2026-11-01": "assessment-2026-11-01",
     "minin-pozharsky-narodnoe-edinstvo": "minin-pozharsky-narodnoe-edinstvo",
     "vozvrashchenie-domoy-ukraina-evropa-sheremetyevo": "vozvrashchenie-domoy-ukraina-evropa-sheremetyevo",
-    "assessment-2026-11-08": "assessment-2026-11-08"
+    "assessment-2026-11-08": "assessment-2026-11-08",
+    "energetika-lnr-2026-11-11": "energetika-lnr-2026-11-11"
   },
   "notes": "Existing campaigns preserve the previous generator URL slug. New publication campaigns use immutable metadata id. Keep old ids and overrides after URL changes."
 }
