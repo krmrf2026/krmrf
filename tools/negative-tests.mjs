@@ -104,8 +104,10 @@ test('modified before published', () => {
 
 test('guide review before latest edit', () => {
   const pages = JSON.parse(originalPages);
-  pages.find(item => item.type === 'guide').reviewedAt = '2026-09-20';
-  pages.find(item => item.type === 'guide').reviewAfter = '2026-10-20';
+  const guide = pages.find(item => item.type === 'guide');
+  guide.reviewedAt = '2026-11-05';
+  guide.reviewAfter = '2026-11-12';
+  guide.reviewStatus = 'current';
   fs.writeFileSync(pagesFile, `${JSON.stringify(pages, null, 2)}\n`);
 }, 'reviewedAt раньше dateModified');
 

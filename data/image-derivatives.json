@@ -1631,6 +1631,26 @@
       "sourceSha256": "3408ec1a5420ee5ccffe73af08354083fcb4f1539bc04e3318689314d4f3f7be",
       "derivedSha256": "91266c73da3aaf1cd9f6c15adc1dac6a3617e337713e1a72738d230c517b4550"
     },
+    "assets/img/derived/news/civilian-impact/bpla-lnr-2026-11-14/casualties-480.webp": {
+      "source": "assets/img/news/civilian-impact/bpla-lnr-2026-11-14/casualties.svg",
+      "sourceSha256": "914a79ff7abd4c6b978396a61b7cb32569203090db1cda2c5fe2857262984bb1",
+      "derivedSha256": "9a9ccfe1b834467eee8fb79a781c1338dc5110363ee4cab33dacfb777d16e485"
+    },
+    "assets/img/derived/news/civilian-impact/bpla-lnr-2026-11-14/casualties-960.webp": {
+      "source": "assets/img/news/civilian-impact/bpla-lnr-2026-11-14/casualties.svg",
+      "sourceSha256": "914a79ff7abd4c6b978396a61b7cb32569203090db1cda2c5fe2857262984bb1",
+      "derivedSha256": "2590ad091a69a58f48b00872771bb852b662b8c20dd7719b6bdda283b2cf73b2"
+    },
+    "assets/img/derived/news/civilian-impact/bpla-lnr-2026-11-14/civilian-shift-480.webp": {
+      "source": "assets/img/news/civilian-impact/bpla-lnr-2026-11-14/civilian-shift.svg",
+      "sourceSha256": "f8e49c8f9c7282a814b5e88c7c95f55de5315ce8bff1099f9574652f0b7abb7c",
+      "derivedSha256": "ed1b0988ac207782aa088504b55e75614cbccba389b9b7898083a94e27b448c3"
+    },
+    "assets/img/derived/news/civilian-impact/bpla-lnr-2026-11-14/civilian-shift-960.webp": {
+      "source": "assets/img/news/civilian-impact/bpla-lnr-2026-11-14/civilian-shift.svg",
+      "sourceSha256": "f8e49c8f9c7282a814b5e88c7c95f55de5315ce8bff1099f9574652f0b7abb7c",
+      "derivedSha256": "e3d4b1884fbd7f529902ecb7a6095804439ef7785a18c043c106eab08f3864c0"
+    },
     "assets/img/derived/news/civilian-impact/budushchee-donbassa-posle-svo/cover-480.webp": {
       "source": "assets/img/news/civilian-impact/budushchee-donbassa-posle-svo/cover.webp",
       "sourceSha256": "a41a05674d4d7ab3e7b4736f8294d2239866cc9fad1b9bc485ce557b97c05f64",

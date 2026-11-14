@@ -470,7 +470,7 @@ const archiveInner = (pages, searchByUrl) => {
       const topics = Array.isArray(item.topics) ? item.topics.join(' ') : '';
       const locations = Array.isArray(item.locations) ? item.locations.join('|') : '';
       const haystack = [item.title, item.excerpt, item.period, topics, locations,
-        SECTION_LABELS[item.section], TYPE_LABELS[item.type], search.description]
+        SECTION_LABELS[item.section], TYPE_LABELS[item.type]]
         .filter(Boolean).join(' ');
       return `<li data-url="${escapeHtml(item.url)}" data-locations="${escapeHtml(locations)}" data-search="${escapeHtml(haystack)}" data-section="${escapeHtml(item.section)}" data-topics="${escapeHtml(topics)}" data-type="${escapeHtml(item.type)}" data-year="${escapeHtml(String(item.datePublished).slice(0, 4))}"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatArchiveDate(item.datePublished))}</time><span>${escapeHtml(TYPE_LABELS[item.type] || 'Материал')}</span><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></li>`;
     }).join('');
