@@ -1,7 +1,7 @@
 {
   "schema": "krmrf-map-statistics-v1",
-  "current": "2026-11-14 07:44",
-  "asOf": "2026-11-14T04:44:00.000Z",
+  "current": "2026-11-14 08:09",
+  "asOf": "2026-11-14T05:09:00.000Z",
   "method": {
     "id": "krmrf-spherical-sweep-v1",
     "earthRadiusM": 6371008.8,
@@ -191,7 +191,8 @@
     "Противоречивые старые версии за 2026-05-15T05:44:00.000Z: варианты сохранены отдельно в ambiguousVersions. Без независимо сохранённой публикации дата исключается из числового ряда; порядок Git не задаёт порядок публикации.",
     "Противоречивые старые версии за 2026-05-15T09:15:00.000Z: варианты сохранены отдельно в ambiguousVersions. Без независимо сохранённой публикации дата исключается из числового ряда; порядок Git не задаёт порядок публикации.",
     "Противоречивые старые версии за 2026-06-20T05:44:00.000Z: варианты сохранены отдельно в ambiguousVersions. Без независимо сохранённой публикации дата исключается из числового ряда; порядок Git не задаёт порядок публикации.",
-    "Противоречивые старые версии за 2026-10-19T05:13:00.000Z: варианты сохранены отдельно в ambiguousVersions. Без независимо сохранённой публикации дата исключается из числового ряда; порядок Git не задаёт порядок публикации."
+    "Противоречивые старые версии за 2026-10-19T05:13:00.000Z: варианты сохранены отдельно в ambiguousVersions. Без независимо сохранённой публикации дата исключается из числового ряда; порядок Git не задаёт порядок публикации.",
+    "Противоречивые старые версии за 2026-11-14T04:44:00.000Z: варианты сохранены отдельно в ambiguousVersions. Без независимо сохранённой публикации дата исключается из числового ряда; порядок Git не задаёт порядок публикации."
   ],
   "history": {
     "gitMode": "available-head-ancestry",
@@ -912,6 +913,23 @@
         "geometrySha256": "168ac05361fcbd554c493db5299502123617f58cbdf0fda6461f2c2aa6997d5d",
         "scopeVersion": "rf-layer-full-v1",
         "variantCount": 2
+      },
+      {
+        "commit": "c2a10e7498b46cf2d8b0625843585adc9e85f27c",
+        "kind": "ambiguous",
+        "resolution": "anchored",
+        "updated": "2026-11-14 07:44",
+        "publishedAt": "2026-11-14T04:44:00.000Z",
+        "rawSha256": "c69b9d324f6ba3ff61fa1e84b40621a3484c73d0e0cfdbdd7640ddf46d9af7d0",
+        "reason": "Одна дата updated соответствует разным контурам/охватам; порядок публикации не установлен.",
+        "layerNames": [
+          "russian"
+        ],
+        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-f194912bb741.geojson",
+        "sha256": "f194912bb74137380469174980341b5716d193c7cad6e5abeee0009bf2ac8782",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
+        "scopeVersion": "rf-layer-full-v1",
+        "variantCount": 2
       }
     ],
     "ambiguousVersions": [
@@ -1129,6 +1147,30 @@
         "relatedTitle": "",
         "sourceRefs": [
           "git:77f50d161eab022671862e6975afbf6aaef39a73"
+        ]
+      },
+      {
+        "id": "map-50ba90a5327f6096b28d",
+        "updated": "2026-11-14 07:44",
+        "publishedAt": "2026-11-14T04:44:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-f194912bb741.geojson",
+        "sha256": "f194912bb74137380469174980341b5716d193c7cad6e5abeee0009bf2ac8782",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
+        "featureCount": 1,
+        "scopeVersion": "rf-layer-full-v1",
+        "kind": "unknown",
+        "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
+        "summary": "Расширены отображаемые зоны контроля ВС РФ в районах Шиловки на Покровском направлении, Новогригоровки на Дружковском направлении и Белогорья на Ореховском направлении. Также расширена отображаемая зона контроля ВС РФ в западной части Купянска-Узлового на Купянском направлении.",
+        "details": [
+          "На Покровском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Шиловка.",
+          "На Дружковском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Новогригоровка.",
+          "На Ореховском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Белогорье.",
+          "На Купянском направлении расширена отображаемая зона контроля ВС РФ в западной части Купянска-Узлового."
+        ],
+        "relatedUrl": "",
+        "relatedTitle": "",
+        "sourceRefs": [
+          "git:c2a10e7498b46cf2d8b0625843585adc9e85f27c"
         ]
       }
     ]
@@ -3193,6 +3235,28 @@
       "relatedUrl": "",
       "relatedTitle": "",
       "areaKm2": 210538.42527373214,
+      "methodVersion": "krmrf-spherical-sweep-v1"
+    },
+    {
+      "id": "map-7fe41245ef97eecdcc2e",
+      "updated": "2026-11-14 08:09",
+      "publishedAt": "2026-11-14T05:09:00.000Z",
+      "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+      "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+      "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
+      "scopeVersion": "rf-layer-full-v1",
+      "kind": "unknown",
+      "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
+      "summary": "Расширены отображаемые зоны контроля ВС РФ в районах Шиловки на Покровском направлении, Новогригоровки на Дружковском направлении и Белогорья на Ореховском направлении. Также расширена отображаемая зона контроля ВС РФ в западной части Купянска-Узлового на Купянском направлении.",
+      "details": [
+        "На Покровском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Шиловка.",
+        "На Дружковском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Новогригоровка.",
+        "На Ореховском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Белогорье.",
+        "На Купянском направлении расширена отображаемая зона контроля ВС РФ в западной части Купянска-Узлового."
+      ],
+      "relatedUrl": "",
+      "relatedTitle": "",
+      "areaKm2": 210561.87093574088,
       "methodVersion": "krmrf-spherical-sweep-v1"
     }
   ],
@@ -7816,32 +7880,54 @@
           "netKm2": 0
         }
       ]
+    },
+    {
+      "fromId": "map-50ba90a5327f6096b28d",
+      "toId": "map-7fe41245ef97eecdcc2e",
+      "fromAt": "2026-11-14T04:44:00.000Z",
+      "toAt": "2026-11-14T05:09:00.000Z",
+      "kind": "unknown",
+      "omittedSnapshotCount": 0,
+      "status": "ok",
+      "addedKm2": 27.78624620398178,
+      "removedKm2": 4.340584195248719,
+      "netKm2": 23.445662008743966,
+      "sectors": [
+        {
+          "id": "krasnyi-lyman",
+          "label": "Красный Лиман и окрестности",
+          "addedKm2": 0,
+          "removedKm2": 0,
+          "netKm2": 0
+        },
+        {
+          "id": "vovchansk",
+          "label": "Волчанск и восточные окрестности",
+          "addedKm2": 0,
+          "removedKm2": 0,
+          "netKm2": 0
+        },
+        {
+          "id": "orikhiv",
+          "label": "Орехов и восточные окрестности",
+          "addedKm2": 14.983299121871928,
+          "removedKm2": 2.369258136171132,
+          "netKm2": 12.614040985700797
+        },
+        {
+          "id": "other",
+          "label": "Остальные участки",
+          "addedKm2": 12.802947082109851,
+          "removedKm2": 1.9713260590775872,
+          "netKm2": 10.831621023032264
+        }
+      ]
     }
   ],
   "periods": {
     "latest": {
       "status": "ok",
       "from": {
-        "id": "map-1295f2c01d779eaf453f",
-        "updated": "2026-11-11 06:17",
-        "publishedAt": "2026-11-11T03:17:00.000Z",
-        "snapshot": "/data/map-archive/2026-11-11T03-17-00.000Z-1c8445a69a0c.geojson",
-        "sha256": "1c8445a69a0c87cd8ef90acb9234551b786309c563ad0480726e895c00c5e8ad",
-        "geometrySha256": "c708a2c3e087ed3a9232ecaa54cb0933d6953bbd2c3bc2b1e7ebbab53298d441",
-        "scopeVersion": "rf-layer-full-v1",
-        "kind": "unknown",
-        "title": "Уточнение линии боевого соприкосновения от 11 ноября 2026 года",
-        "summary": "Расширена отображаемая зона контроля ВС РФ в правобережной части Купянска в районах Московки и Соболевки на Купянском направлении. Уточнены отображаемые зоны контроля ВС РФ в районах Орехова и Малой Токмачки на Запорожском направлении.",
-        "details": [
-          "На Купянском направлении расширена отображаемая зона контроля ВС РФ в правобережной части Купянска в районах Московки и Соболевки.",
-          "На Запорожском направлении уточнены отображаемые зоны контроля ВС РФ в районах населённых пунктов Орехов и Малая Токмачка."
-        ],
-        "relatedUrl": "",
-        "relatedTitle": "",
-        "areaKm2": 210538.42527373214,
-        "methodVersion": "krmrf-spherical-sweep-v1"
-      },
-      "to": {
         "id": "map-50ba90a5327f6096b28d",
         "updated": "2026-11-14 07:44",
         "publishedAt": "2026-11-14T04:44:00.000Z",
@@ -7863,8 +7949,30 @@
         "areaKm2": 210538.42527373214,
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
-      "addedKm2": 0,
-      "removedKm2": 0,
+      "to": {
+        "id": "map-7fe41245ef97eecdcc2e",
+        "updated": "2026-11-14 08:09",
+        "publishedAt": "2026-11-14T05:09:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+        "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
+        "scopeVersion": "rf-layer-full-v1",
+        "kind": "unknown",
+        "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
+        "summary": "Расширены отображаемые зоны контроля ВС РФ в районах Шиловки на Покровском направлении, Новогригоровки на Дружковском направлении и Белогорья на Ореховском направлении. Также расширена отображаемая зона контроля ВС РФ в западной части Купянска-Узлового на Купянском направлении.",
+        "details": [
+          "На Покровском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Шиловка.",
+          "На Дружковском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Новогригоровка.",
+          "На Ореховском направлении расширена отображаемая зона контроля ВС РФ в районе населённого пункта Белогорье.",
+          "На Купянском направлении расширена отображаемая зона контроля ВС РФ в западной части Купянска-Узлового."
+        ],
+        "relatedUrl": "",
+        "relatedTitle": "",
+        "areaKm2": 210561.87093574088,
+        "methodVersion": "krmrf-spherical-sweep-v1"
+      },
+      "addedKm2": 27.78624620398178,
+      "removedKm2": 4.340584195248719,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -7883,21 +7991,21 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 0,
-          "removedKm2": 0,
-          "netKm2": 0
+          "addedKm2": 14.983299121871928,
+          "removedKm2": 2.369258136171132,
+          "netKm2": 12.614040985700797
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 0,
-          "removedKm2": 0,
-          "netKm2": 0
+          "addedKm2": 12.802947082109851,
+          "removedKm2": 1.9713260590775872,
+          "netKm2": 10.831621023032264
         }
       ],
-      "netKm2": 0,
+      "netKm2": 23.445662008743966,
       "updateCount": 1,
-      "crossesDays": true,
+      "crossesDays": false,
       "corrections": 0,
       "omittedSnapshotCount": 0
     },
@@ -7921,12 +8029,12 @@
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
       "to": {
-        "id": "map-50ba90a5327f6096b28d",
-        "updated": "2026-11-14 07:44",
-        "publishedAt": "2026-11-14T04:44:00.000Z",
-        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-aa6ac9cea008.geojson",
-        "sha256": "aa6ac9cea00873fb4672cfdc28d7f357c7e0add5d608db6509b22197d9d306b7",
-        "geometrySha256": "c708a2c3e087ed3a9232ecaa54cb0933d6953bbd2c3bc2b1e7ebbab53298d441",
+        "id": "map-7fe41245ef97eecdcc2e",
+        "updated": "2026-11-14 08:09",
+        "publishedAt": "2026-11-14T05:09:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+        "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
         "scopeVersion": "rf-layer-full-v1",
         "kind": "unknown",
         "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
@@ -7939,11 +8047,11 @@
         ],
         "relatedUrl": "",
         "relatedTitle": "",
-        "areaKm2": 210538.42527373214,
+        "areaKm2": 210561.87093574088,
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
-      "addedKm2": 3898.0369782537396,
-      "removedKm2": 2073.9172311889674,
+      "addedKm2": 3925.823224457721,
+      "removedKm2": 2078.257815384216,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -7962,20 +8070,20 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 209.67432765896137,
-          "removedKm2": 39.854364716040266,
-          "netKm2": 169.8199629429211
+          "addedKm2": 224.65762678083328,
+          "removedKm2": 42.22362285221139,
+          "netKm2": 182.4340039286219
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 2719.909250344196,
-          "removedKm2": 1223.5610468151478,
-          "netKm2": 1496.348203529048
+          "addedKm2": 2732.712197426306,
+          "removedKm2": 1225.5323728742255,
+          "netKm2": 1507.1798245520804
         }
       ],
-      "netKm2": 1824.1197470647749,
-      "updateCount": 110,
+      "netKm2": 1847.5654090735188,
+      "updateCount": 111,
       "crossesDays": true,
       "corrections": 0,
       "omittedSnapshotCount": 5
@@ -8003,12 +8111,12 @@
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
       "to": {
-        "id": "map-50ba90a5327f6096b28d",
-        "updated": "2026-11-14 07:44",
-        "publishedAt": "2026-11-14T04:44:00.000Z",
-        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-aa6ac9cea008.geojson",
-        "sha256": "aa6ac9cea00873fb4672cfdc28d7f357c7e0add5d608db6509b22197d9d306b7",
-        "geometrySha256": "c708a2c3e087ed3a9232ecaa54cb0933d6953bbd2c3bc2b1e7ebbab53298d441",
+        "id": "map-7fe41245ef97eecdcc2e",
+        "updated": "2026-11-14 08:09",
+        "publishedAt": "2026-11-14T05:09:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+        "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
         "scopeVersion": "rf-layer-full-v1",
         "kind": "unknown",
         "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
@@ -8021,11 +8129,11 @@
         ],
         "relatedUrl": "",
         "relatedTitle": "",
-        "areaKm2": 210538.42527373214,
+        "areaKm2": 210561.87093574088,
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
-      "addedKm2": 8.248184608608117,
-      "removedKm2": 16.59994770824087,
+      "addedKm2": 36.034430812589896,
+      "removedKm2": 20.94053190348959,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -8044,25 +8152,25 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 2.2814438601030185,
-          "removedKm2": 16.549536575183268,
-          "netKm2": -14.26809271508025
+          "addedKm2": 17.264742981974948,
+          "removedKm2": 18.9187947113544,
+          "netKm2": -1.6540517293794537
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 5.9667407485050985,
-          "removedKm2": 0.05041113305760092,
-          "netKm2": 5.916329615447498
+          "addedKm2": 18.76968783061495,
+          "removedKm2": 2.021737192135188,
+          "netKm2": 16.74795063847976
         }
       ],
-      "netKm2": -8.351763099635718,
-      "updateCount": 2,
+      "netKm2": 15.093898909108248,
+      "updateCount": 3,
       "crossesDays": true,
       "corrections": 0,
       "omittedSnapshotCount": 0,
-      "requestedStartAt": "2026-11-07T04:44:00.000Z",
-      "requestedEndAt": "2026-11-14T04:44:00.000Z",
+      "requestedStartAt": "2026-11-07T05:09:00.000Z",
+      "requestedEndAt": "2026-11-14T05:09:00.000Z",
       "partial": false,
       "baselinePrecedesPeriod": true
     },
@@ -8090,12 +8198,12 @@
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
       "to": {
-        "id": "map-50ba90a5327f6096b28d",
-        "updated": "2026-11-14 07:44",
-        "publishedAt": "2026-11-14T04:44:00.000Z",
-        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-aa6ac9cea008.geojson",
-        "sha256": "aa6ac9cea00873fb4672cfdc28d7f357c7e0add5d608db6509b22197d9d306b7",
-        "geometrySha256": "c708a2c3e087ed3a9232ecaa54cb0933d6953bbd2c3bc2b1e7ebbab53298d441",
+        "id": "map-7fe41245ef97eecdcc2e",
+        "updated": "2026-11-14 08:09",
+        "publishedAt": "2026-11-14T05:09:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+        "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
         "scopeVersion": "rf-layer-full-v1",
         "kind": "unknown",
         "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
@@ -8108,11 +8216,11 @@
         ],
         "relatedUrl": "",
         "relatedTitle": "",
-        "areaKm2": 210538.42527373214,
+        "areaKm2": 210561.87093574088,
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
-      "addedKm2": 436.0994390843275,
-      "removedKm2": 231.8036034013038,
+      "addedKm2": 463.8856852883093,
+      "removedKm2": 236.1441875965525,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -8131,25 +8239,25 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 22.529108324205787,
-          "removedKm2": 28.032365920530548,
-          "netKm2": -5.503257596324762
+          "addedKm2": 37.51240744607772,
+          "removedKm2": 30.40162405670168,
+          "netKm2": 7.110783389376035
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 301.1863377818473,
-          "removedKm2": 135.07482964510444,
-          "netKm2": 166.11150813674288
+          "addedKm2": 313.98928486395715,
+          "removedKm2": 137.04615570418204,
+          "netKm2": 176.94312915977517
         }
       ],
-      "netKm2": 204.29583568303497,
-      "updateCount": 11,
+      "netKm2": 227.74149769177893,
+      "updateCount": 12,
       "crossesDays": true,
       "corrections": 0,
       "omittedSnapshotCount": 0,
-      "requestedStartAt": "2026-10-15T04:44:00.000Z",
-      "requestedEndAt": "2026-11-14T04:44:00.000Z",
+      "requestedStartAt": "2026-10-15T05:09:00.000Z",
+      "requestedEndAt": "2026-11-14T05:09:00.000Z",
       "partial": false,
       "baselinePrecedesPeriod": true
     },
@@ -8177,12 +8285,12 @@
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
       "to": {
-        "id": "map-50ba90a5327f6096b28d",
-        "updated": "2026-11-14 07:44",
-        "publishedAt": "2026-11-14T04:44:00.000Z",
-        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-aa6ac9cea008.geojson",
-        "sha256": "aa6ac9cea00873fb4672cfdc28d7f357c7e0add5d608db6509b22197d9d306b7",
-        "geometrySha256": "c708a2c3e087ed3a9232ecaa54cb0933d6953bbd2c3bc2b1e7ebbab53298d441",
+        "id": "map-7fe41245ef97eecdcc2e",
+        "updated": "2026-11-14 08:09",
+        "publishedAt": "2026-11-14T05:09:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+        "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
         "scopeVersion": "rf-layer-full-v1",
         "kind": "unknown",
         "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
@@ -8195,11 +8303,11 @@
         ],
         "relatedUrl": "",
         "relatedTitle": "",
-        "areaKm2": 210538.42527373214,
+        "areaKm2": 210561.87093574088,
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
-      "addedKm2": 13.37156798649806,
-      "removedKm2": 54.97050098920303,
+      "addedKm2": 41.15781419047984,
+      "removedKm2": 59.31108518445175,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -8218,25 +8326,25 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 2.2814438601030185,
-          "removedKm2": 23.8749775577971,
-          "netKm2": -21.59353369769408
+          "addedKm2": 17.264742981974948,
+          "removedKm2": 26.244235693968232,
+          "netKm2": -8.979492711993284
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 11.090124126395041,
-          "removedKm2": 29.143587799758187,
-          "netKm2": -18.053463673363144
+          "addedKm2": 23.893071208504892,
+          "removedKm2": 31.114913858835774,
+          "netKm2": -7.221842650330878
         }
       ],
-      "netKm2": -41.59893300270778,
-      "updateCount": 4,
+      "netKm2": -18.153270993963815,
+      "updateCount": 5,
       "crossesDays": true,
       "corrections": 0,
       "omittedSnapshotCount": 0,
       "requestedStartAt": "2026-10-31T21:00:00.000Z",
-      "requestedEndAt": "2026-11-14T04:44:00.000Z",
+      "requestedEndAt": "2026-11-14T05:09:00.000Z",
       "partial": false,
       "baselinePrecedesPeriod": true,
       "crossesMonthBoundary": true,
@@ -14637,12 +14745,12 @@
       "status": "updated",
       "omittedSnapshotCount": 0,
       "ambiguousSnapshotCount": 0,
-      "updateCount": 1,
+      "updateCount": 2,
       "fromAt": "2026-11-11T03:17:00.000Z",
-      "toAt": "2026-11-14T04:44:00.000Z",
-      "addedKm2": 0,
-      "removedKm2": 0,
-      "netKm2": 0,
+      "toAt": "2026-11-14T05:09:00.000Z",
+      "addedKm2": 27.78624620398178,
+      "removedKm2": 4.340584195248719,
+      "netKm2": 23.445662008743966,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -14661,16 +14769,16 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 0,
-          "removedKm2": 0,
-          "netKm2": 0
+          "addedKm2": 14.983299121871928,
+          "removedKm2": 2.369258136171132,
+          "netKm2": 12.614040985700797
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 0,
-          "removedKm2": 0,
-          "netKm2": 0
+          "addedKm2": 12.802947082109851,
+          "removedKm2": 1.9713260590775872,
+          "netKm2": 10.831621023032264
         }
       ]
     }
@@ -15367,12 +15475,12 @@
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
       "to": {
-        "id": "map-50ba90a5327f6096b28d",
-        "updated": "2026-11-14 07:44",
-        "publishedAt": "2026-11-14T04:44:00.000Z",
-        "snapshot": "/data/map-archive/2026-11-14T04-44-00.000Z-aa6ac9cea008.geojson",
-        "sha256": "aa6ac9cea00873fb4672cfdc28d7f357c7e0add5d608db6509b22197d9d306b7",
-        "geometrySha256": "c708a2c3e087ed3a9232ecaa54cb0933d6953bbd2c3bc2b1e7ebbab53298d441",
+        "id": "map-7fe41245ef97eecdcc2e",
+        "updated": "2026-11-14 08:09",
+        "publishedAt": "2026-11-14T05:09:00.000Z",
+        "snapshot": "/data/map-archive/2026-11-14T05-09-00.000Z-896c981fb45c.geojson",
+        "sha256": "896c981fb45cf39c70986905180bc703c3ecdc3e7888d7d2d567af7b3ead8120",
+        "geometrySha256": "9ea8248ea110e0cbd0ffd7f22727d0b7e67a9319f1c5e3b82b2eb86bb9bb10b5",
         "scopeVersion": "rf-layer-full-v1",
         "kind": "unknown",
         "title": "Уточнение линии боевого соприкосновения от 14 ноября 2026 года",
@@ -15385,11 +15493,11 @@
         ],
         "relatedUrl": "",
         "relatedTitle": "",
-        "areaKm2": 210538.42527373214,
+        "areaKm2": 210561.87093574088,
         "methodVersion": "krmrf-spherical-sweep-v1"
       },
-      "addedKm2": 13.37156798649806,
-      "removedKm2": 54.97050098920303,
+      "addedKm2": 41.15781419047984,
+      "removedKm2": 59.31108518445175,
       "sectors": [
         {
           "id": "krasnyi-lyman",
@@ -15408,25 +15516,25 @@
         {
           "id": "orikhiv",
           "label": "Орехов и восточные окрестности",
-          "addedKm2": 2.2814438601030185,
-          "removedKm2": 23.8749775577971,
-          "netKm2": -21.59353369769408
+          "addedKm2": 17.264742981974948,
+          "removedKm2": 26.244235693968232,
+          "netKm2": -8.979492711993284
         },
         {
           "id": "other",
           "label": "Остальные участки",
-          "addedKm2": 11.090124126395041,
-          "removedKm2": 29.143587799758187,
-          "netKm2": -18.053463673363144
+          "addedKm2": 23.893071208504892,
+          "removedKm2": 31.114913858835774,
+          "netKm2": -7.221842650330878
         }
       ],
-      "netKm2": -41.59893300270778,
-      "updateCount": 4,
+      "netKm2": -18.153270993963815,
+      "updateCount": 5,
       "crossesDays": true,
       "corrections": 0,
       "omittedSnapshotCount": 0,
       "requestedStartAt": "2026-10-31T21:00:00.000Z",
-      "requestedEndAt": "2026-11-14T04:44:00.000Z",
+      "requestedEndAt": "2026-11-14T05:09:00.000Z",
       "partial": false,
       "baselinePrecedesPeriod": true,
       "crossesMonthBoundary": true,
@@ -15435,5 +15543,5 @@
       "openMonth": true
     }
   ],
-  "fingerprint": "55e4ba5406891fdb"
+  "fingerprint": "baa97f06e6b13eb8"
 }
