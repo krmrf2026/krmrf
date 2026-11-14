@@ -1,1 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 820" width="640" height="820" role="img" aria-labelledby="tt td"><title id="tt">Как менялась гражданская обстановка с сентября по ноябрь 2026</title><desc id="td">Четыре этапа: сентябрь, октябрь, начало ноября, объявление 13 ноября новых ограничений.</desc><rect width="640" height="820" fill="white"/><text x="25" y="47" font-size="30" font-family="Arial,sans-serif" font-weight="bold" fill="#23384c">От происшествий к правилам</text><rect x="25" y="83" width="590" height="152" rx="12" fill="#f4f6f8" stroke="#ccd6e0"/><text x="48" y="123" font-size="27" font-family="Arial,sans-serif" font-weight="bold" fill="#284f70">Сентябрь</text><text x="48" y="166" font-size="23" font-family="Arial,sans-serif" fill="#354455">Риски сохраняются, даже когда</text><text x="48" y="197" font-size="23" font-family="Arial,sans-serif" fill="#354455">снижается число сообщений</text><rect x="25" y="260" width="590" height="152" rx="12" fill="#f4f6f8" stroke="#ccd6e0"/><text x="48" y="300" font-size="27" font-family="Arial,sans-serif" font-weight="bold" fill="#284f70">Октябрь</text><text x="48" y="343" font-size="23" font-family="Arial,sans-serif" fill="#354455">Транспорт, жильё, связь;</text><text x="48" y="374" font-size="23" font-family="Arial,sans-serif" fill="#354455">ограничения отдельных перевозок</text><rect x="25" y="437" width="590" height="152" rx="12" fill="#f4f6f8" stroke="#ccd6e0"/><text x="48" y="477" font-size="27" font-family="Arial,sans-serif" font-weight="bold" fill="#284f70">2–10 ноября</text><text x="48" y="520" font-size="23" font-family="Arial,sans-serif" fill="#354455">Атаки на автобусы, связь и</text><text x="48" y="551" font-size="23" font-family="Arial,sans-serif" fill="#354455">энергетику, тяжёлые последствия</text><rect x="25" y="614" width="590" height="152" rx="12" fill="#f4f6f8" stroke="#ccd6e0"/><text x="48" y="654" font-size="27" font-family="Arial,sans-serif" font-weight="bold" fill="#284f70">13 ноября</text><text x="48" y="697" font-size="23" font-family="Arial,sans-serif" fill="#354455">С 19 ноября меняется режим</text><text x="48" y="728" font-size="23" font-family="Arial,sans-serif" fill="#354455">межрегиональных автобусных рейсов</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="620" viewBox="0 0 640 620" role="img" aria-labelledby="title desc">
+<title id="title">Ключевые этапы гражданских последствий осени</title>
+<desc id="desc">Сентябрь: оценка рисков; октябрь: происшествия на дорогах; начало ноября: тяжёлые атаки и перебои; 13 ноября: решение о режиме автобусного движения с 19 ноября.</desc>
+<rect x="0" y="0" width="640" height="620" rx="0" fill="#F7F8F7"/>
+<text x="28" y="42" fill="#173A51" font-size="26" font-weight="700" font-family="Arial,sans-serif" text-anchor="start">Как менялся повседневный порядок</text>
+<text x="28" y="72" fill="#66727C" font-size="16" font-weight="400" font-family="Arial,sans-serif" text-anchor="start">Датированная редакционная схема, не число атак</text>
+<rect x="28" y="100" width="584" height="108" rx="11" fill="#FFFFFF"/>
+<rect x="28" y="100" width="5" height="108" rx="2" fill="#2A6383"/>
+<text x="45" y="130" fill="#173A51" font-size="21" font-weight="700" font-family="Arial,sans-serif" text-anchor="start">Сентябрь</text>
+<text x="45" y="158" fill="#2D3744" font-size="18" font-weight="600" font-family="Arial,sans-serif" text-anchor="start">Оценка угрозы</text>
+<text x="45" y="183" fill="#66727C" font-size="17" font-weight="400" font-family="Arial,sans-serif" text-anchor="start">Частота новостей ≠ число атак</text>
+<rect x="28" y="223" width="584" height="108" rx="11" fill="#FFFFFF"/>
+<rect x="28" y="223" width="5" height="108" rx="2" fill="#2A6383"/>
+<text x="45" y="253" fill="#173A51" font-size="21" font-weight="700" font-family="Arial,sans-serif" text-anchor="start">Октябрь</text>
+<text x="45" y="281" fill="#2D3744" font-size="18" font-weight="600" font-family="Arial,sans-serif" text-anchor="start">Атаки на транспорт</text>
+<text x="45" y="306" fill="#66727C" font-size="17" font-weight="400" font-family="Arial,sans-serif" text-anchor="start">Пассажирский транспорт и жильё</text>
+<rect x="28" y="346" width="584" height="108" rx="11" fill="#FFFFFF"/>
+<rect x="28" y="346" width="5" height="108" rx="2" fill="#2A6383"/>
+<text x="45" y="376" fill="#173A51" font-size="21" font-weight="700" font-family="Arial,sans-serif" text-anchor="start">Начало ноября</text>
+<text x="45" y="404" fill="#2D3744" font-size="18" font-weight="600" font-family="Arial,sans-serif" text-anchor="start">Удары по рейсам</text>
+<text x="45" y="429" fill="#66727C" font-size="17" font-weight="400" font-family="Arial,sans-serif" text-anchor="start">Одновременно перебои связи и света</text>
+<rect x="28" y="469" width="584" height="108" rx="11" fill="#FFFFFF"/>
+<rect x="28" y="469" width="5" height="108" rx="2" fill="#2A6383"/>
+<text x="45" y="499" fill="#173A51" font-size="21" font-weight="700" font-family="Arial,sans-serif" text-anchor="start">13 ноября</text>
+<text x="45" y="527" fill="#2D3744" font-size="18" font-weight="600" font-family="Arial,sans-serif" text-anchor="start">Режим автобусов</text>
+<text x="45" y="552" fill="#66727C" font-size="17" font-weight="400" font-family="Arial,sans-serif" text-anchor="start">С 19 ноября: межрегиональные рейсы</text></svg>
