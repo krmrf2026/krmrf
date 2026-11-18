@@ -2281,6 +2281,46 @@
       "sourceSha256": "45bd589254156cdd535d1d6a87e7e3dbda55676c5a9bb3beebb5ec3949fbf25e",
       "derivedSha256": "b33ae712b19d05932d1347d5a913888aab8950a0d1c7153350bfac5a9a2e7a47"
     },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/city-work-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/city-work.jpg",
+      "sourceSha256": "4c5cb342aa150c4b0c55d5c2df1aeb9f1a30b98e91d5c7818741b920764599c3",
+      "derivedSha256": "26e90f94958a6269f6cd6b563ef71775ac664b8d8f10973293216a5f92a85e71"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/city-work-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/city-work.jpg",
+      "sourceSha256": "4c5cb342aa150c4b0c55d5c2df1aeb9f1a30b98e91d5c7818741b920764599c3",
+      "derivedSha256": "9f8305c8ee74078993c30961ac703b4f8d0ae31b55dbdb9a36cc7c4d0bcc1a44"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/cover-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/cover.jpg",
+      "sourceSha256": "dabe62bcdb8b5d2cf33a2a4df0e638d1235e513fefc3481d8d25621594512c2f",
+      "derivedSha256": "a179c855f3962e398162118f7e786a488629524d62ede231ad5fb5d22dcca555"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/cover-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/cover.jpg",
+      "sourceSha256": "dabe62bcdb8b5d2cf33a2a4df0e638d1235e513fefc3481d8d25621594512c2f",
+      "derivedSha256": "391e835736f32eda636f7172acddd324f03f5682cb120fa0133f3eeb1ef0310c"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/fire-engine-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/fire-engine.jpg",
+      "sourceSha256": "0339b36652d0ccd70b2fd67aef09a96aee988818d035825f37aa272c3a3784b8",
+      "derivedSha256": "bcaa321c49a40dd1e7519e6dd2d2648a6515ccf393fd06c7b30aee534ed25b26"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/fire-engine-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/fire-engine.jpg",
+      "sourceSha256": "0339b36652d0ccd70b2fd67aef09a96aee988818d035825f37aa272c3a3784b8",
+      "derivedSha256": "fbced602ae875394ac5613df29fb7c21ca624873c37477f2b35b6d5ae4b2ec13"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/utility-work-480.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/utility-work.jpg",
+      "sourceSha256": "c16356fc9bda609ed06bbd4175f83a844338ae0e1c15d55849815fb832534126",
+      "derivedSha256": "c9a1b963ac43b3c057a29aeb828fb13b3db8f979b1d72ee91b722fa67391448e"
+    },
+    "assets/img/derived/news/kremennaya/krm-2026-11-18/utility-work-960.webp": {
+      "source": "assets/img/news/kremennaya/krm-2026-11-18/utility-work.jpg",
+      "sourceSha256": "c16356fc9bda609ed06bbd4175f83a844338ae0e1c15d55849815fb832534126",
+      "derivedSha256": "c798944ee44b336e11dc72f2fa59b68ae0cbeb86410c6e4c97eb42bdc16656f7"
+    },
     "assets/img/derived/news/kremennaya/krm-23-03-2026/city-480.webp": {
       "source": "assets/img/news/kremennaya/krm-23-03-2026/city.webp",
       "sourceSha256": "f8ad956285f69bc11c1f04b2fafc71440b97debcb29ffeb3746e3bd457102c2d",
