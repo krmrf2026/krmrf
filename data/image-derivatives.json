@@ -3525,6 +3525,46 @@
       "source": "assets/img/war-crimes/starobelsk-2026-05-22/cover3.webp",
       "sourceSha256": "b4adb55a25c0ede23503ae57fc9e755004cb242b02e67a0b176df535e055f1df",
       "derivedSha256": "9a328d3f07d0bf71dfc1ee56e93fecd4e4fcf3472a3d58e58f563a6b33ba4be3"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/cover-480.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/cover.webp",
+      "sourceSha256": "6742f24acfe13db5600d32d36001e9c0599ce6f376d377605cfcfca6b84e972b",
+      "derivedSha256": "5b5a1f5ee103084cec89da31ceef8554603929369e812cba2f4cda33ad93eaef"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/cover-960.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/cover.webp",
+      "sourceSha256": "6742f24acfe13db5600d32d36001e9c0599ce6f376d377605cfcfca6b84e972b",
+      "derivedSha256": "03849f4c9ee2df1f378fc70ecdc37817631540c576b3a6eded90b6331f16d7da"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/damaged-building-480.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/damaged-building.webp",
+      "sourceSha256": "fc7d1af173a73b9c31d79cc1c951c8a52461a4be6c62dc8b41ec0033ba2e9b65",
+      "derivedSha256": "62b7a8730cd4674b75f97ca8b656c3c4b2a9ea5d380b75bbe926214437a0e0b8"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/damaged-building-960.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/damaged-building.webp",
+      "sourceSha256": "fc7d1af173a73b9c31d79cc1c951c8a52461a4be6c62dc8b41ec0033ba2e9b65",
+      "derivedSha256": "e917fdc4d152ff0aa885712e123e8afb2a69f3bb8914ca4fe4ba881c64e72745"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/psychological-help-480.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/psychological-help.webp",
+      "sourceSha256": "f0116f5a911a920f3f7936b401636942d8098fd942f65fc5c487679065dd409d",
+      "derivedSha256": "a5593f81acbe6f01c25e94ce5880ec297dd315e6f77a6521946d8113651b9aeb"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/psychological-help-960.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/psychological-help.webp",
+      "sourceSha256": "f0116f5a911a920f3f7936b401636942d8098fd942f65fc5c487679065dd409d",
+      "derivedSha256": "4bd11dfb7665772a0ed33fe734544edd147c2af7fafaeb2ce2fdfdfa14864b21"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/rescuers-debris-480.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/rescuers-debris.webp",
+      "sourceSha256": "58c0883ce89e2e9a6f92ee98e87d2eeaeb607da80913345b6de5628a3eda2c14",
+      "derivedSha256": "79dd12e3c49e167278d774b4e65c203b805294e691c267cbac4812ec93ca5651"
+    },
+    "assets/img/derived/war-crimes/yubileynoe-2026-11-20/rescuers-debris-960.webp": {
+      "source": "assets/img/war-crimes/yubileynoe-2026-11-20/rescuers-debris.webp",
+      "sourceSha256": "58c0883ce89e2e9a6f92ee98e87d2eeaeb607da80913345b6de5628a3eda2c14",
+      "derivedSha256": "23a0bb75f136741febbe2a2f341c517f6f5398a67cdd6e3758e470a857c24c31"
     }
   }
 }

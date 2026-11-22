@@ -135,7 +135,8 @@
     "bpla-lnr-2026-11-14": "bpla-lnr-2026-11-14",
     "assessment-2026-11-15": "assessment-2026-11-15",
     "krm-2026-11-18": "krm-2026-11-18",
-    "assessment-2026-11-22": "assessment-2026-11-22"
+    "assessment-2026-11-22": "assessment-2026-11-22",
+    "yubileynoe-2026-11-20": "yubileynoe-2026-11-20"
   },
   "notes": "Existing campaigns preserve the previous generator URL slug. New publication campaigns use immutable metadata id. Keep old ids and overrides after URL changes."
 }
