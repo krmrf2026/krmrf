@@ -588,7 +588,8 @@ for (const full of htmlFiles) {
     const metrikaScripts = html.match(/<script\b[^>]*\bsrc=["']\/assets\/js\/metrika\.js(?:\?[^"']*)?["'][^>]*>/gi) || [];
     const analyticsPixels = html.match(/\banalytics-noscript-pixel\b/gi) || [];
     if (metrikaScripts.length !== 1) errors.push(`${rel}: ожидается ровно один /assets/js/metrika.js, найдено ${metrikaScripts.length}.`);
-    if (analyticsPixels.length !== 1) errors.push(`${rel}: ожидается ровно один noscript-пиксель аналитики, найдено ${analyticsPixels.length}.`);
+    const expectedPixels = ['search/index.html', 'archive/index.html'].includes(rel) ? 0 : 1;
+    if (analyticsPixels.length !== expectedPixels) errors.push(`${rel}: ожидалось noscript-пикселей аналитики: ${expectedPixels}, найдено ${analyticsPixels.length}.`);
     for (const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
       const openTag = `<script${script[1]}>`;
       if (attr(openTag, 'src')) continue;

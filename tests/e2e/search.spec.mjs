@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 const status = page => page.locator('#search-status');
 const results = page => page.locator('#search-results .search-result');
-const queryValue = page => new URL(page.url()).searchParams.get('q');
+const queryValue = page => page.evaluate(() => history.state?.q || new URL(location.href).searchParams.get('q'));
 
 test.beforeEach(async ({ page }) => {
   await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, route => route.abort());

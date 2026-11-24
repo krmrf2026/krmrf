@@ -1,5 +1,12 @@
 (() => {
   'use strict';
+  // The original navigation entry and a legacy incoming referrer can retain
+  // q even after replaceState. Do not load the external tag on those visits.
+  const hasPrivateQuery = raw => {
+    if (!raw) return false;
+    try { return new URL(raw).searchParams.has('q'); } catch { return false; }
+  };
+  if (window.KRMPrivateEntry || hasPrivateQuery(location.href) || hasPrivateQuery(document.referrer)) return;
   const ID = 110383043;
   const tag = `https://mc.yandex.ru/metrika/tag.js?id=${ID}`;
   window.ym = window.ym || function (...args) { (window.ym.a = window.ym.a || []).push(args); };
@@ -29,6 +36,10 @@
     let url; try { url = new URL(link.href, location.href); } catch { return; }
     if (!/^https?:$/.test(url.protocol)) return;
     const place = placement(link);
+    const pilot = link.closest('article[data-guide-id]');
+    if (pilot && link.dataset.guideAction && url.origin !== location.origin) {
+      goal('guide_action', { guide: pilot.dataset.guideId, action: link.dataset.guideAction });
+    }
 
     if (['t.me', 'max.ru'].includes(url.hostname) && /^\/xykrm\/?$/i.test(url.pathname)) {
       return goal('channel_click', { channel: url.hostname === 't.me' ? 'telegram' : 'max', placement: place });
@@ -43,6 +54,25 @@
 
   const article = document.querySelector('article.article');
   if (!article || !document.body?.matches('.page--article, .page--guide, .page--assessment, .page--dossier')) return;
+
+  if (article.dataset.guideId) {
+    const feedback = document.createElement('fieldset');
+    const legend = document.createElement('legend');
+    legend.textContent = 'Удалось найти нужную информацию?';
+    feedback.append(legend);
+    for (const [answer, caption] of [['yes', 'Да'], ['no', 'Нет']]) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = caption;
+      button.addEventListener('click', () => {
+        goal('guide_feedback', { guide: article.dataset.guideId, answer });
+        feedback.replaceChildren(legend);
+        legend.textContent = 'Спасибо за ответ.';
+      });
+      feedback.append(button);
+    }
+    article.append(feedback);
+  }
 
   const fired = new Set();
   let scheduled = false;

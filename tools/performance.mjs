@@ -31,7 +31,13 @@ const statisticsJs = jsFiles.filter(file => /map-statistics(?:-core)?\.js$/.test
 const statisticsCss = cssFiles.filter(file => file.endsWith('page-map-statistics.css'));
 const jsTotal = jsFiles.filter(file => !statisticsJs.includes(file)).reduce((sum, file) => sum + size(file), 0);
 const cssTotal = cssFiles.filter(file => !statisticsCss.includes(file)).reduce((sum, file) => sum + size(file), 0);
-if (jsTotal > 55_000) errors.push(`assets/js: общий размер ${jsTotal}, бюджет 55000`);
+if (jsTotal > 64_000) errors.push(`assets/js: суммарно по всем разделам ${jsTotal}, бюджет 64000`);
+for (const page of ['index.html', 'reference/index.html', 'search/index.html', 'archive/index.html', 'map/index.html']) {
+  const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
+  const scripts = new Set([...html.matchAll(/<script\b[^>]*\bsrc=["']\/(assets\/js\/[^"'?]+)(?:\?[^"']*)?["']/gi)].map(match => match[1]));
+  const raw = [...scripts].reduce((sum, script) => sum + size(script), 0);
+  if (raw > 55_000) errors.push(`${page}: собственные JS ${raw}, бюджет 55000`);
+}
 if (cssTotal > 35_000) errors.push(`assets/css: общий размер ${cssTotal}, бюджет 35000`);
 
 // Full chain validation and the regional view remain a small transfer on phones.

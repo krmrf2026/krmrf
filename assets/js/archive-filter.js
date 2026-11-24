@@ -15,13 +15,7 @@
   let searchIndexPromise = null;
   let searchIndexFailed = false;
 
-  const normalize = value => String(value || '')
-    .toLocaleLowerCase('ru-RU')
-    .replace(/ё/g, 'е')
-    .replace(/[–—-]/g, ' ')
-    .replace(/[^a-zа-я0-9\s]/gi, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+  const { normalize, tokens } = window.KRMSearchIndex;
 
   const readUrl = () => {
     const params = new URLSearchParams(window.location.search);
@@ -32,7 +26,7 @@
       ));
       state[group] = allowed ? value : '';
     }
-    if (input) input.value = params.get('q') || '';
+    if (input) input.value = history.state?.q || '';
   };
 
   const writeUrl = ({ push = false } = {}) => {
@@ -41,9 +35,8 @@
       if (value) params.set(group, value);
       else params.delete(group);
     }
-    const query = input?.value.trim() || '';
-    if (query) params.set('q', query);
-    else params.delete('q');
+    const query = input?.value.trim().slice(0, 100) || '';
+    params.delete('q');
     const next = `${window.location.pathname}${params.size ? `?${params}` : ''}${window.location.hash}`;
     history[push ? 'pushState' : 'replaceState']({ ...state, q: query }, '', next);
   };
@@ -59,11 +52,11 @@
   };
 
   const matchesText = row => {
-    const terms = normalize(input?.value).split(' ').filter(Boolean);
-    if (!terms.length) return true;
+    const terms = tokens(input?.value);
+    if (!terms.length) return !normalize(input?.value);
     const haystack = normalize(row.dataset.search || row.textContent);
-    if (terms.every(term => haystack.includes(term))) return true;
-    return fullTextUrls ? fullTextUrls.has(row.dataset.url) : false;
+    if (fullTextUrls) return fullTextUrls.has(row.dataset.url);
+    return terms.every(term => haystack.includes(term));
   };
 
   const updateCounts = () => {
@@ -125,6 +118,7 @@
         searchIndexFailed = false;
       })
       .catch(error => {
+        searchIndexPromise = null;
         searchIndexFailed = true;
         console.warn('Полнотекстовый индекс архива недоступен:', error);
       });

@@ -33,7 +33,20 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y imagemagick librsvg2-bin
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run qa
+      - run: npm run qa:visible
+      - name: Record public file checksums
+        run: (cd dist && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > .cache/public-sha256.txt
+      - name: Save QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cache/qa-last.log
+            .cache/public-sha256.txt
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
       - name: Prepared publication links
         run: node tools/publish-links.mjs --summary >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/configure-pages@v5

@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import '../assets/js/search-core.js';
+import '../assets/js/review-label.js';
 import path from 'node:path';
 import process from 'node:process';
 import { SITE_URL, SECTION_LABELS, TYPE_LABELS } from './lib/project.mjs';
@@ -151,19 +153,6 @@ const replaceTitle = (html, value) => html.replace(
   `<title>${escapeHtml(value)}</title>`
 );
 
-const searchTokens = value => {
-  const tokens = String(value || '')
-    .toLocaleLowerCase('ru-RU')
-    .replace(/ё/g, 'е')
-    .replace(/[–—-]/g, ' ')
-    .replace(/[^a-zа-я0-9\s]/gi, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .split(' ')
-    .filter(token => token.length > 1 || /^\d+$/.test(token));
-  return [...new Set(tokens)].join(' ');
-};
-
 const formatDate = value => {
   const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
   if (!match) return String(value || '');
@@ -241,6 +230,14 @@ const imageMarkup = (item, layout) => {
   return `<img alt="${escapeHtml(item.imageAlt || '')}" decoding="async" height="360" loading="lazy"${sizes} src="${escapeHtml(item.image)}"${srcset} width="640"/>`;
 };
 
+const reviewData = item => ({
+  status: item.reviewStatus, checked: item.reviewedAt, due: item.reviewAfter
+});
+const reviewAttrs = item => `data-review-status="${escapeHtml(item.reviewStatus)}" data-review-checked="${escapeHtml(item.reviewedAt)}" data-review-due="${escapeHtml(item.reviewAfter)}"`;
+const reviewSummary = item => requiresReview(item)
+  ? `<small class="review-summary" ${reviewAttrs(item)}>${escapeHtml(globalThis.KRMReview.label(reviewData(item), FRESHNESS_DATE))}</small>`
+  : '';
+
 const cardHtml = (item, catalogKey = '', layout = 'two') => {
   const section = SECTION_LABELS[item.section] || item.section || 'Материалы';
   const type = TYPE_LABELS[item.type] || item.type || 'Материал';
@@ -251,7 +248,7 @@ const cardHtml = (item, catalogKey = '', layout = 'two') => {
   const dateLabel = item.type === 'dossier' && item.dateModified > item.datePublished
     ? `Обновлено <time datetime="${escapeHtml(item.dateModified)}">${escapeHtml(formatDate(item.dateModified))}</time><br/>Опубликовано <time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time>`
     : `<time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatDate(item.datePublished))}</time>`;
-  return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item, layout)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta">${dateLabel}</p></div></article>`;
+  return `<article class="material-card"${catalog} data-section="${escapeHtml(item.section)}"${topics} data-type="${escapeHtml(item.type)}">${imageMarkup(item, layout)}<div class="material-card__body"><p class="eyebrow">${escapeHtml(type)} · ${escapeHtml(section)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.excerpt || '')}</p><p class="card-meta">${dateLabel}</p>${reviewSummary(item)}</div></article>`;
 };
 
 const replaceCatalog = (html, key, items, innerOverride = null) => {
@@ -402,7 +399,7 @@ const syncPublicationMetadata = (html, item, buildDate) => {
             ? `Срок обязательной проверки истёк ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте сведения с официальным органом.`
             : 'Проверка текущей редакции не завершена. Перед практическим применением сверьте сведения с официальным органом.'
           : `Следующая обязательная проверка — не позднее ${formatDate(item.reviewAfter)}.`;
-    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" aria-label="${item.type === 'dossier' ? 'Срок проверки досье' : 'Статус актуальности памятки'}"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
+    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" ${reviewAttrs(item)} aria-label="${item.type === 'dossier' ? 'Срок проверки досье' : 'Статус актуальности памятки'}"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
     if (/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/.test(updated)) {
       updated = updated.replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/, block);
     } else {
@@ -472,7 +469,7 @@ const archiveInner = (pages, searchByUrl) => {
       const haystack = [item.title, item.excerpt, item.period, topics, locations,
         SECTION_LABELS[item.section], TYPE_LABELS[item.type]]
         .filter(Boolean).join(' ');
-      return `<li data-url="${escapeHtml(item.url)}" data-locations="${escapeHtml(locations)}" data-search="${escapeHtml(haystack)}" data-section="${escapeHtml(item.section)}" data-topics="${escapeHtml(topics)}" data-type="${escapeHtml(item.type)}" data-year="${escapeHtml(String(item.datePublished).slice(0, 4))}"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatArchiveDate(item.datePublished))}</time><span>${escapeHtml(TYPE_LABELS[item.type] || 'Материал')}</span><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></li>`;
+      return `<li data-url="${escapeHtml(item.url)}" data-locations="${escapeHtml(locations)}" data-search="${escapeHtml(haystack)}" data-section="${escapeHtml(item.section)}" data-topics="${escapeHtml(topics)}" data-type="${escapeHtml(item.type)}" data-year="${escapeHtml(String(item.datePublished).slice(0, 4))}"><time datetime="${escapeHtml(item.datePublished)}">${escapeHtml(formatArchiveDate(item.datePublished))}</time><span>${escapeHtml(TYPE_LABELS[item.type] || 'Материал')}</span><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a>${reviewSummary(item)}</li>`;
     }).join('');
     return `<section class="archive-group"><h2>${escapeHtml(monthTitle(items[0].datePublished))}</h2><ol class="archive-list">${rows}</ol></section>`;
   }).join('');
@@ -615,6 +612,14 @@ const enriched = pages.map(item => {
   };
 });
 
+const searchPhrases = readJson('editorial/search-phrases.json');
+for (const [id, phrases] of Object.entries(searchPhrases)) {
+  if (!pages.some(item => item.id === id) || !Array.isArray(phrases)
+      || !phrases.every(text => typeof text === 'string' && text.trim())) {
+    throw new Error('Проверьте поисковые фразы для ' + id);
+  }
+}
+
 const searchDocuments = enriched.map(item => ({
   title: item.title,
   url: item.url,
@@ -625,12 +630,14 @@ const searchDocuments = enriched.map(item => ({
   topics: Array.isArray(item.topics) ? item.topics.join(' ') : '',
   locations: Array.isArray(item.locations) ? item.locations.join(' ') : '',
   period: item.period || '',
-  _text: item.searchText
+  ...(requiresReview(item) ? { review: reviewData(item) } : {}),
+  ...(searchPhrases[item.id] ? { aliases: searchPhrases[item.id] } : {}),
+  _text: [item.title, item.excerpt, item.searchText, ...(searchPhrases[item.id] || [])].join(' ')
 })).sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
 const searchTerms = new Map();
 searchDocuments.forEach((item, documentId) => {
-  for (const term of searchTokens(item._text).split(' ').filter(Boolean)) {
+  for (const term of globalThis.KRMSearchIndex.tokens(item._text)) {
     if (!searchTerms.has(term)) searchTerms.set(term, []);
     searchTerms.get(term).push(documentId);
   }
@@ -733,7 +740,12 @@ write('sitemap.xml', sitemapXml(enriched, oldSitemap, site.buildDate, zones.upda
 // generated catalogs can otherwise move surrounding whitespace after this pass,
 // making the next build differ from the first one.
 for (const file of listHtmlFiles(ROOT)) {
-  write(file, syncHostingMeta(read(file), cspForFile(file)));
+  let html = read(file);
+  if ((html.includes('data-review-due=') || file === 'search/index.html')
+      && !html.includes('/assets/js/review-label.js?')) {
+    html = html.replace(/<script defer src="\/assets\/js\/site\.js/, `<script defer src="/assets/js/review-label.js?v=${site.version}"></script><script defer src="/assets/js/site.js`);
+  }
+  write(file, syncHostingMeta(html, cspForFile(file)));
 }
 
 console.log(`Сборка завершена: ${enriched.length} публикаций.`);

@@ -40,7 +40,7 @@ export const renderDossierEvents = events => {
     + `<table><caption>Дополнение к Кременскому досье: сверено ${escapeHtml(checked.split('-').reverse().join('.'))}</caption>`
     + '<thead><tr><th scope="col">Дата сообщения</th><th scope="col">Место и сведения о людях</th><th scope="col">Источник и основание</th></tr></thead><tbody>'
     + rows.map(event => `<tr><td><time datetime="${escapeHtml(event.reportedAt)}">${escapeHtml(event.reportedAt.split('-').reverse().join('.'))}</time>`
-      + (event.occurredOn ? `<br/>Событие: ${escapeHtml(event.occurredOn.split('-').reverse().join('.'))}` : '')
+      + (event.occurredOn ? `<br/>Событие: ${escapeHtml(event.occurredOn.split('-').reverse().join('.'))}` : '<br/>Дата события не установлена')
       + `</td><td><strong>${escapeHtml(event.place)}.</strong> ${escapeHtml(event.summary)}</td><td>`
       + event.sources.map(source => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a>`).join('; ')
       + `<br/>${escapeHtml(event.attribution)}</td></tr>`).join('')

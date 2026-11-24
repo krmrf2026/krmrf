@@ -104,3 +104,36 @@ test('кредит фотографии и телефон не считаютс�
   });
   expect(await goal(page, 'source_click')).toBeNull();
 });
+
+test('общая ссылка восстанавливает запрос до загрузки внешней аналитики', async ({ page }) => {
+  const sent = [];
+  page.on('request', req => { if (new URL(req.url()).hostname === 'mc.yandex.ru') sent.push(req.url()); });
+  await blockExternal(page);
+  for (const route of ['search', 'archive']) {
+    await page.goto('/' + route + '/?q=marker-e2e&utm_source=max');
+    await expect(page.locator(route === 'search' ? '#site-search-input' : '#archive-search')).toHaveValue('marker-e2e');
+    expect(new URL(page.url()).searchParams.has('q')).toBe(false);
+    expect(new URL(page.url()).searchParams.get('utm_source')).toBe('max');
+    expect(await calls(page)).toEqual([]);
+    await page.reload();
+    await expect(page.locator(route === 'search' ? '#site-search-input' : '#archive-search')).toHaveValue('marker-e2e');
+    expect(JSON.stringify(await calls(page))).not.toContain('marker-e2e');
+  }
+  expect(sent.every(url => !url.includes('marker-e2e'))).toBe(true);
+});
+
+for (const [slug, id] of [
+  ['bobp-2026-03-04', 'family'], ['egrn-2026-05-15', 'registration'], ['zemlyalnr-2026-05-04', 'land']
+]) test('переход к источнику и ответ о полезности — ' + id, async ({ page }) => {
+  await blockExternal(page);
+  await page.goto('/news/reference/' + slug + '/');
+  const link = page.locator('article a[data-guide-action]').first();
+  const action = await link.getAttribute('data-guide-action');
+  await link.evaluate(node => node.addEventListener('click', event => event.preventDefault(), { once: true }));
+  await link.click();
+  expect((await goal(page, 'guide_action'))?.[3]).toEqual({ guide: id, action });
+  expect(await goal(page, 'channel_click')).toBeNull();
+  await page.getByRole('button', { name: 'Да', exact: true }).click();
+  expect((await goal(page, 'guide_feedback'))?.[3]).toEqual({ guide: id, answer: 'yes' });
+  await expect(page.getByText('Спасибо за ответ.')).toBeVisible();
+});

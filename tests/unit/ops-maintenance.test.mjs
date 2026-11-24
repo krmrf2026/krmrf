@@ -10,13 +10,16 @@ import { sha256, listFiles } from '../../tools/lib/project.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8');
 
-test('рабочая ветка запускает QA только на push без дублирующего PR и upload dist', () => {
+test('рабочая ветка запускает QA на push и вручную, сохраняет журнал без публикации dist', () => {
   const quality = read('.github/workflows/quality.yml');
   assert.match(quality, /\bon:\s*\n\s+push:/);
   assert.doesNotMatch(quality, /^\s+pull_request:/m);
   assert.match(quality, /cancel-in-progress:\s*true/);
   assert.match(quality, /npm run qa/);
-  assert.doesNotMatch(quality, /actions\/upload-artifact/);
+  assert.match(quality, /workflow_dispatch:/);
+  assert.match(quality, /\.cache\/qa-last\.log/);
+  assert.match(quality, /\.cache\/public-sha256\.txt/);
+  assert.doesNotMatch(quality, /actions\/upload-pages-artifact|^\s*path:\s*['"]?(?:\.\/)?dist\/?['"]?\s*$/m);
   assert.match(quality, /fetch-depth:\s*0/);
   const pages = read('.github/workflows/pages.yml');
   assert.match(pages, /npm run qa/);

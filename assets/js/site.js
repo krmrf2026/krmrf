@@ -25,3 +25,30 @@
     if (window.innerWidth > 900 && isOpen()) close();
   });
 })();
+
+(() => {
+  const button = document.querySelector('[data-share-query]');
+  if (!button) return;
+  const field = document.getElementById(button.dataset.shareQuery);
+  const status = document.querySelector('[data-share-status]');
+  if (!field || !status) return;
+  button.hidden = false;
+  button.addEventListener('click', async () => {
+    const url = new URL(location.href);
+    const q = field.value.trim().slice(0, 100);
+    if (q) url.searchParams.set('q', q);
+    try {
+      await navigator.clipboard.writeText(url.href);
+      status.textContent = 'Ссылка скопирована.';
+    } catch {
+      // A selectable local input also works when clipboard access is unavailable.
+      const copy = document.createElement('input');
+      copy.readOnly = true;
+      copy.value = url.href;
+      copy.setAttribute('aria-label', 'Ссылка для копирования');
+      status.replaceChildren(copy);
+      copy.focus();
+      copy.select();
+    }
+  });
+})();

@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { publicManifestIssues } from './lib/public-manifest.mjs';
 import path from 'node:path';
 import process from 'node:process';
 import { listPublicFiles } from './lib/project.mjs';
@@ -30,6 +31,11 @@ const clearDirectory = directory => {
   }
 };
 
+const manifestIssues = publicManifestIssues(ROOT);
+if (manifestIssues.length) {
+  console.error(manifestIssues.join('\n'));
+  process.exit(1);
+}
 clearDirectory(DIST);
 fs.mkdirSync(DIST, { recursive: true });
 

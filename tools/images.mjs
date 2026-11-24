@@ -86,6 +86,20 @@ const identify = relativeFile => {
   if (imageInfoCache.has(relativeFile)) return imageInfoCache.get(relativeFile);
   const absolute = path.join(ROOT, relativeFile);
   if (!fs.existsSync(absolute)) throw new Error(`Не найдено изображение: ${relativeFile}`);
+  // Read a local vector's explicit pixel size without rasterizing it for a probe.
+  if (path.extname(absolute).toLowerCase() === '.svg') {
+    const root = fs.readFileSync(absolute, 'utf8').match(/<svg\b[^>]*>/i)?.[0] || '';
+    const explicit = ['width', 'height'].map(key => attr(root, key));
+    const viewBox = attr(root, 'viewBox').trim().split(/[\s,]+/).map(Number);
+    const dimensions = explicit.every(value => /^\d+(?:px)?$/.test(value))
+      ? explicit.map(value => Number.parseInt(value, 10))
+      : explicit.every(value => !value) && viewBox.length === 4 ? viewBox.slice(2) : [];
+    if (dimensions.length === 2 && dimensions.every(value => Number.isSafeInteger(value) && value > 0)) {
+      const info = { width: dimensions[0], height: dimensions[1] };
+      imageInfoCache.set(relativeFile, info);
+      return info;
+    }
+  }
   const result = spawnSync(
     identifyCommand,
     [...identifyPrefix, '-ping', '-format', '%w %h', absolute],
@@ -158,14 +172,6 @@ const walkDerived = directory => {
 
 walkDerived(path.join(ROOT, 'assets/img/derived'));
 
-let removed = 0;
-for (const file of currentDerived) {
-  if (required.has(file)) continue;
-  fs.rmSync(path.join(ROOT, file));
-  imageInfoCache.delete(file);
-  removed += 1;
-}
-
 // Исходный WebP и его адаптивные копии связаны криптографическими хешами.
 // При изменении любого из файлов пересоздаётся только затронутая копия.
 const MANIFEST_FILE = path.join(ROOT, 'data/image-derivatives.json');
@@ -191,18 +197,18 @@ for (const item of [...required.values()].sort((a, b) => a.output.localeCompare(
   const exists = fs.existsSync(output);
   const earlier = previous.entries[item.output];
   const sourceHash = hashOf(item.source);
-  const valid = exists && identify(item.output).width === item.width
-    && earlier?.source === item.source
+  const valid = exists && earlier?.source === item.source
     && earlier?.sourceSha256 === sourceHash
-    && earlier?.derivedSha256 === hashOf(item.output);
+    && earlier?.derivedSha256 === hashOf(item.output)
+    && identify(item.output).width === item.width;
   if (valid) {
     manifestEntries[item.output] = earlier;
     continue;
   }
 
   fs.mkdirSync(path.dirname(output), { recursive: true });
+  const temporary = output + `.build-${process.pid}.webp`;
   const args = [
-    ...(hasMagick ? [] : []),
     path.join(ROOT, item.source),
     '-auto-orient',
     '-resize',
@@ -210,20 +216,20 @@ for (const item of [...required.values()].sort((a, b) => a.output.localeCompare(
     '-strip',
     '-quality',
     '84',
-    output
+    temporary
   ];
-  const result = spawnSync(convertCommand, args, { encoding: 'utf8' });
-  if (result.status !== 0) {
-    console.error(`Не удалось создать ${item.output}: ${result.stderr || result.stdout}`);
-    process.exit(1);
+  try {
+    const result = spawnSync(convertCommand, args, { encoding: 'utf8' });
+    if (result.status !== 0) throw new Error(`Не удалось создать ${item.output}: ${result.stderr || result.stdout}`);
+    if (identify(path.relative(ROOT, temporary)).width !== item.width) {
+      throw new Error('Неверная ширина нового файла: ' + item.output);
+    }
+    fs.renameSync(temporary, output);
+  } finally {
+    fs.rmSync(temporary, { force: true });
   }
   imageInfoCache.delete(item.output);
   hashCache.delete(item.output);
-  const generated = identify(item.output);
-  if (generated.width !== item.width) {
-    console.error(`Неверная ширина ${item.output}: ${generated.width}, ожидалось ${item.width}.`);
-    process.exit(1);
-  }
   manifestEntries[item.output] = {
     source: item.source,
     sourceSha256: sourceHash,
@@ -273,6 +279,14 @@ for (const [file] of pageSources) {
     fs.writeFileSync(file, updated, 'utf8');
     updatedPages += 1;
   }
+}
+
+let removed = 0;
+for (const file of currentDerived) {
+  if (required.has(file)) continue;
+  fs.rmSync(path.join(ROOT, file));
+  imageInfoCache.delete(file);
+  removed += 1;
 }
 
 fs.writeFileSync(MANIFEST_FILE,

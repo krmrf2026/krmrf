@@ -21,6 +21,7 @@ const element = (tag = 'div', dataset = {}) => {
   const result = { tag, dataset, children: [], attributes: {}, events: {}, value: '', hidden: false,
     addEventListener(name, handler) { this.events[name] = handler; },
     setAttribute(name, value) { this.attributes[name] = value; },
+    get childNodes() { return this.children; },
     getAttribute(name) { return this.attributes[name] ?? null; },
     append(...children) { this.children.push(...children); },
     replaceChildren(...children) { this.children = [...children]; },
@@ -39,17 +40,18 @@ const contextFor = (location, elements, { fail = false, waitForFetch = null } = 
   const events = {};
   const timers = new Map();
   let sequence = 0;
-  const context = { URLSearchParams, location, console: { warn() {}, error() {} },
+  const context = { URL, URLSearchParams, location, console: { warn() {}, error() {} },
     window: { location, addEventListener(name, handler) { events[name] = handler; } },
     history: {
-      replaceState(_state, _title, next) { location.href = new URL(next, location).href; },
-      pushState(_state, _title, next) { location.href = new URL(next, location).href; }
+      replaceState(state, _title, next) { this.state = state; location.href = new URL(next, location).href; },
+      pushState(state, _title, next) { this.state = state; location.href = new URL(next, location).href; }
     },
-    document: { getElementById: id => elements[id] || null, createElement: tag => element(tag), querySelectorAll: () => [] },
+    document: { documentElement: { classList: { replace() {} } }, getElementById: id => elements[id] || null, createElement: tag => element(tag), querySelectorAll: () => [] },
     fetch: async () => { if (waitForFetch) await waitForFetch; return { ok: !fail, status: fail ? 503 : 200, json: async () => index }; },
     setTimeout(fn) { timers.set(++sequence, fn); return sequence; },
     clearTimeout(id) { timers.delete(id); }
   };
+  vm.runInNewContext(read('assets/js/head.js'), context, { filename: 'head.js' });
   vm.runInNewContext(core, context, { filename: 'search-core.js' });
   return { context, events, timers, async flush() {
     for (const [id, fn] of timers) { timers.delete(id); await fn(); }
@@ -72,7 +74,12 @@ const archiveRuntime = (query = '', options = {}) => {
   return { ...runtime, input, status, reset, location, rows,
     visible: () => rows.filter(row => !row.hidden).map(row => row.dataset.url),
     async type(value) { input.value = value; input.events.input(); await runtime.flush(); },
-    async pop(query) { location.href = `https://krmrf.invalid/archive/${query}`; await runtime.events.popstate(); }
+    async pop(query) {
+      location.href = `https://krmrf.invalid/archive/${query}`;
+      runtime.context.history.state = null;
+      vm.runInNewContext(read('assets/js/head.js'), runtime.context);
+      await runtime.events.popstate();
+    }
   };
 };
 

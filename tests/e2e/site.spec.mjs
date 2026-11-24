@@ -176,3 +176,26 @@ test('без JavaScript мгновенный meta refresh сохраняет с�
 
   await context.close();
 });
+
+test('первая быстрая ссылка справочника доступна без прокрутки на узком телефоне', async ({ page }) => {
+  await blockExternalRequests(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('/reference/');
+  const links = page.getByRole('navigation', { name: 'Частые задачи' }).getByRole('link');
+  await expect(links).toHaveCount(5);
+  const first = await links.first().boundingBox();
+  expect(first.y + first.height).toBeLessThanOrEqual(800);
+});
+
+test('сохранённые старые кнопки помощника открывают существующие памятки', async ({ page }) => {
+  await blockExternalRequests(page);
+  for (const [old, current] of [
+    ['kak-oformit-nasledstvo-v-lnr', 'nasledstvo-nedvizhimost-lnr'],
+    ['registraciya-zhilya-v-lnr', 'egrn-2026-05-15'],
+    ['soczialnaya-zashhita-v-lnr', 'telefony-sluzhb-kremennaya-2026']
+  ]) {
+    await page.goto('/news/reference/' + old + '/');
+    await expect(page).toHaveURL(new RegExp('/news/reference/' + current + '/$'));
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  }
+});

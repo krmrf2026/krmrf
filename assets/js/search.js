@@ -40,7 +40,27 @@
     const description = document.createElement('p');
     description.textContent = documentData.description || '';
     article.append(meta, heading, description);
+    if (documentData.review && window.KRMReview) {
+      const badge = document.createElement('small');
+      const { status, checked, due } = documentData.review;
+      badge.className = 'review-summary';
+      Object.assign(badge.dataset, { reviewStatus: status, reviewChecked: checked, reviewDue: due });
+      badge.textContent = window.KRMReview.label(documentData.review);
+      article.append(badge);
+    }
     return article;
+  };
+
+  const showAlternatives = () => {
+    const links = document.createElement('p');
+    for (const [name, href] of [['Открыть справочник', '/reference/'], ['Открыть архив', '/archive/']]) {
+      const anchor = document.createElement('a');
+      anchor.href = href;
+      anchor.textContent = name;
+      if (links.childNodes.length) links.append(' · ');
+      links.append(anchor);
+    }
+    results.replaceChildren(links);
   };
 
   const render = rawQuery => {
@@ -55,7 +75,7 @@
     const matches = engine.find(query, { fuzzy: true, limit: engine.documents.length });
     if (!matches.length) {
       status.textContent = 'Ничего не найдено. Проверьте написание, сократите запрос или откройте полный архив.';
-      results.replaceChildren();
+      showAlternatives();
       return;
     }
 
@@ -69,8 +89,7 @@
   const setQuery = (query, { push = false } = {}) => {
     const clean = String(query || '').trim().slice(0, 100);
     const params = new URLSearchParams(location.search);
-    if (clean) params.set('q', clean);
-    else params.delete('q');
+    params.delete('q');
     const next = `${location.pathname}${params.size ? `?${params}` : ''}${location.hash}`;
     history[push ? 'pushState' : 'replaceState']({ q: clean }, '', next);
     render(clean);
@@ -84,13 +103,14 @@
     })
     .then(payload => {
       engine = window.KRMSearchIndex.create(payload);
-      const initial = new URLSearchParams(location.search).get('q') || '';
+      const initial = history.state?.q || '';
       input.value = initial.slice(0, 100);
       render(input.value);
     })
     .catch(error => {
       console.error('Ошибка загрузки поискового индекса:', error);
       status.textContent = 'Поисковый индекс недоступен. Используйте полный архив.';
+      showAlternatives();
     });
 
   form.addEventListener('submit', event => {
@@ -105,14 +125,14 @@
 
   results.addEventListener('click', event => {
     const link = event.target?.closest?.('a[href]');
-    if (!link) return;
+    if (!link?.closest('.search-result')) return;
     let target = '';
     try { target = new URL(link.href, location.href).pathname; } catch {}
     window.KRMAnalytics?.goal('search_result_click', { target });
   });
 
   window.addEventListener('popstate', () => {
-    const query = new URLSearchParams(location.search).get('q') || '';
+    const query = history.state?.q || '';
     input.value = query.slice(0, 100);
     render(input.value);
   });

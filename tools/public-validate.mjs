@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { publicManifestIssues } from './lib/public-manifest.mjs';
 import path from 'node:path';
 import process from 'node:process';
 import { listFiles, listPublicFiles } from './lib/project.mjs';
@@ -15,6 +16,7 @@ if (!fs.existsSync(DIST)) {
   console.error('dist отсутствует. Выполните npm run export:public.');
   process.exit(1);
 }
+errors.push(...publicManifestIssues(DIST));
 const redirects = redirectPages(ROOT);
 const expected = [...new Set([
   ...listPublicFiles(ROOT),

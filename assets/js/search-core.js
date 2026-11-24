@@ -9,6 +9,18 @@
     .replace(/\s+/g, ' ')
     .trim();
 
+  const stop = new Set('а в во и из к ко на но о об от по при с со у для как'.split(' '));
+  const tokens = value => [...new Set(normalize(value).split(' ').filter(word =>
+    (word.length > 1 || /^\d$/.test(word)) && !stop.has(word)))];
+
+  // Group only inflections with a long common stem. Never match a short
+  // indexed prefix inside a longer word (e.g. «на» inside «наследство»).
+  const root = word => {
+    if (!/^[а-я]{5,}$/.test(word)) return word;
+    const base = word.replace(/(?:иями|ями|ами|ого|его|ому|ему|ыми|ими|ах|ях|ов|ев|ом|ем|ой|ей|ам|ям|ую|юю|ые|ие|ый|ий|ых|их|ая|яя|ое|ее|а|я|у|ю|е|ы|и|о|ь)$/, '');
+    return base.length >= 4 ? base : word;
+  };
+
   const distance = (a, b) => {
     if (a === b) return 0;
     if (!a.length) return b.length;
@@ -72,6 +84,7 @@
       return {
         ...document,
         id,
+        _aliases: (document.aliases || []).map(phrase => tokens(phrase).map(root).join(' ')),
         _title: normalize(document.title),
         _description: normalize(document.description),
         _metadata: metadata
@@ -82,40 +95,41 @@
         throw new Error('Повреждённая таблица терминов');
       }
     }
-    const exact = new Map(entries);
     const matchCache = new Map();
 
+    const families = new Map();
+    for (const entry of entries) {
+      const base = root(entry[0]);
+      if (!families.has(base)) families.set(base, []);
+      families.get(base).push(entry);
+    }
+
     const relatedTerms = (term, allowFuzzy = false) => {
-      const key = `${allowFuzzy ? 'f' : 'e'}:${term}`;
+      const key = allowFuzzy ? 'f:' + term : term;
       if (matchCache.has(key)) return matchCache.get(key);
-      const result = [];
-      if (exact.has(term)) result.push([term, exact.get(term), 3]);
-      if (term.length >= 3) {
-        for (const [candidate, ids] of entries) {
-          if (candidate === term) continue;
-          if (candidate.startsWith(term) || (term.length >= 5 && term.startsWith(candidate))) {
-            result.push([candidate, ids, 2]);
-            if (result.length >= 80) break;
-          }
+      const result = (families.get(root(term)) || []).map(([word, ids]) =>
+        [word, ids, word === term ? 3 : 2]);
+      if (!result.length && term.length >= 4 && !allowFuzzy) {
+        for (const [word, ids] of entries) {
+          if (word.startsWith(term) && word.length <= term.length + 4) result.push([word, ids, 2]);
         }
       }
       if (!result.length && allowFuzzy && term.length >= 4) {
         const limit = term.length >= 8 ? 2 : 1;
-        for (const [candidate, ids] of entries) {
-          if (Math.abs(candidate.length - term.length) > limit || candidate[0] !== term[0]) continue;
-          if (distance(term, candidate) <= limit) {
-            result.push([candidate, ids, 1]);
-            if (result.length >= 30) break;
-          }
+        for (const [word, ids] of entries) {
+          if (word[0] === term[0] && Math.abs(word.length - term.length) <= limit
+              && distance(term, word) <= limit) result.push([word, ids, 1]);
         }
       }
+      if (matchCache.size >= 256) matchCache.clear();
       matchCache.set(key, result);
       return result;
     };
 
     const find = (rawQuery, { fuzzy = true, limit = 50 } = {}) => {
-      const terms = normalize(rawQuery).split(' ').filter(Boolean).slice(0, 8);
+      const terms = tokens(String(rawQuery || '').slice(0, 100)).slice(0, 8);
       if (!terms.length) return [];
+      const phrase = terms.map(root).join(' ');
       let suggestion = false;
       const groups = terms.map(term => {
         let matches = relatedTerms(term, false);
@@ -131,7 +145,7 @@
       const candidates = intersect(groups.map(group => group.ids));
       return [...candidates].map(id => {
         const document = documents[id];
-        let score = 0;
+        let score = document._aliases.includes(phrase) ? 55 : 0;
         for (const group of groups) {
           const term = group.term;
           if (document._title.includes(term)) score += 18;
@@ -157,5 +171,6 @@
     };
   };
 
-  window.KRMSearchIndex = Object.freeze({ normalize, create });
+  const scope = typeof window === 'undefined' ? globalThis : window;
+  scope.KRMSearchIndex = Object.freeze({ normalize, tokens, create });
 })();

@@ -83,7 +83,7 @@
     "url": "/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/",
     "section": "law",
     "datePublished": "2026-11-06",
-    "dateModified": "2026-11-06",
+    "dateModified": "2026-11-23",
     "reviewedAt": "2026-11-06",
     "reviewAfter": "2026-11-13",
     "reviewCadenceDays": 7,
@@ -907,7 +907,7 @@
     "url": "/war-crimes/yubileynoe-2026-11-20/",
     "section": "warcrimes",
     "datePublished": "2026-11-21",
-    "dateModified": "2026-11-22",
+    "dateModified": "2026-11-23",
     "status": "open",
     "excerpt": "Шесть погибших, шесть раненых, 19 повреждённых домов. Итоги 34 часов поиска, съёмка МЧС и ТАСС, уголовное дело и обращения в международные организации.",
     "image": "/assets/img/war-crimes/yubileynoe-2026-11-20/cover.webp",
@@ -936,7 +936,7 @@
     "reviewedAt": "2026-11-22",
     "reviewCadenceDays": 90,
     "reviewAfter": "2027-02-20",
-    "reviewStatus": "current"
+    "reviewStatus": "review-due"
   },
   {
     "id": "lisichansk-stahanov-2026-08-26",
@@ -2302,7 +2302,7 @@
     "url": "/news/reference/powrlnr-2026-05-13/",
     "section": "law",
     "datePublished": "2026-05-13",
-    "dateModified": "2026-10-26",
+    "dateModified": "2026-11-23",
     "status": null,
     "excerpt": "Практическая памятка для собственников жилья в ЛНР: компенсация за поврежденное и утраченное жилье, ЕГРН, наследство, доли, документы, акт обследования и риски отказа.",
     "image": "/assets/img/news/reference/powrlnr-2026-05-13/cover.webp",

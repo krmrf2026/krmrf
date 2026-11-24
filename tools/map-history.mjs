@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import { publicHistoryWindow } from './lib/public-manifest.mjs';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { prepareLayer, layerArea } from './lib/map-area.mjs';
@@ -240,8 +241,7 @@ for (const [snapshot, raw] of bytes) {
 const skippedRevisions = [...skipped.values()].sort((a, b) => (a.publishedAt || '').localeCompare(b.publishedAt || '') || a.commit.localeCompare(b.commit));
 writeJson(ROOT, `${ARCHIVE}/journal.json`, { schema: 'krmrf-map-archive-v1', timezone: config.timezone, legacyOffset: config.legacyOffset, current: zones.updated, versions, ambiguousVersions, warnings: [...warnings].sort(), gitMode, skippedRevisions });
 // A -> B -> A remains three states; equal consecutive shapes remain in the archive.
-const display = versions.filter((v, i) => !i || v.geometrySha256 !== versions[i - 1].geometrySha256 || i === versions.length - 1);
-const selected = display.slice(-LIMIT).reverse().map(item => {
+const selected = publicHistoryWindow(versions, LIMIT).map(item => {
   const filename = `${item.id}.geojson`, snapshot = `/${HISTORY}/${filename}`;
   fs.mkdirSync(path.join(ROOT, HISTORY), { recursive: true }); fs.copyFileSync(path.join(ROOT, safeSnapshot(item.snapshot)), path.join(ROOT, HISTORY, filename));
   const { sourceRefs, publishedAt: _at, kind, ...publicItem } = item; return { ...publicItem, snapshot };

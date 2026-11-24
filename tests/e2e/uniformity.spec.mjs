@@ -21,9 +21,9 @@ test('короткий запрос архива после длинного с�
   const loaded = page.waitForResponse('**/data/search-index.json');
   await input.fill('контратаки');
   await loaded;
-  await expect.poll(() => new URL(page.url()).searchParams.get('q')).toBe('контратаки');
+  await expect.poll(() => page.evaluate(() => history.state?.q)).toBe('контратаки');
   await input.fill('ъ');
-  await expect.poll(() => new URL(page.url()).searchParams.get('q')).toBe('ъ');
+  await expect.poll(() => page.evaluate(() => history.state?.q)).toBe('ъ');
   const visible = () => page.locator('#archive-list li:not([hidden])').evaluateAll(rows => rows.map(row => row.dataset.url));
   const afterEdit = await visible();
   expect(new URL(page.url()).searchParams.get('utm_source')).toBe('regression');

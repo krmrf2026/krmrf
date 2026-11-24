@@ -32,6 +32,7 @@ if (sync && (ids.length || cadenceArg !== undefined || value('--date'))) errors.
 if (report && (path.isAbsolute(report) || report.split(/[\\/]/).includes('..'))) errors.push('Путь отчёта должен быть относительным внутри проекта.');
 const file = path.resolve('data/pages.json');
 const pages = JSON.parse(fs.readFileSync(file, 'utf8'));
+const priorities = JSON.parse(fs.readFileSync(new URL('../editorial/review-priorities.json', import.meta.url), 'utf8'));
 const reviewable = pages.filter(requiresReview);
 const active = reviewable.filter(item => !INACTIVE_GUIDE_STATUSES.has(item.reviewStatus));
 for (const id of ids) if (!id || !active.some(item => item.id === id)) errors.push(`Не найдена действующая публикация: ${id || '(пустой id)'}.`);
@@ -52,12 +53,18 @@ if (!errors.length) for (const item of selected) {
   } else errors.push(...reviewIssues(candidate, date).map(error => `${item.id}: ${error}`));
   planned.set(item.id, candidate);
   const state = guideFreshnessState(candidate, date, warning);
-  if (['overdue', 'unreviewed', 'due-soon'].includes(state.state)) warnings.push({ id: item.id, url: item.url, ...state, reviewedAt: item.reviewedAt, reviewAfter: item.reviewAfter });
+  if (['overdue', 'unreviewed', 'due-soon', 'blocked', 'invalid'].includes(state.state)) warnings.push({ id: item.id, title: item.title, url: item.url, ...state,
+    owner: 'Дежурный редактор', priority: priorities[item.id] ? 'высокий' : 'обычный',
+    action: priorities[item.id] || 'Сверить датированные утверждения и ссылки на первоисточники. Зафиксировать результат либо причину переноса.', reviewedAt: item.reviewedAt, reviewAfter: item.reviewAfter });
 }
+const severity = { blocked: 0, invalid: 0, overdue: 1, unreviewed: 2, 'due-soon': 3 };
+warnings.sort((a, b) => severity[a.state] - severity[b.state]
+  || Number(Boolean(priorities[b.id])) - Number(Boolean(priorities[a.id]))
+  || String(a.reviewAfter).localeCompare(String(b.reviewAfter)) || a.id.localeCompare(b.id));
 if (check && report) {
   const target = path.resolve(report);fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target + '.json', JSON.stringify({ date, timezone: 'Europe/Moscow', reviewable: reviewable.length, queue: warnings, errors }, null, 2) + '\n');
-  fs.writeFileSync(target + '.md', `# Очередь редакционной проверки\n\nДата: ${date} (МСК). Проверка метаданных не является фактчекингом.\n\n` + warnings.map(item => `- ${item.id}: ${item.state}; проверено ${item.reviewedAt}, срок ${item.reviewAfter}`).join('\n') + '\n\n' + errors.map(error => `- ОШИБКА: ${error}`).join('\n') + '\n');
+  fs.writeFileSync(target + '.md', `# Очередь редакционной проверки\n\nДата: ${date} (МСК). Проверка метаданных не является фактчекингом.\n\n` + warnings.map(item => `- [${item.title}](https://krmrf.ru${item.url}) — ${item.state}, приоритет ${item.priority}. Проверено ${item.reviewedAt}, срок ${item.reviewAfter}. ${item.owner}. ${item.action}`).join('\n') + '\n\n' + errors.map(error => `- ОШИБКА: ${error}`).join('\n') + '\n');
 }
 if (warnings.length) console.warn(`Редакционная очередь: ${warnings.length}.\n` + warnings.map(item => `• ${item.id}: ${item.state}; срок ${item.reviewAfter}`).join('\n'));
 if (strict && warnings.length) errors.push('Ежедневный мониторинг: очередь требует внимания.');

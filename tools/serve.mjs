@@ -128,7 +128,7 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`KRM РФ открыт: http://localhost:${port}/`);
+  console.log(`KRM РФ открыт: http://localhost:${server.address().port}/`);
   console.log(`Корень: ${root}`);
   console.log('Режим: статические файлы GitHub Pages; служебные _redirects и _headers не исполняются.');
 });

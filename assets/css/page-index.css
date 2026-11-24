@@ -106,3 +106,8 @@
 .archive-secondary-link { grid-column: 3; font-size: var(--text-sm); font-weight: 500 !important; }
 .search-result--suggestion { border-style: dashed; }
 @media (max-width: 640px) { .archive-secondary-link { grid-column: 1 / -1; } }
+
+.reference-tasks { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 1rem 0; }
+.reference-tasks a { padding-block: .4rem; }
+.review-summary { display: block; }
+.archive-list .review-summary { grid-column: 1 / -1; }
