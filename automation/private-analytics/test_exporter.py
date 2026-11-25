@@ -5,7 +5,7 @@ import tempfile
 import unittest
 import urllib.error
 import urllib.parse
-from collect_metrika import Client, APIError, atomic_json, resolve_goals, weekly_text
+from collect_metrika import Client, APIError, atomic_json, resolve_goals, weekly_text, goal_definitions, collect, EXPECTED_GOALS
 
 
 class Response(io.StringIO):
@@ -58,6 +58,34 @@ class ExportTests(unittest.TestCase):
         event={'id':3,'name':'Reading','type':'action','conditions':[{'type':'exact','url':'read_50'}]}
         with self.assertRaises(APIError):resolve_goals([event,{**event,'id':4}])
         self.assertIsNone(resolve_goals([{**event,'conditions':event['conditions']+[{'type':'exact','url':'other'}]}])['read_50'])
+
+    def test_pilot_goals_and_named_definitions_and_metric_limits(self):
+        raw = [{'id': i+1, 'name': 'Name '+key, 'type': 'action',
+                'conditions': [{'type': 'exact', 'url': key}]} for i,key in enumerate(EXPECTED_GOALS)]
+        mapping = resolve_goals(raw)
+        definitions = goal_definitions(raw, mapping)
+        self.assertEqual(definitions['guide_feedback']['name'], 'Name guide_feedback')
+        self.assertEqual(definitions['guide_action']['event'], 'guide_action')
+        class Fake:
+            counter = '1'
+            def report(self, start, end, dimensions, metrics):
+                assert len(metrics) <= 20
+                return {'metrics': metrics, 'totals': [0]*len(metrics), 'data': []}
+        out = collect(Fake(), '2026-11-01', '2026-11-01', mapping, definitions)
+        self.assertEqual(out['goals'], mapping)
+        self.assertEqual(out['goal_definitions'], definitions)
+        self.assertEqual(len(out['reports']['landings']['metrics']), 17)
+        self.assertEqual(len(out['reports']['utm']['metrics']), 17)
+        self.assertEqual(len(out['reports']['goals_0']['metrics']), 20)
+        self.assertEqual(len(out['reports']['goals_1']['metrics']), 2)
+        for key in ('guide_action', 'guide_feedback'):
+            self.assertIn(f'ym:s:goal{mapping[key]}visits', out['reports']['landings']['metrics'])
+        missing = resolve_goals(raw[:-1]); defs = goal_definitions(raw[:-1], missing)
+        self.assertIsNone(defs['guide_feedback'])
+        report = collect(Fake(), '2026-11-01', '2026-11-01', missing, defs)
+        self.assertNotIn('ym:s:goalNonevisits', report['reports']['landings']['metrics'])
+        self.assertIn('| guide_feedback | — | — | — |', weekly_text(report, report, ['guide_feedback']))
+        self.assertIn('| guide_action | 10 | 0 | 0 |', weekly_text(report, report, ['guide_feedback']))
 
     def test_invalid_totals_are_rejected(self):
         c=Client('test-only','1',opener=lambda *a,**k:Response('{"data":[],"totals":[NaN],"total_rows":0}'))

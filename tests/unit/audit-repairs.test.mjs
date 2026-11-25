@@ -145,3 +145,20 @@ test('Клик по выбранному действию и клик по ка�
     ['channel_click', { channel: 'telegram', placement: 'article' }]
   ]);
 });
+
+test('Публичный контракт каталога для Булочкина: канонический URL и фактические статусы без подмены дат', () => {
+  const docs = index.documents;
+  assert.equal(docs.length, pages.length);
+  assert.equal(new Set(docs.map(d => d.url)).size, pages.length);
+  const guides = pages.filter(p => p.type === 'guide');
+  const publicGuides = docs.filter(d => d.type === 'Практическая памятка');
+  assert.equal(publicGuides.length, guides.length);
+  for (const p of guides) {
+    const doc = publicGuides.find(d => d.url === p.url);
+    assert.ok(doc, p.id);
+    assert.match(doc.url, /^\/(?:[a-z0-9_-]+\/)+$/);
+    assert.equal(doc.title, p.title);
+    assert.equal(doc.description, p.excerpt);
+    assert.deepEqual(doc.review, { status: p.reviewStatus, checked: p.reviewedAt, due: p.reviewAfter });
+  }
+});

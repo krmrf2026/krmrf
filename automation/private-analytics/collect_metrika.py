@@ -36,7 +36,8 @@ REPORTS = {
     'exits': ['ym:s:endURLPath'],
 }
 EXPECTED_GOALS = ['read_50', 'read_90', 'content_continue', 'home_route',
-                  'search_submit', 'search_result_click', 'map_action', 'channel_click', 'source_click']
+                  'search_submit', 'search_result_click', 'map_action', 'channel_click', 'source_click',
+                  'guide_action', 'guide_feedback']
 
 
 class APIError(RuntimeError):
@@ -154,10 +155,18 @@ def resolve_goals(goals):
     return mapping
 
 
-def collect(client, start, end, mapping):
+def goal_definitions(goals, mapping):
+    """Only the exact matched goals; missing entries remain null."""
+    by_id = {g.get('id'): g for g in goals}
+    return {key: ({'id': gid, 'name': by_id[gid].get('name') or key,
+                   'event': key} if gid is not None else None)
+            for key, gid in mapping.items()}
+
+
+def collect(client, start, end, mapping, definitions=None):
     reports = {}
     quality = ['ym:s:goal' + str(mapping[k]) + 'visits'
-               for k in ('read_50', 'read_90', 'content_continue', 'map_action') if mapping.get(k)]
+               for k in EXPECTED_GOALS if mapping.get(k)]
     for name, dimensions in REPORTS.items():
         metrics = BASE_METRICS + (quality if name in ('landings', 'utm') else [])
         reports[name] = client.report(start, end, dimensions, metrics)
@@ -167,6 +176,9 @@ def collect(client, start, end, mapping):
         reports['goals_' + str(index // 20)] = client.report(start, end, [], goal_metrics[index:index + 20])
     return {'schema_version': 1, 'counter_id': client.counter, 'start': start, 'end': end,
             'timezone': '+03:00', 'attribution': 'last', 'goals': mapping,
+            'goal_definitions': definitions if definitions is not None else {
+                key: ({'id': gid, 'name': None, 'event': key} if gid is not None else None)
+                for key, gid in mapping.items()},
             'fetched_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
             'provisional': end >= (dt.datetime.now(ZoneInfo('Europe/Moscow')).date() - dt.timedelta(days=3)).isoformat(),
             'reports': reports}
@@ -211,6 +223,15 @@ def weekly_text(current, previous, missing):
               '- Сверить UTM размещений с реальными опубликованными ссылками. Наличие файла со ссылками не доказывает переходов.',
               '- Перед улучшением текста учесть возраст статьи и показы поисковой консоли. Эти данные сюда пока не подключены.',
               '- Последние три дня предварительные и будут загружены повторно. Недельные пользователи не суммируются по источникам.']
+    lines += ['', '## Цели (целевые визиты / достижения)', '',
+              '| Событие | ID | Целевые визиты | Достижения |', '|---|---:|---:|---:|']
+    goal_reports = [r for key, r in current['reports'].items() if key.startswith('goals_')]
+    totals = {name: value for r in goal_reports for name, value in zip(r['metrics'], r['totals'])}
+    for key, gid in current.get('goals', {}).items():
+        visits = totals.get(f'ym:s:goal{gid}visits') if gid else None
+        reaches = totals.get(f'ym:s:goal{gid}reaches') if gid else None
+        lines.append(f'| {key} | {gid if gid else "—"} | {visits if visits is not None else "—"} | {reaches if reaches is not None else "—"} |')
+    lines += ['','Цель относится к визиту, а не обязательно к странице входа; достижения могут повторяться. guide_feedback не означает решение задачи и не разделяет ответы Да/Нет без отчёта параметров.']
     if missing:
         lines += ['- Нет сопоставленных целей: ' + ', '.join(missing) + '. Значения не подменены нулями.']
     if prev >= 100 and cur < prev * .75:
@@ -253,16 +274,17 @@ def main():
     client = Client(os.environ.get('METRIKA_OAUTH_TOKEN'), os.environ.get('METRIKA_COUNTER_ID', '110383043'))
     raw_goals = client.get('/management/v1/counter/' + client.counter + '/goals').get('goals', [])
     mapping = resolve_goals(raw_goals)
+    definitions = goal_definitions(raw_goals, mapping)
     missing = [k for k,v in mapping.items() if v is None]
     for delta in range(args.lookback-1, -1, -1):
         day = (end - dt.timedelta(days=delta)).isoformat()
-        payload = collect(client, day, day, mapping)
+        payload = collect(client, day, day, mapping, definitions)
         atomic_json(root/'data/daily'/(day+'.json'), payload)
     period_data = []
     for delta in (0, 7):
         finish = end - dt.timedelta(days=delta)
         begin = finish - dt.timedelta(days=6)
-        payload = collect(client, begin.isoformat(), finish.isoformat(), mapping)
+        payload = collect(client, begin.isoformat(), finish.isoformat(), mapping, definitions)
         atomic_json(root/'data/periods'/(begin.isoformat()+'_'+finish.isoformat()+'.json'), payload)
         period_data.append(payload)
     report = root/'reports/latest.md';report.parent.mkdir(parents=True,exist_ok=True)
