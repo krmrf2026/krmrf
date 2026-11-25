@@ -2956,6 +2956,26 @@
       "sourceSha256": "8e37e7eec381dabf118226c0c919380f8404bbd07eaf72e55adefbf892c57249",
       "derivedSha256": "edd98a138554ab37731b13e6dd005d413f61b13b0068078739a465f46dfa4ddb"
     },
+    "assets/img/derived/news/reference/subsidii-kompensatsii-zhku-lnr/cover-480.webp": {
+      "source": "assets/img/news/reference/subsidii-kompensatsii-zhku-lnr/cover.webp",
+      "sourceSha256": "05ae10c9238f148ffa61cb023d85e815bdac0c0e8eff490e0c1127a4edd13f08",
+      "derivedSha256": "7fc6a2b67c8f21e7c010a491a7ef64d0ca740eddf7b2d0133bd5e50fa1e92d76"
+    },
+    "assets/img/derived/news/reference/subsidii-kompensatsii-zhku-lnr/cover-960.webp": {
+      "source": "assets/img/news/reference/subsidii-kompensatsii-zhku-lnr/cover.webp",
+      "sourceSha256": "05ae10c9238f148ffa61cb023d85e815bdac0c0e8eff490e0c1127a4edd13f08",
+      "derivedSha256": "b048376fee28b218daa21f1234932ae5cbd25903920ff1fcd6a1b82979024305"
+    },
+    "assets/img/derived/news/reference/subsidii-kompensatsii-zhku-lnr/meter-480.webp": {
+      "source": "assets/img/news/reference/subsidii-kompensatsii-zhku-lnr/meter.webp",
+      "sourceSha256": "e167fbab8385134704a5b6c89cc6b5968630e508c33f0d10566798d9ef64a0a5",
+      "derivedSha256": "9ccc4f98f4d686c911ce43845dd7fd1ed39725f47d8d3dd109540175d6947da8"
+    },
+    "assets/img/derived/news/reference/subsidii-kompensatsii-zhku-lnr/meter-960.webp": {
+      "source": "assets/img/news/reference/subsidii-kompensatsii-zhku-lnr/meter.webp",
+      "sourceSha256": "e167fbab8385134704a5b6c89cc6b5968630e508c33f0d10566798d9ef64a0a5",
+      "derivedSha256": "6eed5703e33f26d30de40cfcdd1fdc84b3f3ad6c3b748814358db9c4ec167aa8"
+    },
     "assets/img/derived/news/reference/telefony-sluzhb-kremennaya-2026/cover-480.webp": {
       "source": "assets/img/news/reference/telefony-sluzhb-kremennaya-2026/cover.webp",
       "sourceSha256": "53beeb7aa6bf3b613c7c87a00defbc563ed0467bf772918566e58e4b1864a129",

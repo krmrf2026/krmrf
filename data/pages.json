@@ -3161,5 +3161,37 @@
       "important": 1
     },
     "chronicleSeries": "kremennaya-state"
+  },
+  {
+    "id": "subsidii-kompensatsii-zhku-lnr",
+    "type": "guide",
+    "title": "Субсидия и компенсация за ЖКУ в ЛНР: кому положены и как оформить",
+    "seoTitle": "Субсидия на ЖКУ в ЛНР: расчёт, документы и компенсация",
+    "seoDescription": "Субсидии и льготы на ЖКУ в ЛНР: пример для семьи с двумя зарплатами по 25 000 ₽, таблица по 28 округам, формы заявлений и что делать при отказе.",
+    "url": "/news/reference/subsidii-kompensatsii-zhku-lnr/",
+    "section": "law",
+    "datePublished": "2026-11-25",
+    "dateModified": "2026-11-25",
+    "status": null,
+    "excerpt": "Субсидии и льготы на ЖКУ в ЛНР: пример для семьи с двумя зарплатами по 25 000 ₽, таблица по 28 округам, формы заявлений и что делать при отказе.",
+    "image": "/assets/img/news/reference/subsidii-kompensatsii-zhku-lnr/cover.webp",
+    "imageAlt": "Комнатный радиатор отопления",
+    "topics": [
+      "daily",
+      "infrastructure"
+    ],
+    "locations": [
+      "ЛНР"
+    ],
+    "reviewedAt": "2026-11-25",
+    "reviewAfter": "2026-12-25",
+    "reviewCadenceDays": 30,
+    "reviewStatus": "current",
+    "revisionHistory": [
+      {
+        "date": "2026-11-25",
+        "summary": "Проверены нормы ЛНР, строки 28 округов и официальные маршруты подачи. Примеры для двух работающих супругов и двух пенсионеров приведены при доходе по 25 000 ₽."
+      }
+    ]
   }
 ]
