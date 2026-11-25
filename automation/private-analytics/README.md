@@ -1,6 +1,6 @@
 # Приватная аналитика KRM РФ
 
-Комплект предназначен для отдельного приватного Git-репозитория. В публичном сайте workflow не запускается. Приватность проверяется перед API. Порядок подключения — в `METRIKA_SETUP.md` сайта: OAuth `metrika:read`, secret `METRIKA_OAUTH_TOKEN`, счётчик 110383043, одиннадцать точных JavaScript-целей, первый Run workflow и сверка с интерфейсом.
+Комплект предназначен для отдельного приватного Git-репозитория. В публичном сайте workflow не запускается. Приватность проверяется перед API. Порядок подключения — в `README.ru.md` сайта (раздел «Метрика»): OAuth `metrika:read`, secret `METRIKA_OAUTH_TOKEN`, счётчик 110383043, одиннадцать точных JavaScript-целей, первый Run workflow и сверка с интерфейсом.
 
 Скопируйте Python-файлы и README в корень приватного репозитория, `analytics.yml` — в `.github/workflows/analytics.yml`. Включите Issues и Actions; разрешения contents/Issues указаны в YAML. Включите GitHub notifications об ошибках Actions и недельных Issues.
 

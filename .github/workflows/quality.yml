@@ -28,7 +28,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y imagemagick librsvg2-bin
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run qa:visible
+      - run: npm run check
       - name: Record public file checksums
         run: (cd dist && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > .cache/public-sha256.txt
       - name: Save QA evidence

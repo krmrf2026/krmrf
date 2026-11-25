@@ -55,7 +55,7 @@ const redirectPages = generateRedirectPages({
 });
 
 const forbidden = [
-  'package.json', 'package-lock.json', 'README.md', 'PUBLISHING.md', 'RECOVERY.md',
+  'package.json', 'package-lock.json', 'README.md', 'README.ru.md', 'PUBLISHING.md', 'RECOVERY.md',
   'QUALITY.md', 'TECHNICAL_FREEZE.md',
   'tools', '.github', 'data/pages.json', 'data/pages.schema.json', 'data/taxonomy.json',
   'data/site.json', 'data/content-integrity.json', '_headers', '_redirects'

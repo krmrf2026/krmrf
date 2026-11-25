@@ -400,7 +400,8 @@ if (!exists(pagesWorkflowFile)) {
     'fetch-depth: 0',
     'actions/setup-node@v6',
     'node-version-file: .nvmrc',
-    'npm run qa',
+    'npm run check',
+    'needs: build',
     'actions/configure-pages@v5',
     'actions/upload-pages-artifact@v4',
     'path: dist',
@@ -414,7 +415,7 @@ if (!exists(pagesWorkflowFile)) {
   if (/upload-pages-artifact@v4[\s\S]{0,250}path:\s*['"]?\.['"]?\s*$/m.test(workflow)) {
     errors.push(`${pagesWorkflowFile}: Pages должен получать dist, а не корень репозитория.`);
   }
-  const qaStep = workflow.indexOf('npm run qa');
+  const qaStep = workflow.indexOf('npm run check');
   const uploadStep = workflow.indexOf('actions/upload-pages-artifact@v4');
   const deployStep = workflow.indexOf('actions/deploy-pages@v4');
   if (!(qaStep >= 0 && qaStep < uploadStep && uploadStep < deployStep)) {
@@ -422,7 +423,7 @@ if (!exists(pagesWorkflowFile)) {
   }
 }
 
-for (const workflowFile of ['.github/workflows/quality.yml', '.github/workflows/release.yml']) {
+for (const workflowFile of ['.github/workflows/quality.yml']) {
   if (!exists(workflowFile)) {
     errors.push(`${workflowFile}: отсутствует.`);
     continue;

@@ -8,20 +8,19 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      artifact_name: ${{ steps.artifact-name.outputs.name }}
+      artifact_id: ${{ steps.pages-artifact.outputs.artifact_id }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -33,7 +32,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y imagemagick librsvg2-bin
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run qa:visible
+      - run: npm run check
       - name: Record public file checksums
         run: (cd dist && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > .cache/public-sha256.txt
       - name: Save QA evidence
@@ -49,10 +48,53 @@ jobs:
           if-no-files-found: error
       - name: Prepared publication links
         run: node tools/publish-links.mjs --summary >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/configure-pages@v5
+      - name: Choose a unique artifact name
+        id: artifact-name
+        run: echo "name=github-pages-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v4
+        id: pages-artifact
         with:
           path: dist
+          name: ${{ steps.artifact-name.outputs.name }}
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Wait for the exact Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_NAME: ${{ needs.build.outputs.artifact_name }}
+          ARTIFACT_ID: ${{ needs.build.outputs.artifact_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$ARTIFACT_ID" =~ ^[0-9]+$ && -n "$ARTIFACT_NAME" ]]
+          for attempt in {1..12}; do
+            if gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?name=$ARTIFACT_NAME&per_page=100" |
+              jq -e --arg name "$ARTIFACT_NAME" --arg id "$ARTIFACT_ID" \
+                '[.artifacts[] | select(.name == $name)] | length == 1 and (.[0].id | tostring) == $id and .[0].expired == false' >/dev/null; then
+              echo "Verified Pages artifact $ARTIFACT_NAME ($ARTIFACT_ID)"
+              exit 0
+            fi
+            echo "Artifact not yet visible ($attempt/12)"
+            if [ "$attempt" -lt 12 ]; then sleep 5; fi
+          done
+          echo '::error::Pages artifact not available. Re-run failed jobs; if expired, re-run all jobs.'
+          exit 1
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact_name }}

@@ -3,9 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { sha256, listFiles } from '../../tools/lib/project.mjs';
+import { sha256, listFiles, listPublicFiles } from '../../tools/lib/project.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8');
@@ -15,27 +14,24 @@ test('рабочая ветка запускает QA на push и вручну�
   assert.match(quality, /\bon:\s*\n\s+push:/);
   assert.doesNotMatch(quality, /^\s+pull_request:/m);
   assert.match(quality, /cancel-in-progress:\s*true/);
-  assert.match(quality, /npm run qa/);
+  assert.match(quality, /npm run check/);
   assert.match(quality, /workflow_dispatch:/);
   assert.match(quality, /\.cache\/qa-last\.log/);
   assert.match(quality, /\.cache\/public-sha256\.txt/);
   assert.doesNotMatch(quality, /actions\/upload-pages-artifact|^\s*path:\s*['"]?(?:\.\/)?dist\/?['"]?\s*$/m);
   assert.match(quality, /fetch-depth:\s*0/);
   const pages = read('.github/workflows/pages.yml');
-  assert.match(pages, /npm run qa/);
+  assert.match(pages, /npm run check/);
   assert.match(pages, /actions\/upload-pages-artifact@v4/);
   assert.match(pages, /actions\/deploy-pages@v4/);
 });
 
-test('релизные архивы создаются только вручную и имеют стабильные имена', () => {
-  const releaseWorkflow = read('.github/workflows/release.yml');
-  assert.match(releaseWorkflow, /workflow_dispatch:/);
-  assert.doesNotMatch(releaseWorkflow, /^\s+push:/m);
-  assert.match(releaseWorkflow, /retention-days:\s*1/);
-  const releaseSource = read('tools/release.mjs');
-  assert.match(releaseSource, /'krmrf-source\.zip'/);
-  assert.match(releaseSource, /'krmrf-public\.zip'/);
-  assert.match(releaseSource, /'krmrf-release\.json'/);
+test('никаких отдельных релизных ZIP; полный check включает QA и негативные сценарии', () => {
+  const scripts = JSON.parse(read('package.json')).scripts;
+  assert.equal(scripts.check, 'npm run qa:visible && npm run test:negative');
+  for (const name of ['release', 'release:cleanup:dry-run', 'fixity', 'verify:release']) assert.ok(!Object.hasOwn(scripts, name));
+  assert.ok(!fs.existsSync(path.join(ROOT, '.github/workflows/release.yml')));
+  for (const name of ['release', 'prune-releases', 'fixity', 'verify-release']) assert.ok(!fs.existsSync(path.join(ROOT, `tools/${name}.mjs`)));
 });
 
 test('реестр адаптивных изображений покрывает все производные файлы и проверяет SHA-256', () => {
@@ -50,7 +46,7 @@ test('реестр адаптивных изображений покрывае�
   assert.match(read('tools/images.mjs'), /earlier\?\.derivedSha256 === hashOf\(item\.output\)/);
 });
 
-test('релиз исключает локальные секреты, вложенные архивы и зависимости', t => {
+test('инвентаризация исходников исключает локальные секреты, вложенные архивы и зависимости', t => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'krm-op-src-'));
   t.after(() => fs.rmSync(temp, { recursive: true, force: true }));
   for (const file of ['README.md', '.env', '.env.production', 'credentials.json', 'ssl.key', 'backup.zip', 'local.tgz', '.npmrc']) {
@@ -61,33 +57,30 @@ test('релиз исключает локальные секреты, влож�
   assert.deepEqual(listFiles(temp), ['README.md']);
 });
 
-test('очистка старых версий не удаляет чужие файлы, повреждённые и неподтверждённые комплекты', t => {
-  const base = fs.mkdtempSync(path.join(os.tmpdir(), 'krm-prune-'));
-  t.after(() => fs.rmSync(base, { recursive: true, force: true }));
-  const releaseDir = path.join(base, 'releases');
-  fs.mkdirSync(releaseDir);
-  const make = (name, content) => {
-    const b = Buffer.from(content);
-    fs.writeFileSync(path.join(releaseDir, name), b);
-    fs.writeFileSync(path.join(releaseDir, `${name}.sha256`), `${sha256(b)}  ${name}\n`);
-    return { name, sha256: sha256(b), bytes: b.length };
-  };
-  for (const name of ['krmrf-source.zip', 'krmrf-public.zip']) make(name, 'latest '+name);
-  const version = '2026.10.11-r23';
-  const oldFiles = [make(`krmrf-source-${version}.zip`, 'source-old'), make(`krmrf-public-${version}.zip`, 'public-old')];
-  fs.writeFileSync(path.join(releaseDir, `krmrf-release-${version}.json`), JSON.stringify({ schema: 'krmrf-release-v1', version, files: oldFiles }));
-  fs.writeFileSync(path.join(releaseDir, 'my-family-photo.zip'), 'not-owned');
-  const otherVersion = '2026.10.11-r22';
-  fs.writeFileSync(path.join(releaseDir, `krmrf-release-${otherVersion}.json`), '{broken JSON');
-  const run = args => spawnSync(process.execPath, [path.join(ROOT, 'tools/prune-releases.mjs'), ...args], {
-    encoding: 'utf8', cwd: base, env: { ...process.env, KRM_RELEASE_DIR: releaseDir }
-  });
-  let r = run(['--dry-run']);
-  assert.equal(r.status, 0, r.stderr);
-  assert.ok(fs.existsSync(path.join(releaseDir, oldFiles[0].name)));
-  r = run(['--apply']);
-  assert.equal(r.status, 0, r.stderr);
-  assert.equal(fs.existsSync(path.join(releaseDir, oldFiles[0].name)), false);
-  assert.ok(fs.existsSync(path.join(releaseDir, 'my-family-photo.zip')));
-  assert.ok(fs.existsSync(path.join(releaseDir, `krmrf-release-${otherVersion}.json`)));
+test('Pages публикует только результат успешной сборки и ожидает точный артефакт', () => {
+  const pages = read('.github/workflows/pages.yml');
+  assert.match(pages, /^  build:\s*$/m);
+  assert.match(pages, /if: github.ref == 'refs\/heads\/main'/);
+  assert.match(pages, /^  deploy:\s*\n    needs: build/m);
+  assert.match(pages, /github-pages-\$\{GITHUB_RUN_ID\}-\$\{GITHUB_RUN_ATTEMPT\}/);
+  assert.match(pages, /artifact_id: \$\{\{ steps\.pages-artifact\.outputs\.artifact_id \}\}/);
+  assert.match(pages, /path: dist/);
+  assert.match(pages, /artifact_name: \$\{\{ needs\.build\.outputs\.artifact_name \}\}/);
+  assert.match(pages, /actions: read/);
+  assert.match(pages, /for attempt in \{1\.\.12\}/);
+  assert.match(pages, /\.expired == false/);
+  assert.match(pages, /exit 1[\s\S]*uses: actions\/deploy-pages@v4/);
+  assert.doesNotMatch(pages.split('  deploy:')[0], /pages: write|id-token: write/);
+});
+
+// Ensure .gitignore is not relied on as a public-export security boundary.
+test('публичный экспорт исключает черновики и локальные файлы; проверка видит лишние секреты', t => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'krm-public-exclusions-'));
+  t.after(() => fs.rmSync(temp, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(temp, 'news'));
+  for (const f of ['index.html', '.env', 'draft.fragment', 'debug.log', 'private.key', 'local.patch', 'backup.tar.gz']) fs.writeFileSync(path.join(temp, 'news', f), 'test');
+  assert.deepEqual(listPublicFiles(temp), ['news/index.html']);
+  const actual = listFiles(temp, { excludedDirs: new Set(), excludedFiles: new Set(), includeSensitive: true });
+  assert.ok(actual.includes('news/.env'));
+  assert.ok(actual.includes('news/private.key'));
 });

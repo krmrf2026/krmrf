@@ -80,19 +80,20 @@ export const PUBLIC_DATA_FILES = new Set([
 ]);
 
 const sensitiveSourceFile = name => /^(?:\.env(?:\..*)?|\.npmrc|credentials\.json)$/i.test(name)
-  || /\.(?:pem|key|p12|pfx|kdbx|token|zip|tar|tgz|7z)$/i.test(name);
+  || /\.(?:pem|key|p12|pfx|kdbx|token|zip|tar(?:\.gz)?|tgz|7z)$/i.test(name);
 
 export const normalizeRel = value => value.replace(/\\/g, '/');
 
 export const listFiles = (root, {
   excludedDirs = SOURCE_EXCLUDED_DIRS,
-  excludedFiles = SOURCE_EXCLUDED_FILES
+  excludedFiles = SOURCE_EXCLUDED_FILES,
+  includeSensitive = false
 } = {}) => {
   const files = [];
   const walk = directory => {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
       if (entry.isDirectory() && excludedDirs.has(entry.name)) continue;
-      if (entry.isFile() && (excludedFiles.has(entry.name) || sensitiveSourceFile(entry.name))) continue;
+      if (entry.isFile() && (excludedFiles.has(entry.name) || (!includeSensitive && sensitiveSourceFile(entry.name)))) continue;
       const absolute = path.join(directory, entry.name);
       if (entry.isDirectory()) walk(absolute);
       else if (entry.isFile()) files.push(normalizeRel(path.relative(root, absolute)));
@@ -105,6 +106,8 @@ export const listFiles = (root, {
 export const listPublicFiles = root => {
   const result = [];
   for (const file of listFiles(root)) {
+    // Draft fragments and local diagnostic files must not be published even if under a public directory.
+    if (/\.(?:fragment|log|tmp|patch|rej|orig|pyc|pyo)$/i.test(file) || file.split('/').some(part => part.startsWith('.'))) continue;
     const parts = file.split('/');
     if (parts.length === 1 && PUBLIC_ROOT_FILES.has(file)) {
       result.push(file);

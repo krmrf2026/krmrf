@@ -22,7 +22,8 @@ const expected = [...new Set([
   ...listPublicFiles(ROOT),
   ...redirects.map(item => item.file)
 ])].sort((a, b) => a.localeCompare(b, 'ru'));
-const actual = listFiles(DIST);
+// Inspect all exported files, including any accidental secrets or local caches.
+const actual = listFiles(DIST, { excludedDirs: new Set(), excludedFiles: new Set(), includeSensitive: true });
 for (const file of expected) if (!actual.includes(file)) errors.push(`В dist отсутствует: ${file}`);
 for (const file of actual) if (!expected.includes(file)) errors.push(`Лишний файл в dist: ${file}`);
 
@@ -63,7 +64,7 @@ for (const redirect of redirects) {
   if (!html.includes(`href="${redirect.to}"`)) errors.push(`${redirect.file}: отсутствует обычная ссылка на цель.`);
 }
 for (const forbidden of [
-  'tools', '.github', 'package.json', 'README.md', 'data/pages.json',
+  'tools', '.github', 'package.json', 'README.md', 'README.ru.md', 'data/pages.json',
   'data/content-integrity.json', '_headers', '_redirects'
 ]) {
   if (fs.existsSync(path.join(DIST, forbidden))) errors.push(`Служебный путь попал в dist: ${forbidden}`);
