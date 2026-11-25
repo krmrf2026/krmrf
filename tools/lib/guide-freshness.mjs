@@ -1,6 +1,8 @@
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-export const DEFAULT_REVIEW_CADENCE_DAYS = 90;
+export const DEFAULT_REVIEW_CADENCE_DAYS = 180;
+// Targeted cache invalidation; unrelated CSS/JS retain the release version.
+export const reviewLabelAssetVersion = version => `${version}-editorial1`;
 export const REVIEW_WARNING_DAYS = 7;
 export const MAX_REVIEW_CADENCE_DAYS = 180;
 export const INACTIVE_GUIDE_STATUSES = new Set(['superseded', 'archived']);
@@ -40,7 +42,8 @@ export const expectedReviewStatus = (item, referenceDate = todayIso()) => {
   if (!validIsoDate(item.reviewAfter) || !validIsoDate(referenceDate)) return 'invalid';
   if (item.reviewStatus === 'review-due' || item.reviewBlocker
       || (validIsoDate(item.dateModified) && item.reviewedAt < item.dateModified)) return 'review-due';
-  return item.reviewAfter < referenceDate ? 'review-due' : 'current';
+  // Calendar age is a reminder, not a claim about today's law.
+  return 'current';
 };
 
 export const guideFreshnessState = (
@@ -53,14 +56,15 @@ export const guideFreshnessState = (
   if (item.reviewBlocker) return { state: 'blocked', daysUntilReview: null };
   const daysUntilReview = daysBetween(referenceDate, item.reviewAfter);
   if (daysUntilReview === null) return { state: 'invalid', daysUntilReview };
-  if (daysUntilReview < 0) return { state: 'overdue', daysUntilReview };
   if (item.reviewStatus === 'review-due' || item.reviewedAt < item.dateModified) return { state: 'unreviewed', daysUntilReview };
+  if (item.type === 'dossier') return { state: 'current', daysUntilReview: null };
+  if (daysUntilReview < 0) return { state: 'overdue', daysUntilReview };
   if (daysUntilReview <= warningDays) return { state: 'due-soon', daysUntilReview };
   return { state: 'current', daysUntilReview };
 };
 
 // These checks establish metadata consistency, not factual accuracy.
-export const reviewIssues = (item, date = todayIso(), { allowExpiredCurrent = false } = {}) => {
+export const reviewIssues = (item, date = todayIso()) => {
   const errors = [];
   if (!validIsoDate(item.datePublished)) errors.push('некорректная datePublished.');
   if (!validIsoDate(item.dateModified)) errors.push('некорректная dateModified.');
@@ -80,9 +84,14 @@ export const reviewIssues = (item, date = todayIso(), { allowExpiredCurrent = fa
   if (item.reviewBlocker !== undefined && (typeof item.reviewBlocker !== 'string' || !item.reviewBlocker.trim())) errors.push('reviewBlocker должен содержать конкретную причину.');
   if (item.reviewBlocker) errors.push(`Критическое редакционное препятствие: ${item.reviewBlocker}`);
   const expected = expectedReviewStatus(item, date);
-  if (!INACTIVE_GUIDE_STATUSES.has(item.reviewStatus) && item.reviewStatus !== expected
-      && !(allowExpiredCurrent && item.reviewStatus === 'current' && item.reviewAfter < date
-        && item.reviewedAt >= item.dateModified && !item.reviewBlocker)) errors.push(`reviewStatus должен быть ${expected}.`);
+  if (!INACTIVE_GUIDE_STATUSES.has(item.reviewStatus) && item.reviewStatus !== expected) errors.push(`reviewStatus должен быть ${expected}.`);
+  if (item.reviewNote !== undefined) {
+    const note = item.reviewNote;
+    let sourceOk = false;
+    try { const source = new URL(note.url); sourceOk = source.protocol === 'https:' && !source.username && !source.password; } catch {}
+    if (!note || !validIsoDate(note.date) || note.date > date || note.date < item.datePublished || note.date > item.dateModified
+        || typeof note.text !== 'string' || !note.text.trim() || typeof note.label !== 'string' || !note.label.trim() || !sourceOk) errors.push('reviewNote: нужна датированная редакционная поправка и безопасная HTTPS-ссылка на источник.');
+  }
   if (item.reviewStatus === 'superseded' && !item.supersededBy) errors.push('для superseded нужен supersededBy.');
   return errors;
 };

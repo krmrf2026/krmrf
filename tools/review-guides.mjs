@@ -16,7 +16,7 @@ const cadenceArg = value('--cadence-days');
 const warning = Number(value('--warning-days') ?? REVIEW_WARNING_DAYS);
 const report = value('--report');
 if (args.includes('--help')) {
-  console.log(`Проверка: npm run test:freshness\nОчередь: npm run guides:report\nПосле фактической проверки: npm run guides:review -- --id=ID --date=YYYY-MM-DD [--cadence-days=N]\n--id можно повторить. Без --id запись запрещена. Дата по умолчанию — МСК.\nСуществующий интервал сохраняется; новый — 90 дней, максимум 180.\n--sync-status меняет только истёкший current на review-due, без продления дат.\n--strict-warning предназначен для ежедневного мониторинга, а не независимого релиза.`);
+  console.log(`Проверка: npm run test:freshness\nОчередь: npm run guides:report\nПосле фактической проверки: npm run guides:review -- --id=ID --date=YYYY-MM-DD [--cadence-days=N]\n--id можно повторить. Без --id запись запрещена. Дата по умолчанию — МСК.\nСуществующий интервал сохраняется; новый — 180 дней, максимум 180.\n--sync-status проверяет метаданные без изменения дат и статусов по календарю.\n--strict-warning предназначен для ручной строгой диагностики, а не независимого релиза.`);
   process.exit(0);
 }
 const errors = [];
@@ -47,9 +47,8 @@ if (!errors.length) for (const item of selected) {
     candidate = { ...candidate, reviewedAt: date, reviewAfter: addUtcDays(date, cadence), reviewCadenceDays: cadence, reviewStatus: 'current' };
   }
   if (sync) {
-    const before = reviewIssues(candidate, date, { allowExpiredCurrent: true });
+    const before = reviewIssues(candidate, date);
     errors.push(...before.map(error => `${item.id}: ${error}`));
-    if (!before.length && candidate.reviewStatus === 'current' && candidate.reviewAfter < date) candidate.reviewStatus = 'review-due';
   } else errors.push(...reviewIssues(candidate, date).map(error => `${item.id}: ${error}`));
   planned.set(item.id, candidate);
   const state = guideFreshnessState(candidate, date, warning);
@@ -64,10 +63,10 @@ warnings.sort((a, b) => severity[a.state] - severity[b.state]
 if (check && report) {
   const target = path.resolve(report);fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target + '.json', JSON.stringify({ date, timezone: 'Europe/Moscow', reviewable: reviewable.length, queue: warnings, errors }, null, 2) + '\n');
-  fs.writeFileSync(target + '.md', `# Очередь редакционной проверки\n\nДата: ${date} (МСК). Проверка метаданных не является фактчекингом.\n\n` + warnings.map(item => `- [${item.title}](https://krmrf.ru${item.url}) — ${item.state}, приоритет ${item.priority}. Проверено ${item.reviewedAt}, срок ${item.reviewAfter}. ${item.owner}. ${item.action}`).join('\n') + '\n\n' + errors.map(error => `- ОШИБКА: ${error}`).join('\n') + '\n');
+  fs.writeFileSync(target + '.md', `# Очередь редакционной проверки\n\nДата: ${date} (МСК). Проверка метаданных не является фактчекингом.\n\n` + warnings.map(item => `- [${item.title}](https://krmrf.ru${item.url}) — ${item.state}, приоритет ${item.priority}. Проверено ${item.reviewedAt}, ${item.state === 'unreviewed' ? 'Уточнение по событию.' : `Плановый ориентир ${item.reviewAfter}.`} ${item.owner}. ${item.action}`).join('\n') + '\n\n' + errors.map(error => `- ОШИБКА: ${error}`).join('\n') + '\n');
 }
-if (warnings.length) console.warn(`Редакционная очередь: ${warnings.length}.\n` + warnings.map(item => `• ${item.id}: ${item.state}; срок ${item.reviewAfter}`).join('\n'));
-if (strict && warnings.length) errors.push('Ежедневный мониторинг: очередь требует внимания.');
+if (warnings.length) console.warn(`Редакционная очередь: ${warnings.length}.\n` + warnings.map(item => `• ${item.id}: ${item.state}; ${item.state === 'unreviewed' ? 'уточнение по событию' : `ориентир ${item.reviewAfter}`}`).join('\n'));
+if (strict && warnings.length) errors.push('Строгая диагностика: очередь требует внимания.');
 if (errors.length) { console.error(errors.map(error => `• ${error}`).join('\n'));process.exit(1); }
 if (!check) {
   const result = pages.map(item => planned.get(item.id) || item);
@@ -75,5 +74,5 @@ if (!check) {
     const temp = file + `.tmp-${process.pid}`;
     fs.writeFileSync(temp, JSON.stringify(result, null, 2) + '\n');fs.renameSync(temp, file);
   }
-  console.log(sync ? 'Статусы синхронизированы без продления дат.' : `Проверка зафиксирована только для: ${ids.join(', ')}.`);
+  console.log(sync ? 'Метаданные проверены без автоматического изменения дат или статусов.' : `Проверка зафиксирована только для: ${ids.join(', ')}.`);
 } else console.log(`Метаданные проверены: ${selected.length} публикаций. Фактическая достоверность определяется редактором по источникам.`);

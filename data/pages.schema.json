@@ -84,7 +84,11 @@
         "type": "string"
       },
       "chronicleSeries": {
-        "enum": ["kremennaya-state", "civilian-impact", "front-summary"]
+        "enum": [
+          "kremennaya-state",
+          "civilian-impact",
+          "front-summary"
+        ]
       },
       "topics": {
         "type": "array",
@@ -120,6 +124,34 @@
           "superseded",
           "archived"
         ]
+      },
+      "reviewNote": {
+        "type": "object",
+        "required": [
+          "date",
+          "text",
+          "url",
+          "label"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
       },
       "supersededBy": {
         "type": "string",
@@ -190,7 +222,10 @@
             {
               "properties": {
                 "type": {
-                  "enum": ["guide", "dossier"]
+                  "enum": [
+                    "guide",
+                    "dossier"
+                  ]
                 }
               },
               "required": [

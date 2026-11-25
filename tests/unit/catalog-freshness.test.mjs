@@ -41,10 +41,11 @@ test('historical articles point to the latest member of their series without cha
   assert.equal(syncChronicleStatus(updated, old, [old]), html);
 });
 
-test('dossiers enter the same expiry queue as guides; expiry never invents a new review', () => {
+test('dossiers are reviewed on events, not calendar age', () => {
   const item = { type: 'dossier', reviewedAt: '2026-11-07', dateModified: '2026-11-07', reviewAfter: '2026-12-07', reviewStatus: 'current' };
   assert.equal(requiresReview(item), true);
-  assert.equal(guideFreshnessState(item, '2026-12-08').state, 'overdue');
+  assert.equal(guideFreshnessState(item, '2026-12-08').state, 'current');
+  assert.equal(guideFreshnessState({...item, dateModified:'2026-12-09'}, '2026-12-10').state, 'unreviewed');
   assert.equal(item.reviewedAt, '2026-11-07');
 });
 

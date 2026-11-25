@@ -11,7 +11,7 @@ import { escapeHtml as escapeHtmlForValidation } from './lib/html-fragments.mjs'
 import { CHRONICLE_SERIES, chronicleStatus } from './lib/chronicle-status.mjs';
 import { dossierEventIssues, renderDossierEvents } from './lib/dossier-events.mjs';
 import {
-  MAX_REVIEW_CADENCE_DAYS, requiresReview, reviewIssues,
+  MAX_REVIEW_CADENCE_DAYS, requiresReview, reviewIssues, reviewLabelAssetVersion,
   addUtcDays,
   expectedReviewStatus,
   todayIso
@@ -632,9 +632,11 @@ for (const full of htmlFiles) {
   const html = fs.readFileSync(full, 'utf8');
   if (/^(?:google|yandex_)[a-z0-9]+\.html$/i.test(path.basename(rel))) continue;
   for (const match of html.matchAll(/\b(?:href|src)=["'](\/assets\/(?:css|js)\/[^"']+)["']/gi)) {
-    const version = new URL(match[1], SITE_URL).searchParams.get('v');
-    if (version !== packageMeta.version) {
-      errors.push(`${rel}: версия ассета ${match[1]} не совпадает с ${packageMeta.version}.`);
+    const asset = new URL(match[1], SITE_URL);
+    const version = asset.searchParams.get('v');
+    const expected = asset.pathname === '/assets/js/review-label.js' ? reviewLabelAssetVersion(packageMeta.version) : packageMeta.version;
+    if (version !== expected) {
+      errors.push(`${rel}: версия ассета ${match[1]} не совпадает с ${expected}.`);
     }
   }
   if (/site-footer__meta|Версия архива:|Техническая сборка:/i.test(html)) {

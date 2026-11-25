@@ -55,12 +55,12 @@ test('Карточки, поисковые документы и шапки ст
   for (const p of ['index.html', 'reference/index.html', 'archive/index.html', 'search/index.html']) assert.ok(read(p).includes('/assets/js/review-label.js?'), p);
 });
 
-test('Смена дня, архив и замена обработаны независимо от даты сборки', () => {
+test('Публичная отметка не обещает актуальность и не меняется по календарю', () => {
   const m = { status: 'current', checked: '2026-11-18', due: '2026-11-25' };
   const label = globalThis.KRMReview.label;
-  assert.match(label(m, '2026-11-25'), /Проверено/);
-  assert.match(label(m, '2026-11-26'), /истёк 25.11/);
-  assert.match(label({ ...m, status: 'review-due' }, '2026-11-24'), /Требует/);
+  assert.equal(label(m, '2026-11-25'), 'Источники сверялись 18.11.2026');
+  assert.equal(label(m, '2027-11-26'), label(m, '2026-11-25'));
+  assert.match(label({ ...m, status: 'review-due' }, '2026-11-24'), /требуют уточнения/);
   assert.match(label({ ...m, status: 'archived' }, '2026-11-26'), /Архив/);
   assert.match(label({ ...m, status: 'superseded' }, '2026-11-26'), /заменён/);
 });
@@ -161,4 +161,32 @@ test('Публичный контракт каталога для Булочки
     assert.equal(doc.description, p.excerpt);
     assert.deepEqual(doc.review, { status: p.reviewStatus, checked: p.reviewedAt, due: p.reviewAfter });
   }
+});
+
+
+test('Памятки: 180 дней, нейтральные отметки, исходные даты и видимые дополнения', () => {
+  const live = pages.filter(p => p.reviewStatus && !['archived', 'superseded'].includes(p.reviewStatus));
+  for (const p of live) {
+    assert.ok(p.reviewCadenceDays >= 1 && p.reviewCadenceDays <= 180, p.id);
+    const html = read('.' + p.url + 'index.html');
+    const block = html.match(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/)?.[0];
+    assert.ok(block, p.id);
+    assert.doesNotMatch(block, /Проверено и актуально|обязательная проверка|срок проверки истёк/i, p.id);
+    if (p.reviewNote) {
+      assert.ok(block.includes('Дополнение от'), p.id);
+      assert.ok(block.includes(p.reviewNote.url), p.id);
+      assert.ok(block.includes(p.reviewNote.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')), p.id);
+      assert.ok(block.includes('datetime="' + p.reviewNote.date + '"'), p.id);
+    }
+  }
+  for (const id of ['nedvizhimost-lnr-iz-za-granitsy', 'egrn-lnr-iz-drugogo-regiona-2026-07-22']) {
+    const p = byId.get(id);
+    if (!p?.reviewNote || p.reviewNote.date !== '2026-11-25') continue;
+    assert.match(p.reviewNote.text, /без УКЭП/);
+    assert.match(p.reviewNote.text, /прежний порядок/);
+    if (p.reviewedAt < p.dateModified) assert.equal(p.reviewStatus, 'review-due');
+  }
+  const workflow = read('.github/workflows/freshness.yml');
+  assert.ok(workflow.includes("'17 5 1 * *'"));
+  assert.doesNotMatch(workflow, /--strict-warning/);
 });

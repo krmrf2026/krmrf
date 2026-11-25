@@ -2,7 +2,7 @@ name: Editorial freshness
 
 on:
   schedule:
-    - cron: '17 5 * * *'
+    - cron: '17 5 1 * *'
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version-file: .nvmrc
       - name: Editorial queue and critical metadata checks
-        run: npm run guides:report -- --strict-warning
+        run: npm run guides:report
       - name: Job summary
         if: always()
         run: |
@@ -32,5 +32,5 @@ jobs:
           path: |
             ops/editorial-review.json
             ops/editorial-review.md
-          retention-days: 14
+          retention-days: 45
           if-no-files-found: warn

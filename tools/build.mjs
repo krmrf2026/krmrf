@@ -8,7 +8,7 @@ import { cspForFile, syncHostingMeta } from './lib/hosting.mjs';
 import { syncPublicationLayout } from './lib/publication-layout.mjs';
 import { cardImageSizes } from './lib/image-sizes.mjs';
 import { encodeSearchTerms } from './lib/search-index.mjs';
-import { guideFreshnessState, todayIso, requiresReview } from './lib/guide-freshness.mjs';
+import { todayIso, requiresReview, reviewLabelAssetVersion } from './lib/guide-freshness.mjs';
 import { sortNewest, selectHome, selectItems } from './lib/catalog.mjs';
 import { syncChronicleStatus } from './lib/chronicle-status.mjs';
 import { dossierEventIssues, syncDossierEvents } from './lib/dossier-events.mjs';
@@ -183,7 +183,8 @@ const syncGuideMetaDates = (html, item) => {
   );
   let normalized = metaMatch[0];
   normalized = replaceLabel(normalized, 'Обновлено', item.dateModified);
-  normalized = replaceLabel(normalized, 'Актуально на', item.reviewedAt || item.dateModified);
+  normalized = normalized.replace(/(<strong>\s*)Актуально на:/gi, '$1Источники сверялись:');
+  normalized = replaceLabel(normalized, 'Источники сверялись', item.reviewedAt);
   return html.replace(metaMatch[0], normalized);
 };
 
@@ -381,25 +382,24 @@ const syncPublicationMetadata = (html, item, buildDate) => {
 
   if (requiresReview(item)) {
     updated = syncGuideMetaDates(updated, item);
-    const freshness = guideFreshnessState(item, FRESHNESS_DATE);
-    const due = ['overdue', 'invalid', 'unreviewed', 'blocked'].includes(freshness.state);
-    const inactive = freshness.state === 'superseded' || freshness.state === 'archived';
-    const statusClass = due || inactive ? 'guide-status--review' : 'guide-status--current';
-    const reviewed = item.reviewedAt || item.dateModified;
-    const heading = freshness.state === 'superseded' ? 'Материал заменён'
-      : freshness.state === 'archived' ? 'Архивная памятка'
-        : due ? 'Требует повторной проверки'
-          : `${item.type === 'dossier' ? 'Источники досье сверены на' : 'Проверено и актуально на'} <time datetime="${escapeHtml(reviewed)}">${escapeHtml(formatDate(reviewed))}</time>`;
-    const statusText = freshness.state === 'superseded'
+    const status = item.reviewStatus;
+    const pending = status === 'review-due' || Boolean(item.reviewBlocker) || item.reviewedAt < item.dateModified;
+    const inactive = status === 'superseded' || status === 'archived';
+    const statusClass = pending || inactive ? 'guide-status--review' : 'guide-status--current';
+    const heading = status === 'superseded' ? 'Материал заменён'
+      : status === 'archived' ? 'Архивный материал'
+        : pending ? 'Сведения требуют уточнения'
+          : `Источники сверялись: <time datetime="${escapeHtml(item.reviewedAt)}">${escapeHtml(formatDate(item.reviewedAt))}</time>`;
+    const statusText = status === 'superseded'
       ? 'Не используйте эту версию как действующую инструкцию.'
-      : freshness.state === 'archived'
+      : status === 'archived'
         ? 'Материал сохранён для истории и не является действующей инструкцией.'
-        : due
-          ? freshness.state === 'overdue'
-            ? `Срок обязательной проверки истёк ${formatDate(item.reviewAfter)}. Перед практическим применением сверьте сведения с официальным органом.`
-            : 'Проверка текущей редакции не завершена. Перед практическим применением сверьте сведения с официальным органом.'
-          : `Следующая обязательная проверка — не позднее ${formatDate(item.reviewAfter)}.`;
-    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" ${reviewAttrs(item)} aria-label="${item.type === 'dossier' ? 'Срок проверки досье' : 'Статус актуальности памятки'}"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}</p></aside><!-- KRM GUIDE STATUS END -->`;
+        : item.type === 'dossier'
+          ? 'Досье отражает сведения на указанные даты. Новые сведения и уточнения добавляются по мере появления.'
+          : 'Сведения приведены на даты, указанные в материале. Правила, условия и контакты могут измениться; перед обращением сверяйте их с официальными источниками.';
+    const note = item.reviewNote;
+    const noteHtml = note ? `<p><strong>Дополнение от <time datetime="${escapeHtml(note.date)}">${escapeHtml(formatDate(note.date))}</time>.</strong> ${escapeHtml(note.text)} <a href="${escapeHtml(note.url)}" data-source="" rel="noopener noreferrer" target="_blank">${escapeHtml(note.label)}</a>.</p>` : '';
+    const block = `<!-- KRM GUIDE STATUS START --><aside class="guide-status ${statusClass}" ${reviewAttrs(item)} aria-label="Редакционная информация"><p><strong>${heading}</strong></p><p>${escapeHtml(statusText)}${pending && !inactive ? ` Последняя сверка источников: ${escapeHtml(formatDate(item.reviewedAt))}.` : ''}</p>${noteHtml}</aside><!-- KRM GUIDE STATUS END -->`;
     if (/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/.test(updated)) {
       updated = updated.replace(/<!-- KRM GUIDE STATUS START -->[\s\S]*?<!-- KRM GUIDE STATUS END -->/, block);
     } else {
@@ -745,6 +745,7 @@ for (const file of listHtmlFiles(ROOT)) {
       && !html.includes('/assets/js/review-label.js?')) {
     html = html.replace(/<script defer src="\/assets\/js\/site\.js/, `<script defer src="/assets/js/review-label.js?v=${site.version}"></script><script defer src="/assets/js/site.js`);
   }
+  html = html.replace(/(\/assets\/js\/review-label\.js\?v=)[^"']+/g, `$1${reviewLabelAssetVersion(site.version)}`);
   write(file, syncHostingMeta(html, cspForFile(file)));
 }
 
