@@ -137,7 +137,9 @@
     "krm-2026-11-18": "krm-2026-11-18",
     "assessment-2026-11-22": "assessment-2026-11-22",
     "yubileynoe-2026-11-20": "yubileynoe-2026-11-20",
-    "subsidii-kompensatsii-zhku-lnr": "subsidii-kompensatsii-zhku-lnr"
+    "subsidii-kompensatsii-zhku-lnr": "subsidii-kompensatsii-zhku-lnr",
+    "utrachennoye-zhilyo-lnr-261-26": "utrachennoye-zhilyo-lnr-261-26",
+    "assessment-2026-11-29": "assessment-2026-11-29"
   },
   "notes": "Existing campaigns preserve the previous generator URL slug. New publication campaigns use immutable metadata id. Keep old ids and overrides after URL changes."
 }

@@ -1636,6 +1636,56 @@
       "sourceSha256": "b4e583961c8a30b013b320d11d8ec2a4345841b50ced7b931f3139a44f7d3426",
       "derivedSha256": "55e9ddb0ea8d28b48246de6432410b42d1ac1a20d10b2d539b8d02586a7918f4"
     },
+    "assets/img/derived/assessment/2026-11-29/borovaya-480.webp": {
+      "source": "assets/img/assessment/2026-11-29/borovaya.webp",
+      "sourceSha256": "cf7045d882a2eaa23cc802b21adf63db38c7f66656a19f41019c7b952cbfb384",
+      "derivedSha256": "7e2be36a4b8a9a50812ff93cde5eee4c29035a369a42d55e0d3190a23e1a4cd7"
+    },
+    "assets/img/derived/assessment/2026-11-29/borovaya-960.webp": {
+      "source": "assets/img/assessment/2026-11-29/borovaya.webp",
+      "sourceSha256": "cf7045d882a2eaa23cc802b21adf63db38c7f66656a19f41019c7b952cbfb384",
+      "derivedSha256": "6d25987e3c4063c0467802ddc689fb227983c52783a22ea8c49f2ba52a39d2a0"
+    },
+    "assets/img/derived/assessment/2026-11-29/cover-480.webp": {
+      "source": "assets/img/assessment/2026-11-29/cover.webp",
+      "sourceSha256": "04a575da209ada80c0b09b952518da5176e3e2c79c9d6fdc30f2d5f7a89c3368",
+      "derivedSha256": "94235710f47e99f54d6403367f097a49b15b4d574f560056de99e327945b1009"
+    },
+    "assets/img/derived/assessment/2026-11-29/cover-960.webp": {
+      "source": "assets/img/assessment/2026-11-29/cover.webp",
+      "sourceSha256": "04a575da209ada80c0b09b952518da5176e3e2c79c9d6fdc30f2d5f7a89c3368",
+      "derivedSha256": "f83cc32549e063c00599b524733c9e188fd4e69c5ce93132501c3ad7a48b1087"
+    },
+    "assets/img/derived/assessment/2026-11-29/krasnyi-liman-480.webp": {
+      "source": "assets/img/assessment/2026-11-29/krasnyi-liman.webp",
+      "sourceSha256": "d4ffad187ea7e31d83cf87d54b8983148425f04c5c53fa3579f304877e21abb2",
+      "derivedSha256": "743bd6c87a4d64a694b2dc1ff96d9a573d0b3cd937cc23be01a153e748c5671e"
+    },
+    "assets/img/derived/assessment/2026-11-29/krasnyi-liman-960.webp": {
+      "source": "assets/img/assessment/2026-11-29/krasnyi-liman.webp",
+      "sourceSha256": "d4ffad187ea7e31d83cf87d54b8983148425f04c5c53fa3579f304877e21abb2",
+      "derivedSha256": "c2bb1c39fc34117634bce9689d566de141a77d878b37b09b518c7ba8972d19da"
+    },
+    "assets/img/derived/assessment/2026-11-29/kupyansk-480.webp": {
+      "source": "assets/img/assessment/2026-11-29/kupyansk.webp",
+      "sourceSha256": "8a29d3e15e0ca223e2e4a2b6ec2a5da206dc1234c2ce3e723fe15b824394d232",
+      "derivedSha256": "29b4c022347c987b3a9ef892afc04a9d4b4762b658c4d788d33500e65f5ccda2"
+    },
+    "assets/img/derived/assessment/2026-11-29/kupyansk-960.webp": {
+      "source": "assets/img/assessment/2026-11-29/kupyansk.webp",
+      "sourceSha256": "8a29d3e15e0ca223e2e4a2b6ec2a5da206dc1234c2ce3e723fe15b824394d232",
+      "derivedSha256": "09ed4cee48994d6f4570ca65f750fc0707039828b2d94695279c09aeabfd6717"
+    },
+    "assets/img/derived/assessment/2026-11-29/slavyansk-480.webp": {
+      "source": "assets/img/assessment/2026-11-29/slavyansk.webp",
+      "sourceSha256": "9d1d65bbf0b44bc0fd013de2d7071b99cafa440303c1d781884d0f0a8f5ebafe",
+      "derivedSha256": "41edb3ca89b95a34bf9c2d04d2ee42015dd83ee84a210f8426da324a3fa2ad6e"
+    },
+    "assets/img/derived/assessment/2026-11-29/slavyansk-960.webp": {
+      "source": "assets/img/assessment/2026-11-29/slavyansk.webp",
+      "sourceSha256": "9d1d65bbf0b44bc0fd013de2d7071b99cafa440303c1d781884d0f0a8f5ebafe",
+      "derivedSha256": "9445a988b5fbe145ad1c5e8e7917c2c9595d749c07428fff0bbc44b4ea0e1181"
+    },
     "assets/img/derived/news/civilian-impact/bpla-lnr-2026-05-27/cover-480.webp": {
       "source": "assets/img/news/civilian-impact/bpla-lnr-2026-05-27/cover.webp",
       "sourceSha256": "06b48671dfcb9db79fa565cd5a1658e898422fec7c5ed2d0fcfaa2a00133414d",
@@ -2985,6 +3035,36 @@
       "source": "assets/img/news/reference/telefony-sluzhb-kremennaya-2026/cover.webp",
       "sourceSha256": "53beeb7aa6bf3b613c7c87a00defbc563ed0467bf772918566e58e4b1864a129",
       "derivedSha256": "573722a60cc216a482b7958a20da392c0ab2fbfa225de0e872b3893d34ccb140"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/cover-480.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/cover.webp",
+      "sourceSha256": "81aa5fd9aa12c522f2346e045f545af1f8c8df04cd26b167b8f0826fd4b7c88e",
+      "derivedSha256": "aa321c29201af825b8813371d91bfb93695c551b0dce7229e96d9adb7ff46c05"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/cover-960.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/cover.webp",
+      "sourceSha256": "81aa5fd9aa12c522f2346e045f545af1f8c8df04cd26b167b8f0826fd4b7c88e",
+      "derivedSha256": "c6bfb3093004e2c333b29269885d888075839a16706355258a52701247994a94"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection-480.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection.webp",
+      "sourceSha256": "8a1bce9aad6f77d27c4401600487e51b56d00471941c8718a5f06e36568927d9",
+      "derivedSha256": "86cda65b58d8f1b30fe5de125c48c6cf3700b8e7e1bcaa87c065a90f668ddc2c"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection-960.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection.webp",
+      "sourceSha256": "8a1bce9aad6f77d27c4401600487e51b56d00471941c8718a5f06e36568927d9",
+      "derivedSha256": "28c7cd399a99e18d2188f206db4f01e7f4db64f97df482b2c8417cfe19ef1ed1"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/room-480.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/room.webp",
+      "sourceSha256": "c9dd9b0688a851bb9ce98c89f4cf4619edbdd9790e10aef3b42e3119502308c4",
+      "derivedSha256": "98bae82f71c7f640ca63d655e93e60df1dd9366debca03e7e53ffddf4b45f2ad"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/room-960.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/room.webp",
+      "sourceSha256": "c9dd9b0688a851bb9ce98c89f4cf4619edbdd9790e10aef3b42e3119502308c4",
+      "derivedSha256": "7740346e2c24027b46a0308133979422532865eabebc8a80cf423207fc33517e"
     },
     "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress-480.webp": {
       "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress.webp",
