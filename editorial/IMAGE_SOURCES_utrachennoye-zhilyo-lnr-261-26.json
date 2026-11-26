@@ -1,0 +1,49 @@
+{
+  "article": "utrachennoye-zhilyo-lnr-261-26",
+  "type": "user-supplied-editorial-photos",
+  "note": "Файлы предоставлены владельцем проекта. Первоначальный автор, место, дата и права на публикацию не подтверждены. Без ретуши, кадрирования и генерации; преобразованы в WebP.",
+  "images": {
+    "cover": {
+      "filename": "cover.webp",
+      "provided_filename": "maxresdefault.jpg",
+      "original_sha256": "238cbb09357387ba6c2971a9a3c590e868aadb310ebf2500dc815dfe2a081e50",
+      "sha256": "81aa5fd9aa12c522f2346e045f545af1f8c8df04cd26b167b8f0826fd4b7c88e",
+      "width": 1280,
+      "height": 720,
+      "kind": "user_supplied_photo",
+      "source_url": null,
+      "captured_at": null,
+      "location": null,
+      "rights_confirmed": false,
+      "alt": "Многоквартирный дом с разрушенной частью здания и повреждёнными окнами"
+    },
+    "room": {
+      "filename": "room.webp",
+      "provided_filename": "photo_2026-10-24_12-55-20.jpg",
+      "original_sha256": "0c9b2ce37f8fa48792e1a99c948f3cd7fe48929dd3a8b6bbfa7ff437dea5d47d",
+      "sha256": "c9dd9b0688a851bb9ce98c89f4cf4619edbdd9790e10aef3b42e3119502308c4",
+      "width": 970,
+      "height": 1126,
+      "kind": "user_supplied_photo",
+      "source_url": null,
+      "captured_at": null,
+      "location": null,
+      "rights_confirmed": false,
+      "alt": "Повреждённая жилая комната, разбитое окно, обломки и мебель"
+    },
+    "inspection": {
+      "filename": "inspection.webp",
+      "provided_filename": "1795609160389738_rehj1geb.jpg",
+      "original_sha256": "b2453aca21133c5a5866c079777b866a3423ea6d7ad0e176faf8db6ca50b9217",
+      "sha256": "8a1bce9aad6f77d27c4401600487e51b56d00471941c8718a5f06e36568927d9",
+      "width": 1312,
+      "height": 835,
+      "kind": "user_supplied_photo",
+      "source_url": null,
+      "captured_at": null,
+      "location": null,
+      "rights_confirmed": false,
+      "alt": "Сотрудник в форме Следственного комитета фотографирует повреждённое здание"
+    }
+  }
+}

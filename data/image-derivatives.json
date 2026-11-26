@@ -2986,6 +2986,36 @@
       "sourceSha256": "53beeb7aa6bf3b613c7c87a00defbc563ed0467bf772918566e58e4b1864a129",
       "derivedSha256": "573722a60cc216a482b7958a20da392c0ab2fbfa225de0e872b3893d34ccb140"
     },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/cover-480.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/cover.webp",
+      "sourceSha256": "81aa5fd9aa12c522f2346e045f545af1f8c8df04cd26b167b8f0826fd4b7c88e",
+      "derivedSha256": "aa321c29201af825b8813371d91bfb93695c551b0dce7229e96d9adb7ff46c05"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/cover-960.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/cover.webp",
+      "sourceSha256": "81aa5fd9aa12c522f2346e045f545af1f8c8df04cd26b167b8f0826fd4b7c88e",
+      "derivedSha256": "c6bfb3093004e2c333b29269885d888075839a16706355258a52701247994a94"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection-480.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection.webp",
+      "sourceSha256": "8a1bce9aad6f77d27c4401600487e51b56d00471941c8718a5f06e36568927d9",
+      "derivedSha256": "86cda65b58d8f1b30fe5de125c48c6cf3700b8e7e1bcaa87c065a90f668ddc2c"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection-960.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/inspection.webp",
+      "sourceSha256": "8a1bce9aad6f77d27c4401600487e51b56d00471941c8718a5f06e36568927d9",
+      "derivedSha256": "28c7cd399a99e18d2188f206db4f01e7f4db64f97df482b2c8417cfe19ef1ed1"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/room-480.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/room.webp",
+      "sourceSha256": "c9dd9b0688a851bb9ce98c89f4cf4619edbdd9790e10aef3b42e3119502308c4",
+      "derivedSha256": "98bae82f71c7f640ca63d655e93e60df1dd9366debca03e7e53ffddf4b45f2ad"
+    },
+    "assets/img/derived/news/reference/utrachennoye-zhilyo-lnr-261-26/room-960.webp": {
+      "source": "assets/img/news/reference/utrachennoye-zhilyo-lnr-261-26/room.webp",
+      "sourceSha256": "c9dd9b0688a851bb9ce98c89f4cf4619edbdd9790e10aef3b42e3119502308c4",
+      "derivedSha256": "7740346e2c24027b46a0308133979422532865eabebc8a80cf423207fc33517e"
+    },
     "assets/img/derived/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress-480.webp": {
       "source": "assets/img/news/reference/vozvrashchenie-domoy-ukraina-evropa-sheremetyevo/aeroexpress.webp",
       "sourceSha256": "8fb712706adb25fe28599b9ab13e75d8877e48a7d5eb48ec6d3556bb5545a1d8",
